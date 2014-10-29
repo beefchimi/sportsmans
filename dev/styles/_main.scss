@@ -1,29 +1,6 @@
 // ==|== primary styles =======================================================
 // ============================================================================
 
-// SASS Variables
-// ----------------------------------------------------------------------------
-
-// --- Colours --- \\
-
-/*
-
-hsla(41,63%,61%,1);
-
-$base = #fff;
-
-@mixin baseColor($alpha) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
-}
-
-.box { @include border-radius(10px); }
-
-*/
-
-
 // Foundation
 // ----------------------------------------------------------------------------
 html,
@@ -37,6 +14,8 @@ html {
 }
 body {
 	position: relative;
+	margin: 0 auto;
+	width: 108rem;
 }
 ::-moz-selection {
 	background-color: hsla(0,0%,0%,1);
@@ -55,49 +34,17 @@ input,
 button {
 	transition: all 0.2s ease-in-out;
 }
-a.nav_open div,
-a.nav_close div {
-	transition: background-color 0.2s ease-in-out;
-}
-form.header_form div.search_icon::after {
-	transition: width 0.2s ease-in-out, background-color 0.2s ease-in-out;
-}
 
-
-/*
-input.header_search {
-	transition: padding-left 0.2s ease-in-out, width 0.2s ease-in-out, opacity 0.2s ease-in-out;
-}
-input.header_submit {
-	transition: opacity 0.2s ease-in-out;
-}
-nav ul li a,
-p.legalese a,
-a.header_cart,
-ul.header_account li a {
-	transition: color 0.2s ease-in-out;
-}
-*/
 
 // General Styles
 // ----------------------------------------------------------------------------
 main {
-	// position: sticky; // required for custom touch events to behave properly in iOS
-	min-height: 100%;
+	margin: 0 auto;
+	width: 92.6rem;
 }
 section {
-	display: table;
-	table-layout: fixed;
-	position: relative;
-	width: 100%;
-	height: 100vh;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
 }
 article {
-	display: table-cell;
-	vertical-align: middle;
 }
 svg {
 	display: block;
@@ -105,47 +52,9 @@ svg {
 	height: 100%;
 	fill: hsla(0,0%,100%,1);
 }
-
-
-// --- Content Wrap --- \\
-div.content_wrap {
-	padding: 0 2rem;
-	text-align: center;
-	text-transform: uppercase;
-	color: hsla(0,0%,100%,1);
-}
-div.content_wrap h1 {
-	margin-bottom: 0.6em;
-	font-size: 3.2rem; // 7.2rem;
-	font-weight: 900;
-	letter-spacing: 0.1em;
-}
-div.content_wrap h2 {
-	font-size: 1.7rem; // 2.4rem;
-	font-weight: 700;
-	letter-spacing: 0.1em;
-	line-height: 1.3;
-}
-
-
 /*
-div.content_wrap p,
-div.content_wrap h1,
-div.content_wrap h2,
-div.content_wrap h3,
-div.content_wrap span {
-	text-align: center;
-}
-*/
-
-/*
-div.scroll_wrap {
-	// position: relative;
-	padding: 2rem;
-	// width: 100%;
-	height: 100%;
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
+div.overlay {
+	min-height: 100%;
 }
 */
 
@@ -155,321 +64,6 @@ div.scroll_wrap {
 
 header {
 }
-
-// Navigation
-// ----------------------------------------------------------------------------
-// --- Nav Icon: Open & Close --- \\
-a.nav_open {
-	display: block;
-	position: fixed;
-	z-index: 100;
-	bottom: 2rem;
-	right: 2rem;
-	width: 2.8em;
-	height: 2.8rem;
-}
-a.nav_close {
-	display: block;
-	position: relative;
-	margin: 0 auto 4.8rem auto;
-	width: 2.4rem;
-	height: 2.4rem;
-}
-a.nav_open svg,
-a.nav_close svg {
-	fill: hsla(0,0%,100%,1);
-}
-// + nav icon states + \\
-a.nav_open:hover svg,
-a.nav_close:hover svg {
-	fill: hsla(41,63%,61%,1);
-}
-a.nav_open:active svg,
-a.nav_close:active svg {
-	fill: hsla(41,63%,51%,1);
-}
-// --- Header Overlay --- \\
-div.header_overlay {
-	position: fixed;
-	z-index: 1000;
-	top: 0;
-	left: -150%;
-	width: 100%;
-	height: 100%;
-	padding: 2rem;
-	background-color: hsla(0,0%,0%,0.94);
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
-}
-@keyframes navShow {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-@keyframes navHide {
-	0% {
-		opacity: 1;
-		left: 0;
-	}
-	100% {
-		opacity: 0;
-		left: 0;
-	}
-}
-// + header overlay states + \\
-body[data-nav="active"] {
-	overflow-y: hidden;
-}
-body[data-nav="active"] div.header_overlay {
-	left: 0;
-	animation: navShow 0.4s ease-in-out;
-}
-body[data-nav="inactive"] div.header_overlay {
-	animation: navHide 0.4s ease-in-out;
-}
-// --- Nav List --- \\
-nav ul {
-	margin-bottom: 4.8rem;
-	text-align: center;
-}
-nav ul li {
-	margin-bottom: 1.2rem;
-}
-nav ul li:last-child {
-	margin-bottom: 0;
-}
-nav ul li a {
-	font-size: 2rem; // 2.4rem;
-	font-weight: 900;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-	color: hsla(0,0%,100%,1);
-}
-nav ul li a:hover {
-	color: hsla(41,63%,61%,1);
-}
-nav ul li a:active {
-	color: hsla(41,63%,51%,1);
-}
-// --- Nav Social --- \\
-ul.header_social {
-	position: relative;
-	margin-bottom: 4.8rem;
-	text-align: center;
-}
-/*
-ul.header_social::before,
-ul.header_social::after {
-	content: '';
-	display: block;
-	position: absolute;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	width: 10%;
-	height: 0.2rem;
-	background-color: hsla(0,0%,100%,1);
-}
-ul.header_social::before {
-	top: -3rem;
-}
-ul.header_social::after {
-	bottom: -3rem;
-}
-*/
-ul.header_social li {
-	display: inline-block;
-	margin-right: 2rem;
-	vertical-align: middle;
-}
-ul.header_social li:last-child {
-	margin-right: 0;
-}
-ul.header_social li a.svg_wrap {
-	display: block;
-	width: 2rem;
-	height: 2rem;
-}
-ul.header_social li.social_youtube a.svg_wrap {
-	width: 3.2rem;
-	height: 3.2rem;
-}
-// + nav social states + \\
-ul.header_social li a.svg_wrap:hover svg {
-	fill: hsla(41,63%,61%,1);
-}
-ul.header_social li a.svg_wrap:active svg {
-	fill: hsla(41,63%,51%,1);
-}
-// --- Legal Copy --- \\
-p.legalese {
-	margin-bottom: 2rem; // overflow scroll requires this to match overlay padding
-	font-size: 1.2rem;
-	font-weight: 900;
-	letter-spacing: 0.1em;
-	line-height: 1.4;
-	text-align: center;
-	text-transform: uppercase;
-	color: hsla(0,0%,100%,1);
-}
-p.legalese a {
-	color: hsla(0,0%,100%,1);
-}
-p.legalese a:hover {
-	color: hsla(41,63%,61%,1);
-}
-p.legalese a:active {
-	color: hsla(41,63%,51%,1);
-}
-
-// Header Search Form
-// ----------------------------------------------------------------------------
-form.header_form {
-	position: fixed;
-	z-index: 100;
-	bottom: 2rem;
-	left: 2rem;
-	width: 21.2rem;
-	height: 2.6rem;
-}
-// --- Inputs: Text & Submit --- \\
-input.header_search {
-	cursor: pointer;
-	position: relative;
-	z-index: 3;
-	padding: 0.3rem 0.4rem 0.4rem 2.2rem;
-	width: 2.2rem;
-	height: 2.6rem;
-	font-size: 1.4rem;
-	font-weight: 600;
-	font-style: italic;
-	color: hsla(0,0%,100%,1);
-	opacity: 0;
-/*
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-*/
-}
-input.header_submit {
-	display: none; // mobile browsers depend on native submit
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 0.4rem 1rem;
-	font-size: 1.2rem;
-	font-weight: 700;
-	letter-spacing: 0.1em;
-	text-align: center;
-	text-transform: uppercase;
-	color: hsla(0,0%,100%,1);
-	border: 0.1rem solid hsla(0,0%,100%,1);
-	opacity: 0;
-}
-// --- Search Icon --- \\
-div.search_icon {
-	position: absolute;
-	z-index: 1;
-	top: 0.4rem;
-	left: 0;
-	width: 2.2rem;
-	height: 2.2rem;
-}
-div.search_icon::after {
-	content: '';
-	display: block;
-	position: absolute;
-	bottom: 0;
-	left: 2.9rem;
-	width: 0rem;
-	height: 0.1rem;
-	background-color: hsla(0,0%,100%,0);
-}
-// --- Input States --- \\
-input.header_search:focus,
-input.header_search:valid {
-	cursor: text;
-	padding-left: 3.2rem;
-	width: 21.1rem;
-	opacity: 1;
-}
-input.header_search:hover ~ div.search_icon svg,
-input.header_search:focus ~ div.search_icon svg { // input.header_search:valid ~ div.search_icon svg
-	fill: hsla(41,63%,61%,1)
-}
-input.header_search:focus ~ div.search_icon::after,
-input.header_search:valid ~ div.search_icon::after {
-	width: 18.3rem;
-	background-color: hsla(0,0%,100%,1);
-}
-input.header_submit:hover {
-	color: hsla(41,63%,61%,1);
-	border-color: hsla(41,63%,61%,1);
-}
-input.header_submit:active {
-	color: hsla(41,63%,51%,1);
-	border-color: hsla(41,63%,51%,1);
-}
-
-// Header Account
-// ----------------------------------------------------------------------------
-ul.header_account {
-	position: fixed;
-	z-index: 100;
-	top: 2rem;
-	left: 2rem;
-}
-ul.header_account li {
-	display: inline-block;
-	position: relative;
-	font-size: 1.2rem;
-	font-weight: 900;
-	letter-spacing: 0.1rem;
-	text-transform: uppercase;
-}
-ul.header_account li:first-child::after {
-	content: "\007C"; // "|"
-	margin: 0 0.8rem;
-	color: hsla(0,0%,100%,1);
-}
-ul.header_account li a {
-	color: hsla(0,0%,100%,1);
-}
-ul.header_account li a:hover {
-	color: hsla(41,63%,61%,1);
-}
-
-// Header Cart
-// ----------------------------------------------------------------------------
-a.header_cart {
-	display: block;
-	position: fixed;
-	z-index: 100;
-	top: 1.6rem; // -4px because of svg height
-	right: 2rem;
-	font-size: 1.2rem;
-	font-weight: 900;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-	color: hsla(0,0%,100%,1);
-}
-a.header_cart div.svg_wrap {
-	width: 2.2rem;
-	height: 2.2rem;
-}
-a.header_cart div.cart_stats {
-	display: none;
-}
-a.header_cart:hover {
-	color: hsla(41,63%,61%,1);
-}
-a.header_cart:hover svg {
-	fill: hsla(41,63%,61%,1);
-}
-
 
 
 
@@ -484,57 +78,3 @@ a.header_cart:hover svg {
 #intro_home {
 	background-image: url('../img/h_water-5.jpg');
 }
-
-
-
-
-// Products
-// ----------------------------------------------------------------------------
-
-#product_hoody {
-	background-image: url('../img/p_hoody-1.jpg');
-}
-
-
-.btn_cmn {
-	display: inline-block;
-	padding: 1rem 1.6rem;
-	font-size: 1.4rem;
-	font-weight: 900;
-	letter-spacing: 0.1em;
-	color: hsla(0,0%,100%,1);
-	border: 0.2rem solid hsla(0,0%,100%,1);
-}
-.btn_cmn:hover {
-	color: hsla(41,63%,61%,1);
-	border-color: hsla(41,63%,61%,1);
-}
-.btn_cmn:active {
-	color: hsla(41,63%,51%,1);
-	border-color: hsla(41,63%,51%,1);
-}
-
-
-p.extra {
-	margin-bottom: 1rem;
-	font-size: 1.4rem;
-	font-weight: 900;
-	letter-spacing: 0.1em;
-	color: hsla(0,0%,100%,1);
-}
-h3 {
-	margin-bottom: 1rem;
-	font-family: 'Playfair Display', 'Goudy Old Style', Garamond, 'Big Caslon', Georgia, Times, 'Times New Roman', serif;
-	font-size: 2.2rem; // 3.6rem;
-	letter-spacing: 0.06em;
-	line-height: 1.2;
-}
-
-span.price {
-	display: block;
-	margin-bottom: 1rem;
-	font-size: 1.6rem; // 2.4rem;
-	font-weight: 900;
-	letter-spacing: 0.1em;
-}
-
