@@ -1,0 +1,116 @@
+// ==|== media queries ========================================================
+// WIDTHS: 568px / 768px / 980px
+// ============================================================================
+
+@media only screen and (min-width: 48em) { // 768px / 16px = 48em
+
+// ==|== header styles ========================================================
+// ============================================================================
+
+	// Navigation
+	// ----------------------------------------------------------------------------
+
+	// --- Nav Icon: Open & Close --- \\
+	a.nav_open {
+		bottom: 3.2rem;
+		right: 3.2rem;
+	}
+	a.nav_close {
+		margin-bottom: 8rem;
+	}
+	// --- Header Overlay --- \\
+	div.header_overlay {
+		padding: 4.8rem;
+	}
+	// --- Nav List --- \\
+	nav ul {
+		margin-bottom: 8rem;
+	}
+	nav ul li {
+		margin-bottom: 1.6rem;
+	}
+	nav ul li:last-child {
+		margin-bottom: 0;
+	}
+	nav ul li a {
+		font-size: 2.4rem;
+	}
+	// --- Nav Social --- \\
+	ul.header_social {
+		margin-bottom: 8rem;
+	}
+	ul.header_social li {
+		margin-right: 4rem;
+	}
+	ul.header_social li:last-child {
+		margin-right: 0;
+	}
+	ul.header_social li a.svg_wrap {
+		width: 2.4rem;
+		height: 2.4rem;
+	}
+	ul.header_social li.social_youtube a.svg_wrap {
+		width: 3.6rem;
+		height: 3.6rem;
+	}
+	// --- Legal Copy --- \\
+	p.legalese {
+		margin-bottom: 4.8rem; // overflow scroll requires this to match overlay padding
+		letter-spacing: 0.2em;
+	}
+
+	// Header Search Form
+	// ----------------------------------------------------------------------------
+	form.header_form {
+		bottom: 3.2rem;
+		left: 3.2rem;
+		width: 30rem;
+	}
+	// --- Inputs: Text & Submit --- \\
+	input.header_submit {
+		display: block;
+	}
+	// + input states + \\
+	input.header_search:focus,
+	input.header_search:valid {
+		width: 23.2rem;
+	}
+	input.header_search:focus + input.header_submit,
+	input.header_search:valid + input.header_submit {
+		opacity: 1;
+	}
+	input.header_search:focus ~ div.search_icon::after,
+	input.header_search:valid ~ div.search_icon::after {
+		width: 20.3rem;
+	}
+
+	// Header Account
+	// ----------------------------------------------------------------------------
+	ul.header_account {
+		top: 3.2rem;
+		left: 3.2rem;
+	}
+
+	// Header Cart
+	// ----------------------------------------------------------------------------
+	a.header_cart {
+		top: 3rem; // -2px because of svg height
+		right: 3.2rem;
+	}
+	a.header_cart div.svg_wrap {
+		margin-right: 1rem;
+		width: 1.6rem;
+		height: 1.6rem;
+	}
+	a.header_cart div.svg_wrap,
+	a.header_cart div.cart_stats {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // IE10 & IE11
+
+
+}

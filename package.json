@@ -1,0 +1,41 @@
+{
+  "name": "sportsmans",
+  "version": "0.0.1",
+  "description": "Theme for Sportsman's Warehouse Kiosk",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "del": "^0.1.3",
+    "gulp": "^3.8.9",
+    "gulp-autoprefixer": "^1.0.1",
+    "gulp-changed": "^1.0.0",
+    "gulp-concat": "^2.4.1",
+    "gulp-imagemin": "^1.2.1",
+    "gulp-inject": "^1.0.2",
+    "gulp-livereload": "^2.1.1",
+    "gulp-load-plugins": "^0.7.0",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-rsync": "^0.0.4",
+    "gulp-ruby-haml": "^0.0.3",
+    "gulp-ruby-sass": "^0.7.1",
+    "gulp-svgstore": "^3.0.0",
+    "gulp-uglify": "^1.0.1",
+    "gulp-util": "^3.0.1",
+    "imagemin-pngcrush": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beefchimi/sportsmans.git"
+  },
+  "keywords": [
+    "dulmage",
+    "portfolio"
+  ],
+  "author": "Curtis Dulmage",
+  "bugs": {
+    "url": "https://github.com/beefchimi/sportsmans/issues"
+  },
+  "homepage": "https://github.com/beefchimi/sportsmans"
+}

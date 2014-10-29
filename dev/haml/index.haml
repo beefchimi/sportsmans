@@ -1,0 +1,17 @@
+!!!
+%html{:lang => 'en'}
+
+	= Haml::Engine.new(File.read('dev/haml/partials/_m-head.haml')).render
+
+	%body{'data-nav' => ''}
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		= Haml::Engine.new(File.read('dev/haml/partials/_m-header.haml')).render
+
+		%main{:role => 'main'}
+
+			= Haml::Engine.new(File.read('dev/haml/partials/_m-sections.haml')).render
+
+		%script{:src => 'assets/js/scripts.js'}

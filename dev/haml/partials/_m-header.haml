@@ -1,0 +1,92 @@
+%header
+
+	%a#nav_open.nav_open.svg_wrap{:href => '#', :title => 'Open Navigation'}
+		%svg.svg_menu
+			%use{'xlink:href' => '#menu'}
+
+	#header_overlay.header_overlay
+
+		%a#nav_close.nav_close.svg_wrap{:href => '#', :title => 'Close Navigation'}
+			%svg.svg_close-thin
+				%use{'xlink:href' => '#close-thin'}
+
+		%nav
+			%ul
+				%li
+					%a{:href => '#', :title => 'Home'} Home
+				%li
+					%a{:href => '#', :title => 'Blog'} Blog
+				%li
+					%a{:href => '#', :title => 'About Us'} About Us
+				%li
+					%a{:href => '#', :title => 'Products'} Products
+				%li
+					%a{:href => '#', :title => 'Collections'} Collections
+				%li
+					%a{:href => '#', :title => 'Cart'} Cart
+				%li
+					%a{:href => '#', :title => 'Delivery'} Delivery
+				%li
+					%a{:href => '#', :title => 'Returns'} Returns
+				%li
+					%a{:href => '#', :title => 'Support'} Support
+				%li
+					%a{:href => '#', :title => 'Privacy Policy'} Privacy Policy
+				%li
+					%a{:href => '#', :title => 'Terms of Service'} Terms of Service
+
+		%ul.header_social
+			%li.social_twitter
+				%a.svg_wrap{:href => '#', :title => 'Twitter'}
+					%svg.svg_twitter
+						%use{'xlink:href' => '#twitter'}
+			%li.social_facebook
+				%a.svg_wrap{:href => '#', :title => 'Facebook'}
+					%svg.svg_facebook
+						%use{'xlink:href' => '#facebook'}
+			%li.social_gplus
+				%a.svg_wrap{:href => '#', :title => 'Google Plus'}
+					%svg.svg_gplus
+						%use{'xlink:href' => '#gplus'}
+			%li.social_pinterest
+				%a.svg_wrap{:href => '#', :title => 'Pinterest'}
+					%svg.svg_pinterest
+						%use{'xlink:href' => '#pinterest'}
+			%li.social_youtube
+				%a.svg_wrap{:href => '#', :title => 'YouTube'}
+					%svg.svg_youtube
+						%use{'xlink:href' => '#youtube'}
+			%li.social_instagram
+				%a.svg_wrap{:href => '#', :title => 'Instagram'}
+					%svg.svg_instagram
+						%use{'xlink:href' => '#instagram'}
+
+		%p.legalese
+			&copy; 2014
+			%a{:href => '#', :target => '_blank', :title => 'Salvage'} Salvage
+			&ensp;|&ensp; Theme by
+			%a{:href => 'http://dulmage.me/', :target => '_blank', :title => 'Curtis Dulmage'} Dulmage
+			&ensp;|&ensp; e-commerce by
+			%a{:href => 'http://www.shopify.ca/', :target => '_blank', :title => 'Shopify'} Shopify
+
+	%form.header_form{:action => '/search', :method => 'get', :role => 'search'}
+		%input.header_search{:type => 'text', :name => 'search', :value => '', :autocomplete => 'off', :placeholder => 'enter product name...', :required => true}
+		%input.header_submit{:type => 'submit', :value => 'Find'}
+		.search_icon.svg_wrap
+			%svg.svg_search
+				%use{'xlink:href' => '#search'}
+
+	%ul.header_account
+		%li
+			%a{:href => '#', :title => 'Sign In'} Sign In
+		%li
+			%a{:href => '#', :title => 'Create Account'} Create Account
+
+	%a.header_cart{:href => '#', :title => 'View Cart'}
+		.svg_wrap{:href => '#', :title => 'View Cart'}
+			%svg.svg_cart
+				%use{'xlink:href' => '#cart'}
+		.cart_stats
+			%span 3 Items
+			&mdash;
+			%span $169.00
