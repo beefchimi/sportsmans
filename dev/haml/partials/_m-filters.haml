@@ -1,16 +1,20 @@
-%form#filter_form.filter_form{:action => "", :method => "POST"}
+%form#filter_form.filter_form{:action => "", :method => "POST", "data-container" => "width-926"}
 
-	-# Have not received styles for the dropdowns yet... will requie javascript
-	-# When I build the JS for the dropdowns, I will most likely move the "onchange" event into that function
-	-# Select elements and options are populated based on the category of product you are currently viewing
+	-# Have not received styles for the dropdowns yet... will requie javascript.
+	-# When I build the JS for the dropdowns, I will most likely move the "onchange" event into that function.
+	-# <select> elements and <option>s are populated based on the category of product you are currently viewing.
+	-# Currently, each <select>s initial option is the "label". This first option cannot have a value and must use the attr 'selected'.
+	-# Until I get the <select> dropdown behaviour into its own function, selecting the "label" option causes the form to submit :(
 
 	%select#filter_brand.filter_brand{:name => "filter_brand", :onchange => "this.form.submit()"}
+		%option{:selected => true} Brand
 		%option{:value => "1"} Option One
 		%option{:value => "2"} Option Two
 		%option{:value => "3"} Option Three
 		%option{:value => "4"} Option Four
 
 	%select#filter_caliber.filter_caliber{:name => "filter_caliber", :onchange => "this.form.submit()"}
+		%option{:selected => true} Caliber
 		%option{:value => "1"} Option One
 		%option{:value => "2"} Option Two
 		%option{:value => "3"} Option Three
@@ -19,6 +23,7 @@
 		%option{:value => "6"} Option Six
 
 	%select#filter_price.filter_price{:name => "filter_price", :onchange => "this.form.submit()"}
+		%option{:selected => true} Price
 		%option{:value => "1"} Option One
 		%option{:value => "2"} Option Two
 		%option{:value => "3"} Option Three

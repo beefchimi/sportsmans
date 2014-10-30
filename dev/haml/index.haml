@@ -10,7 +10,7 @@
 
 		= Haml::Engine.new(File.read("dev/haml/partials/_m-header.haml")).render
 
-		%main{:role => "main"}
+		%main{:role => "main", "data-container" => "width-926"}
 
 			= Haml::Engine.new(File.read("dev/haml/partials/_m-grid.haml")).render
 

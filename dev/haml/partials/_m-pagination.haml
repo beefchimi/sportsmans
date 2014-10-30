@@ -1,20 +1,33 @@
-%nav#product_pagination.product_pagination
+%nav#product_pagination.product_pagination{"data-container" => "width-926"}
+
 	%ul
+
+		-# if no 'previous' pages: apply class 'disabled' to <a> tag
 		%li.pagi_prev
-			%a{:href => "#", :title => "Previous Results Page"} Previous
+			%a.arrow_left.disabled{:href => "#", :title => "Previous Results Page"} Previous
+
+		-# if this is the current page: apply class 'pagi_current'
 		%li.pagi_between.pagi_numeral.pagi_first.pagi_current
 			%a{:href => "#", :title => "Results Page 1"} 1
+
 		%li.pagi_between.pagi_numeral
 			%a{:href => "#", :title => "Results Page 2"} 2
+
 		%li.pagi_between.pagi_numeral
 			%a{:href => "#", :title => "Results Page 3"} 3
+
 		%li.pagi_between.pagi_numeral
 			%a{:href => "#", :title => "Results Page 4"} 4
+
 		%li.pagi_between.pagi_numeral
 			%a{:href => "#", :title => "Results Page 5"} 5
+
 		%li.pagi_between.pagi_more
-			%a{:href => "#", :title => "More Results"} ...
+			%a{:href => "#", :title => "More Results"} &hellip;
+
 		%li.pagi_between.pagi_numeral.pagi_last
 			%a{:href => "#", :title => "Results Page 100"} 100
+
+		-# if no 'next' pages: apply class 'disabled'
 		%li.pagi_next
-			%a{:href => "#", :title => "Next Results Page"} Next
+			%a.arrow_right{:href => "#", :title => "Next Results Page"} Next
