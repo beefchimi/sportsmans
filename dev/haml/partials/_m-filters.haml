@@ -1,0 +1,24 @@
+%form#filter_form.filter_form{:action => "", :method => "POST"}
+
+	-# Have not received styles for the dropdowns yet... will requie javascript
+	-# When I build the JS for the dropdowns, I will most likely move the "onchange" event into that function
+	-# Select elements and options are populated based on the category of product you are currently viewing
+
+	%select#filter_brand.filter_brand{:name => "filter_brand", :onchange => "this.form.submit()"}
+		%option{:value => "1"} Option One
+		%option{:value => "2"} Option Two
+		%option{:value => "3"} Option Three
+		%option{:value => "4"} Option Four
+
+	%select#filter_caliber.filter_caliber{:name => "filter_caliber", :onchange => "this.form.submit()"}
+		%option{:value => "1"} Option One
+		%option{:value => "2"} Option Two
+		%option{:value => "3"} Option Three
+		%option{:value => "4"} Option Four
+		%option{:value => "5"} Option Five
+		%option{:value => "6"} Option Six
+
+	%select#filter_price.filter_price{:name => "filter_price", :onchange => "this.form.submit()"}
+		%option{:value => "1"} Option One
+		%option{:value => "2"} Option Two
+		%option{:value => "3"} Option Three

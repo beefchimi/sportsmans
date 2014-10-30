@@ -1,0 +1,9 @@
+%section#product_grid.product_grid
+
+	- (1..25).each do |i|
+		%article.product_item{:id => "product-#{i}"}
+			%a.product_link{:href => "", :title => "Product #{i} Title"}
+				.wrap_image
+					%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product #{i} Image"}
+				%h1.product_title A somewhat long title for this here all american ammunition product
+				%h2.product_price $499.99
