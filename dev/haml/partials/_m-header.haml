@@ -18,7 +18,6 @@
 				%p#widget_cart-total.widget_cart-total $152.50
 			%a#button_cart.button_cart.arrow_right{:href => "#", :title => "View Cart"} View Cart
 
-	-# more here!
 	.title_row{"data-container" => "width-926"}
 
 		%h1 Rifle Ammunition
@@ -26,9 +25,9 @@
 		%form#search_form.search_form{:action => "", :method => "GET", :role => "search"}
 			%input#search_text.search_text{:type => "text", :name => "search", :value => "", :autocomplete => "off", :placeholder => "Search for a specific product", :required => true}
 			%input#search_submit.search_submit{:type => "submit", :value => "Submit"}
-			-# .search_icon.svg_wrap
-				-# %svg.svg_search
-					-# %use{'xlink:href' => '#search'}
+			.search_icon.svg_wrap
+				%svg.svg_search
+					%use{'xlink:href' => '#search'}
 
 		%a#button_view-all.button_view-all.button_circle{:href => "#", :title => "View All Departments"}
 			%span.text-wrap View All Departments
