@@ -1,29 +1,43 @@
-%form#filter_form.filter_form{:action => "", :method => "POST", "data-container" => "width-926"}
+%nav#filter_form.filter_form{"data-container" => "width-926"}
 
-	-# Have not received styles for the dropdowns yet... will requie javascript.
-	-# When I build the JS for the dropdowns, I will most likely move the "onchange" event into that function.
-	-# <select> elements and <option>s are populated based on the category of product you are currently viewing.
-	-# Currently, each <select>s initial option is the "label". This first option cannot have a value and must use the attr 'selected'.
-	-# Until I get the <select> dropdown behaviour into its own function, selecting the "label" option causes the form to submit :(
+	-# Should discuss this with Matt...
+	-# Will likely need to have a <form> with <select> elements,
+	-# in which case we will need to write some JS in order to create a <ul> which can be styled
 
-	%select#filter_brand.filter_brand{:name => "filter_brand", :onchange => "this.form.submit()"}
-		%option{:selected => true} Brand
-		%option{:value => "1"} Option One
-		%option{:value => "2"} Option Two
-		%option{:value => "3"} Option Three
-		%option{:value => "4"} Option Four
+	#filter_brand.filter_brand
+		%p.filter_label Brand
+		%ul.dropdown_list
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "1"} Option One
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "2"} Option Two
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "3"} Option Three
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "4"} Option Four
 
-	%select#filter_caliber.filter_caliber{:name => "filter_caliber", :onchange => "this.form.submit()"}
-		%option{:selected => true} Caliber
-		%option{:value => "1"} Option One
-		%option{:value => "2"} Option Two
-		%option{:value => "3"} Option Three
-		%option{:value => "4"} Option Four
-		%option{:value => "5"} Option Five
-		%option{:value => "6"} Option Six
+	#filter_caliber.filter_caliber
+		%p.filter_label Caliber
+		%ul.dropdown_option
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "1"} Option One
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "2"} Option Two
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "3"} Option Three
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "4"} Option Four
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "5"} Option Five
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "6"} Option Six
 
-	%select#filter_price.filter_price{:name => "filter_price", :onchange => "this.form.submit()"}
-		%option{:selected => true} Price
-		%option{:value => "1"} Option One
-		%option{:value => "2"} Option Two
-		%option{:value => "3"} Option Three
+	#filter_price.filter_price
+		%p.filter_label Price
+		%ul.dropdown_option
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "1"} Option One
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "2"} Option Two
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "3"} Option Three

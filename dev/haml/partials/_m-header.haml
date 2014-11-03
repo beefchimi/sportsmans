@@ -6,7 +6,12 @@
 			%img{:src => "assets/img/logo_sportsmans.png", :alt => "Sportsman's Warehouse"}
 
 		-# not on all pages... location aware (links back to parent)
-		%a#button_back.button_back.arrow_left{:href => "#", :title => "Back To Ammunition"} Back To Ammunition
+		-# %a#button_back.button_back.arrow_left{:href => "#", :title => "Back To Ammunition"} Back To Ammunition
+
+		%a#button_back.button_back.svg_wrap{:href => "#", :title => "Back To Ammunition"}
+			%span Back To Ammunition
+			%svg.svg_backbutton
+				%use{"xlink:href" => "#backbutton"}
 
 		-# visible on all screens except: ()
 		%aside#widget_cart.widget_cart

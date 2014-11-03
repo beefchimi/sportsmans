@@ -12,8 +12,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// onPageLoad: Main Function To Fire on Window Load
 	// ----------------------------------------------------------------------------
+/*
 	function onPageLoad() {
+	}
+*/
 
+
+	// selectReplace: Replace <select> elements for styling
+	// ----------------------------------------------------------------------------
+	function selectReplace() {
+
+		var filterLabel = document.querySelectorAll('.filter_label');
+
+		for (var i = 0; i < filterLabel.length; i++) {
+			dropdownToggle(filterLabel[i]);
+		}
+
+
+		// function for toggling dropdowns
+		function dropdownToggle(currentTarget) {
+
+			currentTarget.addEventListener('click', function(e) {
+
+/*
+				if (this.className == 'active') {
+					this.className = '';
+				} else {
+					this.className = 'active';
+				}
+*/
+
+				this.classList.toggle('toggled');
+
+				e.preventDefault();
+
+			}, false);
+
+		}
 
 
 	}
@@ -24,6 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	// onPageLoad();
+
+	selectReplace();
+
 
 /*
 	// smoothScroll();

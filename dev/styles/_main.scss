@@ -39,6 +39,18 @@ input,
 button {
 	transition: all 0.2s ease-in-out;
 }
+/*
+nav.filter_form div p {
+	transition: border-color 0.2s ease-in-out;
+}
+nav.filter_form div p::after {
+	transition: border-top-color 0.2s ease-in-out;
+}
+nav.filter_form div ul {
+	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+*/
+
 
 // General Styles
 // ----------------------------------------------------------------------------
@@ -84,7 +96,7 @@ a.arrow_right {
 	text-transform: uppercase;
 	vertical-align: middle;
 	color: hsla(0,0%,20%,1);
-	border-radius: 0.1rem; // softens the edge connecting the triangle
+	// border-radius: 0.1rem; // softens the edge connecting the triangle
 }
 a.arrow_left {
 	// left: 2.8rem; // width of triangle
@@ -141,15 +153,45 @@ aside.widget_cart {
 	top: 2rem;
 }
 // + button: back + \\
+/*
 header a.button_back {
 	left: 2.8rem; // width of triangle
 	width: 29rem; // 318px - 28px
 	font-size: 1.5rem;
 	background-color: hsla(0,0%,90%,1);
-/*
-	background-color: hsla(0,0%,50%,1);
-	box-shadow: inset 0 0 0 0.3rem hsla(0,0%,50%,1);
+}
 */
+header a.button_back {
+	width: 31.8rem;
+	height: 5rem;
+	font-size: 1.5rem;
+	line-height: 5rem; // center text vertically
+	text-align: center;
+	text-transform: uppercase;
+	vertical-align: middle;
+	color: hsla(0,0%,60%,1);
+}
+header a.button_back span {
+	display: block;
+	padding-left: 0.7rem; // 1/4 of the arrow width
+}
+header a.button_back svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	fill: hsla(0,0%,80%,1);
+}
+header a.button_back:hover {
+	color: hsla(0,0%,50%,1);
+}
+header a.button_back:hover svg {
+	fill: hsla(0,0%,70%,1);
+}
+header a.button_back:active {
+	color: hsla(0,0%,60%,1);
+}
+header a.button_back:active svg {
+	fill: hsla(0,0%,80%,1);
 }
 // + widget: cart + \\
 aside.widget_cart {
@@ -267,8 +309,8 @@ form.search_form div.svg_wrap {
 	z-index: 9;
 	top: 1.9rem;
 	left: 2.6rem;
-	width: 2.8rem;
-	height: 2.8rem;
+	width: 2.6rem;
+	height: 2.6rem;
 }
 form.search_form div.svg_wrap svg {
 	fill: hsla(0,0%,60%,1);
@@ -347,49 +389,143 @@ nav.product_pagination ul li.pagi_current a {
 }
 
 // --- Filters --- \\
+nav.filter_form {
+	margin-bottom: 3.2rem;
+}
+nav.filter_form div {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	margin-right: 2.6rem;
+	height: 4.8rem; // computer height from child <p>
+}
+nav.filter_form div:last-child {
+	margin-right: 0;
+}
+nav.filter_form div p {
+	position: relative;
+	padding: 1.4rem 4rem 1.3rem 1.6rem;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: hsla(0,0%,50%,1);
+	border: 0.3rem solid hsla(0,0%,80%,1);
+	border-radius: 2.4rem; // computer height (48px) / 2
+}
+nav.filter_form div p::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 1.6rem;
+	right: 1.6rem;
+	width: 0;
+	height: 0;
+	border-left: 0.9rem solid transparent;
+	border-right: 0.9rem solid transparent;
+	border-top: 0.9rem solid hsla(0,0%,80%,1);
+}
+// + dropdowns + \\
+nav.filter_form div ul {
+	position: absolute;
+	top: 4.2rem;
+	left: 0;
+	right: 0;
+	border: 0.3rem solid hsla(0,0%,60%,1);
+	border-radius: 0 0 2.4rem 2.4rem; // computer height (48px) / 2
+	overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+}
+nav.filter_form div ul li {
+	border-bottom: 0.3rem solid hsla(0,0%,80%,1);
+}
+nav.filter_form div ul li:last-child {
+	border-bottom: none;
+}
+nav.filter_form div ul li a {
+	display: block;
+	padding: 1.6rem;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	color: hsla(0,0%,0%,1);
+	background-color: hsla(0,0%,100%,1);
+}
+
+// + specific filters + \\
+nav.filter_form div.filter_brand {
+	width: 35.4rem;
+}
+nav.filter_form div.filter_caliber,
+nav.filter_form div.filter_price {
+	width: 16rem;
+}
+
+// + toggled styles + \\
+nav.filter_form div p.toggled {
+	// border-radius: 2.4rem 2.4rem 0 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border-color: hsla(0,0%,60%,1);
+}
+nav.filter_form div p.toggled::after {
+	border-top-color: hsla(0,0%,60%,1);
+}
+nav.filter_form div p.toggled + ul {
+	opacity: 1;
+	visibility: visible;
+}
+
+// + interaction + \\
+nav.filter_form div:hover p {
+	border-color: hsla(0,0%,60%,1);
+}
+nav.filter_form div:hover p::after {
+	border-top-color: hsla(0,0%,60%,1);
+}
+nav.filter_form div ul li a:hover {
+	background-color: hsla(0,0%,94%,1);
+}
+/*
+nav.filter_form div:active p {
+	border-color: hsla(0,0%,80%,1);
+}
+nav.filter_form div:active p::after {
+	border-top-color: hsla(0,0%,80%,1);
+}
+*/
+nav.filter_form div ul li a:active {
+	background-color: hsla(0,0%,96%,1);
+}
+
+/* SELECT STYLING
 form.filter_form {
 	margin-bottom: 3.2rem;
 }
 form.filter_form select {
 	-webkit-appearance: button; // none;
 	-webkit-user-select: none;
-	// -webkit-padding-end: 20px;
-	// -webkit-padding-start: 2px;
-
 	cursor: pointer;
-
 	margin-right: 2.6rem;
 	padding: 1.2rem 1.6rem 1rem 1.6rem;
-
 	font-size: 1.5rem;
 	text-transform: uppercase;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	color: hsla(0,0%,50%,1);
-
-	// background: none;
 	background-color: #fff;
 	background-image: url('../img/tri_down.png');
 	background-position: right 1.6rem center;
 	background-repeat: no-repeat;
 	background-size: 1.6rem 0.9rem;
-
-	// box-shadow: none;
 	outline: none;
-
 	border: 0.3rem solid hsla(0,0%,80%,1);
 	border-radius: 2.3rem; // computer height (46px) / 2
-
 	overflow: hidden;
 }
 form.filter_form select:last-child {
 	margin-right: 0;
 }
-form.filter_form select:focus {
-}
-
-
-
 // + specific filters + \\
 form.filter_form select.filter_brand {
 	width: 35.4rem;
@@ -398,21 +534,11 @@ form.filter_form select.filter_caliber,
 form.filter_form select.filter_price {
 	width: 16rem;
 }
+*/
 
 
 // ==|== page styles ==========================================================
 // ============================================================================
-
-
-// Home
-// ----------------------------------------------------------------------------
-
-
-#intro_home {
-	background-image: url('../img/h_water-5.jpg');
-}
-
-
 
 // Product Grid
 // ----------------------------------------------------------------------------
