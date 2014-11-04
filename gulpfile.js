@@ -171,6 +171,7 @@ gulp.task('extras', function() {
 });
 
 
+/*
 // Use rsync to deploy to server (no need to exclude files since everything comes from 'build' folder)
 gulp.task('deploy', function() {
 
@@ -187,6 +188,7 @@ gulp.task('deploy', function() {
 		}));
 
 });
+*/
 
 
 // Watch over specified files and run corresponding tasks...

@@ -16,18 +16,19 @@ select,
 textarea {
 	font-family: 'Futura-std', sans-serif;
 	letter-spacing: 0.05em;
-	// font-family: 'Playfair Display', 'Goudy Old Style', Garamond, 'Big Caslon', Georgia, Times, 'Times New Roman', serif;
 }
 body {
 	position: relative;
 	padding: 4.8rem 0;
 }
+/*
 ::-moz-selection {
 	background-color: hsla(0,0%,0%,1);
 }
 ::selection {
 	background-color: hsla(0,0%,0%,1);
 }
+*/
 
 // Transitions
 // ----------------------------------------------------------------------------
@@ -40,13 +41,13 @@ button {
 	transition: all 0.2s ease-in-out;
 }
 /*
-nav.filter_form div p {
+form.filter_form div p {
 	transition: border-color 0.2s ease-in-out;
 }
-nav.filter_form div p::after {
+form.filter_form div p::after {
 	transition: border-top-color 0.2s ease-in-out;
 }
-nav.filter_form div ul {
+form.filter_form div ul {
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
 */
@@ -64,7 +65,6 @@ svg {
 	display: block;
 	width: 100%;
 	height: 100%;
-	// fill: hsla(0,0%,100%,1);
 }
 /*
 div.overlay {
@@ -88,15 +88,13 @@ div.overlay {
 a.arrow_left,
 a.arrow_right {
 	display: block;
-	position: relative; // more than likely going to be absolute in all cases...
+	position: relative;
 	height: 5rem;
 	font-size: 1.7rem;
 	line-height: 5rem; // center text vertically
 	text-align: center;
 	text-transform: uppercase;
-	vertical-align: middle;
 	color: hsla(0,0%,20%,1);
-	// border-radius: 0.1rem; // softens the edge connecting the triangle
 }
 a.arrow_left {
 	// left: 2.8rem; // width of triangle
@@ -152,15 +150,7 @@ aside.widget_cart {
 	position: absolute;
 	top: 2rem;
 }
-// + button: back + \\
-/*
-header a.button_back {
-	left: 2.8rem; // width of triangle
-	width: 29rem; // 318px - 28px
-	font-size: 1.5rem;
-	background-color: hsla(0,0%,90%,1);
-}
-*/
+// --- Button: Back --- \\
 header a.button_back {
 	width: 31.8rem;
 	height: 5rem;
@@ -168,7 +158,6 @@ header a.button_back {
 	line-height: 5rem; // center text vertically
 	text-align: center;
 	text-transform: uppercase;
-	vertical-align: middle;
 	color: hsla(0,0%,60%,1);
 }
 header a.button_back span {
@@ -181,6 +170,7 @@ header a.button_back svg {
 	left: 0;
 	fill: hsla(0,0%,80%,1);
 }
+// + interaction + \\
 header a.button_back:hover {
 	color: hsla(0,0%,50%,1);
 }
@@ -193,7 +183,7 @@ header a.button_back:active {
 header a.button_back:active svg {
 	fill: hsla(0,0%,80%,1);
 }
-// + widget: cart + \\
+// --- Widget: Cart --- \\
 aside.widget_cart {
 	right: 0;
 	width: 38rem;
@@ -238,7 +228,6 @@ header div.title_row h1 {
 	margin: 0 auto 3.2rem auto;
 	max-width: 54rem;
 	font-size: 4.8rem;
-	// letter-spacing: 0.1em;
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -277,7 +266,7 @@ header div.title_row a.button_circle:hover {
 header div.title_row a.button_circle:active {
 	opacity: 0.9;
 }
-// + search form + \\
+// --- Search Form --- \\
 form.search_form {
 	position: relative;
 	margin: 0 auto;
@@ -288,8 +277,6 @@ form.search_form input.search_text {
 	padding: 2rem 4rem 1.7rem 8rem;
 	font-size: 1.7rem;
 	text-transform: uppercase;
-	// text-overflow: ellipsis;
-	// white-space: nowrap;
 	color: hsla(0,0%,50%,1);
 	border: 0.3rem solid hsla(0,0%,80%,1);
 	border-radius: 3.3rem; // computer height (66px) / 2
@@ -315,6 +302,7 @@ form.search_form div.svg_wrap {
 form.search_form div.svg_wrap svg {
 	fill: hsla(0,0%,60%,1);
 }
+// + interaction + \\
 form.search_form input.search_submit:hover + div.svg_wrap svg {
 	fill: hsla(0,0%,40%,1);
 }
@@ -389,22 +377,24 @@ nav.product_pagination ul li.pagi_current a {
 }
 
 // --- Filters --- \\
-nav.filter_form {
+form.filter_form {
 	margin-bottom: 3.2rem;
 }
-nav.filter_form div {
+form.filter_form div {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
 	margin-right: 2.6rem;
-	height: 4.8rem; // computer height from child <p>
+	// height: 4.8rem; // computed height from child <p>
 }
-nav.filter_form div:last-child {
+form.filter_form div:last-child {
 	margin-right: 0;
 }
-nav.filter_form div p {
+form.filter_form div p {
 	position: relative;
-	padding: 1.4rem 4rem 1.3rem 1.6rem;
+	padding: 0 4rem 0 2rem;
+	height: 4.8rem;
+	line-height: 4.2rem; // height - border
 	font-size: 1.5rem;
 	text-transform: uppercase;
 	text-overflow: ellipsis;
@@ -413,7 +403,7 @@ nav.filter_form div p {
 	border: 0.3rem solid hsla(0,0%,80%,1);
 	border-radius: 2.4rem; // computer height (48px) / 2
 }
-nav.filter_form div p::after {
+form.filter_form div p::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -426,7 +416,7 @@ nav.filter_form div p::after {
 	border-top: 0.9rem solid hsla(0,0%,80%,1);
 }
 // + dropdowns + \\
-nav.filter_form div ul {
+form.filter_form div ul {
 	position: absolute;
 	top: 4.2rem;
 	left: 0;
@@ -437,13 +427,13 @@ nav.filter_form div ul {
 	opacity: 0;
 	visibility: hidden;
 }
-nav.filter_form div ul li {
+form.filter_form div ul li {
 	border-bottom: 0.3rem solid hsla(0,0%,80%,1);
 }
-nav.filter_form div ul li:last-child {
+form.filter_form div ul li:last-child {
 	border-bottom: none;
 }
-nav.filter_form div ul li a {
+form.filter_form div ul li a {
 	display: block;
 	padding: 1.6rem;
 	font-size: 1.5rem;
@@ -453,50 +443,54 @@ nav.filter_form div ul li a {
 }
 
 // + specific filters + \\
-nav.filter_form div.filter_brand {
+form.filter_form div.wrap_filter-brand {
 	width: 35.4rem;
 }
-nav.filter_form div.filter_caliber,
-nav.filter_form div.filter_price {
+form.filter_form div.wrap_filter-caliber,
+form.filter_form div.wrap_filter-price {
 	width: 16rem;
 }
 
 // + toggled styles + \\
-nav.filter_form div p.toggled {
+form.filter_form div p.toggled {
 	// border-radius: 2.4rem 2.4rem 0 0;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 	border-color: hsla(0,0%,60%,1);
 }
-nav.filter_form div p.toggled::after {
+form.filter_form div p.toggled::after {
 	border-top-color: hsla(0,0%,60%,1);
 }
-nav.filter_form div p.toggled + ul {
+form.filter_form div p.toggled + ul {
 	opacity: 1;
 	visibility: visible;
 }
 
 // + interaction + \\
-nav.filter_form div:hover p {
+form.filter_form div:hover p {
 	border-color: hsla(0,0%,60%,1);
 }
-nav.filter_form div:hover p::after {
+form.filter_form div:hover p::after {
 	border-top-color: hsla(0,0%,60%,1);
 }
-nav.filter_form div ul li a:hover {
+form.filter_form div ul li a:hover {
 	background-color: hsla(0,0%,94%,1);
 }
 /*
-nav.filter_form div:active p {
+form.filter_form div:active p {
 	border-color: hsla(0,0%,80%,1);
 }
-nav.filter_form div:active p::after {
+form.filter_form div:active p::after {
 	border-top-color: hsla(0,0%,80%,1);
 }
 */
-nav.filter_form div ul li a:active {
+form.filter_form div ul li a:active {
 	background-color: hsla(0,0%,96%,1);
 }
+
+
+
+
 
 /* SELECT STYLING
 form.filter_form {
@@ -535,6 +529,9 @@ form.filter_form select.filter_price {
 	width: 16rem;
 }
 */
+
+
+
 
 
 // ==|== page styles ==========================================================
