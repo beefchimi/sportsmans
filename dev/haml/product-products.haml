@@ -1,0 +1,22 @@
+!!!
+%html#root{:lang => "en"}
+
+	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+
+	-# ID always prefixed with "products_" ... suffix taken from current Department view (ex: fishing, camping, footwear, etc.)
+	-# ID "products_" is pluralized to indicate the products list view, not to be confused with a single product page
+	%body#products_rifle-ammunition.page_product-products
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		%header
+		%header
+			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-1.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-2.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/_header_filters.haml")).render
+
+		%main{:role => "main", "data-container" => "width-926"}
+			= Haml::Engine.new(File.read("dev/haml/partials/_main_grid-5.haml")).render
+
+		%script{:src => "assets/js/scripts.js"}

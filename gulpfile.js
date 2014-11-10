@@ -148,7 +148,7 @@ gulp.task('svg', function() {
 		return file.contents.toString('utf8');
 	}
 
-	return gulp.src(paths.haml.dest + 'index.html')
+	return gulp.src(paths.haml.dest + '*.html')
 				.pipe(plugins.inject(svgOutput, { transform: fileContents }))
 				.pipe(gulp.dest(paths.haml.dest));
 

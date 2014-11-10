@@ -1,5 +1,5 @@
 !!!
-%html{:lang => "en"}
+%html#root{:lang => "en"}
 
 	%head
 
@@ -13,7 +13,10 @@
 
 		%link{:rel => "stylesheet", :href => "assets/css/styles.css"}
 
-	%body.error_404
+	%body#error_404.error_404
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
 
 		%main{:role => "main"}
 

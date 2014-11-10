@@ -1,0 +1,13 @@
+-# addition of 'grid_4' class
+%section#product_grid.product_grid.grid_4
+
+	- (1..34).each do |i|
+		%article.product_item{:id => "product-#{i}"}
+			%a.product_link{:href => "", :title => "Product #{i} Title"}
+				.wrap_image
+					%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product #{i} Image"}
+				-# Departments: product_dept | Categories: product_cat
+				%h1.product_dept Handgun Ammunition
+				%h2.product_items 225 items
+
+%a#back-to-top.back-to-top{:href => "#root", :title => "Back To Top", "data-scroll" => true} Back To Top

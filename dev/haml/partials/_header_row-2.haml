@@ -1,0 +1,15 @@
+.title_row{"data-container" => "width-926"}
+
+	%h1 Rifle Ammunition
+
+	%form#search_form.search_form{:action => "", :method => "GET", :role => "search"}
+		%input#search_text.search_text{:type => "text", :name => "search", :value => "", :autocomplete => "off", :placeholder => "Search for a specific product", :required => true}
+		%input#search_submit.search_submit{:type => "submit", :value => "Submit"}
+		.search_icon.wrap_svg
+			%svg.svg_search
+				%use{'xlink:href' => '#search'}
+
+	%a#button_view-all.button_view-all.button_circle{:href => "#", :title => "View All Departments"}
+		%span.wrap_text View All Departments
+	%a#button_start-over.button_start-over.button_circle{:href => "#", :title => "Start Over"}
+		%span.wrap_text Start Over

@@ -1,0 +1,20 @@
+.top_row{"data-container" => "width-998"}
+
+	#logo_sportsmans.logo_sportsmans
+		%img{:src => "assets/img/logo_sportsmans.png", :alt => "Sportsman's Warehouse"}
+
+	-# present on all product grid pages except: Departments
+	%a#button_back.button_back.wrap_svg{:href => "#", :title => "Back To Ammunition"}
+		%span Back To Ammunition
+		%svg.svg_backbutton
+			%use{"xlink:href" => "#backbutton"}
+
+	-# visible on all screens except: ()
+	%aside#widget_cart.widget_cart
+		.wrap_text
+			.wrap_svg
+				%svg.svg_cart
+					%use{"xlink:href" => "#cart"}
+			%p#widget_cart-items.widget_cart-items 10 items in cart
+			%p#widget_cart-total.widget_cart-total $152.50
+		%a#button_cart.button_cart.arrow_right{:href => "#", :title => "View Cart"} View Cart

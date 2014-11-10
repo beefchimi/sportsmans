@@ -3,11 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Global Variables
 	// ----------------------------------------------------------------------------
-
-	// --- Objects and Initial Setup --- \\
-
-	// common objects
-	var elBody       = document.body;
+	var elBody  = document.body,
+		topLink = document.getElementById('back-to-top');
 
 
 	// onPageLoad: Main Function To Fire on Window Load
@@ -18,30 +15,56 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 
 
-	// selectReplace: Replace <select> elements for styling
+	// backToTop: When Product Grid reaches top of page
 	// ----------------------------------------------------------------------------
-	function selectReplace() {
+	function backToTop() {
 
-		var filterLabel = document.querySelectorAll('.filter_label');
+		// instead of tracking the position of #product_grid:
+		// we can safely assume that if the user has scrolled 560px, toggle the back-to-top link
 
+		var scrollPos = window.pageYOffset;
+
+		// if we have scrolled to or past 560px AND topLink does not yet have the class "active"...
+		if ( scrollPos >= 560 && !topLink.classList.contains('active') ) {
+			topLink.classList.add('active');
+		} else if ( scrollPos < 560 && topLink.classList.contains('active') ) {
+			topLink.classList.remove('active');
+		}
+
+	}
+
+
+	// selectDropdown: Pair each <select> element with its <ul> counter-part
+	// ----------------------------------------------------------------------------
+	function selectDropdown() {
+
+		var filterForm  = document.getElementById('filter_form'),
+			filterLabel = filterForm.querySelectorAll('.filter_label');
+
+		// assign the click event to each .filter_label found in the filterForm
 		for (var i = 0; i < filterLabel.length; i++) {
 			dropdownToggle(filterLabel[i]);
 		}
 
-
 		// function for toggling dropdowns
 		function dropdownToggle(currentTarget) {
 
+			// need to consider the fact that this is a touch enabled device...
+			// typically, the dropdowns should close on "click outside" of 'this'...
+			// but user scrolling could trigger a dropdown close, which probably is not ideal
 			currentTarget.addEventListener('click', function(e) {
 
-/*
-				if (this.className == 'active') {
-					this.className = '';
-				} else {
-					this.className = 'active';
-				}
-*/
+				// run through each filterLabel...
+				for (var i = 0; i < filterLabel.length; i++) {
 
+					// and if this is NOT the dropdown we have clicked on...
+					if ( filterLabel[i] != currentTarget ) {
+						filterLabel[i].classList.remove('toggled'); // remove the 'toggled' class
+					}
+
+				}
+
+				// allow for class toggling on the clicked dropdown
 				this.classList.toggle('toggled');
 
 				e.preventDefault();
@@ -50,27 +73,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		}
 
+		// function for passing <ul> values to the corresponding <select>
+		function passSelectValue() {
+
+			// dropdownList  = document.querySelectorAll('.dropdown_link');
+			var dropdownLinks = filterForm.querySelectorAll('.dropdown_link'),
+				selectOptions = filterForm.getElementsByTagName('option');
+
+			// assign the click event to each .dropdown_link found in the filterForm
+			for (var i = 0; i < dropdownLinks.length; i++) {
+				filterChange(dropdownLinks[i]);
+			}
+
+			function filterChange(currentFilter) {
+
+				currentFilter.addEventListener('click', function(e) {
+
+					// http://stackoverflow.com/questions/7373058/how-to-change-the-selected-option-of-html-select-element
+
+					var selectedValue = this.getAttribute('data-value');
+
+					// toggle selected class
+
+					console.log(selectedValue);
+
+					var matchedOption = filterForm.querySelector('[value="' + selectedValue + '"]');
+
+					console.log(matchedOption);
+
+					matchedOption.selected = true;
+
+					// need to verify if this is in fact working
+					// filterForm.submit();
+
+					e.preventDefault();
+
+				}, false);
+
+			}
+
+		}
+
+		// does this load a new page or do we refresh the results with AJAX?
+		// if AJAX, we will need to display the selected option as the label
+		passSelectValue();
 
 	}
+
+
+	// Window Events: On - Scroll, Resize
+	// ----------------------------------------------------------------------------
+	window.addEventListener('scroll', function(e) {
+
+		backToTop();
+
+	}, false);
 
 
 	// Initialize Primary Functions
 	// ----------------------------------------------------------------------------
 
-
 	// onPageLoad();
+	selectDropdown();
 
-	selectReplace();
-
-
-/*
-	// smoothScroll();
+	// initialize smoothScroll plugin
 	smoothScroll.init({
 		speed: 400,
 		easing: 'easeInOutQuint',
 		updateURL: false
 	});
-*/
 
 
 }, false);
