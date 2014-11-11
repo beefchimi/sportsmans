@@ -399,6 +399,7 @@ form.filter_form div {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
+	z-index: 20;
 	margin-right: 2.6rem;
 	// height: 4.8rem; // computed height from child <p>
 }
@@ -407,6 +408,7 @@ form.filter_form div:last-child {
 }
 form.filter_form div p {
 	position: relative;
+	// z-index: 101;
 	padding: 0 4rem 0 2rem;
 	height: 4.8rem;
 	line-height: 4.2rem; // height - border
@@ -415,6 +417,7 @@ form.filter_form div p {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	color: hsla(0,0%,50%,1);
+	background-color: hsla(0,0%,100%,1);
 	border: 0.3rem solid hsla(0,0%,80%,1);
 	border-radius: 2.4rem; // computer height (48px) / 2
 }
@@ -433,6 +436,7 @@ form.filter_form div p::after {
 // + dropdowns + \\
 form.filter_form div ul {
 	position: absolute;
+	// z-index: 102;
 	top: 4.2rem;
 	left: 0;
 	right: 0;
@@ -508,48 +512,26 @@ form.filter_form div ul li a:active {
 	background-color: hsla(0,0%,96%,1);
 }
 
+/*
+// --- Dropdown Overlay --- \\
+form.filter_form span.filter_overlay {
+	display: block;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: hsla(0,0%,0%,0.1);
 
-
-
-
-/* SELECT STYLING
-form.filter_form {
-	margin-bottom: 3.2rem;
+	opacity: 0;
+	visibility: hidden;
 }
-form.filter_form select {
-	-webkit-appearance: button; // none;
-	-webkit-user-select: none;
-	cursor: pointer;
-	margin-right: 2.6rem;
-	padding: 1.2rem 1.6rem 1rem 1.6rem;
-	font-size: 1.5rem;
-	text-transform: uppercase;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	color: hsla(0,0%,50%,1);
-	background-color: #fff;
-	background-image: url('../img/tri_down.png');
-	background-position: right 1.6rem center;
-	background-repeat: no-repeat;
-	background-size: 1.6rem 0.9rem;
-	outline: none;
-	border: 0.3rem solid hsla(0,0%,80%,1);
-	border-radius: 2.3rem; // computer height (46px) / 2
-	overflow: hidden;
-}
-form.filter_form select:last-child {
-	margin-right: 0;
-}
-// + specific filters + \\
-form.filter_form select.filter_brand {
-	width: 35.4rem;
-}
-form.filter_form select.filter_caliber,
-form.filter_form select.filter_price {
-	width: 16rem;
+form.filter_form.overlay span.filter_overlay {
+	opacity: 1;
+	visibility: visible;
 }
 */
-
 
 
 
@@ -619,12 +601,14 @@ section.product_grid {
 }
 section.product_grid article.product_item a.product_link {
 	display: block;
+	position: relative;
+	z-index: 10;
 	padding: 2rem;
 	height: 100%;
 	text-align: center;
 	background-color: hsla(0,0%,100%,1);
-	border: 0.3rem solid hsla(0,0%,80%,1);
-	// box-shadow: inset 0 0 0 0.3rem hsla(0,0%,80%,1);
+	// border: 0.3rem solid hsla(0,0%,80%,1); // causes FF to miscalculate width
+	box-shadow: inset 0 0 0 0.3rem hsla(0,0%,80%,1);
 }
 section.product_grid article.product_item a.product_link:hover {
 	background-color: hsla(0,0%,94%,1);
@@ -653,7 +637,15 @@ section.product_grid article.product_item a.product_link h1 {
 	overflow-y: hidden;
 }
 section.product_grid article.product_item a.product_link h2 {
+	position: absolute;
+	right: 0;
+	bottom: 1.6rem;
+	left: 0;
 	color: hsla(0,0%,50%,1);
+}
+section.product_grid article.product_item a.product_link h2 span {
+	display: block;
+	font-size: 1.5rem;
 }
 // + grid: 4 + \\
 section.product_grid.grid_4 article.product_item {
@@ -667,9 +659,7 @@ section.product_grid.grid_4 article.product_item:nth-child(-n+4) {
 section.product_grid.grid_4 article.product_item:nth-child(4n) {
 	margin-right: 0;
 }
-
 section.product_grid.grid_4 article.product_item a.product_link h1 {
-	margin-bottom: 1rem;
 	height: 3.8rem;
 	font-size: 1.6rem;
 	text-transform: uppercase;
@@ -680,12 +670,11 @@ section.product_grid.grid_4 article.product_item a.product_link h2 {
 	font-size: 1.3rem;
 	text-transform: uppercase;
 }
-
 // + grid: 5 + \\
 section.product_grid.grid_5 article.product_item {
 	flex: 0 1 16rem;
 	margin: 3.2rem 3.15rem 0 0;
-	height: 24rem;
+	height: 24.6rem;
 }
 section.product_grid.grid_5 article.product_item:nth-child(-n+5) {
 	margin-top: 0;
@@ -694,7 +683,6 @@ section.product_grid.grid_5 article.product_item:nth-child(5n) {
 	margin-right: 0;
 }
 section.product_grid.grid_5 article.product_item a.product_link h1 {
-	margin-bottom: 1.8rem;
 	height: 4.7rem;
 	font-size: 1.4rem;
 	// Webkit only line-clamp
@@ -703,6 +691,23 @@ section.product_grid.grid_5 article.product_item a.product_link h1 {
 section.product_grid.grid_5 article.product_item a.product_link h2 {
 	font-size: 1.6rem;
 }
+section.product_grid.grid_5 article.product_item.product_range a.product_link h2 {
+	font-size: 1.4rem;
+}
+section.product_grid.grid_5 article.product_item.product_range a.product_link h2 span {
+	font-size: 1.2rem;
+}
+section.product_grid.grid_5 article.product_item a.product_link h2 span.price_sale {
+	margin-bottom: 0.4rem;
+	color: hsla(0,0%,0%,1);
+}
+section.product_grid.grid_5 article.product_item a.product_link h2 span.price_sale::before {
+	content: "Sale: ";
+}
+section.product_grid.grid_5 article.product_item a.product_link h2 span.price_reg::before {
+	content: "Reg: ";
+}
+
 
 // + grid: all + \\
 section.product_grid article.product_item:last-child {
@@ -710,6 +715,11 @@ section.product_grid article.product_item:last-child {
 }
 
 // --- Grid: Departments --- \\
+body.page_product-departments header a.button_back {
+	display: none;
+}
+
+
 // --- Grid: Categories --- \\
 // --- Grid: Products --- \\
 

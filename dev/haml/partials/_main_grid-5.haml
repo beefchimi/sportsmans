@@ -1,7 +1,30 @@
 -# addition of 'grid_5' class
 %section#product_grid.product_grid.grid_5
 
-	- (1..34).each do |i|
+	-# example of a sale price:
+	-# <article> has "product_sale" class / h2.product_price now has 2 <span> children for prices / prefix text is added via CSS (Sale:, Reg:)
+	-# if it is easier for me to add the $ through CSS, I can do that as well
+	%article.product_item.product_sale{:id => "product-a"}
+		%a.product_link{:href => "", :title => "Product A Title"}
+			.wrap_image
+				%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product A Image"}
+			%h1.product_title Example of a sale product
+			%h2.product_price
+				%span.price_sale $499.99
+				%span.price_reg $299.99
+
+	-# example of a sale price with a range:
+	-# any product that requires a price range needs only the "product_range" class added to the <article>
+	%article.product_item.product_sale.product_range{:id => "product-b"}
+		%a.product_link{:href => "", :title => "Product B Title"}
+			.wrap_image
+				%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product B Image"}
+			%h1.product_title Here we have a price range on a sale product
+			%h2.product_price
+				%span.price_sale $499.99-699.99
+				%span.price_reg $299.99-499.99
+
+	- (1..32).each do |i|
 		%article.product_item{:id => "product-#{i}"}
 			%a.product_link{:href => "", :title => "Product #{i} Title"}
 				.wrap_image
