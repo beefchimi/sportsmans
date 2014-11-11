@@ -34,6 +34,78 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
+	// modalToggle: Hide / Show Modals
+	// ----------------------------------------------------------------------------
+	function modalToggle() {
+
+		var modalOpen  = document.querySelectorAll('.modal_open'),
+			modalClose = document.querySelectorAll('.modal_close');
+
+		for (var i = 0; i < modalOpen.length; i++) {
+			openModal(modalOpen[i]);
+		}
+
+		for (var i = 0; i < modalClose.length; i++) {
+			closeModal(modalClose[i]);
+		}
+
+		function openModal(currentTarget) {
+
+			currentTarget.addEventListener('click', function(e) {
+
+				var targetModal = this.getAttribute('href').substring(1);
+
+				document.getElementById(targetModal).classList.add('visible');
+
+				e.preventDefault();
+
+			}, false);
+
+		}
+
+		function closeModal(currentTarget) {
+
+			currentTarget.addEventListener('click', function(e) {
+
+				var currentParent = this.parentNode,
+					parentCount   = 0;
+
+				while ( !currentParent.getAttribute('data-modal') ) {
+					currentParent = currentParent.parentNode;
+					parentCount++;
+				}
+
+				currentParent.classList.remove('visible');
+
+			}, false);
+
+		}
+
+
+/*
+		function findParentNode(parentName, childObj) {
+
+			var testObj = childObj.parentNode,
+				count   = 1;
+
+			while (testObj.getAttribute('name') != parentName) {
+				alert('My name is ' + testObj.getAttribute('name') + '. Let\'s try moving up one level to see what we get.');
+				testObj = testObj.parentNode;
+				count++;
+			}
+
+			// now you have the object you are looking for - do something with it
+			alert('Finally found ' + testObj.getAttribute('name') + ' after going up ' + count + ' level(s) through the DOM tree');
+
+		}
+*/
+
+
+
+
+	}
+
+
 	// selectDropdown: Pair each <select> element with its <ul> counter-part
 	// ----------------------------------------------------------------------------
 	function selectDropdown() {
@@ -134,7 +206,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 
 	// onPageLoad();
-	selectDropdown();
+
+	if ( elBody.classList.contains('page_product-departments') ) {
+		modalToggle();
+	}
+
+	if ( elBody.classList.contains('page_product-products') ) {
+		selectDropdown();
+	}
+
 
 	// initialize smoothScroll plugin
 	smoothScroll.init({

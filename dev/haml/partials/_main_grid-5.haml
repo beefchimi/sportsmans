@@ -13,7 +13,7 @@
 				%span.price_sale $499.99
 				%span.price_reg $299.99
 
-	-# example of a sale price with a range:
+	-# example of a reg and sale price with a range:
 	-# any product that requires a price range needs only the "product_range" class added to the <article>
 	%article.product_item.product_sale.product_range{:id => "product-b"}
 		%a.product_link{:href => "", :title => "Product B Title"}
@@ -24,7 +24,14 @@
 				%span.price_sale $499.99-699.99
 				%span.price_reg $299.99-499.99
 
-	- (1..32).each do |i|
+	%article.product_item.product_sale.product_range{:id => "product-c"}
+		%a.product_link{:href => "", :title => "Product C Title"}
+			.wrap_image
+				%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product C Image"}
+			%h1.product_title Just a regular ol' product
+			%h2.product_price $299.99-499.99
+
+	- (1..31).each do |i|
 		%article.product_item{:id => "product-#{i}"}
 			%a.product_link{:href => "", :title => "Product #{i} Title"}
 				.wrap_image
