@@ -1,30 +1,17 @@
 !!!
 %html#root{:lang => "en"}
 
-	%head
+	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
 
-		%meta{:charset => "utf-8"}
-		%meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge"}
-
-		%title Error 404 | Sportsman's Warehouse
-
-		%meta{:name => "description", :content => "You have encountered a catastrophic error. Please evacuate the internet. Thank you."}
-		%meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-
-		%link{:rel => "stylesheet", :href => "assets/css/styles.css"}
-
-	%body#error_404.error_404
+	%body#error_404.page_error-404
 
 		:plain
 			<!-- inject:svg --><!-- endinject -->
 
-		%main{:role => "main"}
-
-			%section#error.error
-				%article.error
-					%h1 Error 404
-					%h2
-						Nope. Nothing here.
-						%a{:href => "http://google.ca/", :title => "Return Home"} Return Home.
+		-# using modal styes: applied via 'wrap_content'
+		%main.wrap_content{:role => "main", "data-container" => "width-926"}
+			%h1 Error 404
+			%p There seems to have been an error. Please use the link below to return to the start page.
+			%a#error_home.arrow_right{:href => "#", :title => "Return Home"} Return Home
 
 		%script{:src => "assets/js/scripts.js"}
