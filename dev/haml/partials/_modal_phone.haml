@@ -1,7 +1,7 @@
 %aside#modal_phone.modal_phone{"data-modal" => "phone"}
-	%form#phone_form.phone_form{:action => "", :method => "GET"}
-		%h1 Before we can complete your order, please enter your 10&#8209;digit phone number, starting with the area code:
+	%form#phone_form.wrap_content{:action => "", :method => "GET", "data-container" => "width-926"}
+		%h2 Before we can complete your order, please enter your 10&#8209;digit phone number, starting with the area code:
 		%input#phone_tel.phone_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "xxx-xxx-xxxx", :required => true}
-		%p When finished, tap continue.
+		%h3 When finished, tap continue.
 		%button.arrow_right Continue
 		%a#phone_cancel.modal_close.arrow_left{:href => "#", :title => "Close this window"} Cancel

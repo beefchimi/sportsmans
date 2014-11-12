@@ -41,20 +41,25 @@ document.addEventListener('DOMContentLoaded', function() {
 		var modalOpen  = document.querySelectorAll('.modal_open'),
 			modalClose = document.querySelectorAll('.modal_close');
 
+		// find each .modal_open link on the page
 		for (var i = 0; i < modalOpen.length; i++) {
 			openModal(modalOpen[i]);
 		}
 
+		// find each .modal_close link on the page
 		for (var i = 0; i < modalClose.length; i++) {
 			closeModal(modalClose[i]);
 		}
 
+		// reveal a modal that is already on the page but hidden
 		function openModal(currentTarget) {
 
 			currentTarget.addEventListener('click', function(e) {
 
+				// capture the href of the clicked element, remove the # prefix
 				var targetModal = this.getAttribute('href').substring(1);
 
+				// use the captured href to match the ID of the desired modal and add 'visible' class
 				document.getElementById(targetModal).classList.add('visible');
 
 				e.preventDefault();
@@ -63,23 +68,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		}
 
+		// hide the modal that is currently revealed
 		function closeModal(currentTarget) {
 
 			currentTarget.addEventListener('click', function(e) {
 
-				var currentParent = this.parentNode,
-					parentCount   = 0;
+				var currentParent = this.parentNode;
+				// var parentCount   = 0;
 
+				// cycle upwards from the closest parent of the clicked element,
+				// until we find an element with the attr 'data-modal'
 				while ( !currentParent.getAttribute('data-modal') ) {
 					currentParent = currentParent.parentNode;
-					parentCount++;
+					// parentCount++;
 				}
 
+				// once we have found the desired parent element, remove its 'visible' class
 				currentParent.classList.remove('visible');
+
+				e.preventDefault();
 
 			}, false);
 
 		}
+
 
 
 /*
@@ -99,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		}
 */
-
 
 
 
