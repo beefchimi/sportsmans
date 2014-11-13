@@ -1,0 +1,125 @@
+%form#cart_form.cart_form{:action => "", :method => "GET"}
+
+	-# %input#phone_tel.phone_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "xxx-xxx-xxxx", :required => true}
+	-# %button.arrow_right Continue
+
+	%table
+
+		%thead
+			%tr
+				%th.header_item Item
+				%th.header_quantity Quantity
+				%th.header_price Price
+				%th.header_total Total
+				%th.header_remove Remove
+
+		%tfoot
+			%tr#row_product-total
+				%td{:colspan => "3"} Product total
+				%td#cell_product-total{:colspan => "2"} 389.93
+			%tr#row_ship-hand
+				%td{:colspan => "3"} Shipping & Handling
+				%td#cell_ship-hand{:colspan => "2"} 8.00
+			%tr#row_tax
+				%td{:colspan => "3"} Tax
+				%td#cell_tax{:colspan => "2"} 58.49
+			%tr#row_order-total
+				%td{:colspan => "2"} Order total
+				%td#cell_order-total{:colspan => "3"} 456.42
+
+		%tbody
+
+			-# row ID is suffixed with product ID
+			%tr#row_307901
+
+				%td.product_item
+					%h1.product_title Columbia Women’s Camp Henry Long Sleeve Shirt
+					%h2.product_id 307901
+					-# variations may not be applicable for every product
+					%h3.variation
+						Color:
+						%span.product_variation-color Inkling Plaid
+					%h3.variation
+						Size:
+						%span.product_variation-size Medium
+
+				%td.product_quantity
+					-# making the assumption that 'min' and 'max' could be different per product...
+					-# 'min', 'max', 'value' and 'name' should be passed in from the initial 'add to cart' step (previous page)
+					.adjust_quantity
+						%input.adjust_decrease{:type => "button", :value => "-"}
+						%input.adjust_number{:type => "number", :min => "1", :max => "999", :step => "1", :size => "3", :value => "2", :name => "307901"}
+						%input.adjust_increase{:type => "button", :value => "+"}
+						%p.error_invalid Numbers Only
+
+				%td.product_price 32.99
+				%td.product_total 65.98
+				%td.product_remove
+					%a.remove_this{:href => "#", :title => "Remove This Product"}
+						%svg.svg_remove
+							%use{"xlink:href" => "#remove"}
+
+			%tr#row_1298614
+
+				%td.product_item
+					%h1.product_title Remington UMC 45 ACP 230gr 500-Pack Handgun Ammo
+					%h2.product_id 1298614
+
+				%td.product_quantity
+					.adjust_quantity
+						%input.adjust_decrease{:type => "button", :value => "-"}
+						%input.adjust_number{:type => "number", :min => "1", :max => "20", :step => "1", :size => "3", :value => "1", :name => "1298614"}
+						%input.adjust_increase{:type => "button", :value => "+"}
+						%p.error_invalid Numbers Only
+
+				%td.product_price 219.99
+				%td.product_total 219.99
+				%td.product_remove
+					%a.remove_this{:href => "#", :title => "Remove This Product"}
+						%svg.svg_remove
+							%use{"xlink:href" => "#remove"}
+
+			%tr#row_311294
+
+				%td.product_item
+					%h1.product_title Federal Personal Defense Automatic 45 Auto 185gr JHP Handgun Ammo
+					%h2.product_id 311294
+
+				%td.product_quantity
+					.adjust_quantity
+						%input.adjust_decrease{:type => "button", :value => "-"}
+						%input.adjust_number{:type => "number", :min => "1", :max => "99", :step => "1", :size => "3", :value => "4", :name => "311294"}
+						%input.adjust_increase{:type => "button", :value => "+"}
+						%p.error_invalid Numbers Only
+
+				%td.product_price 25.99
+				%td.product_total 103.96
+				%td.product_remove
+					%a.remove_this{:href => "#", :title => "Remove This Product"}
+						%svg.svg_remove
+							%use{"xlink:href" => "#remove"}
+
+			%tr#row_301132
+
+				%td.product_item
+					%h1.product_title Outdoor Research Biosensor Liner
+					%h2.product_id 301132
+					%h3.variation
+						Size:
+						%span.product_variation-size Large
+
+				%td.product_quantity
+					.adjust_quantity
+						%input.adjust_decrease{:type => "button", :value => "-"}
+						%input.adjust_number{:type => "number", :min => "1", :max => "12", :step => "1", :size => "3", :value => "7", :name => "301132"}
+						%input.adjust_increase{:type => "button", :value => "+"}
+						%p.error_invalid Numbers Only
+
+				%td.product_price 25.00
+				%td.product_total 175.00
+				%td.product_remove
+					%a.remove_this{:href => "#", :title => "Remove This Product"}
+						%svg.svg_remove
+							%use{"xlink:href" => "#remove"}
+
+	%button.arrow_right Finalize My Order

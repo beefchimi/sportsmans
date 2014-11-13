@@ -1,0 +1,37 @@
+!!!
+%html#root{:lang => "en"}
+
+	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+
+	%body#cart.page_cart.view_quantity-form
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		%header
+
+			-# from _header_row-1.haml ... does not require 'back button' or 'view cart' button
+			.top_row{"data-container" => "width-998"}
+
+				#logo_sportsmans.logo_sportsmans
+					%img{:src => "assets/img/logo_sportsmans.png", :alt => "Sportsman's Warehouse"}
+
+			-# from _header_row-2.haml ... search form is replaced with 'continue shopping' link
+			.title_row{"data-container" => "width-926"}
+
+				%h1 Shopping Cart
+
+				%a#button_continue-shopping.btn_arw-left{:href => "#", :title => "Continue Shopping"}
+					%span Continue Shopping
+					%svg.svg_btn_arw-left
+						%use{"xlink:href" => "#btn_arw-left"}
+
+				%a#button_view-all.button_view-all.button_circle{:href => "#", :title => "View All Departments"}
+					%span.wrap_text View All Departments
+				%a#button_start-over.button_start-over.button_circle{:href => "#", :title => "Start Over"}
+					%span.wrap_text Start Over
+
+		%main{:role => "main", "data-container" => "width-926"}
+			= Haml::Engine.new(File.read("dev/haml/partials/_cart_table.haml")).render
+
+		%script{:src => "assets/js/scripts.js"}

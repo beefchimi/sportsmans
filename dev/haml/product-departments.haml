@@ -4,7 +4,7 @@
 	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
 
 	-# ID always prefixed with "department_" ... suffix taken from current Department view (ex: fishing, camping, footwear, etc.)
-	%body#department_hunting.page_product-departments
+	%body#department_hunting.page_product-departments.view_products-grid
 
 		:plain
 			<!-- inject:svg --><!-- endinject -->

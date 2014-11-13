@@ -3,13 +3,6 @@
 
 // Foundation
 // ----------------------------------------------------------------------------
-/*
-html,
-body {
-	min-height: 100%;
-	height: 100%;
-}
-*/
 html,
 button,
 input,
@@ -21,7 +14,7 @@ textarea {
 	// user-select: none;
 }
 html {
-	user-select: none; // intentionally disabling text-highlighting... since it shouldn't be necessary
+	// user-select: none; // intentionally disabling text-highlighting... since it shouldn't be necessary
 }
 body {
 	position: relative;
@@ -36,15 +29,12 @@ body {
 	background-color: hsla(0,0%,0%,1);
 }
 */
-
-
 input::-webkit-input-placeholder {
 	color: hsla(0,0%,70%,1);
 }
 input:focus::-webkit-input-placeholder {
 	color: hsla(0,0%,90%,1);
 }
-
 
 // Transitions
 // ----------------------------------------------------------------------------
@@ -57,9 +47,14 @@ input,
 button {
 	transition: all 0.2s ease-in-out;
 }
-[data-modal] {
+[data-modal],
+p.error_invalid {
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
+
+
+
+
 /*
 form.filter_form div p {
 	transition: border-color 0.2s ease-in-out;
@@ -72,26 +67,13 @@ form.filter_form div ul {
 }
 */
 
-
 // General Styles
 // ----------------------------------------------------------------------------
-main {
-}
-section {
-}
-article {
-}
 svg {
 	display: block;
 	width: 100%;
 	height: 100%;
 }
-/*
-div.overlay {
-	min-height: 100%;
-}
-*/
-
 // --- Containers --- \\
 [data-container] {
 	margin-left: auto;
@@ -103,14 +85,27 @@ div.overlay {
 [data-container="width-926"] {
 	max-width: 92.6rem;
 }
-
 // --- Arrow Buttons --- \\
 .arrow_left,
 .arrow_right {
 	display: block;
 	position: relative;
+	width: 42.8rem; // 480px - 52px
+	height: 9.8rem;
+	font-size: 3.3rem;
+	line-height: 9.8rem;
 	text-align: center;
 	text-transform: uppercase;
+	color: hsla(0,0%,20%,1);
+	background-color: hsla(0,0%,90%,1);
+}
+.arrow_left {
+	padding-right: 1.3rem; // 1/4 of arrow width
+	background-color: hsla(0,0%,96%,1);
+}
+.arrow_right {
+	padding-left: 1.3rem; // 1/4 of arrow width
+	background-color: hsla(0,0%,90%,1);
 }
 .arrow_left::before,
 .arrow_right::before {
@@ -120,18 +115,37 @@ div.overlay {
 	top: 0;
 	width: 0;
 	height: 0;
+	border-top-width: 4.9rem;
 	border-top-style: solid;
 	border-top-color: transparent;
+	border-bottom-width: 4.9rem;
 	border-bottom-style: solid;
 	border-bottom-color: transparent;
 }
 .arrow_left::before {
 	right: 100%;
+	border-right-width: 5.2rem;
 	border-right-style: solid;
+	border-right-color: hsla(0,0%,96%,1);
 }
 .arrow_right::before {
 	left: 100%;
+	border-left-width: 5.2rem;
 	border-left-style: solid;
+	border-left-color: hsla(0,0%,90%,1);
+}
+// + content wrap arrows + \\
+.wrap_content .arrow_left,
+.wrap_content .arrow_right {
+	margin-left: auto;
+	margin-right: auto;
+}
+.wrap_content .arrow_left {
+	right: -1.3rem; // 1/4 of arrow width
+}
+.wrap_content .arrow_right {
+	left: -1.3rem; // 1/4 of arrow width
+	margin-bottom: 6rem;
 }
 // + interaction + \\
 .arrow_left:hover,
@@ -142,64 +156,10 @@ div.overlay {
 .arrow_right:active {
 	opacity: 0.9;
 }
-
-// + arrow submit + \\
-.wrap_content .arrow_left,
-.wrap_content .arrow_right {
-	margin: 0 auto;
-	width: 42.8rem; // 480px - 52px
-	height: 9.8rem;
-	line-height: 9.8rem;
-	font-size: 3.3rem;
-	color: hsla(0,0%,20%,1);
-	background-color: hsla(0,0%,90%,1);
-}
-.wrap_content .arrow_left::before,
-.wrap_content .arrow_right::before {
-	border-top-width: 4.9rem;
-	border-bottom-width: 4.9rem;
-	border-left-width: 5.2rem;
-	border-left-color: hsla(0,0%,90%,1);
-}
-.wrap_content .arrow_left {
-	right: -1.3rem; // 1/4 of arrow width
-	padding-right: 1.3rem; // 1/4 of arrow width
-	background-color: hsla(0,0%,96%,1);
-}
-.wrap_content .arrow_right {
-	left: -1.3rem; // 1/4 of arrow width
-	padding-left: 1.3rem; // 1/4 of arrow width
-	margin-bottom: 6rem;
-	background-color: hsla(0,0%,90%,1);
-}
-.wrap_content .arrow_left::before {
-	border-right-width: 5.2rem;
-	border-right-color: hsla(0,0%,96%,1);
-}
-.wrap_content .arrow_right::before {
-	border-left-width: 5.2rem;
-	border-left-color: hsla(0,0%,90%,1);
-}
-
-// ==|== header styles ========================================================
-// ============================================================================
-header div.top_row {
+// --- SVG Arrow --- \\
+a.btn_arw-left {
+	display: block;
 	position: relative;
-	margin-bottom: 6rem;
-}
-// --- Top Row --- \\
-header div.logo_sportsmans {
-	margin: 0 auto;
-	width: 18rem;
-	height: 8.5rem;
-}
-header a.button_back,
-aside.widget_cart {
-	position: absolute;
-	top: 2rem;
-}
-// --- Button: Back --- \\
-header a.button_back {
 	width: 31.8rem;
 	height: 5rem;
 	line-height: 5rem; // center text vertically
@@ -208,29 +168,64 @@ header a.button_back {
 	text-transform: uppercase;
 	color: hsla(0,0%,60%,1);
 }
-header a.button_back span {
+a.btn_arw-left span {
 	display: block;
 	padding-left: 0.7rem; // 1/4 of the arrow width
 }
-header a.button_back svg {
+a.btn_arw-left svg {
 	position: absolute;
 	top: 0;
 	left: 0;
 	fill: hsla(0,0%,80%,1);
 }
 // + interaction + \\
-header a.button_back:hover {
+a.btn_arw-left:hover {
 	color: hsla(0,0%,50%,1);
 }
-header a.button_back:hover svg {
+a.btn_arw-left:hover svg {
 	fill: hsla(0,0%,70%,1);
 }
-header a.button_back:active {
+a.btn_arw-left:active {
 	color: hsla(0,0%,60%,1);
 }
-header a.button_back:active svg {
+a.btn_arw-left:active svg {
 	fill: hsla(0,0%,80%,1);
 }
+
+// Header Styles
+// ----------------------------------------------------------------------------
+header {
+	margin-bottom: 8rem;
+}
+// --- Top Row --- \\
+div.top_row {
+	position: relative;
+	margin-bottom: 6rem;
+}
+div.top_row div.logo_sportsmans {
+	margin: 0 auto;
+	width: 18rem;
+	height: 8.5rem;
+}
+div.top_row a.btn_arw-left,
+aside.widget_cart {
+	position: absolute;
+	top: 2rem;
+}
+/*
+// --- Button: Back --- \\
+div.top_row a.btn_arw-left {
+}
+// + interaction + \\
+div.top_row a.btn_arw-left:hover {
+}
+div.top_row a.btn_arw-left:hover svg {
+}
+div.top_row a.btn_arw-left:active {
+}
+div.top_row a.btn_arw-left:active svg {
+}
+*/
 // --- Widget: Cart --- \\
 aside.widget_cart {
 	right: 0;
@@ -264,27 +259,20 @@ aside.widget_cart a.arrow_right {
 	position: absolute;
 	top: 0;
 	right: 2.8rem; // width of triangle
-	padding-left: 1.4rem; // half of triangle width - center text
+	// padding-left: 1.4rem; // half of triangle width - center text
 	width: 14.2rem; // 170px - 28px
 	height: 5rem;
 	line-height: 5rem; // center text vertically
 	font-size: 1.7rem;
-	color: hsla(0,0%,20%,1);
-	background-color: hsla(0,0%,90%,1);
 }
 aside.widget_cart a.arrow_right::before {
 	border-top-width: 2.5rem;
 	border-bottom-width: 2.5rem;
 	border-left-width: 2.8rem;
-	border-left-color: hsla(0,0%,90%,1);
 }
-
-
-
 // --- Title Row --- \\
 header div.title_row {
 	position: relative;
-	margin-bottom: 6rem;
 }
 header div.title_row h1 {
 	margin: 0 auto 3.2rem auto;
@@ -370,7 +358,7 @@ form.search_form button:active svg {
 }
 // --- Filters --- \\
 form.filter_form {
-	margin-bottom: 3.2rem;
+	margin-top: 6rem;
 }
 form.filter_form div {
 	cursor: pointer;
@@ -510,10 +498,6 @@ form.filter_form.overlay span.filter_overlay {
 }
 */
 
-
-// ==|== page styles ==========================================================
-// ============================================================================
-
 // Modals
 // ----------------------------------------------------------------------------
 [data-modal] {
@@ -605,7 +589,8 @@ div.test_modal a:active {
 }
 
 
-
+// ==|== page styles ==========================================================
+// ============================================================================
 
 // Home Page
 // ----------------------------------------------------------------------------
@@ -783,7 +768,7 @@ section.product_grid article.product_item:last-child {
 }
 
 // --- Grid: Departments --- \\
-body.page_product-departments header a.button_back {
+body.page_product-departments header a.btn_arw-left {
 	display: none;
 }
 
@@ -793,7 +778,9 @@ body.page_product-departments header a.button_back {
 
 
 // --- Grid: Products --- \\
-
+body.page_product-products header {
+	margin-bottom: 3.2rem;
+}
 
 
 
@@ -826,3 +813,259 @@ a.back-to-top:hover {
 a.back-to-top:active {
 	background-color: hsla(0,0%,80%,1);
 }
+
+// Cart Page
+// ----------------------------------------------------------------------------
+body.page_cart header a.btn_arw-left {
+	margin: 0 auto;
+}
+// --- Form: Shopping Cart --- \\
+form.cart_form table {
+	table-layout: fixed;
+	margin-bottom: 8rem;
+	width: 100%;
+}
+form.cart_form thead,
+form.cart_form tbody tr {
+	border-bottom: 0.4rem solid hsla(0,0%,80%,1);
+}
+form.cart_form tbody tr td:nth-child(-n+4) {
+	border-right: 0.3rem solid hsla(0,0%,80%,1);
+}
+form.cart_form thead tr th {
+	padding-bottom: 2rem;
+	font-size: 2rem;
+	text-transform: uppercase;
+}
+form.cart_form thead tr th:nth-child(n+2),
+form.cart_form tbody tr td:nth-child(n+2) {
+	text-align: center;
+}
+// + thead + \\
+form.cart_form thead tr th.header_item {
+	width: 34%;
+	text-align: left;
+}
+form.cart_form thead tr th.header_quantity {
+	width: 20%;
+}
+form.cart_form thead tr th.header_price,
+form.cart_form thead tr th.header_total {
+	width: 17%;
+}
+form.cart_form thead tr th.header_remove {
+	width: 12%;
+	color: transparent;
+}
+// + tfoot + \\
+
+form.cart_form tfoot tr td {
+	padding-bottom: 1rem;
+	font-size: 2.8rem;
+}
+form.cart_form tfoot tr:first-child td {
+	padding-top: 3.2rem;
+}
+form.cart_form tfoot tr:nth-child(3) {
+	border-bottom: 0.4rem solid hsla(0,0%,80%,1);
+}
+form.cart_form tfoot tr:nth-child(3) td {
+	padding-bottom: 3.2rem;
+}
+form.cart_form tfoot tr:last-child td {
+	padding-top: 2rem;
+	padding-bottom: 0;
+}
+/*
+form.cart_form tfoot tr:last-child td {
+	padding-top: 3.2rem;
+}
+*/
+form.cart_form tfoot tr td:first-child {
+	padding-left: 32rem;
+}
+form.cart_form tfoot tr td:last-child {
+	// padding-left: 20rem;
+	text-align: right;
+}
+form.cart_form tfoot tr:last-child td:last-child {
+	font-size: 8rem;
+	letter-spacing: -0.3rem;
+}
+
+
+// + tbody + \\
+form.cart_form tbody {
+	margin-bottom: 3.2rem;
+}
+
+
+
+form.cart_form tbody tr td {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+form.cart_form tbody tr td.product_item {
+	padding-right: 2rem;
+}
+form.cart_form tbody tr td.product_item h1 {
+	margin-bottom: 0.6rem;
+	font-size: 1.8rem;
+	line-height: 1.2;
+}
+form.cart_form tbody tr td.product_item h2 {
+	font-size: 1.8rem;
+	color: hsla(0,0%,50%,1);
+}
+form.cart_form tbody tr td.product_item h3 {
+	margin-bottom: 0.6rem;
+	font-family: 'ArcherPro-Medium';
+	font-size: 1.6rem;
+	color: hsla(0,0%,10%,1);
+}
+form.cart_form tbody tr td.product_item h2 + h3 {
+	margin-top: 2rem; // variations may not always be included, so applying margin to first h3
+}
+form.cart_form tbody tr td.product_item h3:last-child {
+	margin-bottom: 0;
+}
+
+
+
+
+
+form.cart_form tbody tr td.product_quantity div.adjust_quantity {
+	position: relative;
+	margin: 0 auto;
+	width: 15rem;
+}
+form.cart_form tbody tr td.product_quantity div.adjust_quantity p.error_invalid {
+	position: absolute;
+	top: 5.6rem;
+	right: 0;
+	left: 0;
+	color: red;
+	text-transform: uppercase;
+	opacity: 0;
+	visibility: hidden;
+}
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input {
+	display: block;
+}
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input[type="button"] {
+	position: absolute;
+	top: 0;
+	width: 4.6rem;
+	height: 4.6rem;
+	font-size: 2.4rem;
+	color: hsla(0,0%,80%,1);
+	border: 0.3rem solid hsla(0,0%,80%,1);
+}
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input.adjust_decrease {
+	left: 0;
+}
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input.adjust_increase {
+	right: 0;
+}
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input[type="number"] {
+	margin: 0 auto;
+	width: 5.8rem;
+	height: 4.6rem;
+	font-size: 2.4rem;
+	text-align: center;
+	border-top: 0.3rem solid hsla(0,0%,80%,1);
+	border-bottom: 0.3rem solid hsla(0,0%,80%,1);
+}
+
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input[type="number"]:invalid {
+	background: red;
+}
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input[type="number"]:invalid ~ p.error_invalid {
+	opacity: 1;
+	visibility: visible;
+}
+
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input[type="button"]:focus,
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input[type="button"]:hover {
+	color: hsla(0,0%,60%,1);
+	border-color: hsla(0,0%,60%,1);
+}
+form.cart_form tbody tr td.product_quantity div.adjust_quantity input[type="button"]:active {
+	color: hsla(0,0%,70%,1);
+	border-color: hsla(0,0%,70%,1);
+}
+
+
+
+form.cart_form tbody tr td.product_price,
+form.cart_form tbody tr td.product_total {
+	font-size: 2.4rem;
+}
+
+
+
+// + button: remove + \\
+form.cart_form a.remove_this {
+	display: block;
+	margin: 0 auto;
+	width: 6.4rem;
+	height: 6.4rem;
+}
+form.cart_form a.remove_this svg {
+	fill: hsla(0,0%,80%,1);
+}
+form.cart_form a.remove_this:hover svg {
+	fill: hsla(0,0%,60%,1);
+}
+form.cart_form a.remove_this:active svg {
+	fill: hsla(0,0%,80%,1);
+}
+
+
+
+// + button: finalize + \\
+form.cart_form button.arrow_right {
+	float: right;
+	clear: both;
+	right: 5.2rem; // width of triangle
+}
+
+
+
+/*
+// + append $ to prices + \\
+form.cart_form tfoot tr td:last-child::before,
+form.cart_form tbody tr td.product_price::before,
+form.cart_form tbody tr td.product_total::before {
+	content: "\0024"; // $
+}
+*/
+
+
+
+
+
+
+
+
+/*
+// + removed row + \\
+form.cart_form tbody tr td {
+	transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+form.cart_form tbody tr {
+	// max-height: 99rem;
+	height: 2rem !important;
+	overflow: hidden;
+}
+
+form.cart_form tbody tr.removed {
+	max-height: 0;
+}
+
+form.cart_form tbody tr.removed td {
+	opacity: 0;
+	visibility: hidden;
+}
+*/

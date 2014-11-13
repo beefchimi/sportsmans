@@ -4,7 +4,7 @@
 	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
 
 	-# ID always prefixed with "category" ... suffix taken from current Category view (ex: handgun ammo, rifle ammo, etc.)
-	%body#category_hunting.page_product-categories
+	%body#category_hunting.page_product-categories.view_products-grid
 
 		:plain
 			<!-- inject:svg --><!-- endinject -->
