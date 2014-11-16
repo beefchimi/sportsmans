@@ -3,9 +3,11 @@
 
 	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
 
-	-# ID always prefixed with "products_" ... suffix taken from current Department view (ex: fishing, camping, footwear, etc.)
-	-# ID "products_" is pluralized to indicate the products list view, not to be confused with a single product page
-	%body#products_rifle-ammunition.page_product-products.view_products-grid
+	-# this view is for Individual Product listing within a selected Category
+
+	-# uses 'grid-5' layout
+
+	%body#individual.page_prod-indv.view_grid
 
 		:plain
 			<!-- inject:svg --><!-- endinject -->

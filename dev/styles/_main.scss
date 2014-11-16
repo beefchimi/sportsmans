@@ -25,22 +25,12 @@ body {
 	padding: 24rem 0 4.8rem 0;
 	min-height: 192rem;
 }
-/*
-::-moz-selection {
-	background-color: hsla(0,0%,0%,1);
-}
-::selection {
-	background-color: hsla(0,0%,0%,1);
-}
-*/
-
 input::-webkit-input-placeholder {
-	color: hsla(141,100%,18%,1); // hsla(0,0%,70%,1);
+	color: hsla(141,100%,18%,1);
 }
 input:focus::-webkit-input-placeholder {
-	color: hsla(141,100%,18%,0.5); // hsla(0,0%,90%,1);
+	color: hsla(141,100%,18%,0.5);
 }
-
 
 // Transitions
 // ----------------------------------------------------------------------------
@@ -56,15 +46,13 @@ button {
 	transition: all 0.2s ease-in-out;
 }
 [data-modal],
-p.error_invalid {
+p.error_invalid,
+aside.widget_cart {
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
 form.search_form label {
 	transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
-
-
-
 /*
 form.filter_form div p {
 	transition: border-color 0.2s ease-in-out;
@@ -81,6 +69,8 @@ form.filter_form div ul {
 // ----------------------------------------------------------------------------
 svg {
 	display: block;
+}
+.wrap_svg svg {
 	width: 100%;
 	height: 100%;
 }
@@ -89,9 +79,11 @@ svg {
 	margin-left: auto;
 	margin-right: auto;
 }
+/*
 [data-container="width-998"] {
 	max-width: 99.8rem;
 }
+*/
 [data-container="width-926"] {
 	max-width: 92.6rem;
 }
@@ -100,10 +92,10 @@ svg {
 .arrow_right {
 	display: block;
 	position: relative;
-	width: 42.8rem; // 480px - 52px
+	width: 42.8rem; // 480px - 52px (width of triangle)
 	height: 9.8rem;
 	font-size: 3.3rem;
-	line-height: 9.8rem;
+	line-height: 9.8rem; // vertical center text
 	text-align: center;
 	text-transform: uppercase;
 	color: hsla(0,0%,20%,1);
@@ -160,11 +152,11 @@ svg {
 // + interaction + \\
 .arrow_left:hover,
 .arrow_right:hover {
-	opacity: 0.7;
+	opacity: 0.85;
 }
 .arrow_left:active,
 .arrow_right:active {
-	opacity: 0.9;
+	opacity: 0.95;
 }
 // --- SVG Arrow --- \\
 a.btn_arw-left {
@@ -172,11 +164,11 @@ a.btn_arw-left {
 	position: relative;
 	width: 31.8rem;
 	height: 5rem;
-	line-height: 5rem; // center text vertically
+	line-height: 5.2rem; // vertical center text (added 2px extra for visual center)
 	font-size: 1.5rem;
 	text-align: center;
 	text-transform: uppercase;
-	color: hsla(0,0%,60%,1);
+	color: hsla(141,100%,18%,1);
 }
 a.btn_arw-left span {
 	display: block;
@@ -186,29 +178,32 @@ a.btn_arw-left svg {
 	position: absolute;
 	top: 0;
 	left: 0;
-	fill: hsla(0,0%,80%,1);
-}
-// + interaction + \\
-a.btn_arw-left:hover {
-	color: hsla(0,0%,50%,1);
-}
-a.btn_arw-left:hover svg {
-	fill: hsla(0,0%,70%,1);
-}
-a.btn_arw-left:active {
-	color: hsla(0,0%,60%,1);
-}
-a.btn_arw-left:active svg {
-	fill: hsla(0,0%,80%,1);
+	fill: hsla(141,100%,18%,1);
 }
 
-// Header Styles
-// ----------------------------------------------------------------------------
+// SVG is transition at a different speed because its a child of <a> ???
+
+// + interaction + \\
+a.btn_arw-left:hover {
+	color: hsla(141,100%,24%,1);
+}
+a.btn_arw-left:hover svg {
+	fill: hsla(141,100%,24%,1);
+}
+a.btn_arw-left:active {
+	color: hsla(141,100%,18%,1);
+}
+a.btn_arw-left:active svg {
+	fill: hsla(141,100%,18%,1);
+}
+// --- Header --- \\
 header {
 	margin-bottom: 3.2rem;
 }
-// --- Top Row --- \\
-div.top_row {
+
+// Header: Row 1
+// ----------------------------------------------------------------------------
+div.row-1 {
 	position: fixed;
 	z-index: 300;
 	top: 0;
@@ -220,7 +215,7 @@ div.top_row {
 	background-position: center center;
 	background-size: cover;
 }
-div.top_row div.logo_sportsmans {
+div.row-1 div.logo_sportsmans {
 	position: absolute;
 	z-index: 320;
 	right: 0;
@@ -231,28 +226,28 @@ div.top_row div.logo_sportsmans {
 	height: 8.5rem;
 }
 // + buttons + \\
-div.top_row a.arrow_left,
+div.row-1 a.arrow_left,
 aside.widget_cart a.arrow_right {
 	position: absolute;
 	top: 3.8rem;
 	height: 5rem;
-	line-height: 5.1rem; // center text vertically
+	line-height: 5.1rem; // vertical center text (added 1px extra... did not look visually centered)
 	font-size: 1.7rem;
 	color: hsla(141,100%,18%,1);
 	background: hsla(0,0%,100%,1);
 }
-div.top_row a.arrow_left::before,
+div.row-1 a.arrow_left::before,
 aside.widget_cart a.arrow_right::before {
 	border-top-width: 2.5rem;
 	border-bottom-width: 2.5rem;
 }
 // --- Button: Back --- \\
-div.top_row a.arrow_left {
-	left: 6.8rem; // width of triangle + margin 40px
+div.row-1 a.arrow_left {
+	left: 6.8rem; // width of triangle + margin of 40px
 	padding: 0 2.7rem 0 2rem;
 	width: auto;
 }
-div.top_row a.arrow_left::before {
+div.row-1 a.arrow_left::before {
 	border-right-width: 2.8rem;
 	border-right-color: hsla(0,0%,100%,1);
 }
@@ -264,6 +259,12 @@ aside.widget_cart {
 	width: 36rem;
 	height: 100%;
 	background: hsla(117,52%,56%,1);
+	opacity: 0;
+	visibility: hidden;
+}
+aside.widget_cart.in-cart {
+	opacity: 1;
+	visibility: visible;
 }
 aside.widget_cart div.wrap_text {
 	position: absolute;
@@ -285,7 +286,7 @@ aside.widget_cart div.wrap_text p.widget_cart-total {
 	letter-spacing: -0.1rem;
 }
 aside.widget_cart a.arrow_right {
-	right: 6.8rem; // width of triangle + margin 40px
+	right: 6.8rem; // width of triangle + margin of 40px
 	padding-left: 0;
 	width: 16.2rem; // 190px - 28px
 }
@@ -301,11 +302,25 @@ aside.widget_cart a.arrow_right svg {
 	fill: hsla(141,100%,18%,1);
 	transform: translateY(-0.2rem);
 }
+/*
+// --- Fade Overlay --- \\
+div.row-1::after {
+	content: "";
+	display: block;
+	position: absolute;
+	z-index: 310;
+	right: 0;
+	bottom: -4.2rem;
+	left: 0;
+	height: 4.2rem;
+	background-image: linear-gradient(to bottom, hsla(0,0%,100%,1), hsla(0,0%,100%,0));
+}
+*/
 // --- Back To Top --- \\
 a.back-to-top {
 	display: block;
 	position: absolute;
-	z-index: 310;
+	z-index: 311;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -314,8 +329,8 @@ a.back-to-top {
 	line-height: 12.6rem;
 	text-align: center;
 	text-transform: uppercase;
-	color: hsla(0,0%,0%,1);
-	background-color: hsla(0,0%,80%,1);
+	color: hsla(0,0%,100%,1);
+	background-color: hsla(141,100%,18%,1);
 	opacity: 0;
 	visibility: hidden;
 }
@@ -325,17 +340,18 @@ a.back-to-top.active {
 }
 // + interaction + \\
 a.back-to-top:hover {
-	background-color: hsla(0,0%,60%,1);
+	background-color: hsla(141,100%,24%,1);
 }
 a.back-to-top:active {
-	background-color: hsla(0,0%,80%,1);
+	background-color: hsla(141,100%,18%,1);
 }
 
-// --- Title Row --- \\
-header div.title_row {
+// Header: Row 2
+// ----------------------------------------------------------------------------
+header div.row-2 {
 	position: relative;
 }
-header div.title_row h1 {
+header div.row-2 h1 {
 	margin: 0 auto 3.2rem auto;
 	max-width: 54rem;
 	font-size: 4.8rem;
@@ -343,10 +359,10 @@ header div.title_row h1 {
 	text-transform: uppercase;
 	color: hsla(141,100%,18%,1);
 }
-header div.title_row a.button_circle {
+header div.row-2 a.button_circle {
 	display: block;
 	position: absolute;
-	top: 0;
+	bottom: 6.6rem; // computer height of search margin-bottom and label height
 	width: 12.4rem;
 	height: 12.4rem;
 	line-height: 12.4rem;
@@ -355,28 +371,28 @@ header div.title_row a.button_circle {
 	color: hsla(0,0%,100%,1);
 	border-radius: 50%;
 }
-header div.title_row a.button_circle span {
+header div.row-2 a.button_circle span {
 	display: inline-block;
 	padding: 0 1rem;
 	vertical-align: middle;
 	line-height: 1.3;
 }
 // + individual buttons + \\
-header div.title_row a.button_view-all {
+header div.row-2 a.view-all {
 	left: 0;
 	font-size: 1.2rem;
 	background-color: hsla(141,29%,49%,1);
 }
-header div.title_row a.button_start-over {
+header div.row-2 a.start-over {
 	right: 0;
-	font-size: 2.2rem;
+	font-size: 1.8rem;
 	background-color: hsla(141,100%,18%,1);
 }
 // + interaction + \\
-header div.title_row a.button_circle:hover {
+header div.row-2 a.button_circle:hover {
 	opacity: 0.7;
 }
-header div.title_row a.button_circle:active {
+header div.row-2 a.button_circle:active {
 	opacity: 0.9;
 }
 // --- Search Form --- \\
@@ -411,13 +427,13 @@ form.search_form a.toggle_search-options::before {
 	content: "";
 	display: block;
 	position: absolute;
-	top: 1.7rem;
-	left: 1rem;
+	top: 1.8rem;
+	left: 1.2rem;
 	width: 0;
 	height: 0;
-	border-left: 1.2rem solid transparent;
-	border-right: 1.2rem solid transparent;
-	border-top: 1.2rem solid hsla(141,100%,18%,1);
+	border-left: 1rem solid transparent;
+	border-right: 1rem solid transparent;
+	border-top: 1rem solid hsla(141,100%,18%,1);
 }
 form.search_form a.toggle_search-options.toggled {
 	background-color: hsla(141,29%,49%,1);
@@ -473,22 +489,22 @@ form.search_form a.toggle_search-options ~ label:active {
 form.search_form button:active svg {
 	fill: hsla(141,100%,18%,1);
 }
-// + temp + \\
-form.search_form input.search_checkbox + label {
-	position: relative;
-}
-form.search_form input.search_checkbox + label::after {
-	content: "unchecked";
-	display: block;
-	position: absolute;
-	top: 1.6rem;
-	right: -10rem;
-	font-size: 1.2rem;
-	color: hsla(0,0%,0%,1);
-}
-form.search_form input.search_checkbox:checked + label::after {
-	content: "checked";
-}
+	// + TEMP + \\
+	form.search_form input.search_checkbox + label {
+		position: relative;
+	}
+	form.search_form input.search_checkbox + label::after {
+		content: "unchecked";
+		display: block;
+		position: absolute;
+		top: 1.6rem;
+		right: -10rem;
+		font-size: 1.2rem;
+		color: hsla(0,0%,0%,1);
+	}
+	form.search_form input.search_checkbox:checked + label::after {
+		content: "checked";
+	}
 // --- Filters --- \\
 form.filter_form {
 	margin-top: 3.2rem;
@@ -509,27 +525,27 @@ form.filter_form div p {
 	// z-index: 101;
 	padding: 0 4rem 0 2rem;
 	height: 4.8rem;
-	line-height: 4.2rem; // height - border
+	line-height: 4.6rem; // height - border
 	font-size: 1.5rem;
 	text-transform: uppercase;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	color: hsla(0,0%,50%,1);
+	color: hsla(141,100%,18%,1);
 	background-color: hsla(0,0%,100%,1);
-	border: 0.3rem solid hsla(0,0%,80%,1);
+	border: 0.3rem solid hsla(141,100%,18%,1);
 	border-radius: 2.4rem; // computer height (48px) / 2
 }
 form.filter_form div p::after {
 	content: "";
 	display: block;
 	position: absolute;
-	top: 1.6rem;
+	top: 1.7rem;
 	right: 1.6rem;
 	width: 0;
 	height: 0;
 	border-left: 0.9rem solid transparent;
 	border-right: 0.9rem solid transparent;
-	border-top: 0.9rem solid hsla(0,0%,80%,1);
+	border-top: 0.9rem solid hsla(141,100%,18%,1);
 }
 // + dropdowns + \\
 form.filter_form div ul {
@@ -538,19 +554,21 @@ form.filter_form div ul {
 	top: 4.2rem;
 	left: 0;
 	right: 0;
-	border: 0.3rem solid hsla(0,0%,60%,1);
+	border: 0.3rem solid hsla(141,100%,24%,1);
 	border-radius: 0 0 2.4rem 2.4rem; // computer height (48px) / 2
-	// overflow: hidden;
 	opacity: 0;
 	visibility: hidden;
-	// overflow scrolling:
+	overflow: hidden;
+/*
+	// Overflow Scroll
 	max-height: 23.2rem;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
+*/
 }
 form.filter_form div ul li {
-	border-bottom: 0.3rem solid hsla(0,0%,80%,1);
+	border-bottom: 0.3rem solid hsla(141,100%,24%,1);
 }
 form.filter_form div ul li:last-child {
 	border-bottom: none;
@@ -560,7 +578,7 @@ form.filter_form div ul li a {
 	padding: 1.6rem;
 	font-size: 1.5rem;
 	text-transform: uppercase;
-	color: hsla(0,0%,0%,1);
+	color: hsla(141,100%,18%,1);
 	background-color: hsla(0,0%,100%,1);
 }
 
@@ -578,10 +596,10 @@ form.filter_form div p.toggled {
 	// border-radius: 2.4rem 2.4rem 0 0;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-	border-color: hsla(0,0%,60%,1);
+	border-color: hsla(141,100%,24%,1);
 }
 form.filter_form div p.toggled::after {
-	border-top-color: hsla(0,0%,60%,1);
+	border-top-color: hsla(141,100%,24%,1);
 }
 form.filter_form div p.toggled + ul {
 	opacity: 1;
@@ -590,10 +608,10 @@ form.filter_form div p.toggled + ul {
 
 // + interaction + \\
 form.filter_form div:hover p {
-	border-color: hsla(0,0%,60%,1);
+	border-color: hsla(141,100%,24%,1);
 }
 form.filter_form div:hover p::after {
-	border-top-color: hsla(0,0%,60%,1);
+	border-top-color: hsla(141,100%,24%,1);
 }
 form.filter_form div ul li a:hover {
 	background-color: hsla(0,0%,94%,1);
@@ -694,32 +712,32 @@ form.filter_form.overlay span.filter_overlay {
 // --- Modal: Timeout Empty --- \\
 
 
-// --- TEMP: Modal Links --- \\
-div.test_modal {
-	position: absolute;
-	top: 6rem;
-	right: 0;
-	left: 0;
-	margin: 0 auto;
-	width: 99.8rem;
-}
-div.test_modal a {
-	display: inline-block;
-	margin-right: 1.6rem;
-	width: 5rem;
-	height: 5rem;
-	font-size: 2rem;
-	line-height: 5rem;
-	text-align: center;
-	color: hsla(0,0%,60%,1);
-	box-shadow: inset 0 0 0 0.3rem hsla(0,0%,80%,1);
-}
-div.test_modal a:hover {
-	opacity: 0.8;
-}
-div.test_modal a:active {
-	opacity: 0.9;
-}
+	// --- TEMP: Modal Links --- \\
+	div.test_modal {
+		position: absolute;
+		top: 6rem;
+		right: 0;
+		left: 0;
+		margin: 0 auto;
+		width: 99.8rem;
+	}
+	div.test_modal a {
+		display: inline-block;
+		margin-right: 1.6rem;
+		width: 5rem;
+		height: 5rem;
+		font-size: 2rem;
+		line-height: 5rem;
+		text-align: center;
+		color: hsla(0,0%,60%,1);
+		box-shadow: inset 0 0 0 0.3rem hsla(0,0%,80%,1);
+	}
+	div.test_modal a:hover {
+		opacity: 0.8;
+	}
+	div.test_modal a:active {
+		opacity: 0.9;
+	}
 
 
 // ==|== page styles ==========================================================
@@ -785,34 +803,56 @@ section.product_grid {
 	flex-wrap: wrap;
 	justify-content: center;
 }
-section.product_grid article.product_item a.product_link {
+section.product_grid article a {
 	display: block;
 	position: relative;
 	z-index: 10;
-	padding: 2.6rem 2rem;
 	height: 100%;
 	text-align: center;
-	background-color: hsla(0,0%,100%,1);
-	// border: 0.3rem solid hsla(0,0%,80%,1); // causes FF to miscalculate width
+	// box-shadow: inset 0 0 0 0.3rem hsla(0,0%,80%,1);
+	border: 0.3rem solid hsla(0,0%,80%,1); // causes FF to miscalculate width
 	border-radius: 2rem;
-	box-shadow: inset 0 0 0 0.3rem hsla(0,0%,80%,1);
+	overflow: hidden;
+	// Background Blend Technique
+	background-repeat: no-repeat;
+	background-position: center 2rem, center center;
+	background-size: auto 9rem, cover;
+	background-blend-mode: multiply;
 }
-section.product_grid article.product_item a.product_link:hover {
-	background-color: hsla(0,0%,94%,1);
+section.product_grid article a:hover {
+	border-color: hsla(0,0%,70%,1);
 }
-section.product_grid article.product_item a.product_link:active {
-	background-color: hsla(0,0%,90%,1);
+section.product_grid article a:active {
+	border-color: hsla(0,0%,80%,1);
 }
-section.product_grid article.product_item a.product_link div.wrap_image {
-	display: flex;
-	margin-bottom: 2rem;
-	height: 9rem;
+/*
+	section.product_grid article a div.gradient {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-image: linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));
+	}
+	section.product_grid article a div.wrap_image {
+		display: flex;
+		margin-top: 2rem;
+		height: 9rem;
+	}
+	section.product_grid article a div.wrap_image img {
+		margin: auto;
+		max-height: 100%;
+	}
+*/
+section.product_grid article div.wrap_text {
+	position: absolute;
+	right: 0;
+	bottom: 2.4rem;
+	left: 0;
+	padding: 0 1rem;
 }
-section.product_grid article.product_item a.product_link div.wrap_image img {
-	margin: auto;
-	max-height: 100%;
-}
-section.product_grid article.product_item a.product_link h1 {
+section.product_grid article a h1 {
+	margin-bottom: 1rem;
 	line-height: 1.2;
 	color: hsla(141,100%,18%,1);
 	// Webkit only line-clamp
@@ -820,108 +860,89 @@ section.product_grid article.product_item a.product_link h1 {
 	-webkit-box-orient: vertical;
 	overflow-y: hidden;
 }
-section.product_grid article.product_item a.product_link h2 {
-	position: absolute;
-	right: 0;
-	bottom: 2.6rem;
-	left: 0;
+section.product_grid article a h2 {
 	color: hsla(0,0%,50%,1);
 }
-section.product_grid article.product_item a.product_link h2 span {
-	display: block;
-	font-size: 1.5rem;
-}
-// + grid: 4 + \\
-section.product_grid.grid_4 article.product_item {
+// --- Grid: 4 --- \\
+section.grid_4 article {
 	flex: 0 1 20rem;
 	margin: 4.2rem 4.2rem 0 0;
 	height: 23.2rem;
 }
-section.product_grid.grid_4 article.product_item:nth-child(-n+4) {
+section.grid_4 article:nth-child(-n+4) {
 	margin-top: 0;
 }
-section.product_grid.grid_4 article.product_item:nth-child(4n) {
+section.grid_4 article:nth-child(4n) {
 	margin-right: 0;
 }
-section.product_grid.grid_4 article.product_item a.product_link h1 {
-	height: 3.8rem;
+section.grid_4 article a h1 {
 	font-size: 1.6rem;
 	text-transform: uppercase;
 	// Webkit only line-clamp
 	-webkit-line-clamp: 2;
 }
-section.product_grid.grid_4 article.product_item a.product_link h2 {
+section.grid_4 article a h2 {
 	font-size: 1.3rem;
 	text-transform: uppercase;
 }
-// + grid: 5 + \\
-section.product_grid.grid_5 article.product_item {
+// --- Grid: 5 --- \\
+section.grid_5 article {
 	flex: 0 1 16rem;
 	margin: 3.2rem 3.15rem 0 0;
 	height: 24.6rem;
 }
-section.product_grid.grid_5 article.product_item:nth-child(-n+5) {
+section.grid_5 article:nth-child(-n+5) {
 	margin-top: 0;
 }
-section.product_grid.grid_5 article.product_item:nth-child(5n) {
+section.grid_5 article:nth-child(5n) {
 	margin-right: 0;
 }
-section.product_grid.grid_5 article.product_item a.product_link h1 {
-	height: 4.7rem;
+section.grid_5 article a h1 {
 	font-size: 1.4rem;
 	// Webkit only line-clamp
 	-webkit-line-clamp: 3;
 }
-section.product_grid.grid_5 article.product_item a.product_link h2 {
+section.grid_5 article a h2 {
 	font-size: 1.6rem;
 }
-section.product_grid.grid_5 article.product_item.product_range a.product_link h2 {
-	font-size: 1.4rem;
+section.product_grid article a h2 span {
+	display: block;
+	font-size: 1.3rem;
 }
-section.product_grid.grid_5 article.product_item.product_range a.product_link h2 span {
+section.grid_5 article.product_range a h2 {
+	font-size: 1.3rem;
+}
+section.grid_5 article.product_range a h2 span {
 	font-size: 1.2rem;
 }
-section.product_grid.grid_5 article.product_item a.product_link h2 span.price_sale {
+section.grid_5 article a h2 span.price_sale {
 	margin-bottom: 0.4rem;
 	color: hsla(0,0%,0%,1);
 }
-section.product_grid.grid_5 article.product_item a.product_link h2 span.price_sale::before {
+section.grid_5 article a h2 span.price_sale::before {
 	content: "Sale: ";
 }
-section.product_grid.grid_5 article.product_item a.product_link h2 span.price_reg::before {
+section.grid_5 article a h2 span.price_reg::before {
 	content: "Reg: ";
 }
-
-
-// + grid: all + \\
-section.product_grid article.product_item:last-child {
+// --- Grid: All --- \\
+section.product_grid article:last-child {
 	margin-right: 0;
 }
 
-// --- Grid: Departments --- \\
-body.page_product-departments header a.btn_arw-left {
-	display: none;
-}
-
-
-// --- Grid: Categories --- \\
-
-
-
-// --- Grid: Products --- \\
-/*
-body.page_product-products header {
-	margin-bottom: 3.2rem;
-}
-*/
-
-
-
-// Cart Page
+// Cart Checkout
 // ----------------------------------------------------------------------------
-body.page_cart header a.btn_arw-left {
+body.page_cart-checkout header {
+	margin-bottom: 8rem;
+}
+body.page_cart-checkout header a.btn_arw-left {
 	margin: 0 auto;
 }
+body.page_cart-checkout header a.btn_arw-left svg {
+	width: 100%;
+	height: 100%;
+}
+
 // --- Form: Shopping Cart --- \\
 form.cart_form table {
 	table-layout: fixed;
@@ -944,6 +965,7 @@ form.cart_form thead tr th:nth-child(n+2),
 form.cart_form tbody tr td:nth-child(n+2) {
 	text-align: center;
 }
+
 // + thead + \\
 form.cart_form thead tr th.header_item {
 	width: 34%;
@@ -960,8 +982,8 @@ form.cart_form thead tr th.header_remove {
 	width: 12%;
 	color: transparent;
 }
-// + tfoot + \\
 
+// + tfoot + \\
 form.cart_form tfoot tr td {
 	padding-bottom: 1rem;
 	font-size: 2.8rem;
@@ -996,14 +1018,10 @@ form.cart_form tfoot tr:last-child td:last-child {
 	letter-spacing: -0.3rem;
 }
 
-
 // + tbody + \\
 form.cart_form tbody {
 	margin-bottom: 3.2rem;
 }
-
-
-
 form.cart_form tbody tr td {
 	padding-top: 2rem;
 	padding-bottom: 2rem;
@@ -1032,10 +1050,6 @@ form.cart_form tbody tr td.product_item h2 + h3 {
 form.cart_form tbody tr td.product_item h3:last-child {
 	margin-bottom: 0;
 }
-
-
-
-
 
 form.cart_form tbody tr td.product_quantity div.adjust_quantity {
 	position: relative;
@@ -1115,6 +1129,8 @@ form.cart_form a.remove_this {
 	height: 6.4rem;
 }
 form.cart_form a.remove_this svg {
+	width: 100%;
+	height: 100%;
 	fill: hsla(0,0%,80%,1);
 }
 form.cart_form a.remove_this:hover svg {
@@ -1143,12 +1159,6 @@ form.cart_form tbody tr td.product_total::before {
 }
 
 
-
-
-
-
-
-
 /*
 // + removed row + \\
 form.cart_form tbody tr td {
@@ -1170,3 +1180,43 @@ form.cart_form tbody tr.removed td {
 	visibility: hidden;
 }
 */
+
+
+// View Specific: temporary styles
+// ----------------------------------------------------------------------------
+// --- Button: Back --- \\
+#back-parent {
+	display: none;
+}
+body.page_prod-cat #back-parent,
+body.page_prod-indv #back-parent,
+body.page_prod-display #back-parent {
+	display: block;
+}
+// --- Widget Cart --- \\
+#widget_cart {
+	display: none;
+}
+body.page_prod-dept #widget_cart,
+body.page_prod-cat #widget_cart,
+body.page_prod-indv #widget_cart,
+body.page_prod-display #widget_cart {
+	display: block;
+}
+// --- Search Form --- \\
+#search_form {
+	display: none;
+}
+body.page_prod-dept #search_form,
+body.page_prod-cat #search_form,
+body.page_prod-indv #search_form,
+body.page_prod-display #search_form {
+	display: block;
+}
+// --- Button: Continue Shopping --- \\
+#continue-shopping {
+	display: none;
+}
+body.page_cart-checkout #continue-shopping {
+	display: block;
+}

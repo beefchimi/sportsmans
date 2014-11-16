@@ -3,9 +3,15 @@
 
 	- (1..34).each do |i|
 		%article.product_item{:id => "product-#{i}"}
-			%a.product_link{:href => "", :title => "Product #{i} Title"}
-				.wrap_image
-					%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product #{i} Image"}
-				-# Departments: product_dept | Categories: product_cat
-				%h1.product_dept Handgun Ammunition
-				%h2.product_items 225 items
+			-# in order to apply a gradient background while masking the white backgrounds on all of the Sportsmans images,
+			-# we need to take advantage of background-blend-mode - which requires us to specify the product image as a background-image
+			%a.product_link{:href => "", :title => "Product #{i} Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
+
+				-# .gradient
+				-# .wrap_image
+					-# %img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product #{i} Image"}
+
+				.wrap_text
+					-# class is either: "product_dept", "product_subdept", or "product_cat""
+					%h1.product_dept Handgun Ammunition Multi-line Title
+					%h2.product_items.truncate 225 items

@@ -5,36 +5,39 @@
 	-# <article> has "product_sale" class / h2.product_price now has 2 <span> children for prices / prefix text is added via CSS (Sale:, Reg:)
 	-# if it is easier for me to add the $ through CSS, I can do that as well
 	%article.product_item.product_sale{:id => "product-a"}
-		%a.product_link{:href => "", :title => "Product A Title"}
-			.wrap_image
-				%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product A Image"}
-			%h1.product_title Example of a sale product
-			%h2.product_price
-				%span.price_sale $499.99
-				%span.price_reg $299.99
+
+		-# in order to apply a gradient background while masking the white backgrounds on all of the Sportsmans images,
+		-# we need to take advantage of background-blend-mode - which requires us to specify the product image as a background-image
+		%a.product_link{:href => "", :title => "Product A Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
+
+			-# .wrap_image
+				-# %img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product A Image"}
+
+			.wrap_text
+				%h1.product_title Example of a sale product
+				%h2.product_price
+					%span.price_sale.truncate $499.99
+					%span.price_reg.truncate $299.99
 
 	-# example of a reg and sale price with a range:
 	-# any product that requires a price range needs only the "product_range" class added to the <article>
 	%article.product_item.product_sale.product_range{:id => "product-b"}
-		%a.product_link{:href => "", :title => "Product B Title"}
-			.wrap_image
-				%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product B Image"}
-			%h1.product_title Here we have a price range on a sale product
-			%h2.product_price
-				%span.price_sale $499.99-699.99
-				%span.price_reg $299.99-499.99
+		%a.product_link{:href => "", :title => "Product B Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
+			.wrap_text
+				%h1.product_title Here we have a price range on a sale product
+				%h2.product_price
+					%span.price_sale.truncate $499.99-699.99
+					%span.price_reg.truncate $299.99-499.99
 
 	%article.product_item.product_sale.product_range{:id => "product-c"}
-		%a.product_link{:href => "", :title => "Product C Title"}
-			.wrap_image
-				%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product C Image"}
-			%h1.product_title Just a regular ol' product
-			%h2.product_price $299.99-499.99
+		%a.product_link{:href => "", :title => "Product C Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
+			.wrap_text
+				%h1.product_title Just a regular ol' product range
+				%h2.product_price.truncate $299.99-499.99
 
 	- (1..31).each do |i|
 		%article.product_item{:id => "product-#{i}"}
-			%a.product_link{:href => "", :title => "Product #{i} Title"}
-				.wrap_image
-					%img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product #{i} Image"}
-				%h1.product_title A somewhat long title for this here all american ammunition product
-				%h2.product_price $499.99
+			%a.product_link{:href => "", :title => "Product #{i} Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
+				.wrap_text
+					%h1.product_title A somewhat long title for this here all american ammunition product
+					%h2.product_price $499.99

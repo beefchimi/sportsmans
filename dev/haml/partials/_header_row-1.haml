@@ -1,17 +1,22 @@
-.top_row
+.row-1
 
 	#logo_sportsmans.logo_sportsmans
 		%img{:src => "assets/img/logo_sportsmans.png", :alt => "Sportsman's Warehouse"}
 
-	-# present on all product grid pages except: Departments
-	%a#button_back.arrow_left{:href => "#", :title => "Back To Ammunition"} Back To Ammunition
+	-# only in these views: Categories, Indv. Prods, PDP
+	-# "Ammunition" refers to the parent Department or Category... should this term be wrapped in its own tag?
+	%a#back-parent.arrow_left{:href => "#", :title => "Back To Ammunition"} Back To Ammunition
 
-	-# visible on all screens except: ()
-	%aside#widget_cart.widget_cart
+	-# only in these views: Departments, Categories, Indv. Prods, PDP
+	-# "in-cart" class is added to #widget_cart as soon as an item has been added to the cart... removed when the cart is cleared
+	%aside#widget_cart.widget_cart.in-cart
 		.wrap_text
+			-# dynamic: number of items
+			-# item(s): pluralized when greater than 1
 			%p#widget_cart-items.widget_cart-items 10 items
+			-# dynamic: totaled price (should the price minus '$' be wrapped in its own tag?)
 			%p#widget_cart-total.widget_cart-total $152.50
-		%a#button_cart.button_cart.arrow_right{:href => "#", :title => "View Cart"}
+		%a#view-cart.arrow_right{:href => "#", :title => "View Cart"}
 			%svg.svg_cart
 				%use{"xlink:href" => "#cart"}
 			View Cart

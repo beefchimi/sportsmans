@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Global Variables
 	// ----------------------------------------------------------------------------
 	var elBody         = document.body,
-		topLink        = document.getElementById('back-to-top'), // may get replaced with updated header
-		isListPage     = elBody.classList.contains('page_product-products'),
-		isProductGrid  = elBody.classList.contains('view_products-grid'),
-		isCartPage     = elBody.classList.contains('page_cart'),
+		topLink        = document.getElementById('back-to-top'),
+		isProdIndv     = elBody.classList.contains('page_prod-indv'),
+		isViewGrid     = elBody.classList.contains('view_grid'),
+		isCartCheckout = elBody.classList.contains('page_cart-checkout'),
 		isQuantityForm = elBody.classList.contains('view_quantity-form');
 
 
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisQuantityInput.value = thisValue;
 					thisQuantityInput.setAttribute('value', thisValue);
 
-					if (isCartPage) {
+					if (isCartCheckout) {
 						updateCart(thisID, thisValue);
 					}
 
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisQuantityInput.value = thisValue;
 					thisQuantityInput.setAttribute('value', thisValue);
 
-					if (isCartPage) {
+					if (isCartCheckout) {
 						updateCart(thisID, thisValue);
 					}
 
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisQuantityInput.value = thisValue; // only to accomodate situations where a user has entered a floating point number
 					thisQuantityInput.setAttribute('value', thisValue);
 
-					if (isCartPage) {
+					if (isCartCheckout) {
 						updateCart(thisID, thisValue);
 					}
 
@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	}, false);
 
-	// if (isProductGrid) {}
+	// if (isViewGrid) {}
 
 
 	// Initialize Primary Functions
@@ -388,11 +388,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	searchOptions();
 
 	// will be changed to a different page...
-	if ( elBody.classList.contains('page_product-departments') ) {
+	if ( elBody.classList.contains('page_prod-dept') ) {
 		modalToggle();
 	}
 
-	if (isListPage) {
+	if (isProdIndv) {
 		selectDropdown();
 	}
 
@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		quantityAdjust();
 	}
 
-	if (isCartPage) {
+	if (isCartCheckout) {
 		removeItem();
 	}
 

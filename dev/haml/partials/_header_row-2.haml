@@ -1,20 +1,28 @@
-.title_row{"data-container" => "width-926"}
+.row-2{"data-container" => "width-926"}
 
-	%h1 Rifle Ammunition
+	-# generated based on current page
+	%h1#page_title Rifle Ammunition
 
+	-# only in these views: Departments, Categories, Indv. Prods, PDP
 	%form#search_form.search_form{:action => "", :method => "GET", :role => "search"}
+		-# placeholder text is generated based on current page view ("Search Hunting", "Search Ammunition", etc)
 		%input#search_text.search_text{:type => "text", :name => "search", :value => "", :autocomplete => "off", :placeholder => "Search for a specific product", :required => true}
 		%a#toggle_search-options.toggle_search-options{:href => "#", :title => "Toggle Search Options"}
 		%input#search_checkbox.search_checkbox.visuallyhidden{:type => "checkbox", :name => "search-all", :value => "search-all-departments"}
 		%label{:for => "search_checkbox"} Search All Departments
-		-# {:type => "submit", :formaction, :formenctype, :formmethod}
 		%button
 			%svg.svg_search
 				%use{'xlink:href' => '#search'}
 
-	%a#toggle_search-all.toggle_search-all{:href => "#"}
+	-# only in these views: Shopping Cart
+	%a#continue-shopping.btn_arw-left{:href => "#", :title => "Continue Shopping"}
+		%span Continue Shopping
+		%svg.svg_btn_arw-left
+			%use{"xlink:href" => "#btn_arw-left"}
 
-	%a#button_view-all.button_view-all.button_circle{:href => "#", :title => "View All Departments"}
+	-# link to: departments listing
+	%a#view-all.view-all.button_circle{:href => "#", :title => "View All Departments"}
 		%span.wrap_text View All Departments
-	%a#button_start-over.button_start-over.button_circle{:href => "#", :title => "Start Over"}
+	-# link to: home page
+	%a#start-over.start-over.button_circle{:href => "#", :title => "Start Over"}
 		%span.wrap_text Start Over

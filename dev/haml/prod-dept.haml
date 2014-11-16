@@ -3,8 +3,18 @@
 
 	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
 
-	-# ID always prefixed with "department_" ... suffix taken from current Department view (ex: fishing, camping, footwear, etc.)
-	%body#department_hunting.page_product-departments.view_products-grid
+	-# this view is for Departments and Sub-Departments
+	-# Departments: Hunting & Shooting, Archery, Fishing, Camping, etc.
+	-# Sub Departments: Archery > [Bows, Bow Accessories, Arrows & Shafts, etc.] | Fishing > [Rods, Reels, Rod & Reel Combos, etc.]
+
+	-# ID is either "departments" or "subdepartments"
+	-# "page_" class is either "prod-dept" or "prod-subdept"
+
+	-# only if parent "prod-dept": ommit the "#button_back" from _header_row-1.haml
+
+	-# uses 'grid-4' layout
+
+	%body#departments.page_prod-dept.view_grid
 
 		:plain
 			<!-- inject:svg --><!-- endinject -->
@@ -13,13 +23,13 @@
 			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-1.haml")).render
 			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-2.haml")).render
 
-			-# testing purposes only!
+			-# TEMP: used to access modal styles
 			= Haml::Engine.new(File.read("dev/haml/partials/_temp_modal-links.haml")).render
 
 		%main{:role => "main", "data-container" => "width-926"}
 			= Haml::Engine.new(File.read("dev/haml/partials/_main_grid-4.haml")).render
 
-			-# temporary... will be housed elsewhere (ideally AJAX loaded on click)
+			-# TEMP: will be housed elsewhere (ideally AJAX loaded on click?)
 			= Haml::Engine.new(File.read("dev/haml/partials/_modal_phone.haml")).render
 			= Haml::Engine.new(File.read("dev/haml/partials/_modal_timeout-cart.haml")).render
 			= Haml::Engine.new(File.read("dev/haml/partials/_modal_timeout-empty.haml")).render

@@ -81,7 +81,7 @@ td, th { padding: 0; }
 .visuallyhidden { clip: rect(0 0 0 0); overflow: hidden; position: absolute; margin: -0.1rem; padding: 0; width: 0.1rem; height: 0.1rem; border: 0; }
 .clearfix:before, .clearfix:after { content: " "; display: table; }
 .clearfix:after { clear: both; }
-.truncate { overflow: hidden; padding-bottom: 0.2em; width: 100%; text-overflow: ellipsis; white-space: nowrap; }
+.truncate { overflow: hidden; /* padding-bottom: 0.2em; */ width: 100%; text-overflow: ellipsis; white-space: nowrap; }
 
 // Webfonts
 // ----------------------------------------------------------------------------
