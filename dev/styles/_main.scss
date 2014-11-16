@@ -653,7 +653,7 @@ form.filter_form.overlay span.filter_overlay {
 // ----------------------------------------------------------------------------
 [data-modal] {
 	position: fixed;
-	z-index: 900;
+	z-index: 400;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -715,7 +715,7 @@ form.filter_form.overlay span.filter_overlay {
 
 	// --- TEMP: Modal Links --- \\
 	div.test_modal {
-		position: absolute;
+		position: fixed;
 		z-index: 310;
 		top: 3.8rem;
 		right: 0;
@@ -1221,5 +1221,12 @@ body.page_prod-display #search_form {
 	display: none;
 }
 body.page_cart-checkout #continue-shopping {
+	display: block;
+}
+// --- Test Modal Buttons --- \\
+div.test_modal {
+	display: none;
+}
+body.page_prod-dept div.test_modal {
 	display: block;
 }

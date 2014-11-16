@@ -22,3 +22,6 @@
 			View Cart
 
 	%a#back-to-top.back-to-top{:href => "#root", :title => "Back To Top", "data-scroll" => true} Back To Top
+
+	-# TEMP: used to access modal styles
+	= Haml::Engine.new(File.read("dev/haml/partials/_temp_modal-links.haml")).render
