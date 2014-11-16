@@ -4,10 +4,15 @@
 
 	%form#search_form.search_form{:action => "", :method => "GET", :role => "search"}
 		%input#search_text.search_text{:type => "text", :name => "search", :value => "", :autocomplete => "off", :placeholder => "Search for a specific product", :required => true}
+		%a#toggle_search-options.toggle_search-options{:href => "#", :title => "Toggle Search Options"}
+		%input#search_checkbox.search_checkbox.visuallyhidden{:type => "checkbox", :name => "search-all", :value => "search-all-departments"}
+		%label{:for => "search_checkbox"} Search All Departments
 		-# {:type => "submit", :formaction, :formenctype, :formmethod}
 		%button
 			%svg.svg_search
 				%use{'xlink:href' => '#search'}
+
+	%a#toggle_search-all.toggle_search-all{:href => "#"}
 
 	%a#button_view-all.button_view-all.button_circle{:href => "#", :title => "View All Departments"}
 		%span.wrap_text View All Departments

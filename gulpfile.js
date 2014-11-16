@@ -7,7 +7,7 @@ var gulp       = require('gulp'),
 	livereload = require('gulp-livereload'),
 	del        = require('del'),
 	pngcrush   = require('imagemin-pngcrush'),
-	secrets    = require('./secrets.json'),
+	// secrets    = require('./secrets.json'),
 	plugins    = require('gulp-load-plugins')({
 		pattern: ['gulp-*', 'gulp.*'],
 		replaceString: /\bgulp[\-.]/

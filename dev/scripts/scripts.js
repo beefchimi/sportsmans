@@ -39,6 +39,23 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
+	// searchOptions: Toggle advanced options for the search input
+	// ----------------------------------------------------------------------------
+	function searchOptions() {
+
+		var searchToggle = document.getElementById('toggle_search-options');
+
+		searchToggle.addEventListener('click', function(e) {
+
+			this.classList.toggle('toggled');
+
+			e.preventDefault();
+
+		}, false);
+
+	}
+
+
 	// modalToggle: Hide / Show Modals
 	// ----------------------------------------------------------------------------
 	function modalToggle() {
@@ -356,19 +373,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Window Events: On - Scroll, Resize
 	// ----------------------------------------------------------------------------
-	if (isProductGrid) {
+	window.addEventListener('scroll', function(e) {
 
-		window.addEventListener('scroll', function(e) {
+		backToTop();
 
-			backToTop();
+	}, false);
 
-		}, false);
-
-	}
+	// if (isProductGrid) {}
 
 
 	// Initialize Primary Functions
 	// ----------------------------------------------------------------------------
+
+	searchOptions();
 
 	// will be changed to a different page...
 	if ( elBody.classList.contains('page_product-departments') ) {
