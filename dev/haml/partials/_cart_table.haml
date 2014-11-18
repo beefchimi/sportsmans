@@ -1,4 +1,4 @@
-%form#cart_form.cart_form{:action => "", :method => "GET"}
+%form#cart_form.cart_form{:action => "", :method => "GET", "data-tax" => "15"}
 
 	-# %input#phone_tel.phone_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "xxx-xxx-xxxx", :required => true}
 	-# %button.arrow_right Continue
@@ -18,12 +18,8 @@
 				%td{:colspan => "3"} Product total
 				%td#cell_product-total{:colspan => "2"}
 					%span.wrap_price 389.93
-			%tr#row_ship-hand
-				%td{:colspan => "3"} Shipping & Handling
-				%td#cell_ship-hand{:colspan => "2"}
-					%span.wrap_price 8.00
 			%tr#row_tax
-				%td{:colspan => "3"} Tax
+				%td{:colspan => "3"} Tax (15%)
 				%td#cell_tax{:colspan => "2"}
 					%span.wrap_price 58.49
 			%tr#row_order-total
@@ -82,8 +78,10 @@
 
 				%td.product_price
 					%span.wrap_price 219.99
+
 				%td.product_total
 					%span.wrap_price 219.99
+
 				%td.product_remove
 					%a.remove_this{:href => "#", :title => "Remove This Product"}
 						%svg.svg_remove
@@ -104,8 +102,10 @@
 
 				%td.product_price
 					%span.wrap_price 25.99
+
 				%td.product_total
 					%span.wrap_price 103.96
+
 				%td.product_remove
 					%a.remove_this{:href => "#", :title => "Remove This Product"}
 						%svg.svg_remove
@@ -129,8 +129,10 @@
 
 				%td.product_price
 					%span.wrap_price 25.00
+
 				%td.product_total
 					%span.wrap_price 175.00
+
 				%td.product_remove
 					%a.remove_this{:href => "#", :title => "Remove This Product"}
 						%svg.svg_remove

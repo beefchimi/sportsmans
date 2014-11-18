@@ -416,10 +416,18 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	var elBody         = document.body,
 		topLink        = document.getElementById('back-to-top'),
+		// formQuantity   = document.getElementsByClassName('has-quantity')[0],
 		isProdIndv     = elBody.classList.contains('page_prod-indv'),
 		isViewGrid     = elBody.classList.contains('view_grid'),
 		isCartCheckout = elBody.classList.contains('page_cart-checkout'),
 		isQuantityForm = elBody.classList.contains('view_quantity-form');
+
+	var cartForm = document.getElementById('cart_form');
+
+	// check if the cart_form exists
+	if ( typeof(cartForm) != 'undefined' && cartForm != null ) {
+		var numTaxPercent = parseFloat( cartForm.getAttribute('data-tax') ) / 100;
+	}
 
 
 /*
@@ -751,6 +759,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		rowSelected.getElementsByClassName('wrap_price')[1].innerHTML = updatedTotal.toFixed(2);
 
+		if (isCartCheckout) {
+			calculateTotals();
+		}
+
+	}
+
+
+	// calculateTotals: Add up the totals on the checkout page
+	// ----------------------------------------------------------------------------
+	function calculateTotals() {
+
+		var elTotalItems      = document.getElementsByClassName('product_total'),
+			elTotalBeforeTax  = document.getElementById('cell_product-total').getElementsByClassName('wrap_price')[0],
+			elTotalAfterTax   = document.getElementById('cell_order-total').getElementsByClassName('wrap_price')[0],
+			elTaxValue        = document.getElementById('cell_tax').getElementsByClassName('wrap_price')[0],
+			numTotalBeforeTax = 0,
+			numTotalAfterTax  = 0,
+			numTaxValue       = 0,
+			numCalcTotal      = 0;
+
+		for (var i = 0; i < elTotalItems.length; i++) {
+			numCalcTotal += parseFloat(elTotalItems[i].getElementsByClassName('wrap_price')[0].innerHTML);
+		}
+
+		numTotalBeforeTax = numCalcTotal;
+
+		numTaxValue = numCalcTotal * numTaxPercent;
+
+		numTotalAfterTax = numTotalBeforeTax + numTaxValue;
+
+		elTotalBeforeTax.innerHTML = numTotalBeforeTax.toFixed(2);
+		elTaxValue.innerHTML = numTaxValue.toFixed(2);
+		elTotalAfterTax.innerHTML = numTotalAfterTax.toFixed(2);
+
 	}
 
 
@@ -812,12 +854,14 @@ document.addEventListener('DOMContentLoaded', function() {
 						collapseHeight.onfinish = function(e) {
 							desiredParent.style.height = '0px'; // .animate() will jump back to original height otherwise
 							desiredParent.remove(); // now safe to delete this node
+							calculateTotals(); // recalculate totals after removed product
 						}
 
 					}
 
 				}
 
+				// run the remove animation and update cart total
 				beginAnimation();
 
 				e.preventDefault();
