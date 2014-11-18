@@ -12,7 +12,7 @@ logs
 secrets.json
 
 # Ignore build directory
-build
+# build
 
 # Ignore copyright webfonts
 dev/extra/fonts

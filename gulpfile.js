@@ -43,7 +43,7 @@ var paths = {
 
 };
 
-
+/*
 // --dev flag variables
 var isProduction = true,
 	sassStyle    = 'compressed',
@@ -55,6 +55,12 @@ if (gutil.env.dev === true) {
 	sassStyle    = 'expanded';
 	sourceMap    = true;
 }
+*/
+
+// disabling minification
+var isProduction = false,
+	sassStyle    = 'expanded',
+	sourceMap    = true;
 
 
 /* Gulp Tasks

@@ -1,0 +1,10 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+
+	Northern Army: Ryan Anderson, Rene Antunes, Sian Jones, Curtis Dulmage
+	Thinkwrap: Matthew Ladd (also others)
+	Site: http://www.sportsmanswarehouse.com/
+	Location: Ottawa, Ontario, Canada

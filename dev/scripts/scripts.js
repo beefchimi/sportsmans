@@ -20,6 +20,34 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 
 
+/*
+	// fadeOutRemove: Helper function for fading an element to 0
+	// ----------------------------------------------------------------------------
+	function fadeOutRemove(element) {
+
+		var opacity  = 1;
+
+		function fade() {
+
+			opacity -= 0.05; // reduce by 5%
+
+			if (opacity <= 0){
+				element.style.opacity = 0;
+				element.innerHTML = '';
+				return true;
+			}
+
+			element.style.opacity = opacity;
+			requestAnimationFrame(fade);
+
+		}
+
+		fade();
+
+	}
+*/
+
+
 	// backToTop: When Product Grid reaches top of page
 	// ----------------------------------------------------------------------------
 	function backToTop() {
@@ -307,10 +335,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		// need to know more about tax + shipping & handling ... last I heard they may not be included
 
 		var rowSelected   = document.getElementById('row_' + passed_thisID),
-			rowPriceValue = parseFloat(rowSelected.getElementsByClassName('product_price')[0].innerHTML).toFixed(2),
+			rowPriceValue = parseFloat(rowSelected.getElementsByClassName('wrap_price')[0].innerHTML).toFixed(2),
 			updatedTotal  = passed_thisValue * rowPriceValue;
 
-		rowSelected.getElementsByClassName('product_total')[0].innerHTML = updatedTotal.toFixed(2);
+		rowSelected.getElementsByClassName('wrap_price')[1].innerHTML = updatedTotal.toFixed(2);
 
 	}
 
@@ -334,33 +362,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				// cycle upwards from the closest parent of the clicked element,
 				// until we find the <tr> element (tag names must be uppercase)
-				while ( desiredParent.tagName != 'TR' ) {
+				while (desiredParent.tagName != 'TR') {
 					desiredParent = desiredParent.parentNode;
 				}
 
-/*
+				// get calculated height of table row
 				var rowHeight = desiredParent.offsetHeight;
 
-				console.log('height: ' + rowHeight);
-
-				desiredParent.style.height = rowHeight + 'px';
-
-				while (desiredParent.firstChild) {
-					desiredParent.removeChild(desiredParent.firstChild);
-				}
-
+				// get immediate children (TDs) of this row
 				var rowCells = desiredParent.children;
 
-				for (var i = 0; i < rowCells.length; i++) {
-					rowCells[i].innerHTML = '';
+				function beginAnimation() {
+
+					// transition row opacity
+					var fadeOut = desiredParent.animate([
+						{opacity: '1'},
+						{opacity: '0'}
+					], 400);
+
+					// once fadeOut transition has finished...
+					fadeOut.onfinish = function(e) {
+
+						desiredParent.style.opacity = 0; // .animate() will jump back to opacity: 1; otherwise
+						rowCells[0].style.padding = 0; // remove padding on first table cell so height can be collapsed
+
+						// empty out each table cell
+						for (var i = 0; i < rowCells.length; i++) {
+							rowCells[i].innerHTML = '';
+						}
+
+						// transition calculated row height to 0px
+						var collapseHeight = desiredParent.animate([
+							{height: rowHeight + 'px'},
+							{height: '0px'}
+						], 400);
+
+						// once collapseHeight transition has finished...
+						collapseHeight.onfinish = function(e) {
+							desiredParent.style.height = '0px'; // .animate() will jump back to original height otherwise
+							desiredParent.remove(); // now safe to delete this node
+						}
+
+					}
+
 				}
 
-				// once we have found the desired parent element, add the 'removed' class
-				desiredParent.classList.add('removed');
-*/
-
-				// delete this element
-				desiredParent.remove();
+				beginAnimation();
 
 				e.preventDefault();
 

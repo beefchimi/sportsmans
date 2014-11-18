@@ -31,4 +31,4 @@
 			= Haml::Engine.new(File.read("dev/haml/partials/_modal_timeout-cart.haml")).render
 			= Haml::Engine.new(File.read("dev/haml/partials/_modal_timeout-empty.haml")).render
 
-		%script{:src => "assets/js/scripts.js"}
+		= Haml::Engine.new(File.read("dev/haml/partials/_html_footer.haml")).render

@@ -21,4 +21,4 @@
 			%a.shop_departments.home_link{:href => "#", :title => "Shop All Departments"}
 				%span.wrap_text Shop All Departments
 
-		%script{:src => "assets/js/scripts.js"}
+		= Haml::Engine.new(File.read("dev/haml/partials/_html_footer.haml")).render

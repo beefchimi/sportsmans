@@ -15,4 +15,4 @@
 			%p Once you've done that, your items will be in our store in 3 &ndash; 5 days, and you'll be notified by phone as soon as they arrive.
 			%a#order_finalize.arrow_right{:href => "#", :title => "Got It"} Got It!
 
-		%script{:src => "assets/js/scripts.js"}
+		= Haml::Engine.new(File.read("dev/haml/partials/_html_footer.haml")).render

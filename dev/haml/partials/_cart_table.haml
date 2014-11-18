@@ -16,16 +16,20 @@
 		%tfoot
 			%tr#row_product-total
 				%td{:colspan => "3"} Product total
-				%td#cell_product-total{:colspan => "2"} 389.93
+				%td#cell_product-total{:colspan => "2"}
+					%span.wrap_price 389.93
 			%tr#row_ship-hand
 				%td{:colspan => "3"} Shipping & Handling
-				%td#cell_ship-hand{:colspan => "2"} 8.00
+				%td#cell_ship-hand{:colspan => "2"}
+					%span.wrap_price 8.00
 			%tr#row_tax
 				%td{:colspan => "3"} Tax
-				%td#cell_tax{:colspan => "2"} 58.49
+				%td#cell_tax{:colspan => "2"}
+					%span.wrap_price 58.49
 			%tr#row_order-total
 				%td{:colspan => "2"} Order total
-				%td#cell_order-total{:colspan => "3"} 456.42
+				%td#cell_order-total{:colspan => "3"}
+					%span.wrap_price 456.42
 
 		%tbody
 
@@ -52,8 +56,12 @@
 						%input.adjust_increase{:type => "button", :value => "+"}
 						%p.error_invalid Numbers Only
 
-				%td.product_price 32.99
-				%td.product_total 65.98
+				%td.product_price
+					%span.wrap_price 32.99
+
+				%td.product_total
+					%span.wrap_price 65.98
+
 				%td.product_remove
 					%a.remove_this{:href => "#", :title => "Remove This Product"}
 						%svg.svg_remove
@@ -72,8 +80,10 @@
 						%input.adjust_increase{:type => "button", :value => "+"}
 						%p.error_invalid Numbers Only
 
-				%td.product_price 219.99
-				%td.product_total 219.99
+				%td.product_price
+					%span.wrap_price 219.99
+				%td.product_total
+					%span.wrap_price 219.99
 				%td.product_remove
 					%a.remove_this{:href => "#", :title => "Remove This Product"}
 						%svg.svg_remove
@@ -92,8 +102,10 @@
 						%input.adjust_increase{:type => "button", :value => "+"}
 						%p.error_invalid Numbers Only
 
-				%td.product_price 25.99
-				%td.product_total 103.96
+				%td.product_price
+					%span.wrap_price 25.99
+				%td.product_total
+					%span.wrap_price 103.96
 				%td.product_remove
 					%a.remove_this{:href => "#", :title => "Remove This Product"}
 						%svg.svg_remove
@@ -115,8 +127,10 @@
 						%input.adjust_increase{:type => "button", :value => "+"}
 						%p.error_invalid Numbers Only
 
-				%td.product_price 25.00
-				%td.product_total 175.00
+				%td.product_price
+					%span.wrap_price 25.00
+				%td.product_total
+					%span.wrap_price 175.00
 				%td.product_remove
 					%a.remove_this{:href => "#", :title => "Remove This Product"}
 						%svg.svg_remove
