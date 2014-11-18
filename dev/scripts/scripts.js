@@ -4,18 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Global Variables
 	// ----------------------------------------------------------------------------
 	var elBody         = document.body,
-		topLink        = document.getElementById('back-to-top'),
-		// formQuantity   = document.getElementsByClassName('has-quantity')[0],
+		elHeader       = document.getElementsByTagName('header')[0],
 		isProdIndv     = elBody.classList.contains('page_prod-indv'),
 		isViewGrid     = elBody.classList.contains('view_grid'),
 		isCartCheckout = elBody.classList.contains('page_cart-checkout'),
 		isQuantityForm = elBody.classList.contains('view_quantity-form');
 
-	var cartForm = document.getElementById('cart_form');
+	// may move this to its own function...
+	var elCartForm = document.getElementById('cart_form');
 
-	// check if the cart_form exists
-	if ( typeof(cartForm) != 'undefined' && cartForm != null ) {
-		var numTaxPercent = parseFloat( cartForm.getAttribute('data-tax') ) / 100;
+	// check if #cart_form exists
+	if ( typeof(elCartForm) != 'undefined' && elCartForm != null ) {
+		var numTaxPercent = parseFloat( elCartForm.getAttribute('data-tax') ) / 100;
 	}
 
 
@@ -63,13 +63,25 @@ document.addEventListener('DOMContentLoaded', function() {
 		// instead of tracking the position of #product_grid:
 		// we can safely assume that if the user has scrolled 560px, toggle the back-to-top link
 
-		var scrollPos = window.pageYOffset; // may need to be a global variable...
+		// check if <header> does not exists
+		if ( elHeader == null ) {
+			console.log('header does not exist');
+			return;
+		}
 
-		// if we have scrolled to or past 560px AND topLink does not yet have the class "active"...
-		if ( scrollPos >= 560 && !topLink.classList.contains('active') ) {
-			topLink.classList.add('active');
-		} else if ( scrollPos < 560 && topLink.classList.contains('active') ) {
-			topLink.classList.remove('active');
+		console.log('header DOES exist!');
+
+		var numScrollPos = window.pageYOffset; // may need to be a global variable...
+
+		// if we have scrolled to or past 560px AND header data-scrolled is not 'yes'
+		if ( numScrollPos >= 560 && elHeader.getAttribute('data-scrolled') == 'no' ) {
+
+			elHeader.setAttribute('data-scrolled', 'yes');
+
+		} else if ( numScrollPos < 560 && elHeader.getAttribute('data-scrolled') == 'yes' ) {
+
+			elHeader.setAttribute('data-scrolled', 'no');
+
 		}
 
 	}
@@ -79,9 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function searchOptions() {
 
-		var searchToggle = document.getElementById('toggle_search-options');
+		var elSearchToggle = document.getElementById('toggle_search-options');
 
-		searchToggle.addEventListener('click', function(e) {
+		// check if #toggle_search-options does not exists
+		if ( elSearchToggle == null ) {
+			console.log('search does not exist');
+			return;
+		}
+
+		console.log('search DOES exist!');
+
+		elSearchToggle.addEventListener('click', function(e) {
 
 			this.classList.toggle('toggled');
 
@@ -96,17 +116,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function modalToggle() {
 
-		var modalOpen  = document.querySelectorAll('.modal_open'),
-			modalClose = document.querySelectorAll('.modal_close');
+		var arrModalOpen  = document.querySelectorAll('.modal_open'),
+			arrModalClose = document.querySelectorAll('.modal_close');
 
 		// find each .modal_open link on the page
-		for (var i = 0; i < modalOpen.length; i++) {
-			openModal(modalOpen[i]);
+		for (var i = 0; i < arrModalOpen.length; i++) {
+			openModal(arrModalOpen[i]);
 		}
 
 		// find each .modal_close link on the page
-		for (var i = 0; i < modalClose.length; i++) {
-			closeModal(modalClose[i]);
+		for (var i = 0; i < arrModalClose.length; i++) {
+			closeModal(arrModalClose[i]);
 		}
 
 		// reveal a modal that is already on the page but hidden
@@ -115,10 +135,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			thisModalOpen.addEventListener('click', function(e) {
 
 				// capture the href of the clicked element, remove the # prefix
-				var targetModal = this.getAttribute('href').substring(1);
+				var targetModalHREF = this.getAttribute('href').substring(1);
 
 				// use the captured href to match the ID of the desired modal and add 'visible' class
-				document.getElementById(targetModal).classList.add('visible');
+				document.getElementById(targetModalHREF).classList.add('visible');
 
 				e.preventDefault();
 
@@ -131,16 +151,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			thisModalClose.addEventListener('click', function(e) {
 
-				var desiredParent = this.parentNode;
+				var elDesiredParent = this.parentNode;
 
 				// cycle upwards from the closest parent of the clicked element,
 				// until we find an element with the attr 'data-modal'
-				while ( !desiredParent.getAttribute('data-modal') ) {
-					desiredParent = desiredParent.parentNode;
+				while ( !elDesiredParent.getAttribute('data-modal') ) {
+					elDesiredParent = elDesiredParent.parentNode;
 				}
 
 				// once we have found the desired parent element, remove its 'visible' class
-				desiredParent.classList.remove('visible');
+				elDesiredParent.classList.remove('visible');
 
 				e.preventDefault();
 
@@ -155,12 +175,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function selectDropdown() {
 
-		var filterForm  = document.getElementById('filter_form'),
-			filterLabel = filterForm.querySelectorAll('.filter_label');
+		var elFilterForm   = document.getElementById('filter_form'),
+			arrFilterLabel = elFilterForm.querySelectorAll('.filter_label');
+
+		// check if #filter_form does not exists
+		if ( elFilterForm == null ) {
+			console.log('filter form does not exist');
+			return;
+		}
+
+		console.log('filter form DOES exist!');
 
 		// assign the click event to each .filter_label found in the filterForm
-		for (var i = 0; i < filterLabel.length; i++) {
-			dropdownToggle(filterLabel[i]);
+		for (var i = 0; i < arrFilterLabel.length; i++) {
+			dropdownToggle(arrFilterLabel[i]);
 		}
 
 		// function for toggling dropdowns
@@ -172,11 +200,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			thisFilterLabel.addEventListener('click', function(e) {
 
 				// run through each filterLabel...
-				for (var i = 0; i < filterLabel.length; i++) {
+				for (var i = 0; i < arrFilterLabel.length; i++) {
 
 					// and if this is NOT the dropdown we have clicked on...
-					if ( filterLabel[i] != thisFilterLabel ) {
-						filterLabel[i].classList.remove('toggled'); // remove the 'toggled' class
+					if ( arrFilterLabel[i] != thisFilterLabel ) {
+						arrFilterLabel[i].classList.remove('toggled'); // remove the 'toggled' class
 					}
 
 				}
@@ -193,13 +221,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		// function for passing <ul> values to the corresponding <select>
 		function passSelectValue() {
 
-			// dropdownList  = document.querySelectorAll('.dropdown_link');
-			var dropdownLinks = filterForm.querySelectorAll('.dropdown_link'),
-				selectOptions = filterForm.getElementsByTagName('option');
+			var arrDropdownLinks = elFilterForm.querySelectorAll('.dropdown_link');
+			// var arrSelectOptions = elFilterForm.getElementsByTagName('option');
 
 			// assign the click event to each .dropdown_link found in the filterForm
-			for (var i = 0; i < dropdownLinks.length; i++) {
-				filterChange(dropdownLinks[i]);
+			for (var i = 0; i < arrDropdownLinks.length; i++) {
+				filterChange(arrDropdownLinks[i]);
 			}
 
 			function filterChange(thisDropdownLink) {
@@ -214,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					console.log(selectedValue);
 
-					var matchedOption = filterForm.querySelector('[value="' + selectedValue + '"]');
+					var matchedOption = elFilterForm.querySelector('[value="' + selectedValue + '"]');
 
 					console.log(matchedOption);
 
@@ -242,25 +269,25 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function quantityAdjust() {
 
-		var quantityInput = document.querySelectorAll('.adjust_number');
+		var arrQuantityInput = document.querySelectorAll('.adjust_number');
 
 		// for each input[type="number"] found on the cart page
-		for (var i = 0; i < quantityInput.length; i++) {
-			quantityIncrements(quantityInput[i]);
+		for (var i = 0; i < arrQuantityInput.length; i++) {
+			quantityIncrements(arrQuantityInput[i]);
 		}
 
 		function quantityIncrements(thisQuantityInput) {
 
-			var thisID           = thisQuantityInput.getAttribute('name'),
-				thisMin          = parseInt( thisQuantityInput.getAttribute('min') ),
-				thisMax          = parseInt( thisQuantityInput.getAttribute('max') ),
-				thisValue        = parseInt( thisQuantityInput.value ),
-				quantityDecrease = thisQuantityInput.previousElementSibling,
-				quantityIncrease = thisQuantityInput.nextElementSibling,
+			var thisID             = thisQuantityInput.getAttribute('name'),
+				thisMin            = parseInt( thisQuantityInput.getAttribute('min') ),
+				thisMax            = parseInt( thisQuantityInput.getAttribute('max') ),
+				thisValue          = parseInt( thisQuantityInput.value ),
+				elQuantityDecrease = thisQuantityInput.previousElementSibling,
+				elQuantityIncrease = thisQuantityInput.nextElementSibling,
 				enteredValue;
 
 			// if clicking the 'minus' button
-			quantityDecrease.addEventListener('click', function(e) {
+			elQuantityDecrease.addEventListener('click', function(e) {
 
 				// currently not allowed to be set to 0...
 				// removing an item can only be achieved by using the 'remove' link
@@ -284,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			}, false);
 
 			// if clicking the 'plus' button
-			quantityIncrease.addEventListener('click', function(e) {
+			elQuantityIncrease.addEventListener('click', function(e) {
 
 				// as long as the thisQuantityInput value is not equal to the allowed maximum, increment value
 				if (thisValue != thisMax) {
@@ -303,8 +330,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			}, false);
 
-			// if manually entering a value
-			thisQuantityInput.addEventListener('change', function() { // input
+			// if manually entering a value (using 'change' instead of 'input' to avoid firing as the user types)
+			thisQuantityInput.addEventListener('change', function() {
 
 				// need to recapture the input value
 				enteredValue = parseInt(thisQuantityInput.value);
@@ -342,11 +369,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		// CURRENTLY NOT HANDLING: product total, ship & hand, tax, order total
 		// need to know more about tax + shipping & handling ... last I heard they may not be included
 
-		var rowSelected   = document.getElementById('row_' + passed_thisID),
-			rowPriceValue = parseFloat(rowSelected.getElementsByClassName('wrap_price')[0].innerHTML).toFixed(2),
-			updatedTotal  = passed_thisValue * rowPriceValue;
+		var elRowSelected   = document.getElementById('row_' + passed_thisID),
+			numRowPrice     = parseFloat(elRowSelected.getElementsByClassName('wrap_price')[0].innerHTML).toFixed(2),
+			numUpdatedTotal = passed_thisValue * numRowPrice;
 
-		rowSelected.getElementsByClassName('wrap_price')[1].innerHTML = updatedTotal.toFixed(2);
+		elRowSelected.getElementsByClassName('wrap_price')[1].innerHTML = numUpdatedTotal.toFixed(2);
 
 		if (isCartCheckout) {
 			calculateTotals();
@@ -359,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function calculateTotals() {
 
-		var elTotalItems      = document.getElementsByClassName('product_total'),
+		var arrTotalItems     = document.getElementsByClassName('product_total'),
 			elTotalBeforeTax  = document.getElementById('cell_product-total').getElementsByClassName('wrap_price')[0],
 			elTotalAfterTax   = document.getElementById('cell_order-total').getElementsByClassName('wrap_price')[0],
 			elTaxValue        = document.getElementById('cell_tax').getElementsByClassName('wrap_price')[0],
@@ -368,16 +395,20 @@ document.addEventListener('DOMContentLoaded', function() {
 			numTaxValue       = 0,
 			numCalcTotal      = 0;
 
-		for (var i = 0; i < elTotalItems.length; i++) {
-			numCalcTotal += parseFloat(elTotalItems[i].getElementsByClassName('wrap_price')[0].innerHTML);
+		for (var i = 0; i < arrTotalItems.length; i++) {
+			numCalcTotal += parseFloat(arrTotalItems[i].getElementsByClassName('wrap_price')[0].innerHTML);
 		}
 
+		// assign the total before tax
 		numTotalBeforeTax = numCalcTotal;
 
+		// assign the tax amount
 		numTaxValue = numCalcTotal * numTaxPercent;
 
+		// add up price before tax with tax ammount
 		numTotalAfterTax = numTotalBeforeTax + numTaxValue;
 
+		// output calculated prices (2 decimal places)
 		elTotalBeforeTax.innerHTML = numTotalBeforeTax.toFixed(2);
 		elTaxValue.innerHTML = numTaxValue.toFixed(2);
 		elTotalAfterTax.innerHTML = numTotalAfterTax.toFixed(2);
@@ -389,35 +420,35 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function removeItem() {
 
-		var removeLink = document.querySelectorAll('.remove_this');
+		var arrRemoveLink = document.querySelectorAll('.remove_this');
 
 		// for each a.remove_link found on the cart page
-		for (var i = 0; i < removeLink.length; i++) {
-			updateTable(removeLink[i]);
+		for (var i = 0; i < arrRemoveLink.length; i++) {
+			updateTable(arrRemoveLink[i]);
 		}
 
 		function updateTable(thisRemoveLink) {
 
 			thisRemoveLink.addEventListener('click', function(e) {
 
-				var desiredParent = this.parentNode;
+				var elDesiredParent = this.parentNode;
 
 				// cycle upwards from the closest parent of the clicked element,
 				// until we find the <tr> element (tag names must be uppercase)
-				while (desiredParent.tagName != 'TR') {
-					desiredParent = desiredParent.parentNode;
+				while (elDesiredParent.tagName != 'TR') {
+					elDesiredParent = elDesiredParent.parentNode;
 				}
 
 				// get calculated height of table row
-				var rowHeight = desiredParent.offsetHeight;
+				var numRowHeight = elDesiredParent.offsetHeight;
 
 				// get immediate children (TDs) of this row
-				var rowCells = desiredParent.children;
+				var arrRowCells = elDesiredParent.children;
 
 				function beginAnimation() {
 
 					// transition row opacity
-					var fadeOut = desiredParent.animate([
+					var fadeOut = elDesiredParent.animate([
 						{opacity: '1'},
 						{opacity: '0'}
 					], 400);
@@ -425,24 +456,24 @@ document.addEventListener('DOMContentLoaded', function() {
 					// once fadeOut transition has finished...
 					fadeOut.onfinish = function(e) {
 
-						desiredParent.style.opacity = 0; // .animate() will jump back to opacity: 1; otherwise
-						rowCells[0].style.padding = 0; // remove padding on first table cell so height can be collapsed
+						elDesiredParent.style.opacity = 0; // .animate() will jump back to opacity: 1; otherwise
+						arrRowCells[0].style.padding = 0; // remove padding on first table cell so height can be collapsed
 
 						// empty out each table cell
-						for (var i = 0; i < rowCells.length; i++) {
-							rowCells[i].innerHTML = '';
+						for (var i = 0; i < arrRowCells.length; i++) {
+							arrRowCells[i].innerHTML = '';
 						}
 
 						// transition calculated row height to 0px
-						var collapseHeight = desiredParent.animate([
-							{height: rowHeight + 'px'},
+						var collapseHeight = elDesiredParent.animate([
+							{height: numRowHeight + 'px'},
 							{height: '0px'}
 						], 400);
 
 						// once collapseHeight transition has finished...
 						collapseHeight.onfinish = function(e) {
-							desiredParent.style.height = '0px'; // .animate() will jump back to original height otherwise
-							desiredParent.remove(); // now safe to delete this node
+							elDesiredParent.style.height = '0px'; // .animate() will jump back to original height otherwise
+							elDesiredParent.remove(); // now safe to delete this node
 							calculateTotals(); // recalculate totals after removed product
 						}
 
