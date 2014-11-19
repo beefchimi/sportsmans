@@ -416,11 +416,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	var elBody         = document.body,
 		elHeader       = document.getElementsByTagName('header')[0],
-		isProdIndv     = elBody.classList.contains('page_prod-indv'),
 		isViewGrid     = elBody.classList.contains('view_grid'),
+		isProdIndv     = elBody.classList.contains('page_prod-indv'),
+		isProdDisp     = elBody.classList.contains('page_prod-disp'),
 		isCartCheckout = elBody.classList.contains('page_cart-checkout'),
 		isQuantityForm = elBody.classList.contains('view_quantity-form');
 
+
+/*
 	// may move this to its own function...
 	var elCartForm = document.getElementById('cart_form');
 
@@ -428,6 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	if ( typeof(elCartForm) != 'undefined' && elCartForm != null ) {
 		var numTaxPercent = parseFloat( elCartForm.getAttribute('data-tax') ) / 100;
 	}
+*/
 
 
 /*
@@ -474,14 +478,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		// instead of tracking the position of #product_grid:
 		// we can safely assume that if the user has scrolled 560px, toggle the back-to-top link
 
-		// check if <header> does not exists
-		if ( elHeader == null ) {
-			console.log('header does not exist');
-			return;
-		}
-
-		console.log('header DOES exist!');
-
 		var numScrollPos = window.pageYOffset; // may need to be a global variable...
 
 		// if we have scrolled to or past 560px AND header data-scrolled is not 'yes'
@@ -503,14 +499,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	function searchOptions() {
 
 		var elSearchToggle = document.getElementById('toggle_search-options');
-
-		// check if #toggle_search-options does not exists
-		if ( elSearchToggle == null ) {
-			console.log('search does not exist');
-			return;
-		}
-
-		console.log('search DOES exist!');
 
 		elSearchToggle.addEventListener('click', function(e) {
 
@@ -801,6 +789,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			elTotalBeforeTax  = document.getElementById('cell_product-total').getElementsByClassName('wrap_price')[0],
 			elTotalAfterTax   = document.getElementById('cell_order-total').getElementsByClassName('wrap_price')[0],
 			elTaxValue        = document.getElementById('cell_tax').getElementsByClassName('wrap_price')[0],
+			numTaxPercent     = parseFloat( document.getElementById('cart_form').getAttribute('data-tax') ) / 100,
 			numTotalBeforeTax = 0,
 			numTotalAfterTax  = 0,
 			numTaxValue       = 0,
@@ -879,7 +868,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						var collapseHeight = elDesiredParent.animate([
 							{height: numRowHeight + 'px'},
 							{height: '0px'}
-						], 400);
+						], 320);
 
 						// once collapseHeight transition has finished...
 						collapseHeight.onfinish = function(e) {
@@ -906,23 +895,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Window Events: On - Scroll, Resize
 	// ----------------------------------------------------------------------------
-	window.addEventListener('scroll', function(e) {
+	if (isViewGrid) {
 
-		backToTop();
+		window.addEventListener('scroll', function(e) {
 
-	}, false);
+			backToTop();
 
-	// if (isViewGrid) {}
+		}, false);
+
+	}
 
 
 	// Initialize Primary Functions
 	// ----------------------------------------------------------------------------
 
-	searchOptions();
-
 	// will be changed to a different page...
 	if ( elBody.classList.contains('page_prod-dept') ) {
 		modalToggle();
+	}
+
+	if (isViewGrid || isProdDisp) {
+		searchOptions();
 	}
 
 	if (isProdIndv) {
