@@ -18,5 +18,6 @@
 
 		%main{:role => "main", "data-container" => "width-926"}
 			= Haml::Engine.new(File.read("dev/haml/partials/_main_grid-4.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/_main_loader.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/_html_footer.haml")).render

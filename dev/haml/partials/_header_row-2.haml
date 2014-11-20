@@ -1,7 +1,7 @@
 .row-2{"data-container" => "width-926"}
 
 	-# generated based on current page
-	%h1#page_title Rifle Ammunition
+	%h1#page_title Long Title is NotFormatted/Properly/Sad
 
 	-# only in these views: Departments, Categories, Indv. Prods, PDP
 	%form#search_form.search_form{:action => "", :method => "GET", :role => "search"}
@@ -15,14 +15,14 @@
 				%use{'xlink:href' => '#search'}
 
 	-# only in these views: Shopping Cart
-	%a#continue-shopping.btn_arw-left{:href => "#", :title => "Continue Shopping"}
+	%a#continue-shopping.btn_arw-left{:href => "/prod-indv.html", :title => "Continue Shopping"}
 		%span Continue Shopping
 		%svg.svg_btn_arw-left
 			%use{"xlink:href" => "#btn_arw-left"}
 
 	-# link to: departments listing
-	%a#view-all.view-all.button_circle{:href => "#", :title => "View All Departments"}
+	%a#view-all.view-all.button_circle{:href => "/prod-dept.html", :title => "View All Departments"}
 		%span.wrap_text View All Departments
 	-# link to: home page
-	%a#start-over.start-over.button_circle{:href => "#", :title => "Start Over"}
+	%a#start-over.start-over.button_circle{:href => "/index.html", :title => "Start Over"}
 		%span.wrap_text Start Over

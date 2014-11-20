@@ -25,6 +25,7 @@
 
 		%main{:role => "main", "data-container" => "width-926"}
 			= Haml::Engine.new(File.read("dev/haml/partials/_main_grid-4.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/_main_loader.haml")).render
 
 			-# TEMP: will be housed elsewhere (ideally AJAX loaded on click?)
 			= Haml::Engine.new(File.read("dev/haml/partials/_modal_phone.haml")).render

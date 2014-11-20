@@ -664,20 +664,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			beginAnimation(); // execute begin animation
 
-			function emptyCartMessage() {
-
-				var arrTableRows = document.querySelectorAll('.remove_this').length;
-
-				if (arrTableRows <= 0) {
-					document.getElementById('cart_form').classList.add('empty-cart');
-				}
-
-			}
+			// moved emptyCartMessage from here
 
 			cycleParentCloseModal(this);
 
 			e.preventDefault();
 
+		}
+
+	}
+
+
+	// emptyCartMessage: If the checkout cart is empty, let the user know
+	// ----------------------------------------------------------------------------
+	function emptyCartMessage() {
+
+		var arrTableRows = document.querySelectorAll('.remove_this').length;
+
+		if (arrTableRows <= 0) {
+			document.getElementById('cart_form').classList.add('empty-cart');
 		}
 
 	}
@@ -833,11 +838,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			}, false);
 
-			// if manually entering a value (using 'change' instead of 'input' to avoid firing as the user types)
-			thisQuantityInput.addEventListener('change', function() {
+			// if manually entering a value (using 'input' instead of 'change' to immediately prevent invalid input)
+			thisQuantityInput.addEventListener('input', function() {
 
 				// need to recapture the input value
-				enteredValue = parseInt(thisQuantityInput.value);
+				enteredValue = parseInt(this.value);
 
 				// as long as the user has not entered a value less than or greater than the allowed limit
 				if ( enteredValue < thisMin || enteredValue > thisMax || isNaN(enteredValue) ) {
@@ -895,7 +900,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	if (isCartCheckout) {
-		// removeItem();
+		emptyCartMessage();
 		modalToggle();
 	}
 
