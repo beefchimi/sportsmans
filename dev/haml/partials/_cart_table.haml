@@ -16,20 +16,17 @@
 		%tfoot
 			%tr#row_product-total
 				%td{:colspan => "3"} Product total
-				%td#cell_product-total{:colspan => "2"}
-					%span.wrap_price 564.93
+				%td#cell_product-total{:colspan => "2"} $564.93
 			%tr#row_tax
-				%td{:colspan => "3"} Tax (15%)
-				%td#cell_tax{:colspan => "2"}
-					%span.wrap_price 84.74
+				%td{:colspan => "3"} Tax
+				%td#cell_tax{:colspan => "2"} $84.74
 			%tr#row_order-total
 				%td{:colspan => "2"} Order total
-				%td#cell_order-total{:colspan => "3"}
-					%span.wrap_price 649.67
+				%td#cell_order-total{:colspan => "3"} $649.67
 
 		%tbody
 
-			-# row ID is suffixed with product ID
+			-# row ID is suffixed with product or sku ID
 			%tr#row_307901
 
 				%td.product_item
@@ -47,19 +44,17 @@
 					-# making the assumption that 'min' and 'max' could be different per product...
 					-# 'min', 'max', 'value' and 'name' should be passed in from the initial 'add to cart' step (previous page)
 					.adjust_quantity
-						%input.adjust_decrease{:type => "button", :value => "-"}
 						%input.adjust_number{:type => "number", :min => "1", :max => "999", :step => "1", :size => "3", :value => "2", :name => "307901"}
+						%input.adjust_decrease{:type => "button", :value => "-"}
 						%input.adjust_increase{:type => "button", :value => "+"}
-						%p.error_invalid Numbers Only
+						%p.error_invalid Invalid Input
 
-				%td.product_price
-					%span.wrap_price 32.99
+				%td.product_price $32.99
 
-				%td.product_total
-					%span.wrap_price 65.98
+				%td.product_total $65.98
 
 				%td.product_remove
-					%a.remove_this{:href => "#", :title => "Remove This Product"}
+					%a.remove_this.modal_open{:href => "#modal_cart-remove", :title => "Remove This Product", "data-parent" => "307901"}
 						%svg.svg_remove
 							%use{"xlink:href" => "#remove"}
 
@@ -71,19 +66,17 @@
 
 				%td.product_quantity
 					.adjust_quantity
-						%input.adjust_decrease{:type => "button", :value => "-"}
 						%input.adjust_number{:type => "number", :min => "1", :max => "20", :step => "1", :size => "3", :value => "1", :name => "1298614"}
+						%input.adjust_decrease{:type => "button", :value => "-"}
 						%input.adjust_increase{:type => "button", :value => "+"}
-						%p.error_invalid Numbers Only
+						%p.error_invalid Invalid Input
 
-				%td.product_price
-					%span.wrap_price 219.99
+				%td.product_price $219.99
 
-				%td.product_total
-					%span.wrap_price 219.99
+				%td.product_total $219.99
 
 				%td.product_remove
-					%a.remove_this{:href => "#", :title => "Remove This Product"}
+					%a.remove_this.modal_open{:href => "#modal_cart-remove", :title => "Remove This Product", "data-parent" => "1298614"}
 						%svg.svg_remove
 							%use{"xlink:href" => "#remove"}
 
@@ -95,19 +88,17 @@
 
 				%td.product_quantity
 					.adjust_quantity
-						%input.adjust_decrease{:type => "button", :value => "-"}
 						%input.adjust_number{:type => "number", :min => "1", :max => "99", :step => "1", :size => "3", :value => "4", :name => "311294"}
+						%input.adjust_decrease{:type => "button", :value => "-"}
 						%input.adjust_increase{:type => "button", :value => "+"}
-						%p.error_invalid Numbers Only
+						%p.error_invalid Invalid Input
 
-				%td.product_price
-					%span.wrap_price 25.99
+				%td.product_price $25.99
 
-				%td.product_total
-					%span.wrap_price 103.96
+				%td.product_total $103.96
 
 				%td.product_remove
-					%a.remove_this{:href => "#", :title => "Remove This Product"}
+					%a.remove_this.modal_open{:href => "#modal_cart-remove", :title => "Remove This Product", "data-parent" => "311294"}
 						%svg.svg_remove
 							%use{"xlink:href" => "#remove"}
 
@@ -122,19 +113,17 @@
 
 				%td.product_quantity
 					.adjust_quantity
-						%input.adjust_decrease{:type => "button", :value => "-"}
 						%input.adjust_number{:type => "number", :min => "1", :max => "12", :step => "1", :size => "3", :value => "7", :name => "301132"}
+						%input.adjust_decrease{:type => "button", :value => "-"}
 						%input.adjust_increase{:type => "button", :value => "+"}
-						%p.error_invalid Numbers Only
+						%p.error_invalid Invalid Input
 
-				%td.product_price
-					%span.wrap_price 25.00
+				%td.product_price $25.00
 
-				%td.product_total
-					%span.wrap_price 175.00
+				%td.product_total $175.00
 
 				%td.product_remove
-					%a.remove_this{:href => "#", :title => "Remove This Product"}
+					%a.remove_this.modal_open{:href => "#modal_cart-remove", :title => "Remove This Product", "data-parent" => "301132"}
 						%svg.svg_remove
 							%use{"xlink:href" => "#remove"}
 

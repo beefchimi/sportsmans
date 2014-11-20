@@ -87,13 +87,42 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function searchOptions() {
 
-		var elSearchToggle = document.getElementById('toggle_search-options');
+		// not on board with the functionality of this...
+		// would LOVE to suggest and alternative...
 
-		elSearchToggle.addEventListener('click', function(e) {
+		var elSearchInput            = document.getElementById('search_text'),
+			elSearchOptionsToggle    = document.getElementById('toggle_search-options'),
+			elSearchCheckbox         = document.getElementById('search_checkbox'),
+			elSearchCheckboxLabel    = elSearchCheckbox.nextElementSibling,
+			originalInputPlaceholder = elSearchInput.getAttribute('data-placeholder'),
+			originalCheckboxLabel    = elSearchCheckboxLabel.innerHTML;
+
+		elSearchOptionsToggle.addEventListener('click', function(e) {
 
 			this.classList.toggle('toggled');
 
 			e.preventDefault();
+
+		}, false);
+
+		elSearchCheckbox.addEventListener('change', function() {
+
+			// remove 'toggled' class from #toggle_search-options
+			elSearchOptionsToggle.classList.remove('toggled');
+
+			if (elSearchCheckbox.checked) {
+
+				// if #search_checkbox is now :checked
+				elSearchInput.setAttribute('placeholder', 'Search All Departments');
+				elSearchCheckboxLabel.innerHTML = originalInputPlaceholder;
+
+			} else {
+
+				// otherwise, if #search_checkbox is no longer :checked
+				elSearchInput.setAttribute('placeholder', originalInputPlaceholder);
+				elSearchCheckboxLabel.innerHTML = originalCheckboxLabel;
+
+			}
 
 		}, false);
 
@@ -104,55 +133,139 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function modalToggle() {
 
+		// modals should really be created and appended to the DOM when needed...
+		// preferably using createDocumentFragment()...
+		// if I have the time, I would love to revisit this
+
 		var arrModalOpen  = document.querySelectorAll('.modal_open'),
-			arrModalClose = document.querySelectorAll('.modal_close');
+			arrModalClose = document.querySelectorAll('.modal_close'),
+			elRemoveLink  = document.getElementById('cart-remove_remove'); // only used if on cart-checkout page
 
 		// find each .modal_open link on the page
 		for (var i = 0; i < arrModalOpen.length; i++) {
-			openModal(arrModalOpen[i]);
+			arrModalOpen[i].addEventListener('click', openModal, false);
 		}
 
 		// find each .modal_close link on the page
 		for (var i = 0; i < arrModalClose.length; i++) {
-			closeModal(arrModalClose[i]);
+			arrModalClose[i].addEventListener('click', closeModal, false);
 		}
 
 		// reveal a modal that is already on the page but hidden
-		function openModal(thisModalOpen) {
+		function openModal(e) {
 
-			thisModalOpen.addEventListener('click', function(e) {
+			var hrefTargetModal = this.getAttribute('href').substring(1), // capture the href of the clicked element, remove the # prefix
+				elTargetModal   = document.getElementById(hrefTargetModal); // get the modal we need to open
 
-				// capture the href of the clicked element, remove the # prefix
-				var targetModalHREF = this.getAttribute('href').substring(1);
+			elTargetModal.classList.add('visible');
 
-				// use the captured href to match the ID of the desired modal and add 'visible' class
-				document.getElementById(targetModalHREF).classList.add('visible');
+			// only if on the cart-checkout page
+			if (isCartCheckout) {
 
-				e.preventDefault();
+				var dataParentID = this.getAttribute('data-parent'); // get the value from data-parent
 
-			}, false);
+				elRemoveLink.setAttribute('href', '#row_' + dataParentID);
+				elRemoveLink.addEventListener('click', removeCartRow, false);
+
+			}
+
+			e.preventDefault();
 
 		}
 
 		// hide the modal that is presently visible
-		function closeModal(thisModalClose) {
+		function closeModal(e) {
 
-			thisModalClose.addEventListener('click', function(e) {
+			cycleParentCloseModal(this);
 
-				var elDesiredParent = this.parentNode;
+			// only if on the cart-checkout page
+			if (isCartCheckout) {
+				elRemoveLink.removeEventListener('click', removeCartRow, false);
+			}
 
-				// cycle upwards from the closest parent of the clicked element,
-				// until we find an element with the attr 'data-modal'
-				while ( !elDesiredParent.getAttribute('data-modal') ) {
-					elDesiredParent = elDesiredParent.parentNode;
+			e.preventDefault();
+
+		}
+
+		// used to cycle through parent elements until the data-modal is found
+		function cycleParentCloseModal(passed_This) {
+
+			var elDesiredParent = passed_This.parentNode;
+
+			// cycle upwards from the closest parent of the clicked element,
+			// until we find an element with the attr 'data-modal'
+			while ( !elDesiredParent.getAttribute('data-modal') ) {
+				elDesiredParent = elDesiredParent.parentNode;
+			}
+
+			// once we have found the desired parent element, remove its 'visible' class
+			elDesiredParent.classList.remove('visible');
+
+		}
+
+		// cart-checkout only: find the target TR and remove it
+		function removeCartRow(e) {
+
+			var hrefTargetRow = this.getAttribute('href').substring(1),
+				elTargetRow   = document.getElementById(hrefTargetRow);
+
+			// get calculated height of table row
+			var numRowHeight = elTargetRow.offsetHeight;
+
+			// get immediate children (TDs) of this row
+			var arrRowCells = elTargetRow.children;
+
+			function beginAnimation() {
+
+				// transition row opacity
+				var fadeOut = elTargetRow.animate([
+					{opacity: '1'},
+					{opacity: '0'}
+				], 400);
+
+				// once fadeOut transition has finished...
+				fadeOut.onfinish = function(e) {
+
+					elTargetRow.style.opacity = 0; // .animate() will jump back to opacity: 1; otherwise
+					arrRowCells[0].style.padding = 0; // remove padding on first table cell so height can be collapsed
+
+					// empty out each table cell
+					for (var i = 0; i < arrRowCells.length; i++) {
+						arrRowCells[i].innerHTML = '';
+					}
+
+					// transition calculated row height to 0px
+					var collapseHeight = elTargetRow.animate([
+						{height: numRowHeight + 'px'},
+						{height: '0px'}
+					], 320);
+
+					// once collapseHeight transition has finished...
+					collapseHeight.onfinish = function(e) {
+						elTargetRow.style.height = '0px'; // .animate() will jump back to original height otherwise
+						elTargetRow.remove(); // now safe to delete this node
+						emptyCartMessage();
+					}
+
 				}
 
-				// once we have found the desired parent element, remove its 'visible' class
-				elDesiredParent.classList.remove('visible');
+			}
 
-				e.preventDefault();
+			beginAnimation(); // execute begin animation
 
-			}, false);
+			function emptyCartMessage() {
+
+				var arrTableRows = document.querySelectorAll('.remove_this').length;
+
+				if (arrTableRows <= 0) {
+					document.getElementById('cart_form').classList.add('empty-cart');
+				}
+
+			}
+
+			cycleParentCloseModal(this);
+
+			e.preventDefault();
 
 		}
 
@@ -163,16 +276,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function selectDropdown() {
 
-		var elFilterForm   = document.getElementById('filter_form'),
-			arrFilterLabel = elFilterForm.querySelectorAll('.filter_label');
+		var elFilterForm   = document.getElementById('filter_form');
 
 		// check if #filter_form does not exists
-		if ( elFilterForm == null ) {
-			console.log('filter form does not exist');
+		if (elFilterForm == null) {
 			return;
 		}
 
-		console.log('filter form DOES exist!');
+		// #filter_form exists, so lets grab all of the filter labels
+		var arrFilterLabel = elFilterForm.querySelectorAll('.filter_label');
 
 		// assign the click event to each .filter_label found in the filterForm
 		for (var i = 0; i < arrFilterLabel.length; i++) {
@@ -270,8 +382,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				thisMin            = parseInt( thisQuantityInput.getAttribute('min') ),
 				thisMax            = parseInt( thisQuantityInput.getAttribute('max') ),
 				thisValue          = parseInt( thisQuantityInput.value ),
-				elQuantityDecrease = thisQuantityInput.previousElementSibling,
-				elQuantityIncrease = thisQuantityInput.nextElementSibling,
+				elQuantityDecrease = thisQuantityInput.nextElementSibling,
+				elQuantityIncrease = elQuantityDecrease.nextElementSibling,
 				enteredValue;
 
 			// if clicking the 'minus' button
@@ -288,10 +400,6 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisQuantityInput.value = thisValue;
 					thisQuantityInput.setAttribute('value', thisValue);
 
-					if (isCartCheckout) {
-						updateCart(thisID, thisValue);
-					}
-
 				}
 
 				e.preventDefault();
@@ -307,10 +415,6 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisValue++;
 					thisQuantityInput.value = thisValue;
 					thisQuantityInput.setAttribute('value', thisValue);
-
-					if (isCartCheckout) {
-						updateCart(thisID, thisValue);
-					}
 
 				}
 
@@ -337,145 +441,9 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisQuantityInput.value = thisValue; // only to accomodate situations where a user has entered a floating point number
 					thisQuantityInput.setAttribute('value', thisValue);
 
-					if (isCartCheckout) {
-						updateCart(thisID, thisValue);
-					}
-
 				}
 
 			});
-
-		}
-
-	}
-
-
-	// updateCart: Update cart values and product rows
-	// ----------------------------------------------------------------------------
-	function updateCart(passed_thisID, passed_thisValue) {
-
-		// CURRENTLY NOT HANDLING: product total, ship & hand, tax, order total
-		// need to know more about tax + shipping & handling ... last I heard they may not be included
-
-		var elRowSelected   = document.getElementById('row_' + passed_thisID),
-			numRowPrice     = parseFloat(elRowSelected.getElementsByClassName('wrap_price')[0].innerHTML).toFixed(2),
-			numUpdatedTotal = passed_thisValue * numRowPrice;
-
-		elRowSelected.getElementsByClassName('wrap_price')[1].innerHTML = numUpdatedTotal.toFixed(2);
-
-		if (isCartCheckout) {
-			calculateTotals();
-		}
-
-	}
-
-
-	// calculateTotals: Add up the totals on the checkout page
-	// ----------------------------------------------------------------------------
-	function calculateTotals() {
-
-		var arrTotalItems     = document.getElementsByClassName('product_total'),
-			elTotalBeforeTax  = document.getElementById('cell_product-total').getElementsByClassName('wrap_price')[0],
-			elTotalAfterTax   = document.getElementById('cell_order-total').getElementsByClassName('wrap_price')[0],
-			elTaxValue        = document.getElementById('cell_tax').getElementsByClassName('wrap_price')[0],
-			numTaxPercent     = parseFloat( document.getElementById('cart_form').getAttribute('data-tax') ) / 100,
-			numTotalBeforeTax = 0,
-			numTotalAfterTax  = 0,
-			numTaxValue       = 0,
-			numCalcTotal      = 0;
-
-		for (var i = 0; i < arrTotalItems.length; i++) {
-			numCalcTotal += parseFloat(arrTotalItems[i].getElementsByClassName('wrap_price')[0].innerHTML);
-		}
-
-		// assign the total before tax
-		numTotalBeforeTax = numCalcTotal;
-
-		// assign the tax amount
-		numTaxValue = numCalcTotal * numTaxPercent;
-
-		// add up price before tax with tax ammount
-		numTotalAfterTax = numTotalBeforeTax + numTaxValue;
-
-		// output calculated prices (2 decimal places)
-		elTotalBeforeTax.innerHTML = numTotalBeforeTax.toFixed(2);
-		elTaxValue.innerHTML = numTaxValue.toFixed(2);
-		elTotalAfterTax.innerHTML = numTotalAfterTax.toFixed(2);
-
-	}
-
-
-	// removeItem: Remove a product row from the cart table
-	// ----------------------------------------------------------------------------
-	function removeItem() {
-
-		var arrRemoveLink = document.querySelectorAll('.remove_this');
-
-		// for each a.remove_link found on the cart page
-		for (var i = 0; i < arrRemoveLink.length; i++) {
-			updateTable(arrRemoveLink[i]);
-		}
-
-		function updateTable(thisRemoveLink) {
-
-			thisRemoveLink.addEventListener('click', function(e) {
-
-				var elDesiredParent = this.parentNode;
-
-				// cycle upwards from the closest parent of the clicked element,
-				// until we find the <tr> element (tag names must be uppercase)
-				while (elDesiredParent.tagName != 'TR') {
-					elDesiredParent = elDesiredParent.parentNode;
-				}
-
-				// get calculated height of table row
-				var numRowHeight = elDesiredParent.offsetHeight;
-
-				// get immediate children (TDs) of this row
-				var arrRowCells = elDesiredParent.children;
-
-				function beginAnimation() {
-
-					// transition row opacity
-					var fadeOut = elDesiredParent.animate([
-						{opacity: '1'},
-						{opacity: '0'}
-					], 400);
-
-					// once fadeOut transition has finished...
-					fadeOut.onfinish = function(e) {
-
-						elDesiredParent.style.opacity = 0; // .animate() will jump back to opacity: 1; otherwise
-						arrRowCells[0].style.padding = 0; // remove padding on first table cell so height can be collapsed
-
-						// empty out each table cell
-						for (var i = 0; i < arrRowCells.length; i++) {
-							arrRowCells[i].innerHTML = '';
-						}
-
-						// transition calculated row height to 0px
-						var collapseHeight = elDesiredParent.animate([
-							{height: numRowHeight + 'px'},
-							{height: '0px'}
-						], 320);
-
-						// once collapseHeight transition has finished...
-						collapseHeight.onfinish = function(e) {
-							elDesiredParent.style.height = '0px'; // .animate() will jump back to original height otherwise
-							elDesiredParent.remove(); // now safe to delete this node
-							calculateTotals(); // recalculate totals after removed product
-						}
-
-					}
-
-				}
-
-				// run the remove animation and update cart total
-				beginAnimation();
-
-				e.preventDefault();
-
-			}, false);
 
 		}
 
@@ -498,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Initialize Primary Functions
 	// ----------------------------------------------------------------------------
 
-	// will be changed to a different page...
+	// TEMP: will be changed to a different page...
 	if ( elBody.classList.contains('page_prod-dept') ) {
 		modalToggle();
 	}
@@ -516,7 +484,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	if (isCartCheckout) {
-		removeItem();
+		// removeItem();
+		modalToggle();
 	}
 
 	// initialize smoothScroll plugin
