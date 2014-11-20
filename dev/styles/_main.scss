@@ -78,10 +78,12 @@ form.filter_form div ul {
 svg {
 	display: block;
 }
-.wrap_svg svg {
+.wrap_svg svg,
+a.btn_arw-left svg {
 	width: 100%;
 	height: 100%;
 }
+
 /*
 span.wrap_price::before {
 	content: "\0024"; // $
@@ -90,6 +92,8 @@ span.wrap_price::before {
 
 // --- Form Elements --- \\
 form input[type="tel"],
+form input[type="text"],
+form input[type="email"],
 form input[type="password"] {
 	margin-bottom: 12rem;
 	width: 100%;
@@ -101,6 +105,8 @@ form input[type="password"] {
 }
 // + interaction + \\
 form input[type="tel"]:focus,
+form input[type="text"]:focus,
+form input[type="email"]:focus,
 form input[type="password"]:focus {
 	color: hsla(141,100%,24%,1);
 	border-color: hsla(141,100%,24%,1);
@@ -111,6 +117,9 @@ form input[type="tel"]:invalid {
 	border-color: hsla(2,100%,50%,1);
 }
 */
+
+
+
 
 
 // ==|== common components ====================================================
@@ -194,7 +203,7 @@ div.loader div.circle-2 {;
 	background-color: hsla(141,100%,18%,1);
 }
 .arrow_left::before,
-.arrow_right::before {
+.arrow_right::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -214,7 +223,7 @@ div.loader div.circle-2 {;
 	border-right-style: solid;
 	border-right-color: hsla(117,52%,56%,1);
 }
-.arrow_right::before {
+.arrow_right::after {
 	left: 100%;
 	border-left-width: 5.2rem;
 	border-left-style: solid;
@@ -496,22 +505,29 @@ header.header_csr h1 {
 	text-transform: uppercase;
 	color: hsla(141,100%,18%,1);
 }
-
-
-
+header.header_csr h2 {
+	margin-top: 2.6rem;
+	font-size: 2.6rem;
+	text-align: center;
+	text-transform: uppercase;
+	color: hsla(0,0%,50%,1);
+}
+// --- Arrow Button --- \\
+header.header_csr a.btn_arw-left {
+	position: absolute;
+	top: 1.4rem;
+	left: -1.4rem;
+}
+// --- Log Out --- \\
 header.header_csr a.log-out {
 	top: 0;
-	right: 0;
+	right: -1.4rem;
 	font-size: 2rem;
 	background-color: hsla(141,100%,18%,1);
 }
 header.header_csr a.log-out span {
 	line-height: 1.2;
 }
-
-
-
-
 
 // Header: Row 1
 // ----------------------------------------------------------------------------
@@ -948,6 +964,130 @@ form.filter_form div ul li a:active {
 }
 
 
+// Footer
+// ----------------------------------------------------------------------------
+footer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+
+
+
+
+body.page_csr-cart,
+body.page_cart-checkout, {
+	padding-bottom: 22.8rem; // 48px + 180px
+}
+
+
+
+// Footer: Cart Panel
+// ----------------------------------------------------------------------------
+section.panel_cart {
+	height: 18rem;
+	background-color: hsla(117,52%,56%,1);
+}
+section.panel_cart div.wrap {
+	position: relative;
+	height: 100%;
+}
+
+
+section.panel_cart .arrow_left,
+section.panel_cart .arrow_right {
+	width: 26.2rem; // need to specify for each
+	height: 6.6rem;
+	font-size: 2.6rem;
+	line-height: 6.6rem;
+}
+
+section.panel_cart .arrow_right {
+	top: 5.7rem;
+	// right: 0.9rem !important;
+	color: hsla(141,100%,18%,1);
+	background-color: hsla(0,0%,100%,1);
+}
+section.panel_cart .arrow_left::before,
+section.panel_cart .arrow_right::after {
+	border-top-width: 3.3rem;
+	border-bottom-width: 3.3rem;
+}
+section.panel_cart .arrow_left::before {
+	border-right-width: 3.6rem;
+	border-right-color: hsla(117,52%,56%,1);
+}
+section.panel_cart .arrow_right::after {
+	border-left-width: 3.6rem;
+	border-left-color: hsla(0,0%,100%,1);
+}
+
+
+
+
+section.panel_cart button.arrow_right {
+
+}
+
+
+
+
+/*
+
+.arrow_left,
+.arrow_right {
+	display: block;
+	position: relative;
+	width: 42.8rem; // 480px - 52px (width of triangle)
+	height: 9.8rem;
+	font-size: 3.3rem;
+	line-height: 9.8rem; // vertical center text
+	text-align: center;
+	text-transform: uppercase;
+	color: hsla(0,0%,100%,1);
+	background-color: hsla(0,0%,90%,1);
+}
+.arrow_left {
+	padding-right: 1.3rem; // 1/4 of arrow width
+	background-color: hsla(117,52%,56%,1);
+}
+.arrow_right {
+	padding-left: 1.3rem; // 1/4 of arrow width
+	background-color: hsla(141,100%,18%,1);
+}
+.arrow_left::before,
+.arrow_right::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 0;
+	height: 0;
+	border-top-width: 4.9rem;
+	border-top-style: solid;
+	border-top-color: transparent;
+	border-bottom-width: 4.9rem;
+	border-bottom-style: solid;
+	border-bottom-color: transparent;
+}
+.arrow_left::before {
+	right: 100%;
+	border-right-width: 5.2rem;
+	border-right-style: solid;
+	border-right-color: hsla(117,52%,56%,1);
+}
+.arrow_right::after {
+	left: 100%;
+	border-left-width: 5.2rem;
+	border-left-style: solid;
+	border-left-color: hsla(141,100%,18%,1);
+}
+
+*/
+
+
 // ==|== page styles ==========================================================
 // ============================================================================
 
@@ -1138,10 +1278,6 @@ body.page_cart-checkout header {
 body.page_cart-checkout header a.btn_arw-left {
 	margin: 0 auto;
 }
-body.page_cart-checkout header a.btn_arw-left svg {
-	width: 100%;
-	height: 100%;
-}
 // --- Empty Cart Message --- \\
 div.cart_empty-message {
 	position: absolute;
@@ -1314,6 +1450,32 @@ form.cart_form button.arrow_right {
 
 
 
+
+
+// CSR Pages
+// ----------------------------------------------------------------------------
+
+// --- Customer Information --- \\
+body.page_csr-info main.wrap_content {
+	transform: translateY(-38%);
+}
+body.page_csr-info form h1 {
+	margin-bottom: 2.6rem;
+}
+
+
+
+// --- CSR Cart --- \\
+body.page_csr-cart {
+}
+body.page_csr-cart header.header_csr {
+	margin-bottom: 8rem;
+}
+
+
+
+
+
 // View Specific: temporary styles
 // ----------------------------------------------------------------------------
 // --- Button: Back --- \\
@@ -1357,5 +1519,28 @@ div.test_modal {
 	display: none;
 }
 body.page_prod-dept div.test_modal {
+	display: block;
+}
+// --- CSR Subtitle --- \\
+header.header_csr h2 {
+	display: none;
+}
+body.page_csr-cart header.header_csr h2 {
+	display: block;
+}
+// --- Shop More Button --- \\
+header.header_csr a.btn_arw-left {
+	display: none;
+}
+body.page_csr-cart header.header_csr a.btn_arw-left {
+	display: block;
+}
+// --- Log Out --- \\
+header.header_csr a.log-out {
+	display: none;
+}
+body.page_csr-info header.header_csr a.log-out,
+body.page_csr-phone header.header_csr a.log-out,
+body.page_csr-cart header.header_csr a.log-out {
 	display: block;
 }

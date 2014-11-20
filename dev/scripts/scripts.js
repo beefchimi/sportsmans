@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		isProdIndv     = elBody.classList.contains('page_prod-indv'),
 		isProdDisp     = elBody.classList.contains('page_prod-disp'),
 		isCartCheckout = elBody.classList.contains('page_cart-checkout'),
+		isCartCSR      = elBody.classList.contains('page_csr-cart'),
 		isQuantityForm = elBody.classList.contains('view_quantity-form');
 
 
@@ -159,8 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			elTargetModal.classList.add('visible');
 
-			// only if on the cart-checkout page
-			if (isCartCheckout) {
+			// only if on a checkout page
+			if (isCartCheckout || isCartCSR) {
 
 				var dataParentID = this.getAttribute('data-parent'); // get the value from data-parent
 
@@ -178,8 +179,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			cycleParentCloseModal(this);
 
-			// only if on the cart-checkout page
-			if (isCartCheckout) {
+			// only if on a checkout page
+			if (isCartCheckout || isCartCSR) {
 				elRemoveLink.removeEventListener('click', removeCartRow, false);
 			}
 
@@ -491,7 +492,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		quantityAdjust();
 	}
 
-	if (isCartCheckout) {
+	if (isCartCheckout || isCartCSR) {
 		emptyCartMessage();
 		modalToggle();
 	}

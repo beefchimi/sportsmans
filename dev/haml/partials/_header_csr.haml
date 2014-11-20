@@ -3,9 +3,18 @@
 	#logo_sportsmans.logo_sportsmans
 		%img{:src => "assets/img/logo_sportsmans.png", :alt => "Sportsman's Warehouse"}
 
-	-# added to markup only after logged in
+	-# only on: csr-cart
+	%a#shop-more.btn_arw-left{:href => "/prod-indv.html", :title => "Shop For More Items"}
+		%span Shop For More Items
+		%svg.svg_btn_arw-left
+			%use{"xlink:href" => "#btn_arw-left"}
+
+	-# only on: csr-info, csr-phone, csr-cart
 	%a#log-out.log-out.button_circle{:href => "/index.html", :title => "Log Out"}
 		%span.wrap_text Log Out
 
-	-# all CSR pages use the same title
 	%h1#page_title Customer Service
+	-# only on: csr-cart page
+	%h2#page_subtitle
+		Phone Number:
+		%span#phone_number 613-555-0123

@@ -3,7 +3,7 @@
 
 	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
 
-	%body#csr_access.page_csr-access
+	%body#csr_phone.page_csr-phone
 
 		:plain
 			<!-- inject:svg --><!-- endinject -->
@@ -13,9 +13,9 @@
 		-# using modal styes: applied via 'wrap_content' class
 		%main.wrap_content{:role => "main", "data-container" => "width-926"}
 
-			%form#csr-access_form{:action => "", :method => "GET"}
-				%h1 Enter your access code:
-				%input#csr-access_password.csr-access_password{:type => "password", :name => "access", :value => "", :maxlength => "4", :placeholder => "– – – –", :required => true}
+			%form#csr-phone_form{:action => "", :method => "GET"}
+				%h1 Enter customer phone number:
+				%input#csr-phone_tel.csr-phone_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "(xxx) xxx xxxx", :required => true}
 				%button.arrow_right Continue
 
 		= Haml::Engine.new(File.read("dev/haml/partials/_html_scripts.haml")).render

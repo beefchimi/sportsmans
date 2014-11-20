@@ -1,0 +1,25 @@
+!!!
+%html#root{:lang => "en"}
+
+	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+
+	%body#csr_info.page_csr-info
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		= Haml::Engine.new(File.read("dev/haml/partials/_header_csr.haml")).render
+
+		-# using modal styes: applied via 'wrap_content' class
+		%main.wrap_content{:role => "main", "data-container" => "width-926"}
+
+			%form#csr-info_form{:action => "", :method => "GET"}
+				%h1 Customer First and Last Name:
+				%input#csr-fullname_text.csr-fullname_text{:type => "text", :name => "fullname", :value => "", :autocomplete => "off", :placeholder => "Enter Name", :required => true}
+				%h1 Customer Email Address:
+				%input#csr-email_email.csr-email_email{:type => "email", :name => "emailaddress", :value => "", :autocomplete => "off", :placeholder => "Enter Email", :required => true}
+				%h1 Transaction Number:
+				%input#csr-transaction_text.csr-transaction_text{:type => "text", :name => "transaction", :value => "", :autocomplete => "off", :placeholder => "#######", :required => true}
+				%button.arrow_right Submit and Log Out
+
+		= Haml::Engine.new(File.read("dev/haml/partials/_html_scripts.haml")).render
