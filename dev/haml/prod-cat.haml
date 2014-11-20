@@ -12,7 +12,7 @@
 		:plain
 			<!-- inject:svg --><!-- endinject -->
 
-		%header{"data-scrolled" => "no", "data-cart" => "yes"}
+		%header#header_common.header_common{"data-scrolled" => "no", "data-cart" => "yes"}
 			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-1.haml")).render
 			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-2.haml")).render
 

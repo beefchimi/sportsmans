@@ -88,6 +88,30 @@ span.wrap_price::before {
 }
 */
 
+// --- Form Elements --- \\
+form input[type="tel"],
+form input[type="password"] {
+	margin-bottom: 12rem;
+	width: 100%;
+	height: 21.6rem;
+	font-size: 9.8rem;
+	text-align: center;
+	color: hsla(141,100%,18%,1);
+	border: 0.6rem solid hsla(141,100%,18%,1);
+}
+// + interaction + \\
+form input[type="tel"]:focus,
+form input[type="password"]:focus {
+	color: hsla(141,100%,24%,1);
+	border-color: hsla(141,100%,24%,1);
+}
+/*
+form input[type="tel"]:invalid {
+	color: hsla(2,100%,50%,1);
+	border-color: hsla(2,100%,50%,1);
+}
+*/
+
 
 // ==|== common components ====================================================
 // ============================================================================
@@ -257,6 +281,32 @@ a.btn_arw-left:active svg {
 	fill: hsla(141,100%,18%,1);
 }
 
+// Button Circle
+// ----------------------------------------------------------------------------
+a.button_circle {
+	display: block;
+	position: absolute;
+	width: 12.4rem;
+	height: 12.4rem;
+	line-height: 12rem; // vertical align center: slightly less than element height... appeared off-center
+	text-align: center;
+	text-transform: uppercase;
+	color: hsla(0,0%,100%,1);
+	border-radius: 50%;
+}
+a.button_circle span {
+	display: inline-block;
+	padding: 0 1rem;
+	vertical-align: middle;
+}
+// + interaction + \\
+a.button_circle:hover {
+	opacity: 0.7;
+}
+a.button_circle:active {
+	opacity: 0.9;
+}
+
 // Quantity Input
 // ----------------------------------------------------------------------------
 div.adjust_quantity {
@@ -382,26 +432,6 @@ div.adjust_quantity input[type="number"]:invalid ~ p.error_invalid {
 }
 
 // --- Modal: Phone --- \\
-form input[type="tel"] {
-	margin-bottom: 12rem;
-	width: 100%;
-	height: 21.6rem;
-	font-size: 9.8rem;
-	text-align: center;
-	color: hsla(141,100%,18%,1);
-	border: 0.6rem solid hsla(141,100%,18%,1);
-}
-// + interaction + \\
-form input[type="tel"]:focus {
-	color: hsla(141,100%,24%,1);
-	border-color: hsla(141,100%,24%,1);
-}
-/*
-form input[type="tel"]:invalid {
-	color: hsla(2,100%,50%,1);
-	border-color: hsla(2,100%,50%,1);
-}
-*/
 
 
 // --- Modal: Timeout Cart --- \\
@@ -446,6 +476,42 @@ div.test_modal a:active {
 header {
 	margin-bottom: 3.2rem;
 }
+
+// Header: CSR
+// ----------------------------------------------------------------------------
+body[class^="page_csr"] {
+	padding-top: 10rem;
+}
+header.header_csr {
+	position: relative;
+}
+header.header_csr div.logo_sportsmans {
+	margin: 0 auto 6rem auto;
+	width: 18rem;
+	height: 8.5rem;
+}
+header.header_csr h1 {
+	font-size: 6rem;
+	text-align: center;
+	text-transform: uppercase;
+	color: hsla(141,100%,18%,1);
+}
+
+
+
+header.header_csr a.log-out {
+	top: 0;
+	right: 0;
+	font-size: 2rem;
+	background-color: hsla(141,100%,18%,1);
+}
+header.header_csr a.log-out span {
+	line-height: 1.2;
+}
+
+
+
+
 
 // Header: Row 1
 // ----------------------------------------------------------------------------
@@ -616,21 +682,7 @@ header div.row-2 h1 {
 	color: hsla(141,100%,18%,1);
 }
 header div.row-2 a.button_circle {
-	display: block;
-	position: absolute;
 	bottom: 6.6rem; // computer height of search margin-bottom and label height
-	width: 12.4rem;
-	height: 12.4rem;
-	line-height: 12rem; // vertical align center: slightly less than element height... appeared off-center
-	text-align: center;
-	text-transform: uppercase;
-	color: hsla(0,0%,100%,1);
-	border-radius: 50%;
-}
-header div.row-2 a.button_circle span {
-	display: inline-block;
-	padding: 0 1rem;
-	vertical-align: middle;
 }
 // --- Idividual Buttons --- \\
 header div.row-2 a.view-all {
@@ -648,13 +700,6 @@ header div.row-2 a.start-over {
 }
 header div.row-2 a.start-over span {
 	line-height: 1.2;
-}
-// + interaction + \\
-header div.row-2 a.button_circle:hover {
-	opacity: 0.7;
-}
-header div.row-2 a.button_circle:active {
-	opacity: 0.9;
 }
 
 // Header: Search Form

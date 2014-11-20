@@ -1,0 +1,21 @@
+!!!
+%html#root{:lang => "en"}
+
+	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+
+	%body#csr_access.page_csr-access
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		= Haml::Engine.new(File.read("dev/haml/partials/_header_csr.haml")).render
+
+		-# using modal styes: applied via 'wrap_content' class
+		%main.wrap_content{:role => "main", "data-container" => "width-926"}
+
+			%form#access_form{:action => "", :method => "GET"}
+				%h1 Enter your access code:
+				%input#phone_tel.phone_tel{:type => "password", :name => "password", :value => "", :maxlength => "4", :placeholder => "– – – –", :required => true}
+				%button.arrow_right Continue
+
+		= Haml::Engine.new(File.read("dev/haml/partials/_html_footer.haml")).render

@@ -6,6 +6,9 @@
 	-# if it is easier for me to add the $ through CSS, I can do that as well
 	%article.product_item.product_sale{:id => "product-a"}
 
+		-# used to check if product image is missing
+		%img.visuallyhidden{:src => "/"}
+
 		-# in order to apply a gradient background while masking the white backgrounds on all of the Sportsmans images,
 		-# we need to take advantage of background-blend-mode - which requires us to specify the product image as a background-image
 		%a.product_link{:href => "", :title => "Product A Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
@@ -22,6 +25,9 @@
 	-# example of a reg and sale price with a range:
 	-# any product that requires a price range needs only the "product_range" class added to the <article>
 	%article.product_item.product_sale.product_range{:id => "product-b"}
+
+		%img.visuallyhidden{:src => "/"}
+
 		%a.product_link{:href => "", :title => "Product B Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
 			.wrap_text
 				%h1.product_title Here we have a price range on a sale product
@@ -30,6 +36,9 @@
 					%span.price_reg.truncate $299.99-499.99
 
 	%article.product_item.product_sale.product_range{:id => "product-c"}
+
+		%img.visuallyhidden{:src => "/"}
+
 		%a.product_link{:href => "", :title => "Product C Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
 			.wrap_text
 				%h1.product_title Just a regular ol' product range
@@ -37,6 +46,9 @@
 
 	- (1..31).each do |i|
 		%article.product_item{:id => "product-#{i}"}
+
+			%img.visuallyhidden{:src => "/"}
+
 			%a.product_link{:href => "", :title => "Product #{i} Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
 				.wrap_text
 					%h1.product_title A somewhat long title for this here all american ammunition product

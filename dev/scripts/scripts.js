@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	function searchOptions() {
 
 		// not on board with the functionality of this...
-		// would LOVE to suggest and alternative...
+		// would LOVE to suggest an alternative...
 
 		var elSearchInput            = document.getElementById('search_text'),
 			elSearchOptionsToggle    = document.getElementById('toggle_search-options'),
@@ -457,6 +457,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Window Events: On - Scroll, Resize
 	// ----------------------------------------------------------------------------
+
+	// important we specific exactly where to call this...
+	// otherwise, I will need to separate standard and csr headers with a class or ID
 	if (isViewGrid) {
 
 		window.addEventListener('scroll', function(e) {
