@@ -4,4 +4,18 @@
 
 		.wrap{"data-container" => "width-926"}
 
-			%button.arrow_right Finalize My Order
+			-# attributes for form <button>s may need to be populated: deferring to TW on what to do
+			-# https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
+
+			%button#button_update.arrow_left{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Update Cart
+
+			-# possible values: null, waiting, deleting
+			%a#button_delete.button_common{:href => "#", :title => "Delete Order", "data-delete" => "null"}
+				Delete Order
+				#delete_popup.tooltip
+					%span.wrap_text
+						Are you sure?
+						%br
+						Tap again to delete order.
+
+			%button#button_finalize.arrow_right{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Complete Order

@@ -867,6 +867,66 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
+	// deleteOrder: CSR Delete Order Button Functionality
+	// ----------------------------------------------------------------------------
+	function deleteOrder() {
+
+		var elDeleteButton  = document.getElementById('button_delete'),
+			elDeleteText    = elDeleteButton.getElementsByClassName('wrap_text')[0],
+			txtOriginalText = elDeleteText.innerHTML, // can likely be removed for final kiosk version
+			arrDeleteStages = ['null', 'waiting', 'deleting'],
+			numDeleteStages = arrDeleteStages.length - 1,
+			numClickCount   = 0;
+
+		elDeleteButton.addEventListener('click', function(e) {
+
+			// if we have exceeded the number of Delete stages
+			if (numClickCount >= numDeleteStages) {
+
+				numClickCount = 0; // reset click value to 0
+
+			// if we are just before the final stage
+			} else if (numClickCount >= numDeleteStages - 1) {
+
+				elDeleteText.innerHTML = 'Deleting...'; // replace tooltip text
+				numClickCount++; // increment click count
+
+			} else {
+
+				elDeleteText.innerHTML = txtOriginalText; // reset tooltip text... this step can be removed for final kiosk version
+				numClickCount++; // increment click count
+
+			}
+
+			// update data-delete attribute
+			this.setAttribute('data-delete', arrDeleteStages[numClickCount]);
+
+			e.preventDefault();
+
+		}, false);
+
+		// click outside of element to reset Delete Order
+		document.addEventListener('click', function(e) {
+
+			// if this is not the Delete Button
+			if (e.target != elDeleteButton) {
+
+				// ignore this event if preventDefault has been called
+				if (e.defaultPrevented) {
+					return;
+				}
+
+				elDeleteText.innerHTML = txtOriginalText; // reset tooltip text... this step can be removed for final kiosk version
+				elDeleteButton.setAttribute('data-delete', arrDeleteStages[0]);
+				numClickCount = 0; // reset click value to 0
+
+			}
+
+		}, false);
+
+	}
+
+
 	// Window Events: On - Scroll, Resize
 	// ----------------------------------------------------------------------------
 
@@ -906,6 +966,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (isCartCheckout || isCartCSR) {
 		emptyCartMessage();
 		modalToggle();
+	}
+
+	if (isCartCSR) {
+		deleteOrder();
 	}
 
 	// initialize smoothScroll plugin

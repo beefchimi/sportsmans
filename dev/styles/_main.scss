@@ -52,6 +52,10 @@ div.row-1 div.logo_sportsmans {
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
 
+div.tooltip {
+	transition: top 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
 form.cart_form.empty-cart,
 form.cart_form.empty-cart + div.cart_empty-message {
 	transition: opacity 0.6s ease-in-out 0.3s, visibility 0.6s ease-in-out 0.3s;
@@ -61,6 +65,7 @@ form.cart_form.empty-cart + div.cart_empty-message {
 form.search_form label {
 	transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
+
 /*
 form.filter_form div p {
 	transition: border-color 0.2s ease-in-out;
@@ -183,24 +188,11 @@ div.loader div.circle-2 {;
 // ----------------------------------------------------------------------------
 .arrow_left,
 .arrow_right {
-	display: block;
+	display: table;
 	position: relative;
-	width: 42.8rem; // 480px - 52px (width of triangle)
-	height: 9.8rem;
-	font-size: 3.3rem;
-	line-height: 9.8rem; // vertical center text
+	padding: 0 2rem;
 	text-align: center;
 	text-transform: uppercase;
-	color: hsla(0,0%,100%,1);
-	background-color: hsla(0,0%,90%,1);
-}
-.arrow_left {
-	padding-right: 1.3rem; // 1/4 of arrow width
-	background-color: hsla(117,52%,56%,1);
-}
-.arrow_right {
-	padding-left: 1.3rem; // 1/4 of arrow width
-	background-color: hsla(141,100%,18%,1);
 }
 .arrow_left::before,
 .arrow_right::after {
@@ -210,37 +202,18 @@ div.loader div.circle-2 {;
 	top: 0;
 	width: 0;
 	height: 0;
-	border-top-width: 4.9rem;
 	border-top-style: solid;
 	border-top-color: transparent;
-	border-bottom-width: 4.9rem;
 	border-bottom-style: solid;
 	border-bottom-color: transparent;
 }
 .arrow_left::before {
 	right: 100%;
-	border-right-width: 5.2rem;
 	border-right-style: solid;
-	border-right-color: hsla(117,52%,56%,1);
 }
 .arrow_right::after {
 	left: 100%;
-	border-left-width: 5.2rem;
 	border-left-style: solid;
-	border-left-color: hsla(141,100%,18%,1);
-}
-// --- Wrap: Content Arrows + \\
-.wrap_content .arrow_left,
-.wrap_content .arrow_right {
-	margin-left: auto;
-	margin-right: auto;
-}
-.wrap_content .arrow_left {
-	right: -1.3rem; // 1/4 of arrow width
-}
-.wrap_content .arrow_right {
-	left: -1.3rem; // 1/4 of arrow width
-	margin-bottom: 6rem;
 }
 // + interaction + \\
 .arrow_left:hover,
@@ -290,9 +263,33 @@ a.btn_arw-left:active svg {
 	fill: hsla(141,100%,18%,1);
 }
 
+// Button Common
+// ----------------------------------------------------------------------------
+.button_common {
+	display: inline-block;
+	position: absolute;
+	padding: 0 2rem;
+	// width: ?;
+	height: 6.6rem;
+	font-size: 2.6rem;
+	line-height: 6rem; // height - border
+	text-align: center;
+	text-transform: uppercase;
+	color: hsla(0,0%,100%,1);
+	border: 0.3rem solid hsla(0,0%,100%,1);
+}
+/*
+.button_common:hover {
+	opacity: 0.8;
+}
+.button_common:active {
+	opacity: 1;
+}
+*/
+
 // Button Circle
 // ----------------------------------------------------------------------------
-a.button_circle {
+.button_circle {
 	display: block;
 	position: absolute;
 	width: 12.4rem;
@@ -303,16 +300,16 @@ a.button_circle {
 	color: hsla(0,0%,100%,1);
 	border-radius: 50%;
 }
-a.button_circle span {
+.button_circle span {
 	display: inline-block;
 	padding: 0 1rem;
 	vertical-align: middle;
 }
 // + interaction + \\
-a.button_circle:hover {
+.button_circle:hover {
 	opacity: 0.7;
 }
-a.button_circle:active {
+.button_circle:active {
 	opacity: 0.9;
 }
 
@@ -402,7 +399,7 @@ div.adjust_quantity input[type="number"]:invalid ~ p.error_invalid {
 	opacity: 1;
 	visibility: visible;
 }
-// --- Wrap: Centered Content --- \\
+// --- Wrap Content: Centered --- \\
 .wrap_content {
 	position: absolute;
 	top: 50%;
@@ -439,9 +436,45 @@ div.adjust_quantity input[type="number"]:invalid ~ p.error_invalid {
 .wrap_content p:last-of-type {
 	margin-bottom: 10rem;
 }
+// --- Wrap Content: Arrow Buttons + \\
+.wrap_content .arrow_left,
+.wrap_content .arrow_right {
+	margin-left: auto;
+	margin-right: auto;
+	width: 42.8rem; // 480px - 52px (width of triangle)
+	height: 9.8rem;
+	font-size: 3.3rem;
+	line-height: 9.8rem; // vertical center text
+	color: hsla(0,0%,100%,1);
+}
+.wrap_content .arrow_left {
+	right: -1.3rem; // 1/4 of arrow width
+	margin-top: 6rem;
+	padding-right: 3.3rem; // 1/4 of arrow width + 20px
+	background-color: hsla(117,52%,56%,1);
+}
+.wrap_content .arrow_right {
+	left: -1.3rem; // 1/4 of arrow width
+	padding-left: 3.3rem; // 1/4 of arrow width + 20px
+	background-color: hsla(141,100%,18%,1);
+}
+.wrap_content .arrow_left::before,
+.wrap_content .arrow_right::after {
+	border-top-width: 4.9rem;
+	border-bottom-width: 4.9rem;
+}
+.wrap_content .arrow_left::before {
+	border-right-width: 5.2rem;
+	border-right-color: hsla(117,52%,56%,1);
+}
+.wrap_content .arrow_right::after {
+	border-left-width: 5.2rem;
+	border-left-color: hsla(141,100%,18%,1);
+}
+
+
 
 // --- Modal: Phone --- \\
-
 
 // --- Modal: Timeout Cart --- \\
 
@@ -563,21 +596,20 @@ aside.widget_cart a.arrow_right {
 	position: absolute;
 	top: 3.8rem;
 	height: 5rem;
-	line-height: 5.1rem; // vertical center text (added 1px extra... did not look visually centered)
 	font-size: 1.7rem;
+	line-height: 5.1rem; // vertical center text (added 1px extra... did not look visually centered)
 	color: hsla(141,100%,18%,1);
 	background-color: hsla(0,0%,100%,1);
 }
 div.row-1 a.arrow_left::before,
-aside.widget_cart a.arrow_right::before {
+aside.widget_cart a.arrow_right::after {
 	border-top-width: 2.5rem;
 	border-bottom-width: 2.5rem;
 }
 // --- Button: Back --- \\
 div.row-1 a.arrow_left {
 	left: 6.8rem; // width of triangle + margin of 40px
-	padding: 0 2.7rem 0 2rem;
-	width: auto;
+	padding-right: 2.7rem;
 }
 div.row-1 a.arrow_left::before {
 	border-right-width: 2.8rem;
@@ -614,12 +646,11 @@ aside.widget_cart div.wrap_text p.widget_cart-total {
 	font-size: 2.1rem;
 	letter-spacing: -0.1rem;
 }
+// + widget arrow right + \\
 aside.widget_cart a.arrow_right {
 	right: 6.8rem; // width of triangle + margin of 40px
-	padding-left: 0;
-	width: 16.2rem; // 190px - 28px
 }
-aside.widget_cart a.arrow_right::before {
+aside.widget_cart a.arrow_right::after {
 	border-left-width: 2.8rem;
 	border-left-color: hsla(0,0%,100%,1);
 }
@@ -975,8 +1006,6 @@ footer {
 
 
 
-
-
 body.page_csr-cart,
 body.page_cart-checkout, {
 	padding-bottom: 22.8rem; // 48px + 180px
@@ -996,96 +1025,94 @@ section.panel_cart div.wrap {
 }
 
 
-section.panel_cart .arrow_left,
-section.panel_cart .arrow_right {
-	width: 26.2rem; // need to specify for each
-	height: 6.6rem;
-	font-size: 2.6rem;
-	line-height: 6.6rem;
-}
 
-section.panel_cart .arrow_right {
-	top: 5.7rem;
-	// right: 0.9rem !important;
-	color: hsla(141,100%,18%,1);
-	background-color: hsla(0,0%,100%,1);
-}
-section.panel_cart .arrow_left::before,
-section.panel_cart .arrow_right::after {
-	border-top-width: 3.3rem;
-	border-bottom-width: 3.3rem;
-}
-section.panel_cart .arrow_left::before {
-	border-right-width: 3.6rem;
-	border-right-color: hsla(117,52%,56%,1);
-}
-section.panel_cart .arrow_right::after {
-	border-left-width: 3.6rem;
-	border-left-color: hsla(0,0%,100%,1);
-}
-
-
-
-
-section.panel_cart button.arrow_right {
-
-}
-
-
-
-
-/*
-
-.arrow_left,
-.arrow_right {
-	display: block;
-	position: relative;
-	width: 42.8rem; // 480px - 52px (width of triangle)
-	height: 9.8rem;
-	font-size: 3.3rem;
-	line-height: 9.8rem; // vertical center text
+div.tooltip {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 20rem;
+	height: 7.2rem;
 	text-align: center;
-	text-transform: uppercase;
-	color: hsla(0,0%,100%,1);
-	background-color: hsla(0,0%,90%,1);
+	line-height: 6.4rem; // vertical centre... minus a few pxs
+	background-color: hsla(141,100%,24%,1);
+	border-radius: 1.6rem;
+	opacity: 0;
+	visibility: hidden;
 }
-.arrow_left {
-	padding-right: 1.3rem; // 1/4 of arrow width
-	background-color: hsla(117,52%,56%,1);
-}
-.arrow_right {
-	padding-left: 1.3rem; // 1/4 of arrow width
-	background-color: hsla(141,100%,18%,1);
-}
-.arrow_left::before,
-.arrow_right::after {
+div.tooltip::after {
 	content: "";
 	display: block;
 	position: absolute;
-	top: 0;
+	bottom: -1.4rem;
+	left: 50%;
+	transform: translateX(-50%);
 	width: 0;
 	height: 0;
-	border-top-width: 4.9rem;
-	border-top-style: solid;
-	border-top-color: transparent;
-	border-bottom-width: 4.9rem;
-	border-bottom-style: solid;
-	border-bottom-color: transparent;
+	border-left: 1.4rem solid transparent;
+	border-right: 1.4rem solid transparent;
+	border-top: 1.4rem solid hsla(141,100%,24%,1);
 }
-.arrow_left::before {
-	right: 100%;
-	border-right-width: 5.2rem;
-	border-right-style: solid;
-	border-right-color: hsla(117,52%,56%,1);
-}
-.arrow_right::after {
-	left: 100%;
-	border-left-width: 5.2rem;
-	border-left-style: solid;
-	border-left-color: hsla(141,100%,18%,1);
+div.tooltip span {
+	display: inline-block;
+	font-size: 1.4rem;
+	line-height: 1.2;
+	vertical-align: middle;
+	text-transform: none;
+	color: hsla(0,0%,100%,1);
 }
 
-*/
+
+
+section.panel_cart a.button_common {
+	top: 5.7rem;
+	left: 32.8rem;
+}
+
+section.panel_cart a.button_common div.tooltip {
+	top: -6.6rem;
+}
+
+
+section.panel_cart a.button_common:not([data-delete="null"]) div.tooltip {
+	top: -8rem;
+	opacity: 1;
+	visibility: visible;
+}
+
+
+
+// --- Buttons: Arrows --- \\
+section.panel_cart button.arrow_left,
+section.panel_cart button.arrow_right {
+	position: absolute;
+	top: 5.7rem;
+	height: 6.6rem;
+	font-size: 2.6rem;
+	line-height: 6.6rem;
+	color: hsla(141,100%,18%,1);
+	background-color: hsla(0,0%,100%,1);
+}
+section.panel_cart button.arrow_left {
+	left: 0.9rem;
+	padding-right: 2.9rem; // 1/4 of arrow width + 20px
+}
+section.panel_cart button.arrow_right {
+	right: 0.9rem;
+	padding-left: 2.9rem; // 1/4 of arrow width + 20px
+}
+section.panel_cart button.arrow_left::before,
+section.panel_cart button.arrow_right::after {
+	border-top-width: 3.3rem;
+	border-bottom-width: 3.3rem;
+}
+section.panel_cart button.arrow_left::before {
+	border-right-width: 3.6rem;
+	border-right-color: hsla(0,0%,100%,1);
+}
+section.panel_cart button.arrow_right::after {
+	border-left-width: 3.6rem;
+	border-left-color: hsla(0,0%,100%,1);
+}
 
 
 // ==|== page styles ==========================================================
@@ -1471,6 +1498,15 @@ body.page_csr-cart {
 body.page_csr-cart header.header_csr {
 	margin-bottom: 8rem;
 }
+
+
+
+
+
+
+
+
+
 
 
 
