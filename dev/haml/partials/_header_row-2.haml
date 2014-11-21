@@ -7,7 +7,7 @@
 	%form#search_form.search_form{:action => "", :method => "GET", :role => "search"}
 		-# placeholder text is generated based on current page view ("Search Hunting", "Search Ammunition", etc)
 		%input#search_text.search_text{:type => "text", :name => "search", :value => "", :autocomplete => "off", :placeholder => "Search Hunting", "data-placeholder" => "Search Hunting", :required => true}
-		%a#toggle_search-options.toggle_search-options{:href => "#", :title => "Toggle Search Options"}
+		-# %a#toggle_search-options.toggle_search-options{:href => "#", :title => "Toggle Search Options"}
 		%input#search_checkbox.search_checkbox.visuallyhidden{:type => "checkbox", :name => "search-all", :value => "search-all-departments"}
 		%label{:for => "search_checkbox"} Search All Departments
 		%button

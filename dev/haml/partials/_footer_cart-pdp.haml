@@ -1,0 +1,12 @@
+%footer
+
+	%section#panel_cart.panel_cart
+
+		.wrap{"data-container" => "width-926"}
+
+			-# attributes for form <button>s may need to be populated: deferring to TW on what to do
+			-# https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
+
+			%button#button_update.arrow_left.disabled{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Update Cart
+
+			%button#button_finalize.arrow_right{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Finalize My Order

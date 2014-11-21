@@ -497,6 +497,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// searchOptions: Toggle advanced options for the search input
 	// ----------------------------------------------------------------------------
+/*
 	function searchOptions() {
 
 		// not on board with the functionality of this...
@@ -533,6 +534,32 @@ document.addEventListener('DOMContentLoaded', function() {
 				// otherwise, if #search_checkbox is no longer :checked
 				elSearchInput.setAttribute('placeholder', originalInputPlaceholder);
 				elSearchCheckboxLabel.innerHTML = originalCheckboxLabel;
+
+			}
+
+		}, false);
+
+	}
+*/
+
+
+	function searchOptions() {
+
+		var elSearchInput            = document.getElementById('search_text'),
+			elSearchCheckbox         = document.getElementById('search_checkbox'),
+			originalInputPlaceholder = elSearchInput.getAttribute('data-placeholder');
+
+		elSearchCheckbox.addEventListener('change', function() {
+
+			if (elSearchCheckbox.checked) {
+
+				// if #search_checkbox is now :checked
+				elSearchInput.setAttribute('placeholder', 'Search All Departments');
+
+			} else {
+
+				// otherwise, if #search_checkbox is no longer :checked
+				elSearchInput.setAttribute('placeholder', originalInputPlaceholder);
 
 			}
 
@@ -788,6 +815,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		var arrQuantityInput = document.querySelectorAll('.adjust_number');
 
+/*
+		var arrValuesOriginal = [],
+			arrValuesNew      = [];
+*/
+
 		// for each input[type="number"] found on the cart page
 		for (var i = 0; i < arrQuantityInput.length; i++) {
 			quantityIncrements(arrQuantityInput[i]);
@@ -803,14 +835,19 @@ document.addEventListener('DOMContentLoaded', function() {
 				elQuantityIncrease = elQuantityDecrease.nextElementSibling,
 				enteredValue;
 
+/*
+			arrValuesOriginal.push(thisValue);
+			arrValuesNew.push(thisValue);
+*/
+
 			// if clicking the 'minus' button
 			elQuantityDecrease.addEventListener('click', function(e) {
 
 				// currently not allowed to be set to 0...
-				// removing an item can only be achieved by using the 'remove' link
-				// since there is no 'update cart' button, this seems like the logical approach
+				// removing an item can only be achieved by using the 'remove' link...
+				// if we want to allow for a 0 value, then updating the cart will remove that product
 
-				// as long as thisQuantityInput value is greater than the allowed minimun, decrement value
+				// as long as thisQuantityInput value is greater than the allowed minimum, decrement value
 				if (thisValue != thisMin) {
 
 					thisValue--;
@@ -863,6 +900,18 @@ document.addEventListener('DOMContentLoaded', function() {
 			});
 
 		}
+
+/*
+		arrValuesOriginal.push(8);
+		arrValuesNew.push('test');
+
+		document.getElementById('row_order-total').addEventListener('click', function(e) {
+
+			console.log(arrValuesOriginal);
+			console.log(arrValuesNew);
+
+		}, false);
+*/
 
 	}
 
@@ -925,6 +974,35 @@ document.addEventListener('DOMContentLoaded', function() {
 		}, false);
 
 	}
+
+
+/*
+	// disableButton: Disable the left or right arrow of the footer
+	// ----------------------------------------------------------------------------
+	function disableButton() {
+
+		var elFooter     = document.getElementsByTagName('footer')[0],
+			elArrowLeft  = elFooter.getElementsByClassName('arrow_left')[0],
+			elArrowRight = elFooter.getElementsByClassName('arrow_right')[0];
+
+		// need to get an array of all of the quantity values
+		// duplicate the array to track changes, update values upon change
+
+		// iterate through each array and compare values,
+		// if they do not match exactly, we need to update the cart
+
+		// if a row is deleted, we need to remove that index from both arrays
+
+		if (newQuantityValues ==  originalQuantityValues) {
+			elArrowLeft.classList.remove('disabled');
+			elArrowRight.classList.add('disabled');
+		} else {
+			elArrowLeft.classList.add('disabled');
+			elArrowRight.classList.remove('disabled');
+		}
+
+	}
+*/
 
 
 	// Window Events: On - Scroll, Resize
