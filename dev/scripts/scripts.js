@@ -309,35 +309,35 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function selectDropdown() {
 
-		var elFilterForm   = document.getElementById('filter_form');
+		var elDropdownForm = document.getElementsByClassName('has-dropdown')[0]; // document.getElementById('filter_form');
 
-		// check if #filter_form does not exists
-		if (elFilterForm == null) {
+		// check if form.has-dropdown does not exist
+		if (elDropdownForm == null) {
 			return;
 		}
 
-		// #filter_form exists, so lets grab all of the filter labels
-		var arrFilterLabel = elFilterForm.querySelectorAll('.filter_label');
+		// form.has-dropdown exists, so lets grab all of the dropdown labels
+		var arrDropdownLabel = elDropdownForm.querySelectorAll('.dropdown_label');
 
-		// assign the click event to each .filter_label found in the filterForm
-		for (var i = 0; i < arrFilterLabel.length; i++) {
-			dropdownToggle(arrFilterLabel[i]);
+		// assign the click event to each .dropdown_label found in form.has-dropdown
+		for (var i = 0; i < arrDropdownLabel.length; i++) {
+			dropdownToggle(arrDropdownLabel[i]);
 		}
 
 		// function for toggling dropdowns
-		function dropdownToggle(thisFilterLabel) {
+		function dropdownToggle(thisDropdownLabel) {
 
 			// need to consider the fact that this is a touch enabled device...
 			// typically, the dropdowns should close on "click outside" of 'this'...
 			// but user scrolling could trigger a dropdown close, which may not be ideal (requires testing)
-			thisFilterLabel.addEventListener('click', function(e) {
+			thisDropdownLabel.addEventListener('click', function(e) {
 
-				// run through each filterLabel...
-				for (var i = 0; i < arrFilterLabel.length; i++) {
+				// run through each .dropdown_label...
+				for (var i = 0; i < arrDropdownLabel.length; i++) {
 
 					// and if this is NOT the dropdown we have clicked on...
-					if ( arrFilterLabel[i] != thisFilterLabel ) {
-						arrFilterLabel[i].classList.remove('toggled'); // remove the 'toggled' class
+					if ( arrDropdownLabel[i] != thisDropdownLabel ) {
+						arrDropdownLabel[i].classList.remove('toggled'); // remove the 'toggled' class
 					}
 
 				}
@@ -349,13 +349,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			}, false);
 
+			// click outside of element to close dropdown
+			document.addEventListener('click', function(e) {
+
+				// if this is not the Delete Button
+				if (e.target != thisDropdownLabel) {
+
+					// ignore this event if preventDefault has been called
+					if (e.defaultPrevented) {
+						return;
+					}
+
+					thisDropdownLabel.classList.remove('toggled');
+
+				}
+
+			}, false);
+
 		}
 
 		// function for passing <ul> values to the corresponding <select>
 		function passSelectValue() {
 
-			var arrDropdownLinks = elFilterForm.querySelectorAll('.dropdown_link');
-			// var arrSelectOptions = elFilterForm.getElementsByTagName('option');
+			var arrDropdownLinks = elDropdownForm.querySelectorAll('.dropdown_link');
+			// var arrSelectOptions = elDropdownForm.getElementsByTagName('option');
 
 			// assign the click event to each .dropdown_link found in the filterForm
 			for (var i = 0; i < arrDropdownLinks.length; i++) {
@@ -374,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					console.log(selectedValue);
 
-					var matchedOption = elFilterForm.querySelector('[value="' + selectedValue + '"]');
+					var matchedOption = elDropdownForm.querySelector('[value="' + selectedValue + '"]');
 
 					console.log(matchedOption);
 
@@ -622,7 +639,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		searchOptions();
 	}
 
-	if (isProdIndv) {
+	if (isProdIndv || isProdDisp) {
 		selectDropdown();
 	}
 

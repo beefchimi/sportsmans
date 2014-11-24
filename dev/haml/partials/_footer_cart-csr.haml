@@ -2,15 +2,16 @@
 
 	%section#panel_cart.panel_cart
 
-		.wrap{"data-container" => "width-926"}
+		%article{"data-container" => "width-926"}
 
 			-# attributes for form <button>s may need to be populated: deferring to TW on what to do
 			-# https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
 
-			%button#button_update.arrow_left.disabled{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Update Cart
+			-# buttons will gain the class "disabled" when they cannot be used
+			%button#button_update.button_common-fill.disabled{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Update Cart
 
 			-# possible values: null, waiting, deleting
-			%a#button_delete.button_common{:href => "#", :title => "Delete Order", "data-delete" => "null"}
+			%a#button_delete.button_common-border{:href => "#", :title => "Delete Order", "data-delete" => "null"}
 				Delete Order
 				#delete_popup.tooltip
 					%span.wrap_text

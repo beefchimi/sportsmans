@@ -45,8 +45,12 @@
 					-# 'min', 'max', 'value' and 'name' should be passed in from the initial 'add to cart' step (previous page)
 					.adjust_quantity
 						%input.adjust_number{:type => "number", :min => "1", :max => "999", :step => "1", :value => "2", :name => "307901"}
-						%input.adjust_decrease{:type => "button", :value => "-"}
-						%input.adjust_increase{:type => "button", :value => "+"}
+						%button.adjust_decrease{:type => "button"}
+							%svg.svg_minus
+								%use{"xlink:href" => "#minus"}
+						%button.adjust_increase{:type => "button"}
+							%svg.svg_plus
+								%use{"xlink:href" => "#plus"}
 						%p.error_invalid Invalid Input
 
 				%td.product_price $32.99
@@ -67,8 +71,12 @@
 				%td.product_quantity
 					.adjust_quantity
 						%input.adjust_number{:type => "number", :min => "1", :max => "20", :step => "1", :value => "1", :name => "1298614"}
-						%input.adjust_decrease{:type => "button", :value => "-"}
-						%input.adjust_increase{:type => "button", :value => "+"}
+						%button.adjust_decrease{:type => "button"}
+							%svg.svg_minus
+								%use{"xlink:href" => "#minus"}
+						%button.adjust_increase{:type => "button"}
+							%svg.svg_plus
+								%use{"xlink:href" => "#plus"}
 						%p.error_invalid Invalid Input
 
 				%td.product_price $219.99
@@ -89,8 +97,12 @@
 				%td.product_quantity
 					.adjust_quantity
 						%input.adjust_number{:type => "number", :min => "1", :max => "99", :step => "1", :value => "4", :name => "311294"}
-						%input.adjust_decrease{:type => "button", :value => "-"}
-						%input.adjust_increase{:type => "button", :value => "+"}
+						%button.adjust_decrease{:type => "button"}
+							%svg.svg_minus
+								%use{"xlink:href" => "#minus"}
+						%button.adjust_increase{:type => "button"}
+							%svg.svg_plus
+								%use{"xlink:href" => "#plus"}
 						%p.error_invalid Invalid Input
 
 				%td.product_price $25.99
@@ -114,8 +126,12 @@
 				%td.product_quantity
 					.adjust_quantity
 						%input.adjust_number{:type => "number", :min => "1", :max => "12", :step => "1", :value => "7", :name => "301132"}
-						%input.adjust_decrease{:type => "button", :value => "-"}
-						%input.adjust_increase{:type => "button", :value => "+"}
+						%button.adjust_decrease{:type => "button"}
+							%svg.svg_minus
+								%use{"xlink:href" => "#minus"}
+						%button.adjust_increase{:type => "button"}
+							%svg.svg_plus
+								%use{"xlink:href" => "#plus"}
 						%p.error_invalid Invalid Input
 
 				%td.product_price $25.00

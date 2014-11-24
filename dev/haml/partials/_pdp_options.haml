@@ -1,16 +1,16 @@
-%form#filter_form.filter_form.has-dropdown{:action => "", :method => "POST", "data-container" => "width-926"}
+%form#options_form.options_form.has-dropdown.has-quantity{:action => "", :method => "POST", "data-container" => "width-926"}
 
-	.wrap_filter-brand.wrap_select
+	.wrap_option-size.wrap_select
 
 		-# , :onchange => "this.form.submit()"
-		%select#filter_brand.filter_brand.visuallyhidden{:name => "filter_brand"}
-			%option{:value => "", :selected => true} Brand
+		%select#option_size.option_size.visuallyhidden{:name => "option_size"}
+			%option{:value => "", :selected => true} 1. Select Size
 			%option{:value => "a-1"} Option One
 			%option{:value => "a-2"} Option Two
 			%option{:value => "a-3"} Option Three
 			%option{:value => "a-4"} Option Four
 
-		%p#filter_label-brand.filter_label.dropdown_label Brand
+		%p#option_label-size.option_label.dropdown_label 1. Select Size
 		%ul.dropdown_list
 			%li.dropdown_option
 				%a.dropdown_link{:href => "#", "data-value" => ""} Clear Selection
@@ -23,10 +23,10 @@
 			%li.dropdown_option
 				%a.dropdown_link{:href => "#", "data-value" => "a-4"} Option Four
 
-	.wrap_filter-caliber.wrap_select
+	.wrap_option-color.wrap_select
 
-		%select#filter_caliber.filter_caliber.visuallyhidden{:name => "filter_caliber"}
-			%option{:value => "", :selected => true} Caliber
+		%select#option_color.option_color.visuallyhidden{:name => "option_color"}
+			%option{:value => "", :selected => true} 2. Select Color
 			%option{:value => "b-1"} Option One
 			%option{:value => "b-2"} Option Two
 			%option{:value => "b-3"} Option Three
@@ -34,7 +34,7 @@
 			%option{:value => "b-5"} Option Five
 			%option{:value => "b-6"} Option Six
 
-		%p#filter_label-caliber.filter_label.dropdown_label Caliber
+		%p#option_label-color.option_label.dropdown_label 2. Select Color
 		%ul.dropdown_option
 			%li.dropdown_option
 				%a.dropdown_link{:href => "#", "data-value" => ""} Clear Selection
@@ -51,21 +51,12 @@
 			%li.dropdown_option
 				%a.dropdown_link{:href => "#", "data-value" => "b-6"} Option Six
 
-	.wrap_filter-price.wrap_select
-
-		%select#filter_price.filter_price.visuallyhidden{:name => "filter_price"}
-			%option{:value => "", :selected => true} Price
-			%option{:value => "c-1"} Option One
-			%option{:value => "c-2"} Option Two
-			%option{:value => "c-3"} Option Three
-
-		%p#filter_label-price.filter_label.dropdown_label Price
-		%ul.dropdown_option
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => ""} Clear Selection
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "c-1"} Option One
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "c-2"} Option Two
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "c-3"} Option Three
+	.adjust_quantity
+		%input.adjust_number{:type => "number", :min => "1", :max => "999", :step => "1", :value => "1", :name => "307901"}
+		%button.adjust_decrease{:type => "button"}
+			%svg.svg_minus
+				%use{"xlink:href" => "#minus"}
+		%button.adjust_increase{:type => "button"}
+			%svg.svg_plus
+				%use{"xlink:href" => "#plus"}
+		%p.error_invalid Invalid Input

@@ -1,12 +1,40 @@
 %footer
 
+	%section#panel_options.panel_options
+
+		= Haml::Engine.new(File.read("dev/haml/partials/_pdp_options.haml")).render
+
 	%section#panel_cart.panel_cart
 
-		.wrap{"data-container" => "width-926"}
+		%article{"data-container" => "width-926"}
+
+			-# additional classes: .product_sale / .product_range
+			%aside.wrap_price.product_sale.product_range
+
+				-# only added to page when this is a sale product
+				#sale_tag.sale_tag.button_circle
+					%span.wrap_text On Sale!
+
+				-# %h4.product_price $1299.99
+
+				-# %h4.product_price.price_sale $299.99
+				-# %h5.product_price
+					-# %span.price_label Regular Price:
+					-# %span.price_reg $499.99
+
+				-# range <h4>s require the "truncate" class
+
+				-# %h4.product_price.price_sale.truncate $4499.99 &ndash; $6699.99
+
+				%h4.product_price.price_sale.truncate $499.99 &ndash; $699.99
+				%h5.product_price
+					%span.price_label Regular Price:
+					%span.price_reg $699.99 &ndash; $899.99
 
 			-# attributes for form <button>s may need to be populated: deferring to TW on what to do
 			-# https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
 
-			%button#button_update.arrow_left.disabled{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Update Cart
-
-			%button#button_finalize.arrow_right{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Finalize My Order
+			%button#button_finalize.arrow_right{:form => "options_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"}
+				%svg.svg_cart
+					%use{"xlink:href" => "#cart"}
+				Add To Cart
