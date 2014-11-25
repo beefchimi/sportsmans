@@ -25,86 +25,11 @@
 						%h2.product_id 307901
 						%h1.product_title Columbia Women’s Camp Henry Long Sleeve Shirt with Far Too Many Lines of Text
 
-					.reviews
-
-						-# the sportsmans website seems to use partial ratings,
-						-# but visually, it only shows full or empty starts (ex. 4.7 = 5 full stars)
-						-# do we need to visually account for partial ratings? (1.2, 2.9, 4.6)
-
-						-# if not, the logic here is simple...
-						-# simply round the partial rating and use the integer for 'data-rating' (ex. 4.2 = 4 | 4.7 = 5)
-
-						-# otherwise, use the floating point value for 'data-value' (ex. 3.5)
-						-# in this example, since 3 is followed by a decimal, we go to the 4th <li> element,
-						-# and add the following attribute: [ style = "display: block; width: 50%;" ]
-						-# changing "50%" to whatever the decimal may be (ex. .2 * 100 = 20)
-
-						%ul.reviews_rating{"data-rating" => "3"}
-							%li.star-1
-								.poly_star
-								%svg.svg_star
-									%use{'xlink:href' => '#star'}
-							%li.star-2
-								.poly_star
-								%svg.svg_star
-									%use{'xlink:href' => '#star'}
-							%li.star-3
-								.poly_star
-								%svg.svg_star
-									%use{'xlink:href' => '#star'}
-							%li.star-4
-								.poly_star
-								%svg.svg_star
-									%use{'xlink:href' => '#star'}
-							%li.star-5
-								.poly_star
-								%svg.svg_star
-									%use{'xlink:href' => '#star'}
-
-						-# Would it be easier if I wrapped "15" in a tag?
-						-# "Review(s)" pluralized when greater than 1
-						-# button not present when there are 0 reviews
-						%a#reviews_link.reviews_link{:href => "#", :title => "Read Reviews"} Read 15 Reviews
+					= Haml::Engine.new(File.read("dev/haml/partials/_pdp_reviews-rating.haml")).render
 
 				%article#pdp_gallery.pdp_gallery{"data-col" => "right"}
 
-					%ul#gallery_slider.gallery_slider{"data-slide" => "1"}
-						%li#slide-1.gallery_slide
-							%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #1"}
-						%li#slide-2.gallery_slide
-							%img{:src => "assets/img/pdp_image-2.jpg", :alt => "Image #2"}
-						%li#slide-3.gallery_slide
-							%img{:src => "assets/img/pdp_image-3.jpg", :alt => "Image #3"}
-						%li#slide-4.gallery_slide
-							%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #4"}
-
-					%a#gallery_prev.gallery_prev{:href => "", :title => "Previous Slide"}
-						%svg.svg_arrow
-							%use{'xlink:href' => '#arrow'}
-
-					%a#gallery_next.gallery_next{:href => "", :title => "Next Slide"}
-						%svg.svg_arrow
-							%use{'xlink:href' => '#arrow'}
-
-					%ul#gallery_thumbs.gallery_thumbs
-
-						%li.gallery_thumb
-							%a.link_video{:href => "#", :title => "Play Video"}
-								.play-icon
-						%li.gallery_thumb
-							%a.link_slide{:href => "#slide-1", :title => "View Slide", "data-thumb" => "1"}
-								%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #1"}
-						%li.gallery_thumb
-							%a.link_slide{:href => "#slide-2", :title => "View Slide", "data-thumb" => "2"}
-								%img{:src => "assets/img/pdp_image-2.jpg", :alt => "Image #2"}
-						%li.gallery_thumb
-							%a.link_slide{:href => "#slide-3", :title => "View Slide", "data-thumb" => "3"}
-								%img{:src => "assets/img/pdp_image-3.jpg", :alt => "Image #3"}
-						%li.gallery_thumb
-							%a.link_slide{:href => "#slide-4", :title => "View Slide", "data-thumb" => "4"}
-								%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #4"}
-
-
+					= Haml::Engine.new(File.read("dev/haml/partials/_pdp_gallery.haml")).render
 
 			%section#pdp_description.pdp_description
 

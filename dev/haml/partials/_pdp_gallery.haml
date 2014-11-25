@@ -1,0 +1,71 @@
+-# NEED TO PROVIDE SOLUTION FOR NO PRODUCT IMAGE
+
+-# if using a slide transition instead of fade, #gallery_slider must be a child of div.wrap_slider
+-# .wrap_slider
+
+-# gallery should have no more than 5 product images
+-# video links count against the total number of allowed product images (ex: 2 video links = 3 product images max)
+
+%ul#gallery_slider.gallery_slider{"data-slide" => "1"}
+	%li#slide-1.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #1"}
+			%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #1"}
+	%li#slide-2.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #2"}
+			%img{:src => "assets/img/pdp_image-2.jpg", :alt => "Image #2"}
+	%li#slide-3.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #3"}
+			%img{:src => "assets/img/pdp_image-3.jpg", :alt => "Image #3"}
+	%li#slide-4.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #4"}
+			%img{:src => "assets/img/pdp_image-4.jpg", :alt => "Image #4"}
+
+
+-# video links are always added first in the #gallery_thumbs
+
+-# a.link_slide(s) 'data-thumb' attribute needs to correspond with the desintation slide...
+-# ex. there is 1 a.link_video, so the first a.link_slide (child of 2nd <li>) will have the 'data-thumb' of '1'
+
+%ul#gallery_thumbs.gallery_thumbs
+
+	-# on click: get 'data-video' value, build <iframe> src, build / append modal
+	-# video can be clicked to play / pause, close modal button should probably stop the video then destroy (might not matter)
+	%li.gallery_thumb
+		%a.link_video.modal_open{:href => "#modal_video", :title => "Play Video", "data-video" => "nMrJhsNX0Ws"}
+			.play-icon
+
+	%li.gallery_thumb
+		%a.link_slide{:href => "#slide-1", :title => "View Slide", "data-thumb" => "1"}
+			%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #1"}
+	%li.gallery_thumb
+		%a.link_slide{:href => "#slide-2", :title => "View Slide", "data-thumb" => "2"}
+			%img{:src => "assets/img/pdp_image-2.jpg", :alt => "Image #2"}
+	%li.gallery_thumb
+		%a.link_slide{:href => "#slide-3", :title => "View Slide", "data-thumb" => "3"}
+			%img{:src => "assets/img/pdp_image-3.jpg", :alt => "Image #3"}
+	%li.gallery_thumb
+		%a.link_slide{:href => "#slide-4", :title => "View Slide", "data-thumb" => "4"}
+			%img{:src => "assets/img/pdp_image-4.jpg", :alt => "Image #4"}
+
+
+-# prev / next nav links for gallery slider
+
+%a#gallery_prev.gallery_prev{:href => "", :title => "Previous Slide"}
+	%svg.svg_arrow
+		%use{'xlink:href' => '#arrow'}
+
+%a#gallery_next.gallery_next{:href => "", :title => "Next Slide"}
+	%svg.svg_arrow
+		%use{'xlink:href' => '#arrow'}
+
+
+-# should be built / appended on click rather than always present...
+-# get child <img> src from clicked a.gallery_full-link and use this for modal img src
+-# destroy modal on close
+= Haml::Engine.new(File.read("dev/haml/partials/_modal_pdp-image.haml")).render
+
+
+-# should be built / appended on click rather than always present...
+-# idea is to get 'data-video' value from a.link_video to build the <iframe> src...
+-# before closing the modal and destorying it, you may need to use: player.stopVideo();
+= Haml::Engine.new(File.read("dev/haml/partials/_modal_pdp-video.haml")).render

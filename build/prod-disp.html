@@ -107,31 +107,29 @@
         <article class='pdp_gallery' data-col='right' id='pdp_gallery'>
           <ul class='gallery_slider' data-slide='1' id='gallery_slider'>
             <li class='gallery_slide' id='slide-1'>
-              <img alt='Image #1' src='assets/img/pdp_image-1.jpg'>
+              <a class='gallery_full-link modal_open' href='#modal_image' title='Image #1'>
+                <img alt='Image #1' src='assets/img/pdp_image-1.jpg'>
+              </a>
             </li>
             <li class='gallery_slide' id='slide-2'>
-              <img alt='Image #2' src='assets/img/pdp_image-2.jpg'>
+              <a class='gallery_full-link modal_open' href='#modal_image' title='Image #2'>
+                <img alt='Image #2' src='assets/img/pdp_image-2.jpg'>
+              </a>
             </li>
             <li class='gallery_slide' id='slide-3'>
-              <img alt='Image #3' src='assets/img/pdp_image-3.jpg'>
+              <a class='gallery_full-link modal_open' href='#modal_image' title='Image #3'>
+                <img alt='Image #3' src='assets/img/pdp_image-3.jpg'>
+              </a>
             </li>
             <li class='gallery_slide' id='slide-4'>
-              <img alt='Image #4' src='assets/img/pdp_image-1.jpg'>
+              <a class='gallery_full-link modal_open' href='#modal_image' title='Image #4'>
+                <img alt='Image #4' src='assets/img/pdp_image-4.jpg'>
+              </a>
             </li>
           </ul>
-          <a class='gallery_prev' href='' id='gallery_prev' title='Previous Slide'>
-            <svg class='svg_arrow'>
-              <use xlink:href='#arrow'></use>
-            </svg>
-          </a>
-          <a class='gallery_next' href='' id='gallery_next' title='Next Slide'>
-            <svg class='svg_arrow'>
-              <use xlink:href='#arrow'></use>
-            </svg>
-          </a>
           <ul class='gallery_thumbs' id='gallery_thumbs'>
             <li class='gallery_thumb'>
-              <a class='link_video' href='#' title='Play Video'>
+              <a class='link_video modal_open' data-video='nMrJhsNX0Ws' href='#modal_video' title='Play Video'>
                 <div class='play-icon'></div>
               </a>
             </li>
@@ -152,10 +150,32 @@
             </li>
             <li class='gallery_thumb'>
               <a class='link_slide' data-thumb='4' href='#slide-4' title='View Slide'>
-                <img alt='Image #4' src='assets/img/pdp_image-1.jpg'>
+                <img alt='Image #4' src='assets/img/pdp_image-4.jpg'>
               </a>
             </li>
           </ul>
+          <a class='gallery_prev' href='' id='gallery_prev' title='Previous Slide'>
+            <svg class='svg_arrow'>
+              <use xlink:href='#arrow'></use>
+            </svg>
+          </a>
+          <a class='gallery_next' href='' id='gallery_next' title='Next Slide'>
+            <svg class='svg_arrow'>
+              <use xlink:href='#arrow'></use>
+            </svg>
+          </a>
+          <aside class='modal_image' data-modal='image' id='modal_image'>
+            <div class='wrap_content' data-container='width-926'>
+              <img alt='Image #1' src='assets/img/pdp_image-1.jpg'>
+              <a class='modal_close arrow_left' href='#' id='image_close' title='Close Image'>Close Image</a>
+            </div>
+          </aside>
+          <aside class='modal_video' data-modal='video' id='modal_video'>
+            <div class='wrap_content' data-container='width-926'>
+              <iframe frameborder='0' height='521' id='youtube-video' src='//www.youtube.com/embed/nMrJhsNX0Ws?rel=0&amp;amp;vq=hd720&amp;amp;html5=1&amp;amp;controls=0&amp;amp;showinfo=0&amp;amp;wmode=transparent&amp;amp;enablejsapi=1' type='text/html' width='926' wmode='Opaque'></iframe>
+              <a class='modal_close arrow_left' href='#' id='video_close' title='Close Video'>Close Video</a>
+            </div>
+          </aside>
         </article>
       </section>
       <section class='pdp_description' id='pdp_description'>
@@ -183,69 +203,111 @@
     <footer>
       <section class='panel_options' id='panel_options'>
         <form action='' class='options_form has-dropdown has-quantity' data-container='width-926' id='options_form' method='POST'>
-          <div class='wrap_option-size wrap_select'>
-            <select class='option_size visuallyhidden' id='option_size' name='option_size'>
-              <option selected value=''>1. Select Size</option>
-              <option value='a-1'>Option One</option>
-              <option value='a-2'>Option Two</option>
-              <option value='a-3'>Option Three</option>
-              <option value='a-4'>Option Four</option>
-            </select>
-            <p class='option_label dropdown_label' id='option_label-size'>1. Select Size</p>
-            <ul class='dropdown_list'>
-              <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='' href='#'>Clear Selection</a>
-              </li>
-              <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='a-1' href='#'>Option One</a>
-              </li>
-              <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='a-2' href='#'>Option Two</a>
-              </li>
-              <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='a-3' href='#'>Option Three</a>
-              </li>
-              <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='a-4' href='#'>Option Four</a>
-              </li>
-            </ul>
-          </div>
-          <div class='wrap_option-color wrap_select'>
+          <div class='wrap_option-color wrap_select' data-select='chosen'>
             <select class='option_color visuallyhidden' id='option_color' name='option_color'>
-              <option selected value=''>2. Select Color</option>
-              <option value='b-1'>Option One</option>
-              <option value='b-2'>Option Two</option>
-              <option value='b-3'>Option Three</option>
-              <option value='b-4'>Option Four</option>
-              <option value='b-5'>Option Five</option>
-              <option value='b-6'>Option Six</option>
+              <option>1. Select Color</option>
+              <option value='color-white'>White</option>
+              <option value='color-black'>Black</option>
+              <option disabled value='color-red'>Red</option>
+              <option disabled value='color-orange'>Orange</option>
+              <option selected value='color-yellow'>Yellow</option>
+              <option value='color-green'>Green</option>
+              <option disabled value='color-blue'>Blue</option>
+              <option value='color-purple'>Purple</option>
             </select>
-            <p class='option_label dropdown_label' id='option_label-color'>2. Select Color</p>
+            <p class='option_label dropdown_label' id='option_label-color'>Yellow</p>
             <ul class='dropdown_option'>
               <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='' href='#'>Clear Selection</a>
+                <a class='dropdown_link' data-value='color-white' href='#'>
+                  <span class='variation_label truncate'>White</span>
+                </a>
               </li>
               <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='b-1' href='#'>Option One</a>
+                <a class='dropdown_link' data-value='color-black' href='#'>
+                  <span class='variation_label truncate'>Black</span>
+                </a>
+              </li>
+              <li class='dropdown_option disabled'>
+                <a class='dropdown_link' data-value='color-red' href='#'>
+                  <span class='variation_label truncate'>Red</span>
+                </a>
+              </li>
+              <li class='dropdown_option disabled'>
+                <a class='dropdown_link' data-value='color-orange' href='#'>
+                  <span class='variation_label truncate'>Orange</span>
+                </a>
+              </li>
+              <li class='dropdown_option selected'>
+                <a class='dropdown_link' data-value='color-yellow' href='#'>
+                  <span class='variation_label truncate'>Yellow</span>
+                </a>
               </li>
               <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='b-2' href='#'>Option Two</a>
+                <a class='dropdown_link' data-value='color-green' href='#'>
+                  <span class='variation_label truncate'>Green</span>
+                </a>
+              </li>
+              <li class='dropdown_option disabled'>
+                <a class='dropdown_link' data-value='color-blue' href='#'>
+                  <span class='variation_label truncate'>Nautical Ocean Southern Hemisphere Island Blue</span>
+                </a>
               </li>
               <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='b-3' href='#'>Option Three</a>
-              </li>
-              <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='b-4' href='#'>Option Four</a>
-              </li>
-              <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='b-5' href='#'>Option Five</a>
-              </li>
-              <li class='dropdown_option'>
-                <a class='dropdown_link' data-value='b-6' href='#'>Option Six</a>
+                <a class='dropdown_link' data-value='color-purple' href='#'>
+                  <span class='variation_label truncate'>Purple</span>
+                </a>
               </li>
             </ul>
           </div>
-          <div class='adjust_quantity'>
+          <div class='wrap_option-size wrap_select' data-select='none'>
+            <select class='option_size visuallyhidden' id='option_size' name='option_size'>
+              <option selected>1. Select Size</option>
+              <option value='size-xs'>Extra Small $9.99</option>
+              <option value='size-s'>Small $19.99</option>
+              <option disabled value='size-m'>Medium $29.99</option>
+              <option value='size-l'>Large $39.99</option>
+              <option value='size-xl'>Extra Large $49.99</option>
+            </select>
+            <p class='option_label dropdown_label' id='option_label-size'>2. Select Size</p>
+            <ul class='dropdown_list'>
+              <li class='dropdown_option'>
+                <a class='dropdown_link' data-value='size-xs' href='#'>
+                  <span class='variation_label truncate'>XS Super Tiny Baby Size</span>
+                  <span class='variation_stock'>In Stock</span>
+                  <span class='variation_price'>$9.99</span>
+                </a>
+              </li>
+              <li class='dropdown_option'>
+                <a class='dropdown_link' data-value='size-s' href='#'>
+                  <span class='variation_label truncate'>S</span>
+                  <span class='variation_stock'>In Stock</span>
+                  <span class='variation_price'>$19.99</span>
+                </a>
+              </li>
+              <li class='dropdown_option disabled'>
+                <a class='dropdown_link' data-value='size-m' href='#'>
+                  <span class='variation_label truncate'>M</span>
+                  <span class='variation_stock'>Out of Stock</span>
+                  <span class='variation_price'>$29.99</span>
+                </a>
+              </li>
+              <li class='dropdown_option'>
+                <a class='dropdown_link' data-value='size-l' href='#'>
+                  <span class='variation_label truncate'>L</span>
+                  <span class='variation_stock'>In Stock</span>
+                  <span class='variation_price'>$39.99</span>
+                </a>
+              </li>
+              <li class='dropdown_option'>
+                <a class='dropdown_link' data-value='size-xl' href='#'>
+                  <span class='variation_label truncate'>XL</span>
+                  <span class='variation_stock'>In Stock</span>
+                  <span class='variation_price'>$49.99</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <span class='adjust_quantity'>
             <input class='adjust_number' max='999' min='1' name='307901' step='1' type='number' value='1'>
             <button class='adjust_decrease' type='button'>
               <svg class='svg_minus'>
@@ -258,7 +320,7 @@
               </svg>
             </button>
             <p class='error_invalid'>Invalid Input</p>
-          </div>
+          </span>
         </form>
       </section>
       <section class='panel_cart' id='panel_cart'>

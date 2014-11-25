@@ -1,57 +1,95 @@
 %form#options_form.options_form.has-dropdown.has-quantity{:action => "", :method => "POST", "data-container" => "width-926"}
 
-	.wrap_option-size.wrap_select
+	-# :onchange => "this.form.submit()"
+	-# if variation is out of stock, that <option> receives the "disabled" attribute - corresponding <li> element gets 'disabled' class
 
-		-# , :onchange => "this.form.submit()"
-		%select#option_size.option_size.visuallyhidden{:name => "option_size"}
-			%option{:value => "", :selected => true} 1. Select Size
-			%option{:value => "a-1"} Option One
-			%option{:value => "a-2"} Option Two
-			%option{:value => "a-3"} Option Three
-			%option{:value => "a-4"} Option Four
-
-		%p#option_label-size.option_label.dropdown_label 1. Select Size
-		%ul.dropdown_list
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => ""} Clear Selection
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "a-1"} Option One
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "a-2"} Option Two
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "a-3"} Option Three
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "a-4"} Option Four
-
-	.wrap_option-color.wrap_select
+	-# this example already has a selected option:
+	-# 'data-select' = "chosen"
+	-# :selected attr is moved to option > color-yellow
+	-# 'selected' class applied to <li> for Yellow
+	.wrap_option-color.wrap_select{"data-select" => "chosen"}
 
 		%select#option_color.option_color.visuallyhidden{:name => "option_color"}
-			%option{:value => "", :selected => true} 2. Select Color
-			%option{:value => "b-1"} Option One
-			%option{:value => "b-2"} Option Two
-			%option{:value => "b-3"} Option Three
-			%option{:value => "b-4"} Option Four
-			%option{:value => "b-5"} Option Five
-			%option{:value => "b-6"} Option Six
+			%option{} 1. Select Color
+			%option{:value => "color-white"} White
+			%option{:value => "color-black"} Black
+			%option{:value => "color-red", :disabled => true} Red
+			%option{:value => "color-orange", :disabled => true} Orange
+			%option{:value => "color-yellow", :selected => true} Yellow
+			%option{:value => "color-green"} Green
+			%option{:value => "color-blue", :disabled => true} Blue
+			%option{:value => "color-purple"} Purple
 
-		%p#option_label-color.option_label.dropdown_label 2. Select Color
+		-# non-selected label text would be: 1. Select Color
+		%p#option_label-color.option_label.dropdown_label Yellow
 		%ul.dropdown_option
 			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => ""} Clear Selection
+				%a.dropdown_link{:href => "#", "data-value" => "color-white"}
+					%span.variation_label.truncate White
 			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-1"} Option One
+				%a.dropdown_link{:href => "#", "data-value" => "color-black"}
+					%span.variation_label.truncate Black
+			%li.dropdown_option.disabled
+				%a.dropdown_link{:href => "#", "data-value" => "color-red"}
+					%span.variation_label.truncate Red
+			%li.dropdown_option.disabled
+				%a.dropdown_link{:href => "#", "data-value" => "color-orange"}
+					%span.variation_label.truncate Orange
+			%li.dropdown_option.selected
+				%a.dropdown_link{:href => "#", "data-value" => "color-yellow"}
+					%span.variation_label.truncate Yellow
 			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-2"} Option Two
+				%a.dropdown_link{:href => "#", "data-value" => "color-green"}
+					%span.variation_label.truncate Green
+			%li.dropdown_option.disabled
+				%a.dropdown_link{:href => "#", "data-value" => "color-blue"}
+					%span.variation_label.truncate Nautical Ocean Southern Hemisphere Island Blue
 			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-3"} Option Three
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-4"} Option Four
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-5"} Option Five
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-6"} Option Six
+				%a.dropdown_link{:href => "#", "data-value" => "color-purple"}
+					%span.variation_label.truncate Purple
 
-	.adjust_quantity
+	-# disabled until previous option has been selected
+	-# removed 'disabled' when any <option> with a valid 'value' is :selected
+	-# add 'disabled' class when the initial 'label' option (empty 'value') is :selected
+	.wrap_option-size.wrap_select{"data-select" => "none"}
+
+		%select#option_size.option_size.visuallyhidden{:name => "option_size"}
+			%option{:selected => true} 1. Select Size
+			%option{:value => "size-xs"} Extra Small $9.99
+			%option{:value => "size-s"} Small $19.99
+			%option{:value => "size-m", :disabled => true} Medium $29.99
+			%option{:value => "size-l"} Large $39.99
+			%option{:value => "size-xl"} Extra Large $49.99
+
+		%p#option_label-size.option_label.dropdown_label 2. Select Size
+		%ul.dropdown_list
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "size-xs"}
+					%span.variation_label.truncate XS Super Tiny Baby Size
+					%span.variation_stock In Stock
+					%span.variation_price $9.99
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "size-s"}
+					%span.variation_label.truncate S
+					%span.variation_stock In Stock
+					%span.variation_price $19.99
+			%li.dropdown_option.disabled
+				%a.dropdown_link{:href => "#", "data-value" => "size-m"}
+					%span.variation_label.truncate M
+					%span.variation_stock Out of Stock
+					%span.variation_price $29.99
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "size-l"}
+					%span.variation_label.truncate L
+					%span.variation_stock In Stock
+					%span.variation_price $39.99
+			%li.dropdown_option
+				%a.dropdown_link{:href => "#", "data-value" => "size-xl"}
+					%span.variation_label.truncate XL
+					%span.variation_stock In Stock
+					%span.variation_price $49.99
+
+	%span.adjust_quantity
 		%input.adjust_number{:type => "number", :min => "1", :max => "999", :step => "1", :value => "1", :name => "307901"}
 		%button.adjust_decrease{:type => "button"}
 			%svg.svg_minus

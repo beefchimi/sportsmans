@@ -1,0 +1,7 @@
+%aside#modal_video.modal_video{"data-modal" => "video"}
+	.wrap_content{"data-container" => "width-926"}
+		-# youtube embed id "nMrJhsNX0Ws" used only as example... this needs to be added dynamically...
+		-# I have added a 'data-video' attribute on the a.link_video element which uses the embed ID as a value...
+		-# idea being you can get that value, build the <iframe> src, and build / load the modal on a.link_video click
+		%iframe#youtube-video{:type => "text/html", :width => "926", :height => "521", :src => "//www.youtube.com/embed/nMrJhsNX0Ws?rel=0&amp;vq=hd720&amp;html5=1&amp;controls=0&amp;showinfo=0&amp;wmode=transparent&amp;enablejsapi=1", :frameborder => "0", :wmode => "Opaque"}
+		%a#video_close.modal_close.arrow_left{:href => "#", :title => "Close Video"} Close Video

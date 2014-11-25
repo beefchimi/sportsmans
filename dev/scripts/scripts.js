@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			elTargetModal.classList.add('visible');
 
-			// only if on a checkout page
+			// CART / CSR CHECKOUT ONLY
 			if (isCartCheckout || isCartCSR) {
 
 				var dataParentID = this.getAttribute('data-parent'); // get the value from data-parent
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			cycleParentCloseModal(this);
 
-			// only if on a checkout page
+			// CART / CSR CHECKOUT ONLY
 			if (isCartCheckout || isCartCSR) {
 				elRemoveLink.removeEventListener('click', removeCartRow, false);
 			}
@@ -231,7 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		}
 
-		// cart-checkout only: find the target TR and remove it
+		// CART / CSR CHECKOUT ONLY
+		// find the target TR and remove it
 		function removeCartRow(e) {
 
 			var hrefTargetRow = this.getAttribute('href').substring(1),
@@ -281,13 +282,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			beginAnimation(); // execute begin animation
 
-			// moved emptyCartMessage from here
-
 			cycleParentCloseModal(this);
 
 			e.preventDefault();
 
 		}
+
+		// IMPORTANT!
+		// if prod-disp... closing modal must: player.stopVideo();
 
 	}
 
@@ -374,30 +376,56 @@ document.addEventListener('DOMContentLoaded', function() {
 			var arrDropdownLinks = elDropdownForm.querySelectorAll('.dropdown_link');
 			// var arrSelectOptions = elDropdownForm.getElementsByTagName('option');
 
-			// assign the click event to each .dropdown_link found in the filterForm
+			// assign the click event to each .dropdown_link found in the form.has-dropdown
 			for (var i = 0; i < arrDropdownLinks.length; i++) {
 				filterChange(arrDropdownLinks[i]);
 			}
 
 			function filterChange(thisDropdownLink) {
 
+/*
+				var elDesiredParent = thisDropdownLink.parentNode;
+
+				// cycle upwards from the closest parent of the clicked element,
+				// until we find an element with the attr 'data-modal'
+				while ( elDesiredParent.tagName != 'P' ) {
+					elDesiredParent = elDesiredParent.parentNode;
+				}
+
+				console.log(elDesiredParent);
+*/
+
 				thisDropdownLink.addEventListener('click', function(e) {
 
 					// http://stackoverflow.com/questions/7373058/how-to-change-the-selected-option-of-html-select-element
 
-					var selectedValue = this.getAttribute('data-value');
+					var dataValue = this.getAttribute('data-value'),
+						dataLabel = this.firstChild.innerHTML,
+						elParent  = this.parentNode;
 
-					// toggle selected class
+					// NEED TO KNOW HOW FORM IS SUBMITTED / VALUES UPDATED...
+					// WILL THE PAGE BE REFRESHED OR IS IT DONE WITHOUT?
+					// 'selected' CLASS WILL NEED TO BE REMOVED FROM A PREVIOUS OPTION DEPENDING
+					// p.dropdown_label NEEDS TO HAVE ITS TEXT UPDATED TO REFLECT SELECTED OPTION
+					// div.wrap_select NEEDS TO UPDATE 'data-select' VALUE (none / chosen)
 
-					console.log(selectedValue);
+					// add selected class to parent <li>
+					elParent.classList.add('selected');
+
+					// replace p.dropdown_label innerHTML with the selected option text
+					// elDesiredParent.innerHTML = dataLabel;
+
+					// TEMP:  log the selected data to inspect
+					// console.log(selectedValue);
 
 					var matchedOption = elDropdownForm.querySelector('[value="' + selectedValue + '"]');
 
-					console.log(matchedOption);
+					// TEMP:  log the matched <option> to inspect
+					// console.log(matchedOption);
 
 					matchedOption.selected = true;
 
-					// need to verify if this is in fact working
+					// TEST: need to verify everything is working as expected
 					// filterForm.submit();
 
 					e.preventDefault();
@@ -611,6 +639,86 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 
 
+	// gallerySlider: PDP page gallery functions
+	// ----------------------------------------------------------------------------
+	function gallerySlider() {
+
+		var elGallery        = document.getElementById('gallery_slider'),
+			arrSlides        = elGallery.getElementsByTagName('li'),
+			arrThumbs        = document.getElementsByClassName('link_slide'),
+			numCurrentSlide  = 1,
+			numSlideMin      = 1,
+			numSlideMax      = arrSlides.length,
+			elSlidePrev      = document.getElementById('gallery_prev'),
+			elSlideNext      = document.getElementById('gallery_next');
+
+/*
+		var numSlideWidth    = 270, // arrSlides[0].offsetWidth,
+			numGalleryWidth  = numSlideMax * numSlideWidth,
+			numGalleryMargin = 0;
+
+		// set gallery <ul> width to the sum of each <li> width
+		// elGallery.style.width = numGalleryWidth + 'px';
+*/
+
+		// assign click to each a.link_slide
+		for (var i = 0; i < arrThumbs.length; i++) {
+			galleryThumbs(arrThumbs[i]);
+		}
+
+		// previous slide button
+		elSlidePrev.addEventListener('click', function(e) {
+
+			if (numCurrentSlide <= numSlideMin) {
+				numCurrentSlide = numSlideMax;
+			} else {
+				numCurrentSlide--;
+			}
+
+			adjustSlider();
+			e.preventDefault();
+
+		}, false);
+
+		// next slide button
+		elSlideNext.addEventListener('click', function(e) {
+
+			if (numCurrentSlide >= numSlideMax) {
+				numCurrentSlide = numSlideMin;
+			} else {
+				numCurrentSlide++;
+			}
+
+			adjustSlider();
+			e.preventDefault();
+
+		}, false);
+
+		function galleryThumbs(thisThumb) {
+
+			thisThumb.addEventListener('click', function(e) {
+
+				numCurrentSlide = this.getAttribute('data-thumb');
+
+				adjustSlider();
+				e.preventDefault();
+
+			}, false);
+
+		}
+
+		function adjustSlider() {
+
+			// numGalleryMargin = numCurrentSlide * numSlideWidth - numSlideWidth;
+			// elGallery.style.marginLeft = '-' + numGalleryMargin + 'px';
+			elGallery.setAttribute('data-slide', numCurrentSlide);
+
+		}
+
+
+	}
+
+
 	// Window Events: On - Scroll, Resize
 	// ----------------------------------------------------------------------------
 
@@ -641,6 +749,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	if (isProdIndv || isProdDisp) {
 		selectDropdown();
+	}
+
+	if (isProdDisp) {
+		gallerySlider();
+		modalToggle();
 	}
 
 	if (isQuantityForm) {
