@@ -10,7 +10,6 @@
 	.wrap_option-color.wrap_select{"data-select" => "chosen"}
 
 		%select#option_color.option_color.visuallyhidden{:name => "option_color"}
-			%option{} 1. Select Color
 			%option{:value => "color-white"} White
 			%option{:value => "color-black"} Black
 			%option{:value => "color-red", :disabled => true} Red
@@ -50,11 +49,10 @@
 
 	-# disabled until previous option has been selected
 	-# removed 'disabled' when any <option> with a valid 'value' is :selected
-	-# add 'disabled' class when the initial 'label' option (empty 'value') is :selected
+	-# add 'disabled' class when no option is selected (should not be possible once a selection has been made for the first time)
 	.wrap_option-size.wrap_select{"data-select" => "none"}
 
 		%select#option_size.option_size.visuallyhidden{:name => "option_size"}
-			%option{:selected => true} 1. Select Size
 			%option{:value => "size-xs"} Extra Small $9.99
 			%option{:value => "size-s"} Small $19.99
 			%option{:value => "size-m", :disabled => true} Medium $29.99

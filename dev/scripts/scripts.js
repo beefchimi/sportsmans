@@ -311,50 +311,54 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function selectDropdown() {
 
-		var elDropdownForm = document.getElementsByClassName('has-dropdown')[0]; // document.getElementById('filter_form');
+		var elDropdownForm = document.getElementsByClassName('has-dropdown')[0];
 
 		// check if form.has-dropdown does not exist
 		if (elDropdownForm == null) {
 			return;
 		}
 
-		// form.has-dropdown exists, so lets grab all of the dropdown labels
-		var arrDropdownLabel = elDropdownForm.querySelectorAll('.dropdown_label');
+		// form.has-dropdown exists, so lets grab all of the dropdown articles
+		var arrDropdownArticle = elDropdownForm.getElementsByTagName('article');
 
 		// assign the click event to each .dropdown_label found in form.has-dropdown
-		for (var i = 0; i < arrDropdownLabel.length; i++) {
-			dropdownToggle(arrDropdownLabel[i]);
+		for (var i = 0; i < arrDropdownArticle.length; i++) {
+			dropdownToggle(arrDropdownArticle[i]);
 		}
 
 		// function for toggling dropdowns
-		function dropdownToggle(thisDropdownLabel) {
+		function dropdownToggle(thisDropdownArticle) {
 
-			// need to consider the fact that this is a touch enabled device...
-			// typically, the dropdowns should close on "click outside" of 'this'...
-			// but user scrolling could trigger a dropdown close, which may not be ideal (requires testing)
+			var thisDropdownLabel = thisDropdownArticle.getElementsByTagName('h6')[0];
+			// var thisParentArticle = thisDropdownLabel.parentNode;
+
 			thisDropdownLabel.addEventListener('click', function(e) {
 
-				// run through each .dropdown_label...
-				for (var i = 0; i < arrDropdownLabel.length; i++) {
+				// run through each dropdown article...
+				for (var i = 0; i < arrDropdownArticle.length; i++) {
 
-					// and if this is NOT the dropdown we have clicked on...
-					if ( arrDropdownLabel[i] != thisDropdownLabel ) {
-						arrDropdownLabel[i].classList.remove('toggled'); // remove the 'toggled' class
+					// and if this is NOT the parent dropdown we have clicked on...
+					if (arrDropdownArticle[i] != this.parentNode) {
+						arrDropdownArticle[i].classList.remove('toggled'); // remove the 'toggled' class
 					}
 
 				}
 
 				// allow for class toggling on the clicked dropdown
-				this.classList.toggle('toggled');
+				thisDropdownArticle.classList.toggle('toggled');
 
 				e.preventDefault();
 
 			}, false);
 
+			// need to consider the fact that this is a touch enabled device...
+			// typically, the dropdowns should close on "click outside" of 'this'...
+			// but user scrolling could trigger a dropdown close, which may not be ideal... REQUIRES TESTING!
+
 			// click outside of element to close dropdown
 			document.addEventListener('click', function(e) {
 
-				// if this is not the Delete Button
+				// if this is not the currently toggled dropdown
 				if (e.target != thisDropdownLabel) {
 
 					// ignore this event if preventDefault has been called
@@ -362,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						return;
 					}
 
-					thisDropdownLabel.classList.remove('toggled');
+					thisDropdownArticle.classList.remove('toggled');
 
 				}
 
@@ -373,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// function for passing <ul> values to the corresponding <select>
 		function passSelectValue() {
 
-			var arrDropdownLinks = elDropdownForm.querySelectorAll('.dropdown_link');
+			var arrDropdownLinks = elDropdownForm.getElementsByClassName('dropdown_link');
 			// var arrSelectOptions = elDropdownForm.getElementsByTagName('option');
 
 			// assign the click event to each .dropdown_link found in the form.has-dropdown
@@ -383,47 +387,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			function filterChange(thisDropdownLink) {
 
-/*
-				var elDesiredParent = thisDropdownLink.parentNode;
-
-				// cycle upwards from the closest parent of the clicked element,
-				// until we find an element with the attr 'data-modal'
-				while ( elDesiredParent.tagName != 'P' ) {
-					elDesiredParent = elDesiredParent.parentNode;
-				}
-
-				console.log(elDesiredParent);
-*/
-
 				thisDropdownLink.addEventListener('click', function(e) {
 
-					// http://stackoverflow.com/questions/7373058/how-to-change-the-selected-option-of-html-select-element
+					// NEED TO HANDLE CLEARING THE SELECTED OPTION
+					// AS WELL AS FINISH SELECTED STYLING
 
-					var dataValue = this.getAttribute('data-value'),
-						dataLabel = this.firstChild.innerHTML,
-						elParent  = this.parentNode;
+					var dataValue       = this.getAttribute('data-value'),
+						dataLabel       = this.childNodes[1].innerHTML, // first child is an empty text node
+						elParentList    = this.parentNode,
+						elSiblingLabel  = elParentList.parentNode.previousElementSibling,
+						elParentArticle = elSiblingLabel.parentNode,
+						elMatchedOption = elParentArticle.querySelector('[value="' + dataValue + '"]');
 
 					// NEED TO KNOW HOW FORM IS SUBMITTED / VALUES UPDATED...
 					// WILL THE PAGE BE REFRESHED OR IS IT DONE WITHOUT?
 					// 'selected' CLASS WILL NEED TO BE REMOVED FROM A PREVIOUS OPTION DEPENDING
-					// p.dropdown_label NEEDS TO HAVE ITS TEXT UPDATED TO REFLECT SELECTED OPTION
 					// div.wrap_select NEEDS TO UPDATE 'data-select' VALUE (none / chosen)
 
+					elMatchedOption.selected = true;
+
 					// add selected class to parent <li>
-					elParent.classList.add('selected');
+					elParentList.classList.add('selected');
 
-					// replace p.dropdown_label innerHTML with the selected option text
-					// elDesiredParent.innerHTML = dataLabel;
+					// replace h6.dropdown_label innerHTML with the selected option text
+					elSiblingLabel.innerHTML = dataLabel;
 
-					// TEMP:  log the selected data to inspect
-					// console.log(selectedValue);
+					// remove 'toggled' class from parent article
+					elParentArticle.classList.remove('toggled');
 
-					var matchedOption = elDropdownForm.querySelector('[value="' + selectedValue + '"]');
-
-					// TEMP:  log the matched <option> to inspect
-					// console.log(matchedOption);
-
-					matchedOption.selected = true;
+					// TEMP: log the selected data-value and matched <option> to inspect
+					console.log('selected data-value: "' + dataValue + '", followed by matched <option>:');
+					console.log(elMatchedOption);
 
 					// TEST: need to verify everything is working as expected
 					// filterForm.submit();

@@ -848,7 +848,7 @@ form.search_form input[type="checkbox"] + label {
 	cursor: pointer;
 	display: block;
 	position: absolute;
-	bottom: 0; // 1rem;
+	bottom: 0;
 	left: 50%;
 	transform: translateX(-50%);
 	padding: 1rem 1.6rem 1rem 5rem;
@@ -857,7 +857,6 @@ form.search_form input[type="checkbox"] + label {
 	text-transform: uppercase;
 	color: hsla(141,100%,18%,1);
 	background-color: hsla(0,0%,93%,1);
-	// border: 0.2rem solid hsla(141,100%,18%,1);
 	border-radius: 0.8rem;
 }
 form.search_form input[type="checkbox"] + label::before,
@@ -868,25 +867,19 @@ form.search_form input[type="checkbox"] + label::after {
 	border-radius: 50%;
 }
 form.search_form input[type="checkbox"] + label::before {
-	// could instead maybe make the ::before span the gap between the checkbox and the label...
-	// and the after contains a bullet character that is centred, and color transitions to 1 once :checked
 	top: 1rem;
-	left: 1.6rem; // -4rem;
-	// margin-right: 1.7rem;
+	left: 1.6rem;
 	width: 2rem;
 	height: 2rem;
 	border: 0.3rem solid hsla(141,100%,18%,1);
 }
 form.search_form input[type="checkbox"] + label::after {
 	top: 1.6rem;
-	left: 2.2rem; // -3.4rem;
+	left: 2.2rem;
 	width: 0.8rem;
 	height: 0.8rem;
 	background-color: hsla(141,100%,18%,0);
 }
-
-
-
 // + toggled + \\
 form.search_form a.toggle_search-options.toggled {
 	background-color: hsla(141,100%,18%,1);
@@ -905,43 +898,34 @@ form.search_form input[type="checkbox"] + label:hover {
 form.search_form input[type="checkbox"] + label:hover::before {
 	border-color: hsla(141,100%,24%,1);
 }
-
-
-
 form.search_form button:hover svg {
 	fill: hsla(141,100%,24%,1);
 }
-
 form.search_form input[type="checkbox"] + label:active {
 	color: hsla(141,100%,18%,1);
 }
 form.search_form input[type="checkbox"] + label:active::before {
 	border-color: hsla(141,100%,24%,1);
 }
-
-
+form.search_form button:active svg {
+	fill: hsla(141,100%,18%,1);
+}
 form.search_form input[type="checkbox"]:checked + label::after {
 	background-color: hsla(141,100%,18%,1);
 }
 
-
-form.search_form button:active svg {
-	fill: hsla(141,100%,18%,1);
-}
-
-
-
-
-
-
-
 // Header: Product Filters
 // ----------------------------------------------------------------------------
+
+// form.has-dropdown
+// article[data-dropdown="select"]
+
+
 form.filter_form {
 	margin-top: 3.2rem;
 	margin-bottom: 6.4rem; // not reseting header height because there may be instances where .filter_form is hidden
 }
-form.filter_form div {
+form.filter_form article {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
@@ -949,10 +933,10 @@ form.filter_form div {
 	margin-right: 2.6rem;
 	// height: 4.8rem; // computed height from child <p>
 }
-form.filter_form div:last-child {
+form.filter_form article:last-child {
 	margin-right: 0;
 }
-form.filter_form div p {
+form.filter_form article h6 {
 	position: relative;
 	// z-index: 101;
 	padding: 0 4rem 0 2rem;
@@ -967,7 +951,7 @@ form.filter_form div p {
 	border: 0.3rem solid hsla(141,100%,18%,1);
 	border-radius: 2.4rem; // computer height (48px) / 2
 }
-form.filter_form div p::after {
+form.filter_form article h6::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -980,7 +964,7 @@ form.filter_form div p::after {
 	border-top: 0.9rem solid hsla(141,100%,18%,1);
 }
 // --- Filter Dropdowns --- \\
-form.filter_form div ul {
+form.filter_form article ul {
 	position: absolute;
 	// z-index: 102;
 	top: 4.2rem;
@@ -990,22 +974,41 @@ form.filter_form div ul {
 	border-radius: 0 0 2.4rem 2.4rem; // computer height (48px) / 2
 	opacity: 0;
 	visibility: hidden;
-	overflow: hidden;
-/*
+	// overflow: hidden;
+
 	// Overflow Scroll
 	max-height: 23.2rem;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
-*/
+	// -webkit-overflow-scrolling: touch;
+
 }
-form.filter_form div ul li {
+
+
+
+form.filter_form article ul::-webkit-scrollbar-track {
+	border-radius: 0.2rem;
+	background-color: transparent;
+}
+
+form.filter_form article ul::-webkit-scrollbar {
+	width: 0.4rem;
+	background-color: hsla(0,0%,100%,1);
+}
+form.filter_form article ul::-webkit-scrollbar-thumb {
+	border-radius: 0.2rem;
+	background-color: hsla(141,100%,18%,1);
+}
+
+
+
+form.filter_form article ul li {
 	border-bottom: 0.3rem solid hsla(141,100%,24%,1);
 }
-form.filter_form div ul li:last-child {
+form.filter_form article ul li:last-child {
 	border-bottom: none;
 }
-form.filter_form div ul li a {
+form.filter_form article ul li a {
 	display: block;
 	padding: 1.6rem 2rem;
 	font-size: 1.5rem;
@@ -1014,46 +1017,46 @@ form.filter_form div ul li a {
 	background-color: hsla(0,0%,100%,1);
 }
 // --- Specific Filters --- \\
-form.filter_form div.wrap_filter-brand {
+form.filter_form article.wrap_filter-brand {
 	width: 35.4rem;
 }
-form.filter_form div.wrap_filter-caliber,
-form.filter_form div.wrap_filter-price {
+form.filter_form article.wrap_filter-caliber,
+form.filter_form article.wrap_filter-price {
 	width: 16rem;
 }
 // + toggled + \\
-form.filter_form div p.toggled {
+form.filter_form article.toggled h6 {
 	// border-radius: 2.4rem 2.4rem 0 0;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 	border-color: hsla(141,100%,24%,1);
 }
-form.filter_form div p.toggled::after {
+form.filter_form article.toggled h6::after {
 	border-top-color: hsla(141,100%,24%,1);
 }
-form.filter_form div p.toggled + ul {
+form.filter_form article.toggled ul {
 	opacity: 1;
 	visibility: visible;
 }
 // + interaction + \\
-form.filter_form div:hover p {
+form.filter_form article:hover h6 {
 	border-color: hsla(141,100%,24%,1);
 }
-form.filter_form div:hover p::after {
+form.filter_form article:hover h6::after {
 	border-top-color: hsla(141,100%,24%,1);
 }
-form.filter_form div ul li a:hover {
+form.filter_form article ul li a:hover {
 	background-color: hsla(0,0%,94%,1);
 }
 /*
-form.filter_form div:active p {
+form.filter_form article:active h6 {
 	border-color: hsla(0,0%,80%,1);
 }
-form.filter_form div:active p::after {
+form.filter_form article:active h6::after {
 	border-top-color: hsla(0,0%,80%,1);
 }
 */
-form.filter_form div ul li a:active {
+form.filter_form article ul li a:active {
 	background-color: hsla(0,0%,96%,1);
 }
 
