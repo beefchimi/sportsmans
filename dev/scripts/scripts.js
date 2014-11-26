@@ -86,52 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// searchOptions: Toggle advanced options for the search input
 	// ----------------------------------------------------------------------------
-/*
-	function searchOptions() {
-
-		// not on board with the functionality of this...
-		// would LOVE to suggest an alternative...
-
-		var elSearchInput            = document.getElementById('search_text'),
-			elSearchOptionsToggle    = document.getElementById('toggle_search-options'),
-			elSearchCheckbox         = document.getElementById('search_checkbox'),
-			elSearchCheckboxLabel    = elSearchCheckbox.nextElementSibling,
-			originalInputPlaceholder = elSearchInput.getAttribute('data-placeholder'),
-			originalCheckboxLabel    = elSearchCheckboxLabel.innerHTML;
-
-		elSearchOptionsToggle.addEventListener('click', function(e) {
-
-			this.classList.toggle('toggled');
-
-			e.preventDefault();
-
-		}, false);
-
-		elSearchCheckbox.addEventListener('change', function() {
-
-			// remove 'toggled' class from #toggle_search-options
-			elSearchOptionsToggle.classList.remove('toggled');
-
-			if (elSearchCheckbox.checked) {
-
-				// if #search_checkbox is now :checked
-				elSearchInput.setAttribute('placeholder', 'Search All Departments');
-				elSearchCheckboxLabel.innerHTML = originalInputPlaceholder;
-
-			} else {
-
-				// otherwise, if #search_checkbox is no longer :checked
-				elSearchInput.setAttribute('placeholder', originalInputPlaceholder);
-				elSearchCheckboxLabel.innerHTML = originalCheckboxLabel;
-
-			}
-
-		}, false);
-
-	}
-*/
-
-
 	function searchOptions() {
 
 		var elSearchInput            = document.getElementById('search_text'),
@@ -382,32 +336,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			// assign the click event to each .dropdown_link found in the form.has-dropdown
 			for (var i = 0; i < arrDropdownLinks.length; i++) {
-				filterChange(arrDropdownLinks[i]);
+				optionChange(arrDropdownLinks[i]);
 			}
 
-			function filterChange(thisDropdownLink) {
+			function optionChange(thisDropdownLink) {
 
 				thisDropdownLink.addEventListener('click', function(e) {
 
 					// NEED TO HANDLE CLEARING THE SELECTED OPTION
 					// AS WELL AS FINISH SELECTED STYLING
 
-					var dataValue       = this.getAttribute('data-value'),
-						dataLabel       = this.childNodes[1].innerHTML, // first child is an empty text node
-						elParentList    = this.parentNode,
-						elSiblingLabel  = elParentList.parentNode.previousElementSibling,
-						elParentArticle = elSiblingLabel.parentNode,
-						elMatchedOption = elParentArticle.querySelector('[value="' + dataValue + '"]');
+					var dataValue        = this.getAttribute('data-value'),
+						dataLabel        = this.childNodes[1].innerHTML, // first child is an empty text node
+						elParentLI       = this.parentNode,
+						elSiblingLabel   = elParentLI.parentNode.parentNode.previousElementSibling,
+						elParentArticle  = elSiblingLabel.parentNode,
+						elMatchedOption  = elParentArticle.querySelector('option[value="' + dataValue + '"]'),
+						dataPrevSelected = elParentArticle.getAttribute('data-selected');
 
-					// NEED TO KNOW HOW FORM IS SUBMITTED / VALUES UPDATED...
-					// WILL THE PAGE BE REFRESHED OR IS IT DONE WITHOUT?
-					// 'selected' CLASS WILL NEED TO BE REMOVED FROM A PREVIOUS OPTION DEPENDING
-					// div.wrap_select NEEDS TO UPDATE 'data-select' VALUE (none / chosen)
-
+					// define the correct <option> as :selected
 					elMatchedOption.selected = true;
 
-					// add selected class to parent <li>
-					elParentList.classList.add('selected');
+					// remove 'selected' class from previous <li> then add to parent <li> of newly chosen a[data-value]
+					elParentArticle.querySelector('a[data-value="' + dataPrevSelected + '"]').parentNode.classList.remove('selected');
+					elParentLI.classList.add('selected');
 
 					// replace h6.dropdown_label innerHTML with the selected option text
 					elSiblingLabel.innerHTML = dataLabel;
@@ -415,12 +367,17 @@ document.addEventListener('DOMContentLoaded', function() {
 					// remove 'toggled' class from parent article
 					elParentArticle.classList.remove('toggled');
 
+					// set 'data-selected' to new value
+					elParentArticle.setAttribute('data-selected', dataValue);
+
+/*
 					// TEMP: log the selected data-value and matched <option> to inspect
 					console.log('selected data-value: "' + dataValue + '", followed by matched <option>:');
 					console.log(elMatchedOption);
 
 					// TEST: need to verify everything is working as expected
-					// filterForm.submit();
+					elDropdownForm.submit();
+*/
 
 					e.preventDefault();
 
@@ -433,6 +390,24 @@ document.addEventListener('DOMContentLoaded', function() {
 		// does this load a new page or do we refresh the results with AJAX?
 		// if AJAX, we will need to display the selected option as the label
 		passSelectValue();
+
+	}
+
+
+	// applyScrollable: Measure dropdown height and determine if it requires scrolling
+	// ----------------------------------------------------------------------------
+	function applyScrollable() {
+
+		var arrDropdownWrap = document.getElementsByClassName('wrap_dropdown')
+
+		for (var i = 0; i < arrDropdownWrap.length; i++) {
+
+			// if the total height of this element exceeds 290px
+			if (arrDropdownWrap[i].offsetHeight > 290) {
+				arrDropdownWrap[i].classList.add('scrollable');
+			}
+
+		}
 
 	}
 
@@ -743,6 +718,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	if (isProdIndv || isProdDisp) {
 		selectDropdown();
+		applyScrollable();
 	}
 
 	if (isProdDisp) {

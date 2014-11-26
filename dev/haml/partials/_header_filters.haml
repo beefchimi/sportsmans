@@ -1,6 +1,6 @@
 %form#filter_form.filter_form.has-dropdown{:action => "", :method => "POST", "data-container" => "width-926"}
 
-	%article.wrap_filter-brand{"data-dropdown" => "select"}
+	%article.wrap_filter-brand{"data-selected" => ""}
 
 		-# :onchange => "this.form.submit()"
 		%select#filter_brand.visuallyhidden{:name => "filter_brand"}
@@ -10,26 +10,27 @@
 			%option{:value => "a-3"} Option Three
 			%option{:value => "a-4"} Option Four
 
-		%h6.dropdown_label Brand
+		%h6.dropdown_label.truncate Brand
 
-		%ul.dropdown_list
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => ""}
-					%span.filter_label Clear Selection
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "a-1"}
-					%span.filter_label Option One
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "a-2"}
-					%span.filter_label Option Two
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "a-3"}
-					%span.filter_label Option Three
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "a-4"}
-					%span.filter_label Option Four
+		.wrap_dropdown
+			%ul.dropdown_list
+				%li.dropdown_option.selected
+					%a.dropdown_link{:href => "#", "data-value" => ""}
+						%span.filter_label{"data-label" => "Clear Filter"} Brand
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "a-1"}
+						%span.filter_label Option One
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "a-2"}
+						%span.filter_label Option Two
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "a-3"}
+						%span.filter_label Option Three
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "a-4"}
+						%span.filter_label Option Four
 
-	%article.wrap_filter-caliber{"data-dropdown" => "select"}
+	%article.wrap_filter-caliber{"data-selected" => ""}
 
 		%select#filter_caliber.visuallyhidden{:name => "filter_caliber"}
 			%option{:value => "", :selected => true} Caliber
@@ -40,51 +41,54 @@
 			%option{:value => "b-5"} Option Five
 			%option{:value => "b-6"} Option Six
 
-		%h6.dropdown_label Caliber
+		%h6.dropdown_label.truncate Caliber
 
-		%ul.dropdown_option
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => ""}
-					%span.filter_label Clear Selection
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-1"}
-					%span.filter_label Option One
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-2"}
-					%span.filter_label Option Two
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-3"}
-					%span.filter_label Option Three
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-4"}
-					%span.filter_label Option Four
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-5"}
-					%span.filter_label Option Five
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "b-6"}
-					%span.filter_label Option Six
+		.wrap_dropdown
+			%ul.dropdown_list
+				%li.dropdown_option.selected
+					%a.dropdown_link{:href => "#", "data-value" => ""}
+						%span.filter_label{"data-label" => "Clear Filter"} Caliber
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-1"}
+						%span.filter_label Option One
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-2"}
+						%span.filter_label Option Two
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-3"}
+						%span.filter_label Option Three
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-4"}
+						%span.filter_label Option Four
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-5"}
+						%span.filter_label Option Five
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-6"}
+						%span.filter_label Option Six
 
-	%article.wrap_filter-price{"data-dropdown" => "select"}
+	-# this is an example of a dropdown that has a selected value
+	%article.wrap_filter-price{"data-selected" => "c-1"}
 
 		%select#filter_price.visuallyhidden{:name => "filter_price"}
-			%option{:value => "", :selected => true} Price
-			%option{:value => "c-1"} Option One
+			%option{:value => ""} Price
+			%option{:value => "c-1", :selected => true} Option One
 			%option{:value => "c-2"} Option Two
 			%option{:value => "c-3"} Option Three
 
-		%h6.dropdown_label Price
+		%h6.dropdown_label.truncate Option One
 
-		%ul.dropdown_option
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => ""}
-					%span.filter_label Clear Selection
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "c-1"}
-					%span.filter_label Option One
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "c-2"}
-					%span.filter_label Option Two
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "c-3"}
-					%span.filter_label Option Three
+		.wrap_dropdown
+			%ul.dropdown_list
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => ""}
+						%span.filter_label{"data-label" => "Clear Filter"} Price
+				%li.dropdown_option.selected
+					%a.dropdown_link{:href => "#", "data-value" => "c-1"}
+						%span.filter_label Option One
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "c-2"}
+						%span.filter_label Option Two
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "c-3"}
+						%span.filter_label Option Three

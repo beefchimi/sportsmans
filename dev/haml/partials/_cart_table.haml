@@ -43,7 +43,7 @@
 				%td.product_quantity
 					-# making the assumption that 'min' and 'max' could be different per product...
 					-# 'min', 'max', 'value' and 'name' should be passed in from the initial 'add to cart' step (previous page)
-					%span.adjust_quantity
+					.adjust_quantity
 						%input.adjust_number{:type => "number", :min => "1", :max => "999", :step => "1", :value => "2", :name => "307901"}
 						%button.adjust_decrease{:type => "button"}
 							%svg.svg_minus
@@ -69,7 +69,7 @@
 					%h2.product_id 1298614
 
 				%td.product_quantity
-					%span.adjust_quantity
+					.adjust_quantity
 						%input.adjust_number{:type => "number", :min => "1", :max => "20", :step => "1", :value => "1", :name => "1298614"}
 						%button.adjust_decrease{:type => "button"}
 							%svg.svg_minus
@@ -95,7 +95,7 @@
 					%h2.product_id 311294
 
 				%td.product_quantity
-					%span.adjust_quantity
+					.adjust_quantity
 						%input.adjust_number{:type => "number", :min => "1", :max => "99", :step => "1", :value => "4", :name => "311294"}
 						%button.adjust_decrease{:type => "button"}
 							%svg.svg_minus
@@ -124,7 +124,7 @@
 						%span.product_variation-size Large
 
 				%td.product_quantity
-					%span.adjust_quantity
+					.adjust_quantity
 						%input.adjust_number{:type => "number", :min => "1", :max => "12", :step => "1", :value => "7", :name => "301132"}
 						%button.adjust_decrease{:type => "button"}
 							%svg.svg_minus

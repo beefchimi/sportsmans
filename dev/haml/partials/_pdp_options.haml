@@ -3,13 +3,19 @@
 	-# :onchange => "this.form.submit()"
 	-# if variation is out of stock, that <option> receives the "disabled" attribute - corresponding <li> element gets 'disabled' class
 
+	-# if user has made a selection for both "color" and "size",
+	-# then decides to change the selected <option> for "color",
+	-# "size" needs to be reset back to no selection:
+	-# data-selected = "" | no <option> has :selected | h6.dropdown_label = "2. Select Size" | li.dropdown_option remove class "selected"
+
 	-# this example already has a selected option:
 	-# 'data-select' = "chosen"
 	-# :selected attr is moved to option > color-yellow
 	-# 'selected' class applied to <li> for Yellow
-	.wrap_option-color.wrap_select{"data-select" => "chosen"}
 
-		%select#option_color.option_color.visuallyhidden{:name => "option_color"}
+	%article.wrap_option-color{"data-selected" => "color-yellow"}
+
+		%select#option_color.visuallyhidden{:name => "option_color"}
 			%option{:value => "color-white"} White
 			%option{:value => "color-black"} Black
 			%option{:value => "color-red", :disabled => true} Red
@@ -20,74 +26,79 @@
 			%option{:value => "color-purple"} Purple
 
 		-# non-selected label text would be: 1. Select Color
-		%p#option_label-color.option_label.dropdown_label Yellow
-		%ul.dropdown_option
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "color-white"}
-					%span.variation_label.truncate White
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "color-black"}
-					%span.variation_label.truncate Black
-			%li.dropdown_option.disabled
-				%a.dropdown_link{:href => "#", "data-value" => "color-red"}
-					%span.variation_label.truncate Red
-			%li.dropdown_option.disabled
-				%a.dropdown_link{:href => "#", "data-value" => "color-orange"}
-					%span.variation_label.truncate Orange
-			%li.dropdown_option.selected
-				%a.dropdown_link{:href => "#", "data-value" => "color-yellow"}
-					%span.variation_label.truncate Yellow
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "color-green"}
-					%span.variation_label.truncate Green
-			%li.dropdown_option.disabled
-				%a.dropdown_link{:href => "#", "data-value" => "color-blue"}
-					%span.variation_label.truncate Nautical Ocean Southern Hemisphere Island Blue
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "color-purple"}
-					%span.variation_label.truncate Purple
+		%h6.dropdown_label.truncate Yellow
+
+		.wrap_dropdown
+			%ul.dropdown_list
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "color-white"}
+						%span.variation_label.truncate White
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "color-black"}
+						%span.variation_label.truncate Black
+				%li.dropdown_option.disabled
+					%a.dropdown_link{:href => "#", "data-value" => "color-red"}
+						%span.variation_label.truncate Red
+				%li.dropdown_option.disabled
+					%a.dropdown_link{:href => "#", "data-value" => "color-orange"}
+						%span.variation_label.truncate Orange
+				%li.dropdown_option.selected
+					%a.dropdown_link{:href => "#", "data-value" => "color-yellow"}
+						%span.variation_label.truncate Yellow
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "color-green"}
+						%span.variation_label.truncate Green
+				%li.dropdown_option.disabled
+					%a.dropdown_link{:href => "#", "data-value" => "color-blue"}
+						%span.variation_label.truncate Nautical Ocean Southern Hemisphere Island Blue
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "color-purple"}
+						%span.variation_label.truncate Purple
+
 
 	-# disabled until previous option has been selected
-	-# removed 'disabled' when any <option> with a valid 'value' is :selected
-	-# add 'disabled' class when no option is selected (should not be possible once a selection has been made for the first time)
-	.wrap_option-size.wrap_select{"data-select" => "none"}
+	-# remove 'disabled' when any <option> with a valid 'value' is :selected (non-empty value)
+	-# add 'disabled' class when no option is selected (user decides to change "color" selection)
+	%article.wrap_option-size{"data-selected" => ""}
 
-		%select#option_size.option_size.visuallyhidden{:name => "option_size"}
+		%select#option_size.visuallyhidden{:name => "option_size"}
 			%option{:value => "size-xs"} Extra Small $9.99
 			%option{:value => "size-s"} Small $19.99
 			%option{:value => "size-m", :disabled => true} Medium $29.99
 			%option{:value => "size-l"} Large $39.99
 			%option{:value => "size-xl"} Extra Large $49.99
 
-		%p#option_label-size.option_label.dropdown_label 2. Select Size
-		%ul.dropdown_list
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "size-xs"}
-					%span.variation_label.truncate XS Super Tiny Baby Size
-					%span.variation_stock In Stock
-					%span.variation_price $9.99
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "size-s"}
-					%span.variation_label.truncate S
-					%span.variation_stock In Stock
-					%span.variation_price $19.99
-			%li.dropdown_option.disabled
-				%a.dropdown_link{:href => "#", "data-value" => "size-m"}
-					%span.variation_label.truncate M
-					%span.variation_stock Out of Stock
-					%span.variation_price $29.99
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "size-l"}
-					%span.variation_label.truncate L
-					%span.variation_stock In Stock
-					%span.variation_price $39.99
-			%li.dropdown_option
-				%a.dropdown_link{:href => "#", "data-value" => "size-xl"}
-					%span.variation_label.truncate XL
-					%span.variation_stock In Stock
-					%span.variation_price $49.99
+		%h6.dropdown_label.truncate 2. Select Size
 
-	%span.adjust_quantity
+		.wrap_dropdown
+			%ul.dropdown_list
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "size-xs"}
+						%span.variation_label.truncate XS Long Title Example
+						%span.variation_stock In Stock
+						%span.variation_price $9.99
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "size-s"}
+						%span.variation_label.truncate S
+						%span.variation_stock In Stock
+						%span.variation_price $19.99
+				%li.dropdown_option.disabled
+					%a.dropdown_link{:href => "#", "data-value" => "size-m"}
+						%span.variation_label.truncate M
+						%span.variation_stock Out of Stock
+						%span.variation_price $29.99
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "size-l"}
+						%span.variation_label.truncate L
+						%span.variation_stock In Stock
+						%span.variation_price $39.99
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "size-xl"}
+						%span.variation_label.truncate XL
+						%span.variation_stock In Stock
+						%span.variation_price $49.99
+
+	.adjust_quantity
 		%input.adjust_number{:type => "number", :min => "1", :max => "999", :step => "1", :value => "1", :name => "307901"}
 		%button.adjust_decrease{:type => "button"}
 			%svg.svg_minus
