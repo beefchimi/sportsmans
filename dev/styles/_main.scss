@@ -57,20 +57,28 @@ ul.gallery_slider li {
 div.tooltip {
 	transition: top 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
+
+
+h6.dropdown_label {
+	transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
 form.cart_form.empty-cart,
 form.cart_form.empty-cart + div.cart_empty-message {
 	transition: opacity 0.6s ease-in-out 0.3s, visibility 0.6s ease-in-out 0.3s;
 }
 form.search_form input[type="checkbox"] + label {
-	// transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 	transition: color 0.2s ease-in-out;
 }
+h6.dropdown_label::after,
 form.search_form input[type="checkbox"] + label::before {
 	transition: border-color 0.2s ease-in-out;
 }
 form.search_form input[type="checkbox"] + label::after {
 	transition: background-color 0.2s ease-in-out;
 }
+
+
 
 /*
 
@@ -89,6 +97,8 @@ form.filter_form div ul {
 }
 
 */
+
+
 
 // General Styles
 // ----------------------------------------------------------------------------
@@ -221,6 +231,97 @@ div.tooltip span {
 	vertical-align: middle;
 	text-transform: none;
 	color: hsla(0,0%,100%,1);
+}
+
+// Dropdown Selects
+// ----------------------------------------------------------------------------
+form.has-dropdown article h6 {
+	cursor: pointer;
+	color: hsla(0,0%,100%,1);
+	background-color: hsla(141,100%,18%,1);
+	border: 0.3rem solid hsla(141,100%,18%,1);
+}
+form.has-dropdown article[data-selected=""] h6 {
+	color: hsla(141,100%,18%,1);
+	background-color: hsla(141,100%,18%,0);
+}
+// + option dropdowns + \\
+form.has-dropdown article div {
+	position: absolute;
+	left: 0;
+	right: 0;
+	border: 0.3rem solid hsla(141,100%,18%,1);
+	overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+}
+form.has-dropdown article div ul li {
+	border-bottom: 0.3rem solid hsla(141,100%,18%,1);
+}
+form.has-dropdown article div ul li:last-child {
+	border-bottom: none;
+}
+form.has-dropdown article div ul li a {
+	display: block;
+	position: relative;
+	color: hsla(141,100%,18%,1);
+	background-color: hsla(0,0%,100%,1);
+}
+// + span wraps + \\
+form.has-dropdown article div ul li a span {
+	display: block;
+}
+form.has-dropdown article div ul li a span[data-label] {
+	position: relative;
+	color: hsla(0,0%,100%,0);
+}
+form.has-dropdown article div ul li a span[data-label]::before {
+	content: attr(data-label);
+	position: absolute;
+	color: hsla(141,100%,18%,1);
+	// + truncate + \\
+	overflow: hidden;
+	// padding-bottom: 0.1em;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+// + toggled / selected / disabled + \\
+form.has-dropdown article.toggled div {
+	opacity: 1;
+	visibility: visible;
+}
+form.has-dropdown article div ul li.selected a {
+	pointer-events: none;
+	background-color: hsla(141,29%,94%,1);
+}
+form.has-dropdown article.disabled h6 {
+	pointer-events: none;
+	color: hsla(0,0%,60%,1);
+	background-color: hsla(0,0%,93%,1);
+	border-color: hsla(0,0%,60%,1);
+}
+form.has-dropdown article div ul li.disabled a {
+	pointer-events: none;
+	color: hsla(0,0%,80%,1);
+}
+form.has-dropdown article div ul li.disabled a span[data-label]::before {
+	color: hsla(0,0%,80%,1);
+}
+// + interaction + \\
+form.has-dropdown article:hover h6 {
+	background-color: hsla(141,100%,20%,1);
+}
+form.has-dropdown article[data-selected=""]:hover h6 {
+	background-color: hsla(141,100%,18%,0.06);
+}
+form.has-dropdown article div ul li a:hover {
+	background-color: hsla(0,0%,98%,1);
+}
+form.has-dropdown article.disabled:hover h6 {
+	background-color: hsla(141,100%,18%,0);
+}
+form.has-dropdown article div ul li a:active {
+	background-color: hsla(0,0%,100%,1);
 }
 
 // Scrollable Dropdown Lists
@@ -943,7 +1044,6 @@ form.filter_form {
 	margin-top: 4.8rem; // not reseting header height because there may be instances where .filter_form is hidden
 }
 form.filter_form article {
-	cursor: pointer;
 	display: inline-block;
 	position: relative;
 	z-index: 20;
@@ -959,11 +1059,6 @@ form.filter_form article h6 {
 	line-height: 4.4rem; // height - border
 	font-size: 1.5rem;
 	text-transform: uppercase;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	color: hsla(0,0%,100%,1);
-	background-color: hsla(141,100%,18%,1);
-	border: 0.3rem solid hsla(141,100%,18%,1);
 	border-radius: 2.4rem; // computed height (48px) / 2
 }
 form.filter_form article h6::after {
@@ -978,51 +1073,27 @@ form.filter_form article h6::after {
 	border-right: 0.9rem solid transparent;
 	border-top: 0.9rem solid hsla(0,0%,100%,1);
 }
-form.filter_form article[data-selected=""] h6 {
-	color: hsla(141,100%,18%,1);
-	background-color: hsla(0,0%,100%,1);
+// + valid selection + \\
+form.filter_form article h6::after {
+	border-top: 0.9rem solid hsla(0,0%,100%,1);
 }
+// + empty selection + \\
 form.filter_form article[data-selected=""] h6::after {
 	border-top-color: hsla(141,100%,18%,1);
 }
-// --- Filter Dropdowns --- \\
+// + filter dropdowns + \\
 form.filter_form article div {
-	position: absolute;
 	top: 4.2rem;
-	left: 0;
-	right: 0;
-	border: 0.3rem solid hsla(141,100%,18%,1);
 	border-radius: 0 0 2.4rem 2.4rem; // computer height (48px) / 2
-	overflow: hidden;
-	opacity: 0;
-	visibility: hidden;
-}
-form.filter_form article div ul li {
-	border-bottom: 0.3rem solid hsla(141,100%,18%,1);
-}
-form.filter_form article div ul li:last-child {
-	border-bottom: none;
 }
 form.filter_form article div ul li a {
-	display: block;
-	position: relative;
 	padding: 1.6rem 2rem;
 	font-size: 1.5rem;
-	text-transform: uppercase;
-	color: hsla(141,100%,18%,1);
-	background-color: hsla(0,0%,100%,1);
+	// text-transform: uppercase;
 }
-form.filter_form article div ul li a span {
-	display: block;
-}
-form.filter_form article div ul li a span[data-label] {
-	position: relative;
-	color: hsla(0,0%,100%,0);
-}
+// + span wraps + \\
 form.filter_form article div ul li a span[data-label]::before {
-	content: attr(data-label);
-	position: absolute;
-	color: hsla(141,100%,18%,1);
+	width: 100%;
 }
 // --- Specific Filters --- \\
 form.filter_form article.wrap_filter-brand {
@@ -1032,35 +1103,10 @@ form.filter_form article.wrap_filter-caliber,
 form.filter_form article.wrap_filter-price {
 	width: 16rem;
 }
-// + toggled / selection + \\
+// + toggled / selected + \\
 form.filter_form article.toggled h6 {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-}
-form.filter_form article.toggled div {
-	opacity: 1;
-	visibility: visible;
-}
-form.filter_form article div ul li.selected a {
-	pointer-events: none;
-	color: hsla(0,0%,80%,1);
-	background-color: hsla(0,0%,96%,1);
-}
-form.filter_form article div ul li.selected a span[data-label]::before {
-	color: hsla(0,0%,80%,1);
-}
-// + interaction + \\
-form.filter_form article:hover h6 {
-	background-color: hsla(141,100%,18%,1);
-}
-form.filter_form article[data-selected=""]:hover h6 {
-	background-color: hsla(0,0%,98%,1);
-}
-form.filter_form article ul li a:hover {
-	background-color: hsla(0,0%,96%,1);
-}
-form.filter_form article ul li a:active {
-	background-color: hsla(0,0%,98%,1);
 }
 
 // Footer
@@ -1072,8 +1118,8 @@ footer {
 	bottom: 0;
 	left: 0;
 }
-footer section form,
-footer section article {
+
+footer section form {
 	position: relative;
 	height: 100%;
 }
@@ -1111,89 +1157,38 @@ section.panel_options {
 	height: 15.4rem;
 	background-color: hsla(0,0%,93%,1);
 }
-form.options_form {
-	margin-top: 3.2rem;
-	margin-bottom: 6.4rem; // not reseting header height because there may be instances where .filter_form is hidden
-}
-
-/*
-form.options_form > div,
-form.options_form > span {
-	position: absolute;
-	top: 4.5rem;
-}
-*/
-
 form.options_form > div,
 form.options_form > article {
 	position: absolute;
 	top: 4.5rem;
 }
-
-
-
-
-// --- Options Dropdowns --- \\
+// --- Options Select --- \\
 form.options_form article {
 	left: 0;
 	width: 29.6rem;
 }
 form.options_form article h6 {
-	cursor: pointer;
 	padding: 0 2rem;
 	height: 6.4rem;
 	line-height: 6.1rem; // height - border
 	font-size: 1.8rem;
-	text-transform: uppercase;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	color: hsla(141,100%,18%,1);
-	background-color: hsla(0,0%,93%,1);
-	border: 0.3rem solid hsla(141,100%,18%,1);
 	border-radius: 1.6rem;
 }
-form.options_form article div ul {
-	position: absolute;
+// + empty selection + \\
+form.options_form article[data-selected=""] h6 {
+	text-transform: uppercase;
+}
+// + option dropdowns + \\
+form.options_form article div {
 	bottom: 6.1rem;
-	left: 0;
-	right: 0;
-	border: 0.3rem solid hsla(141,100%,24%,1);
 	border-radius: 1.6rem 1.6rem 0 0;
-	opacity: 0;
-	visibility: hidden;
-	overflow: hidden;
-}
-form.options_form article div ul li {
-	border-bottom: 0.3rem solid hsla(141,100%,24%,1);
-}
-form.options_form article div ul li:last-child {
-	border-bottom: none;
 }
 form.options_form article div ul li a {
-	display: block;
-	position: relative;
 	padding: 2.1rem 2rem;
-/*
-	padding: 0 2rem;
-	height: 6.4rem;
-	line-height: 6.4rem;
-*/
 	font-size: 1.8rem;
-	text-transform: uppercase;
-	color: hsla(141,100%,18%,1);
-	background-color: hsla(0,0%,100%,1);
 }
-
-form.options_form article div ul li a span {
-	display: block;
-/*
-	display: inline-block;
-	line-height: 1;
-	vertical-align: middle;
-*/
-}
-
-form.options_form article div ul li a span.variation_label {
+// + span wraps + \\
+form.options_form article div ul li a span[data-label]::before {
 	width: 5.6rem;
 }
 form.options_form article div ul li a span:only-of-type {
@@ -1216,59 +1211,28 @@ form.options_form article div ul li a span.variation_price {
 	right: 2rem;
 	text-align: right;
 }
-
-
 // + individual options + \\
+form.options_form article:nth-child(2) {
+	left: 35.7rem;
+}
+form.options_form article.wrap_option-size div ul li a {
+	text-transform: uppercase;
+}
+
 /*
 form.options_form div:only-of-type {
 	width: 65.3rem;
 }
 */
-form.options_form article:nth-child(2) {
-	left: 35.7rem;
-}
 
-// + chosen / toggled / disabled + \\
-/*
-form.options_form article div[data-select="chosen"] h6 {
-	text-transform: none;
-	color: hsla(0,0%,100%,1);
-	background-color: hsla(141,100%,18%,1);
-}
-*/
+// + toggled / selected / disabled + \\
 form.options_form article.toggled h6 {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
-	border-color: hsla(141,100%,24%,1);
-	// background-color: hsla(0,0%,100%,1);
-}
-form.options_form article.toggled div {
-	opacity: 1;
-	visibility: visible;
-}
-form.options_form article div ul li.disabled a {
-	pointer-events: none;
-	// cursor: default;
-	color: hsla(0,0%,40%,1);
-	background-color: hsla(0,0%,98%,1);
 }
 form.options_form article div ul li.disabled a span.variation_stock {
 	background-color: hsla(0,0%,80%,1);
 }
-// + interaction + \\
-form.options_form article:hover h6 {
-	border-color: hsla(141,100%,24%,1);
-}
-form.options_form article div ul li a:hover {
-	background-color: hsla(0,0%,98%,1);
-}
-form.options_form article div ul li a:active {
-	background-color: hsla(0,0%,100%,1);
-}
-
-
-
-
 // --- Options Quantity --- \\
 form.options_form div.adjust_quantity {
 	right: 0;
@@ -1289,6 +1253,10 @@ form.options_form div.adjust_quantity button {
 section.panel_cart {
 	height: 18rem;
 	background-color: hsla(117,52%,56%,1);
+}
+section.panel_cart article {
+	position: relative;
+	height: 100%;
 }
 // --- Buttons: Arrows --- \\
 section.panel_cart button.button_common-fill {
@@ -1324,7 +1292,6 @@ section.panel_cart button.arrow_right svg {
 	fill: hsla(141,100%,18%,1);
 	transform: translate(-0.4rem, -0.3rem);
 }
-
 // --- Delete Button --- \\
 section.panel_cart a.button_common-border {
 	top: 5.7rem;
@@ -1338,7 +1305,6 @@ section.panel_cart a.button_common-border:not([data-delete="null"]) div.tooltip 
 	opacity: 1;
 	visibility: visible;
 }
-
 // --- Price --- \\
 aside.wrap_price {
 	padding-top: 5.7rem;
@@ -1356,9 +1322,6 @@ aside.wrap_price div.sale_tag {
 aside.wrap_price div.sale_tag span {
 	line-height: 1.1;
 }
-
-
-
 aside.wrap_price h4 {
 	display: inline-block;
 	font-size: 7.2rem;

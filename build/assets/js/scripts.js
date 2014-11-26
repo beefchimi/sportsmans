@@ -743,7 +743,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		function passSelectValue() {
 
 			var arrDropdownLinks = elDropdownForm.getElementsByClassName('dropdown_link');
-			// var arrSelectOptions = elDropdownForm.getElementsByTagName('option');
 
 			// assign the click event to each .dropdown_link found in the form.has-dropdown
 			for (var i = 0; i < arrDropdownLinks.length; i++) {
@@ -754,32 +753,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				thisDropdownLink.addEventListener('click', function(e) {
 
-					// NEED TO HANDLE CLEARING THE SELECTED OPTION
-					// AS WELL AS FINISH SELECTED STYLING
-
 					var dataValue        = this.getAttribute('data-value'),
 						dataLabel        = this.childNodes[1].innerHTML, // first child is an empty text node
 						elParentLI       = this.parentNode,
-						elSiblingLabel   = elParentLI.parentNode.parentNode.previousElementSibling,
+						elParentUL       = elParentLI.parentNode,
+						elSiblingLabel   = elParentUL.parentNode.previousElementSibling,
 						elParentArticle  = elSiblingLabel.parentNode,
 						elMatchedOption  = elParentArticle.querySelector('option[value="' + dataValue + '"]'),
-						dataPrevSelected = elParentArticle.getAttribute('data-selected');
+						dataPrevSelected = elParentArticle.getAttribute('data-selected'),
+						elPrevSelected   = elParentUL.querySelector('a[data-value="' + dataPrevSelected + '"]');
 
 					// define the correct <option> as :selected
 					elMatchedOption.selected = true;
 
-					// remove 'selected' class from previous <li> then add to parent <li> of newly chosen a[data-value]
-					elParentArticle.querySelector('a[data-value="' + dataPrevSelected + '"]').parentNode.classList.remove('selected');
-					elParentLI.classList.add('selected');
+					// set 'data-selected' to new value
+					elParentArticle.setAttribute('data-selected', dataValue);
 
 					// replace h6.dropdown_label innerHTML with the selected option text
 					elSiblingLabel.innerHTML = dataLabel;
 
+					// remove 'selected' class from previous <li>, if it exists...
+					if (elPrevSelected != null) {
+						elPrevSelected.parentNode.classList.remove('selected');
+					}
+
+					// then add 'selected' class to parent <li> of newly chosen a[data-value]
+					elParentLI.classList.add('selected');
+
 					// remove 'toggled' class from parent article
 					elParentArticle.classList.remove('toggled');
 
-					// set 'data-selected' to new value
-					elParentArticle.setAttribute('data-selected', dataValue);
+					// THIS SHOULD BE RECONSIDERED! THERES GOT TO BE A BETTER WAAY!
+					// Should probably leave the remainder of this function up to TW, as I do not know the specifics of the form submission
+
+					// if we are on the PDP page and we have 2 select options (1. Color / 2. Size)...
+					if (elParentArticle.classList.contains('wrap_option-color')) {
+
+						// remove 'disabled' class from article.wrap_option-size
+						elParentArticle.nextElementSibling.classList.remove('disabled');
+
+					}
+
+					// IMPORTANT: if Color value is changed after Size has been selected, we need to reset Size <select>:
+					// data-selected = "" | remove :selected from <option> | h6.dropdown_label = "2. Select Size" | li.dropdown_option remove class "selected"
 
 /*
 					// TEMP: log the selected data-value and matched <option> to inspect
