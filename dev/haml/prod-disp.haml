@@ -52,9 +52,17 @@
 					%h3 Product Specs
 
 					%ul.product_specs
-						%li Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam.
+						%li
+							Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam.
+							%ul
+								%li Aenean lacinia bibendum nulla sed consectetur.
+								%li Donec id elit non mi porta gravida at eget metus.
+								%li Duis mollis, est non commodo luctus.
 						%li Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
-						%li Sed ut perspiciatis.
+						%li
+							Sed ut perspiciatis.
+							%ul
+								%li Etiam porta sem malesuada magna mollis euismod.
 						%li Sit voluptatem accusantium doloremque laudantium, totam.
 
 		= Haml::Engine.new(File.read("dev/haml/partials/_footer_cart-pdp.haml")).render

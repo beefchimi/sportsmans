@@ -1823,8 +1823,32 @@ section.pdp_information article ul li {
 	font-size: 1.8rem;
 	line-height: 1.4;
 }
+section.pdp_information article ul li {
+	position: relative;
+	padding-left: 2.4rem;
+	color: hsla(141,100%,18%,1);
+}
+section.pdp_information article ul li::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0.6rem;
+	left: 0;
+	width: 0.8rem;
+	height: 0.8rem;
+	background-color: hsla(0,0%,0%,1);
+	border-radius: 50%;
+}
+section.pdp_information article ul li ul {
+	margin-top: 1rem;
+}
+section.pdp_information article ul li ul li {
+	margin-bottom: 1rem;
+	font-size: 1.7rem;
+}
 section.pdp_information article div p:last-child,
-section.pdp_information article ul li:last-child {
+section.pdp_information article ul li:last-child,
+section.pdp_information article ul li ul li:last-child {
 	margin-bottom: 0;
 }
 // + pdp details+ \\
@@ -1836,20 +1860,10 @@ section.pdp_information article.pdp_specs {
 	padding-left: 5.4rem;
 }
 section.pdp_information article.pdp_specs ul li {
-	position: relative;
-	padding-left: 2.4rem;
 	color: hsla(141,100%,18%,1);
 }
 section.pdp_information article.pdp_specs ul li::before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0.6rem;
-	left: 0;
-	width: 0.8rem;
-	height: 0.8rem;
 	background-color: hsla(141,100%,18%,1);
-	border-radius: 50%;
 }
 // + only one + \\
 section.pdp_information article:only-child {
