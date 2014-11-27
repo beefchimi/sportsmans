@@ -1,4 +1,4 @@
-.reviews
+%aside#reviews.reviews
 
 	-# if no reviews, output this <p>
 	-# %p.no-reviews There are no reviews for this product
@@ -17,7 +17,7 @@
 	-# and add the following attribute: [ style = "display: block; width: 50%;" ]
 	-# changing "50%" to whatever the decimal may be (ex. .2 * 100 = 20)
 
-	%ul.reviews_rating{"data-rating" => "3"}
+	%ul.reviews_rating.aggregated{"data-rating" => "3"}
 		%li.star-1
 			.poly_star
 			%svg.svg_star
@@ -42,3 +42,67 @@
 	-# Would it be easier if I wrapped "15" in a tag?
 	-# "Review(s)" pluralized when greater than 1
 	%a#reviews_link.reviews_link{:href => "#", :title => "Read Reviews"} Read 15 Reviews
+
+
+
+	#reviews_customer.reviews_customer{"data-container" => "926"}
+
+		.title_row
+
+			-# exactly the same as the ul.reviews_rating above
+			%ul.reviews_rating.aggregated{"data-rating" => "3"}
+				%li.star-1
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+				%li.star-2
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+				%li.star-3
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+				%li.star-4
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+				%li.star-5
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+
+			%h5 Reviews
+
+			%a#reviews_close.button_close{:href => "#", :title => "Close Window"}
+				%svg.svg_remove
+					%use{"xlink:href" => "#remove"}
+
+		%ul#reviews_list.reviews_list
+
+			%li#review-1
+
+				%h6 Trevor of Alburquerque, NM &ndash May, 06 2011:
+				%p Too big and bulky for the test weight, overwise fantastic. Joy overwhelms me.
+
+				%ul.reviews_rating.individual{"data-rating" => "2"}
+					%li.star-1
+						.poly_star
+						%svg.svg_star
+							%use{'xlink:href' => '#star'}
+					%li.star-2
+						.poly_star
+						%svg.svg_star
+							%use{'xlink:href' => '#star'}
+					%li.star-3
+						.poly_star
+						%svg.svg_star
+							%use{'xlink:href' => '#star'}
+					%li.star-4
+						.poly_star
+						%svg.svg_star
+							%use{'xlink:href' => '#star'}
+					%li.star-5
+						.poly_star
+						%svg.svg_star
+							%use{'xlink:href' => '#star'}

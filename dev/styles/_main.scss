@@ -1719,11 +1719,121 @@ div.product_headlines h1 {
 	-webkit-line-clamp: 4;
 	overflow-y: hidden;
 }
+// --- Product Content --- \\
+article.pdp_content p,
+article.pdp_content li {
+	font-family: 'ArcherProMedium';
+	font-size: 2rem;
+	line-height: 1.4;
+}
+article.pdp_content p,
+article.pdp_content ul,
+article.pdp_content ol,
+article.pdp_content li {
+	margin-bottom: 2.4rem;
+}
+article.pdp_content li {
+	position: relative;
+	padding-left: 2.4rem;
+}
+article.pdp_content li ul,
+article.pdp_content li ol {
+	margin-top: 1rem;
+}
+article.pdp_content li li {
+	margin-bottom: 1rem;
+	font-size: 1.7rem;
+}
+article.pdp_content ol {
+	counter-reset: ordered-counter;
+}
+article.pdp_content ol li::before {
+	content: counter(ordered-counter, decimal);
+	counter-increment: ordered-counter;
+	display: block;
+	position: absolute;
+	top: -0.2rem;
+	left: 0;
+	font-family: 'ArcherProSemibold';
+	color: hsla(0,0%,20%,1);
+}
+article.pdp_content ul > li::before {
+	counter-increment: none;
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0.6rem;
+	left: 0;
+	width: 0.8rem;
+	height: 0.8rem;
+	background-color: hsla(0,0%,30%,1);
+	border-radius: 50%;
+}
+article.pdp_content p:last-child,
+article.pdp_content ul:last-child,
+article.pdp_content ol:last-child,
+article.pdp_content li:last-child {
+	margin-bottom: 0;
+}
+// --- Product Description --- \\
+section.pdp_description {
+	margin: 6rem 0;
+	padding: 4rem 0;
+	border-top: 0.3rem solid hsla(0,0%,80%,1);
+	border-bottom: 0.3rem solid hsla(0,0%,80%,1);
+}
+// --- Product Information --- \\
+section.pdp_information {
+	display: flex;
+	flex-direction: row;
+}
+section.pdp_information article {
+	width: 50%;
+}
+section.pdp_information article h3 {
+	margin-bottom: 3.2rem;
+	font-size: 2.4rem;
+	text-transform: uppercase;
+	color: hsla(141,100%,18%,1);
+}
+section.pdp_information article p,
+section.pdp_information article li {
+	font-family: 'ArcherProSemibold';
+	font-size: 1.8rem;
+}
+// + pdp details+ \\
+section.pdp_information article.pdp_details {
+	padding-right: 5.4rem;
+}
+// + pdp specs + \\
+section.pdp_information article.pdp_specs {
+	padding-left: 5.4rem;
+}
+section.pdp_information article.pdp_specs li,
+section.pdp_information article.pdp_specs ol li::before {
+	color: hsla(141,100%,18%,1);
+}
+section.pdp_information article.pdp_specs ul > li::before {
+	background-color: hsla(141,100%,18%,1);
+}
+// + only one + \\
+section.pdp_information article:only-child {
+	padding: 0;
+}
+
+// Product Reviews
+// ----------------------------------------------------------------------------
+
+div.reviews_customer {
+	display: none;
+}
+
+
 // --- Review Ratings --- \\
-div.reviews {
+aside.reviews {
 	vertical-align: top;
 }
-div.reviews p {
+aside.reviews p {
 	font-size: 1.6rem;
 	color: hsla(0,0%,60%,1);
 }
@@ -1804,85 +1914,7 @@ a.reviews_link:active {
 	color: hsla(141,100%,18%,1);
 	border-color: hsla(141,100%,18%,1);
 }
-// --- Product Description --- \\
-section.pdp_description {
-	margin: 6rem 0;
-	padding: 4rem 0;
-	border-top: 0.3rem solid hsla(0,0%,80%,1);
-	border-bottom: 0.3rem solid hsla(0,0%,80%,1);
-}
-section.pdp_description p {
-	font-family: 'ArcherProMedium';
-	font-size: 2rem;
-	line-height: 1.3;
-}
-// --- Product Information --- \\
-section.pdp_information {
-	display: flex;
-	flex-direction: row;
-}
-section.pdp_information article {
-	width: 50%;
-}
-section.pdp_information article h3 {
-	margin-bottom: 3.2rem;
-	font-size: 2.4rem;
-	text-transform: uppercase;
-	color: hsla(141,100%,18%,1);
-}
-section.pdp_information article div p,
-section.pdp_information article ul li {
-	margin-bottom: 2.5rem;
-	font-family: 'ArcherProSemibold';
-	font-size: 1.8rem;
-	line-height: 1.4;
-}
-section.pdp_information article ul li {
-	position: relative;
-	padding-left: 2.4rem;
-	color: hsla(141,100%,18%,1);
-}
-section.pdp_information article ul li::before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0.6rem;
-	left: 0;
-	width: 0.8rem;
-	height: 0.8rem;
-	background-color: hsla(0,0%,0%,1);
-	border-radius: 50%;
-}
-section.pdp_information article ul li ul {
-	margin-top: 1rem;
-}
-section.pdp_information article ul li ul li {
-	margin-bottom: 1rem;
-	font-size: 1.7rem;
-}
-section.pdp_information article div p:last-child,
-section.pdp_information article ul li:last-child,
-section.pdp_information article ul li ul li:last-child {
-	margin-bottom: 0;
-}
-// + pdp details+ \\
-section.pdp_information article.pdp_details {
-	padding-right: 5.4rem;
-}
-// + pdp specs + \\
-section.pdp_information article.pdp_specs {
-	padding-left: 5.4rem;
-}
-section.pdp_information article.pdp_specs ul li {
-	color: hsla(141,100%,18%,1);
-}
-section.pdp_information article.pdp_specs ul li::before {
-	background-color: hsla(141,100%,18%,1);
-}
-// + only one + \\
-section.pdp_information article:only-child {
-	padding: 0;
-}
+
 
 // Product Gallery
 // ----------------------------------------------------------------------------

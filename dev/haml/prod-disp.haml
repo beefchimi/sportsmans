@@ -33,21 +33,48 @@
 
 			%section#pdp_description.pdp_description
 
-				%p.product_description Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+				%article.pdp_content
+
+					%p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+
+					%ul
+						%li
+							Quis autem vel eum iure reprehenderit qui.
+							%ul
+								%li Quasi architecto beatae vitae dicta.
+								%li Dolores eos qui ratione.
+						%li
+							In ea voluptate velit esse quam nihil molestiae consequatur.
+							%ol
+								%li Quasi architecto beatae vitae dicta.
+								%li Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+								%li Dolores eos qui ratione.
+						%li Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
 
 			%section#pdp_information.pdp_information
 
 				-# if either Details or Specs is not required, simply omit the <article>
-
-				%article#pdp_details.pdp_details{"data-col" => "left"}
+				%article#pdp_details.pdp_details.pdp_content{"data-col" => "left"}
 
 					%h3 Product Details
 
-					.product_details
-						%p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-						%p Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+					%p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
 
-				%article#pdp_specs.pdp_specs{"data-col" => "right"}
+					%ol
+						%li
+							Quis autem vel eum iure reprehenderit qui.
+							%ol
+								%li Quasi architecto beatae vitae dicta.
+								%li Dolores eos qui ratione.
+						%li
+							In ea voluptate velit esse quam nihil molestiae consequatur.
+							%ul
+								%li Quasi architecto beatae vitae dicta.
+								%li Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+								%li Dolores eos qui ratione.
+						%li Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+
+				%article#pdp_specs.pdp_specs.pdp_content{"data-col" => "right"}
 
 					%h3 Product Specs
 
@@ -61,8 +88,10 @@
 						%li Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
 						%li
 							Sed ut perspiciatis.
-							%ul
-								%li Etiam porta sem malesuada magna mollis euismod.
+							%ol
+								%li Aenean lacinia bibendum nulla sed consectetur.
+								%li Donec id elit non mi porta gravida at eget metus.
+								%li Duis mollis, est non commodo luctus.
 						%li Sit voluptatem accusantium doloremque laudantium, totam.
 
 		= Haml::Engine.new(File.read("dev/haml/partials/_footer_cart-pdp.haml")).render
