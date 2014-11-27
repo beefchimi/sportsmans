@@ -1174,11 +1174,24 @@ body.page_cart-checkout {
 body.page_prod-disp {
 	padding-bottom: 38.2rem; // 48px + 154px + 180px
 }
+
 // + helper class for hiding header & footer when testing + \\
 body.hide-fixed div.row-1,
 body.hide-fixed footer {
 	opacity: 0;
+	visibility: 0;
 }
+
+
+/*
+div.row-1,
+footer {
+	opacity: 0;
+	visibility: 0;
+}
+*/
+
+
 
 // Footer: Panel Options
 // ----------------------------------------------------------------------------
@@ -1675,21 +1688,8 @@ section.product_grid article:last-child {
 	margin-right: 0;
 }
 
-
-
 // Product Display Page
 // ----------------------------------------------------------------------------
-
-
-/*
-header div.row-1,
-footer {
-	opacity: 0;
-}
-*/
-
-
-// --- Section: Main --- \\
 section.pdp_main {
 	display: flex;
 	flex-direction: row;
@@ -1823,13 +1823,6 @@ section.pdp_information article:only-child {
 
 // Product Reviews
 // ----------------------------------------------------------------------------
-
-div.reviews_customer {
-	display: none;
-}
-
-
-// --- Review Ratings --- \\
 aside.reviews {
 	vertical-align: top;
 }
@@ -1837,6 +1830,7 @@ aside.reviews p {
 	font-size: 1.6rem;
 	color: hsla(0,0%,60%,1);
 }
+// --- Review Ratings --- \\
 ul.reviews_rating {
 	display: inline-block;
 	position: relative;
@@ -1914,6 +1908,106 @@ a.reviews_link:active {
 	color: hsla(141,100%,18%,1);
 	border-color: hsla(141,100%,18%,1);
 }
+
+
+
+// --- Reviews Customer --- \\
+
+
+div.reviews_customer {
+	display: none;
+}
+
+
+div.reviews_customer {
+	position: fixed;
+	z-index: 200;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width: 93.4rem; // standard container width + border (926 + 8)
+	height: 60rem;
+	// height: 100rem;
+	background: hsla(0,0%,100%,1);
+	border: 0.4rem solid hsla(141,100%,18%,1);
+	border-radius: 2rem;
+	overflow: hidden;
+}
+
+
+// --- Title Row --- \\
+div.reviews_customer div.title_row {
+	position: relative;
+	padding: 4rem 0;
+	border-bottom: 0.4rem solid hsla(141,100%,18%,1);
+}
+div.reviews_customer div.title_row h5 {
+	font-size: 2.6rem;
+	color: hsla(141,100%,18%,1);
+	text-align: center;
+	text-transform: uppercase;
+}
+
+div.reviews_customer div.title_row ul.reviews_rating {
+	display: block;
+	position: absolute;
+	top: 2.6rem;
+	left: 2rem;
+}
+
+
+div.reviews_customer div.title_row a.button_close {
+	position: absolute;
+	top: 0rem;
+	right: 2rem;
+}
+
+/*
+
+		.title_row
+
+			-# exactly the same as the ul.reviews_rating above
+			%ul.reviews_rating.aggregated{"data-rating" => "3"}
+				%li.star-1
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+				%li.star-2
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+				%li.star-3
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+				%li.star-4
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+				%li.star-5
+					.poly_star
+					%svg.svg_star
+						%use{'xlink:href' => '#star'}
+
+			%h5 Reviews
+
+			%a#reviews_close.button_close{:href => "#", :title => "Close Window"}
+				%svg.svg_remove
+					%use{"xlink:href" => "#remove"}
+
+*/
+
+
+ul.reviews_list {
+	max-height: 100%;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+
+
 
 
 // Product Gallery

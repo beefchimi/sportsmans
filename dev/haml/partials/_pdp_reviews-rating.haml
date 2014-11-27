@@ -45,9 +45,11 @@
 
 
 
-	#reviews_customer.reviews_customer{"data-container" => "926"}
+	#reviews_customer.reviews_customer
 
 		.title_row
+
+			%h5 Reviews
 
 			-# exactly the same as the ul.reviews_rating above
 			%ul.reviews_rating.aggregated{"data-rating" => "3"}
@@ -72,37 +74,36 @@
 					%svg.svg_star
 						%use{'xlink:href' => '#star'}
 
-			%h5 Reviews
-
 			%a#reviews_close.button_close{:href => "#", :title => "Close Window"}
 				%svg.svg_remove
 					%use{"xlink:href" => "#remove"}
 
 		%ul#reviews_list.reviews_list
 
-			%li#review-1
+			- (1..24).each do |i|
+				%li{:id => "review-#{i}"}
 
-				%h6 Trevor of Alburquerque, NM &ndash May, 06 2011:
-				%p Too big and bulky for the test weight, overwise fantastic. Joy overwhelms me.
+					%h6 Trevor of Alburquerque, NM &ndash May, 06 2011:
+					%p Too big and bulky for the test weight, overwise fantastic. Joy overwhelms me.
 
-				%ul.reviews_rating.individual{"data-rating" => "2"}
-					%li.star-1
-						.poly_star
-						%svg.svg_star
-							%use{'xlink:href' => '#star'}
-					%li.star-2
-						.poly_star
-						%svg.svg_star
-							%use{'xlink:href' => '#star'}
-					%li.star-3
-						.poly_star
-						%svg.svg_star
-							%use{'xlink:href' => '#star'}
-					%li.star-4
-						.poly_star
-						%svg.svg_star
-							%use{'xlink:href' => '#star'}
-					%li.star-5
-						.poly_star
-						%svg.svg_star
-							%use{'xlink:href' => '#star'}
+					%ul.reviews_rating.individual{"data-rating" => "2"}
+						%li.star-1
+							.poly_star
+							%svg.svg_star
+								%use{'xlink:href' => '#star'}
+						%li.star-2
+							.poly_star
+							%svg.svg_star
+								%use{'xlink:href' => '#star'}
+						%li.star-3
+							.poly_star
+							%svg.svg_star
+								%use{'xlink:href' => '#star'}
+						%li.star-4
+							.poly_star
+							%svg.svg_star
+								%use{'xlink:href' => '#star'}
+						%li.star-5
+							.poly_star
+							%svg.svg_star
+								%use{'xlink:href' => '#star'}
