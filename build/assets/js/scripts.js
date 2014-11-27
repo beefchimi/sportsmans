@@ -839,6 +839,72 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
+	// popoutToggle: Open / Close popout product table
+	// ----------------------------------------------------------------------------
+	function popoutToggle() {
+
+		var elPopoutForm = document.getElementsByClassName('has-popout')[0];
+
+		// check if form.has-popout does not exist
+		if (elPopoutForm == null) {
+			return;
+		}
+
+		// form.has-dropdown exists, so lets get the popout button / label
+		var elPopoutLabel     = document.getElementById('popout_label'),
+			elPopoutClose     = document.getElementById('popout_close'),
+			arrPopoutQuantity = elPopoutForm.getElementsByClassName('adjust_number');
+
+		// popout_label can be clicked to toggle the popout
+		elPopoutLabel.addEventListener('click', function() {
+
+			// no need to preventDefault, since this is an h6
+			elPopoutForm.classList.toggle('visible');
+			calcSum();
+
+		}, false);
+
+		// popout_close will remove the 'visible' class
+		elPopoutClose.addEventListener('click', function(e) {
+
+			elPopoutForm.classList.remove('visible');
+			calcSum();
+
+			e.preventDefault();
+
+		}, false);
+
+		function calcSum() {
+
+			var numTotalItems = 0,
+				strItemText;
+
+			for (var i = 0; i < arrPopoutQuantity.length; i++) {
+				numTotalItems += parseInt( arrPopoutQuantity[i].getAttribute('value') );
+			}
+
+			if (numTotalItems <= 0) {
+
+				// remove 'populated' class and reset innerHTML of h6#popout_label
+				elPopoutLabel.classList.remove('populated');
+				elPopoutLabel.innerHTML = elPopoutLabel.getAttribute('data-label');
+
+			} else {
+
+				// determine whether or not to pluraize Items by checkign if numTotalItems is greater than 1
+				strItemText = numTotalItems > 1 ? ' Items' : ' Item';
+
+				// add 'populated' class and update innerHTML of h6#popout_label
+				elPopoutLabel.classList.add('populated');
+				elPopoutLabel.innerHTML = numTotalItems + strItemText;
+
+			}
+
+		}
+
+	}
+
+
 	// quantityAdjust: Increase / Decrease product quantity
 	// ----------------------------------------------------------------------------
 	function quantityAdjust() {
@@ -863,6 +929,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				thisValue          = parseInt( thisQuantityInput.value ),
 				elQuantityDecrease = thisQuantityInput.nextElementSibling,
 				elQuantityIncrease = elQuantityDecrease.nextElementSibling,
+				// elQuantityTracker  = thisQuantityInput.parentNode,
 				enteredValue;
 
 /*
@@ -1151,6 +1218,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (isProdDisp) {
 		gallerySlider();
 		modalToggle();
+		popoutToggle();
 	}
 
 	if (isQuantityForm) {

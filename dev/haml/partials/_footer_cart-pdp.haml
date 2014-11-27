@@ -1,8 +1,17 @@
+-# alternate product select for complex products, such as fishing rods
+= Haml::Engine.new(File.read("dev/haml/partials/_pdp_options-table.haml")).render
+
 %footer
 
 	%section#panel_options.panel_options
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_pdp_options.haml")).render
+		-# standard select / quantity inputs for common products, such as clothing
+		-# = Haml::Engine.new(File.read("dev/haml/partials/_pdp_options-select.haml")).render
+
+		-# button for alternate product select
+		-# remove if standard select / add if complex select
+		%article.wrap_popout-button{"data-container" => "width-926"}
+			%h6#popout_label.popout_label{"data-label" => "Select Type"} Select Type
 
 	%section#panel_cart.panel_cart
 
@@ -31,7 +40,7 @@
 					%span.price_label Regular Price:
 					%span.price_reg $699.99 &ndash; $899.99
 
-			-# attributes for form <button>s may need to be populated: deferring to TW on what to do
+			-# attributes for form <button>s will need to be populated: TW will need to fill in these values
 			-# https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
 
 			%button#button_finalize.arrow_right{:form => "options_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"}

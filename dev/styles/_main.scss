@@ -45,12 +45,13 @@ button {
 	transition: all 0.2s ease-in-out;
 }
 div.loader,
-[data-modal],
 p.error_invalid,
 aside.widget_cart,
 div.row-1 div.logo_sportsmans {
 	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
+[data-modal],
+form.has-popout,
 ul.gallery_slider li {
 	transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
 }
@@ -59,6 +60,7 @@ div.tooltip {
 }
 
 
+h6.popout_label,
 h6.dropdown_label {
 	transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
@@ -154,7 +156,10 @@ form input[type="tel"]:invalid {
 	margin-right: auto;
 }
 [data-container="width-926"] {
-	max-width: 92.6rem;
+	width: 92.6rem;
+}
+[data-container="width-1000"] {
+	width: 100rem;
 }
 
 // CSS Loader
@@ -484,13 +489,38 @@ button.button_circle:active {
 	opacity: 0.9;
 }
 
+// Button Close
+// ----------------------------------------------------------------------------
+a.button_close {
+	display: block;
+	margin: 2rem auto;
+	width: 6.4rem;
+	height: 6.4rem;
+	text-align: center;
+	line-height: 5.7rem; // vertical centre: height - border
+	border: 0.3rem solid hsla(141,100%,18%,1);
+	border-radius: 50%;
+}
+a.button_close svg {
+	display: inline-block;
+	margin: 0 auto;
+	width: 54%;
+	height: 54%;
+	// vertical-align: middle;
+	fill: hsla(141,100%,18%,1);
+}
+a.button_close:hover {
+	opacity: 0.8;
+}
+a.button_close:active {
+	opacity: 1;
+}
+
 // Quantity Input
 // ----------------------------------------------------------------------------
 div.adjust_quantity {
 	display: block;
 	position: relative;
-	// margin: 0 auto;
-	// width: 15rem;
 }
 div.adjust_quantity p.error_invalid {
 	position: absolute;
@@ -1118,7 +1148,6 @@ footer {
 	bottom: 0;
 	left: 0;
 }
-
 footer section form {
 	position: relative;
 	height: 100%;
@@ -1131,25 +1160,11 @@ body.page_cart-checkout {
 body.page_prod-disp {
 	padding-bottom: 38.2rem; // 48px + 154px + 180px
 }
-
-
-
+// + helper class for hiding header & footer when testing + \\
 body.hide-fixed div.row-1,
 body.hide-fixed footer {
 	opacity: 0;
 }
-
-
-
-/*
-div.row-1,
-footer {
-	display: none;
-	opacity: 0;
-}
-*/
-
-
 
 // Footer: Panel Options
 // ----------------------------------------------------------------------------
@@ -1218,13 +1233,6 @@ form.options_form article:nth-child(2) {
 form.options_form article.wrap_option-size div ul li a {
 	text-transform: uppercase;
 }
-
-/*
-form.options_form div:only-of-type {
-	width: 65.3rem;
-}
-*/
-
 // + toggled / selected / disabled + \\
 form.options_form article.toggled h6 {
 	border-top-left-radius: 0;
@@ -1234,18 +1242,136 @@ form.options_form article div ul li.disabled a span.variation_stock {
 	background-color: hsla(0,0%,80%,1);
 }
 // --- Options Quantity --- \\
-form.options_form div.adjust_quantity {
+form.options_form > div.adjust_quantity {
 	right: 0;
 	width: 21.2rem;
 }
-form.options_form div.adjust_quantity input[type="number"] {
+form.options_form > div.adjust_quantity input[type="number"] {
 	width: 8.4rem;
 	height: 6.4rem;
 	font-size: 2.8rem;
 }
-form.options_form div.adjust_quantity button {
+form.options_form > div.adjust_quantity button {
 	width: 6.4rem;
 	height: 6.4rem;
+}
+
+
+// --- Options Popout --- \\
+form.has-popout {
+	position: fixed;
+	z-index: 290;
+	top: 12.6rem; // height of header div.row-1
+	right: 0;
+	bottom: 33.4rem; // height of footer
+	left: 0;
+	padding: 10rem 0 6rem 0;
+	background-color: hsla(0,0%,100%,1);
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	opacity: 0;
+	visibility: hidden;
+}
+form.has-popout.visible {
+	opacity: 1;
+	visibility: visible;
+}
+form.has-popout h5 {
+	margin-bottom: 10rem;
+	font-size: 2.6rem;
+	color: hsla(141,100%,18%,1);
+	text-align: center;
+	text-transform: uppercase;
+}
+form.has-popout a.button_close {
+	position: absolute;
+	top: 9rem;
+	right: 4rem;
+}
+
+// + popout table + \\
+form.has-popout table tr {
+	border-bottom: 0.3rem solid hsla(0,0%,80%,1);
+}
+form.has-popout table thead tr th {
+	padding-bottom: 1rem;
+	font-size: 1.1rem;
+	text-align: left;
+	text-transform: uppercase;
+	color: hsla(141,100%,18%,1);
+}
+form.has-popout table tbody tr td {
+	padding: 1rem 0.6rem 1rem 0;
+	font-size: 1.3rem;
+	white-space: nowrap;
+}
+// + quantity input + \\
+form.has-popout table thead tr th.header_quantity {
+	color: hsla(141,100%,18%,0);
+}
+form.has-popout table tbody tr td.product_quantity {
+	padding-right: 0;
+	width: 11.7rem;
+}
+form.has-popout table tbody tr td.product_quantity div.adjust_quantity {
+	width: 11.7rem;
+}
+form.has-popout table tbody tr td.product_quantity div.adjust_quantity input[type="number"] {
+	width: 4.5rem;
+	height: 3.6rem;
+	font-size: 1.7rem;
+}
+form.has-popout table tbody tr td.product_quantity div.adjust_quantity button {
+	width: 3.6rem;
+	height: 3.6rem;
+}
+form.has-popout table tbody tr td.product_quantity div.adjust_quantity button svg {
+	transform: translateY(-0.1rem);
+}
+// + popout button + \\
+article.wrap_popout-button {
+	padding-top: 4.5rem;
+}
+article.wrap_popout-button h6 {
+	cursor: pointer;
+	position: relative;
+	padding: 0 2rem;
+	height: 6.4rem;
+	font-size: 1.8rem;
+	line-height: 6.1rem; // height - border
+	text-align: center;
+	text-transform: uppercase;
+	color: hsla(141,100%,18%,1);
+	background-color: hsla(141,100%,18%,0);
+	border: 0.3rem solid hsla(141,100%,18%,1);
+	border-radius: 1.6rem;
+}
+article.wrap_popout-button h6::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 2.5rem;
+	right: 2.6rem;
+	width: 0;
+	height: 0;
+	border-left: 0.8rem solid transparent;
+	border-right: 0.8rem solid transparent;
+	border-top: 1rem solid hsla(141,100%,18%,1);
+}
+// + populated + \\
+article.wrap_popout-button h6.populated {
+	color: hsla(0,0%,100%,1);
+	background-color: hsla(141,100%,18%,1);
+}
+article.wrap_popout-button h6.populated::after {
+	border-top-color: hsla(0,0%,100%,1);
+}
+// + interaction + \\
+article.wrap_popout-button h6:hover {
+	background-color: hsla(141,100%,18%,0.06);
+}
+article.wrap_popout-button h6.populated:hover {
+	background-color: hsla(141,100%,20%,1);
 }
 
 // Footer: Panel Cart
@@ -1956,8 +2082,8 @@ form.cart_form tbody tr td:nth-child(-n+4) {
 form.cart_form thead tr th {
 	padding-bottom: 2rem;
 	font-size: 2rem;
-	color: hsla(141,100%,18%,1);
 	text-transform: uppercase;
+	color: hsla(141,100%,18%,1);
 }
 form.cart_form thead tr th:nth-child(n+2),
 form.cart_form tbody tr td:nth-child(n+2) {
@@ -2059,29 +2185,7 @@ form.cart_form tbody tr td.product_quantity div.adjust_quantity button {
 	height: 4.6rem;
 }
 // + button: remove + \\
-form.cart_form a.remove_this {
-	display: block;
-	margin: 2rem auto;
-	width: 6.4rem;
-	height: 6.4rem;
-	text-align: center;
-	line-height: 5.7rem; // vertical centre: height - border
-	border: 0.3rem solid hsla(141,100%,18%,1);
-	border-radius: 50%;
-}
-form.cart_form a.remove_this svg {
-	display: inline-block;
-	margin: 0 auto;
-	width: 54%;
-	height: 54%;
-	// vertical-align: middle;
-	fill: hsla(141,100%,18%,1);
-}
-form.cart_form a.remove_this:hover {
-	opacity: 0.8;
-}
-form.cart_form a.remove_this:active {
-	opacity: 1;
+form.cart_form a.button_close {
 }
 // + button: finalize + \\
 form.cart_form button.arrow_right {

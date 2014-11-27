@@ -1,0 +1,51 @@
+%form#options_form.options_form.has-popout.has-quantity{:action => "", :method => "POST"}
+
+	%h5.popout_heading Select Type
+
+	%a#popout_close.button_close{:href => "#", :title => "Close Window"}
+		%svg.svg_remove
+			%use{"xlink:href" => "#remove"}
+
+	%table{"data-container" => "width-1000"}
+
+		%thead
+			%tr
+				%th.header_item Item #
+				%th.header_action Action
+				%th.header_length Length
+				%th.header_weight Weight
+				%th.header_model Model
+				%th.header_power Power
+				%th.header_lure-wt Lure WT
+				%th.header_handle Handle
+				%th.header_brand Brand
+				%th.header_piece Piece
+				%th.header_price Price
+				%th.header_quantity Quantity
+
+		%tbody
+
+			-# row ID is suffixed with item ID
+			- (1..12).each do |i|
+				%tr{:id => "row_12345-#{i}"}
+					%td.product_item 12345-#{i}
+					%td.product_action Extra Fast
+					%td.product_length 6ft 8in
+					%td.product_weight 3.9oz
+					%td.product_model LX568MXF
+					%td.product_power Medium
+					%td.product_lure-wt 3/16 &ndash; 5/8oz
+					%td.product_handle 6
+					%td.product_brand St Croix
+					%td.product_piece 1
+					%td.product_price $320.50
+					%td.product_quantity
+						.adjust_quantity
+							%input.adjust_number{:type => "number", :min => "0", :max => "999", :step => "1", :value => "0", :name => "#12345-{i}"}
+							%button.adjust_decrease{:type => "button"}
+								%svg.svg_minus
+									%use{"xlink:href" => "#minus"}
+							%button.adjust_increase{:type => "button"}
+								%svg.svg_plus
+									%use{"xlink:href" => "#plus"}
+							%p.error_invalid Invalid Input
