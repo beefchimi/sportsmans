@@ -1851,6 +1851,10 @@ section.pdp_information article.pdp_specs ul li::before {
 	background-color: hsla(141,100%,18%,1);
 	border-radius: 50%;
 }
+// + only one + \\
+section.pdp_information article:only-child {
+	padding: 0;
+}
 
 // Product Gallery
 // ----------------------------------------------------------------------------
