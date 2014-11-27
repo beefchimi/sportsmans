@@ -14,9 +14,9 @@
 
 		.wrap_dropdown
 			%ul.dropdown_list
-				%li.dropdown_option.selected
-					%a.dropdown_link{:href => "#", "data-value" => ""}
-						%span.filter_label{"data-label" => "Clear Filter with a title so long it overflows"} Brand
+				-# %li.dropdown_option.selected
+					-# %a.dropdown_link{:href => "#", "data-value" => ""}
+						-# %span.filter_label{"data-label" => "Clear Filter with a title so long it overflows"} Brand
 				%li.dropdown_option
 					%a.dropdown_link{:href => "#", "data-value" => "a-1"}
 						%span.filter_label Option One
@@ -29,6 +29,10 @@
 				%li.dropdown_option
 					%a.dropdown_link{:href => "#", "data-value" => "a-4"}
 						%span.filter_label Option Four
+
+		%i.filter_reset
+			%svg.svg_remove-thick
+				%use{"xlink:href" => "#remove-thick"}
 
 	%article.wrap_filter-caliber{"data-selected" => ""}
 
@@ -45,9 +49,9 @@
 
 		.wrap_dropdown
 			%ul.dropdown_list
-				%li.dropdown_option.selected
-					%a.dropdown_link{:href => "#", "data-value" => ""}
-						%span.filter_label{"data-label" => "Clear Filter"} Caliber
+				-# %li.dropdown_option.selected
+					-# %a.dropdown_link{:href => "#", "data-value" => ""}
+						-# %span.filter_label{"data-label" => "Clear Filter"} Caliber
 				%li.dropdown_option
 					%a.dropdown_link{:href => "#", "data-value" => "b-1"}
 						%span.filter_label Option One
@@ -67,6 +71,11 @@
 					%a.dropdown_link{:href => "#", "data-value" => "b-6"}
 						%span.filter_label Option Six
 
+		-# visible when a value is selected
+		%i.filter_reset
+			%svg.svg_remove-thick
+				%use{"xlink:href" => "#remove-thick"}
+
 	-# this is an example of a dropdown that has a selected value
 	%article.wrap_filter-price{"data-selected" => "c-1"}
 
@@ -80,9 +89,9 @@
 
 		.wrap_dropdown
 			%ul.dropdown_list
-				%li.dropdown_option
-					%a.dropdown_link{:href => "#", "data-value" => ""}
-						%span.filter_label{"data-label" => "Clear Filter"} Price
+				-# %li.dropdown_option
+					-# %a.dropdown_link{:href => "#", "data-value" => ""}
+						-# %span.filter_label{"data-label" => "Clear Filter"} Price
 				%li.dropdown_option.selected
 					%a.dropdown_link{:href => "#", "data-value" => "c-1"}
 						%span.filter_label Option One
@@ -92,3 +101,7 @@
 				%li.dropdown_option
 					%a.dropdown_link{:href => "#", "data-value" => "c-3"}
 						%span.filter_label Option Three
+
+		%i.filter_reset
+			%svg.svg_remove-thick
+				%use{"xlink:href" => "#remove-thick"}

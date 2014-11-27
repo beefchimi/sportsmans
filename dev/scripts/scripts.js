@@ -283,23 +283,51 @@ document.addEventListener('DOMContentLoaded', function() {
 		// function for toggling dropdowns
 		function dropdownToggle(thisDropdownArticle) {
 
-			var thisDropdownLabel = thisDropdownArticle.getElementsByTagName('h6')[0];
-			// var thisParentArticle = thisDropdownLabel.parentNode;
+			var thisDropdownLabel = thisDropdownArticle.getElementsByTagName('h6')[0],
+				thisParentArticle;
 
 			thisDropdownLabel.addEventListener('click', function(e) {
+
+				thisParentArticle = this.parentNode;
 
 				// run through each dropdown article...
 				for (var i = 0; i < arrDropdownArticle.length; i++) {
 
 					// and if this is NOT the parent dropdown we have clicked on...
-					if (arrDropdownArticle[i] != this.parentNode) {
+					if (arrDropdownArticle[i] != thisParentArticle) {
 						arrDropdownArticle[i].classList.remove('toggled'); // remove the 'toggled' class
 					}
 
 				}
 
-				// allow for class toggling on the clicked dropdown
-				thisDropdownArticle.classList.toggle('toggled');
+				// if this is the filter form, we need to handle things differently...
+				if ( elDropdownForm.classList.contains('filter_form') ) {
+
+					var elDefaultOption = thisDropdownArticle.querySelector('option[value=""]'),
+						elSelectedLI    = thisDropdownArticle.querySelector('li.selected');
+
+					// if we have clicked on a h6 that already has a value
+					if (thisParentArticle.getAttribute('data-selected') != "") {
+
+						// reset selected data
+						elDefaultOption.selected = true;
+						this.innerHTML = elDefaultOption.innerHTML;
+						elSelectedLI.classList.remove('selected');
+						thisDropdownArticle.setAttribute('data-selected', '');
+						thisDropdownArticle.classList.remove('toggled');
+
+					} else {
+
+						thisDropdownArticle.classList.add('toggled');
+
+					}
+
+				} else {
+
+					// allow for class toggling on the clicked dropdown
+					thisDropdownArticle.classList.toggle('toggled');
+
+				}
 
 				e.preventDefault();
 
