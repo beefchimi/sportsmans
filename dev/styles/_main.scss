@@ -52,6 +52,7 @@ div.row-1 div.logo_sportsmans {
 }
 [data-modal],
 form.has-popout,
+div.reviews_customer,
 ul.gallery_slider li {
 	transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
 }
@@ -331,9 +332,6 @@ form.has-dropdown article div ul li a:active {
 
 // Scrollable Dropdown Lists
 // ----------------------------------------------------------------------------
-div.scrollable {
-	height: 29rem; // 23.2rem;
-}
 div.scrollable ul {
 	height: 100%;
 	overflow-x: hidden;
@@ -1130,6 +1128,9 @@ form.filter_form article div {
 	top: 4.2rem;
 	border-radius: 0 0 2.4rem 2.4rem; // computer height (48px) / 2
 }
+form.filter_form article div.scrollable {
+	height: 29rem; // once attr() has wider support, we will use that
+}
 form.filter_form article div ul li a {
 	padding: 1.6rem 2rem;
 	font-size: 1.5rem;
@@ -1184,6 +1185,7 @@ body.hide-fixed footer {
 
 
 
+
 /*
 div.row-1,
 footer {
@@ -1191,6 +1193,7 @@ footer {
 	visibility: 0;
 }
 */
+
 
 
 
@@ -1900,20 +1903,17 @@ a.reviews_link:active {
 }
 // --- Reviews Customer --- \\
 div.reviews_customer {
-	opacity: 0;
-	visibility: hidden;
+	z-index: 200; // default [data-modal] is 400... this needs to be behind the header and footer, which is 300
 }
-div.reviews_customer {
-	position: fixed;
-	z-index: 200;
-	top: 0;
+div.reviews_customer div.wrap_reviews {
+	position: absolute;
+	top: 50%;
 	right: 0;
-	bottom: 0;
 	left: 0;
+	transform: translateY(-50%);
 	margin: auto;
 	width: 93.4rem; // standard container width + border (926 + 8)
-	height: 60rem;
-	// height: 100rem;
+	max-height: 100rem;
 	background: hsla(0,0%,100%,1);
 	border: 0.4rem solid hsla(141,100%,18%,1);
 	border-radius: 2rem;
@@ -1942,10 +1942,8 @@ div.reviews_customer div.title_row a.button_close {
 	right: 3.2rem;
 }
 // --- Reviews List --- \\
-ul.reviews_list {
-	max-height: 100%;
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
+div.reviews_customer div.scrollable {
+	height: 89.8rem; // once attr() has wider support, we will use that
 }
 ul.reviews_list > li {
 	position: relative;
@@ -1982,31 +1980,12 @@ ol.reviews_rating.individual li > svg {
 	height: 2rem;
 }
 
-
-
-/*
-
-	ALL OVERLAYS / MODALS MUST USE THE ANIMATION TECHNIQUE AS TO PREVENT BODY SCROLLING!
-	REVIEWS LISTS NEEDS A SCROLLBAR!
-
-*/
-
-
-
 // Product Gallery
 // ----------------------------------------------------------------------------
 article.pdp_gallery {
 	position: relative;
 	padding-top: 2rem;
 }
-/*
-div.wrap_slider {
-	margin-left: 12.7rem; // 492px - 270px / 2 + 16px
-	width: 27rem;
-	height: 23.8rem;
-	overflow-x: hidden;
-}
-*/
 ul.gallery_slider {
 	position: relative;
 	margin-left: 12.7rem; // 492px - 270px / 2 + 16px
@@ -2167,13 +2146,10 @@ article.pdp_gallery > a:active {
 article.pdp_gallery > a:active svg {
 	fill: hsla(141,100%,18%,1);
 }
-
-
 // --- Full Sized Image --- \\
 [data-modal="image"] img {
 	margin: 0 auto 6rem auto;
 }
-
 
 // Cart Checkout
 // ----------------------------------------------------------------------------
@@ -2335,15 +2311,8 @@ form.cart_form button.arrow_right {
 	right: 5.2rem; // width of triangle
 }
 
-
-
-
-
-
-
 // CSR Pages
 // ----------------------------------------------------------------------------
-
 // --- Customer Information --- \\
 body.page_csr-info main.wrap_content {
 	transform: translateY(-38%);
@@ -2351,28 +2320,43 @@ body.page_csr-info main.wrap_content {
 body.page_csr-info form h1 {
 	margin-bottom: 2.6rem;
 }
-
-
-
 // --- CSR Cart --- \\
 body.page_csr-cart {
 }
 body.page_csr-cart header.header_csr {
 	margin-bottom: 8rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+// + thead + \\
+body.page_csr-cart form.cart_form thead tr th.header_item {
+	width: 17%;
+}
+body.page_csr-cart form.cart_form thead tr th.header_barcode {
+	width: 17%;
+	color: transparent;
+}
+// + tfoot + \\
+form.cart_form tfoot tr td:first-child {
+	padding-left: 34.8rem;
+}
+// + tbody + \\
+body.page_csr-cart form.cart_form tbody tr td.product_item h1 {
+	margin-bottom: 0.4rem;
+	font-size: 1.5rem;
+	line-height: 1.1;
+}
+body.page_csr-cart form.cart_form tbody tr td.product_item h2 {
+	font-size: 1.6rem;
+}
+body.page_csr-cart form.cart_form tbody tr td.product_item h3 {
+	margin-bottom: 0.4rem;
+	font-size: 1.3rem;
+}
+body.page_csr-cart form.cart_form tbody tr td.product_item h2 + h3 {
+	margin-top: 1.6rem; // variations may not always be included, so applying margin to first h3
+}
+body.page_csr-cart form.cart_form tbody tr td.product_item h3:last-child {
+	margin-bottom: 0;
+}
 
 // View Specific: temporary styles
 // ----------------------------------------------------------------------------

@@ -1,0 +1,100 @@
+%form#cart_form.cart_form{:action => "", :method => "GET", "data-tax" => "15"}
+
+	-# %input#phone_tel.phone_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "xxx-xxx-xxxx", :required => true}
+	-# %button.arrow_right Continue
+
+	%table
+
+		%thead
+			%tr
+				%th.header_item Item
+				%th.header_quantity Quantity
+				%th.header_price Price
+				%th.header_total Total
+				%th.header_remove Remove
+				%th.header_barcode Barcode
+
+		%tfoot
+			%tr#row_product-total
+				%td{:colspan => "4"} Product total
+				%td#cell_product-total{:colspan => "2"} $564.93
+			%tr#row_tax
+				%td{:colspan => "4"} Tax
+				%td#cell_tax{:colspan => "2"} $84.74
+			%tr#row_order-total
+				%td{:colspan => "2"} Order total
+				%td#cell_order-total{:colspan => "4"} $649.67
+
+		%tbody
+
+			-# row ID is suffixed with product or sku ID
+			%tr#row_307901
+
+				%td.product_item
+					%h1.product_title Columbia Women’s Camp Henry Long Sleeve Shirt
+					%h2.product_id 307901
+					-# variations may not be applicable for every product
+					%h3.variation
+						Color:
+						%span.product_variation-color Inkling Plaid
+					%h3.variation
+						Size:
+						%span.product_variation-size Medium
+
+				%td.product_quantity
+					-# making the assumption that 'min' and 'max' could be different per product...
+					-# 'min', 'max', 'value' and 'name' should be passed in from the initial 'add to cart' step (previous page)
+					.adjust_quantity
+						%input.adjust_number{:type => "number", :min => "1", :max => "999", :step => "1", :value => "2", :name => "307901"}
+						%button.adjust_decrease{:type => "button"}
+							%svg.svg_minus
+								%use{"xlink:href" => "#minus"}
+						%button.adjust_increase{:type => "button"}
+							%svg.svg_plus
+								%use{"xlink:href" => "#plus"}
+						%p.error_invalid Invalid Input
+
+				%td.product_price $32.99
+
+				%td.product_total $65.98
+
+				%td.product_remove
+					%a.remove_this.button_close.modal_open{:href => "#modal_cart-remove", :title => "Remove This Product", "data-parent" => "307901"}
+						%svg.svg_remove
+							%use{"xlink:href" => "#remove"}
+
+				%td.product_barcode
+					%img{:src => "assets/img/barcode.png", :alt => "barcode-id"}
+
+			%tr#row_1298614
+
+				%td.product_item
+					%h1.product_title Remington UMC 45 ACP 230gr 500-Pack Handgun Ammo
+					%h2.product_id 1298614
+
+				%td.product_quantity
+					.adjust_quantity
+						%input.adjust_number{:type => "number", :min => "1", :max => "20", :step => "1", :value => "1", :name => "1298614"}
+						%button.adjust_decrease{:type => "button"}
+							%svg.svg_minus
+								%use{"xlink:href" => "#minus"}
+						%button.adjust_increase{:type => "button"}
+							%svg.svg_plus
+								%use{"xlink:href" => "#plus"}
+						%p.error_invalid Invalid Input
+
+				%td.product_price $219.99
+
+				%td.product_total $219.99
+
+				%td.product_remove
+					%a.remove_this.button_close.modal_open{:href => "#modal_cart-remove", :title => "Remove This Product", "data-parent" => "1298614"}
+						%svg.svg_remove
+							%use{"xlink:href" => "#remove"}
+
+				%td.product_barcode
+					%img{:src => "assets/img/barcode.png", :alt => "barcode-id"}
+
+-# might consider adding this only when cart is empty, rather than included right away
+#cart_empty-message.cart_empty-message
+	%h4 Your Cart is Empty

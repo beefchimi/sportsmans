@@ -52,89 +52,94 @@
 
 	-# Would it be easier if I wrapped "15" in a tag?
 	-# "Review(s)" pluralized when greater than 1
-	%a#reviews_link.reviews_link{:href => "#", :title => "Read Reviews"} Read 15 Reviews
+	%a#reviews_link.reviews_link.modal_open{:href => "#reviews_customer", :title => "Read Reviews"} Read 15 Reviews
 
-	#reviews_customer.reviews_customer
 
-		.title_row
 
-			%h5 Reviews
+	#reviews_customer.reviews_customer{"data-modal" => "reviews_customer"}
 
-			-# exactly the same as the ul.reviews_rating above
-			-# this example uses a partial rating of 3.5
-			%ol.reviews_rating.aggregated{"data-rating" => "3.5"}
-				%li.star-1
-					.wrap_svg
-						%svg.svg_star-fill
-							%use{'xlink:href' => '#star-fill'}
-					%svg.svg_star-stroke
-						%use{'xlink:href' => '#star-stroke'}
-				%li.star-2
-					.wrap_svg
-						%svg.svg_star-fill
-							%use{'xlink:href' => '#star-fill'}
-					%svg.svg_star-stroke
-						%use{'xlink:href' => '#star-stroke'}
-				%li.star-3
-					.wrap_svg
-						%svg.svg_star-fill
-							%use{'xlink:href' => '#star-fill'}
-					%svg.svg_star-stroke
-						%use{'xlink:href' => '#star-stroke'}
-				%li.star-4
-					.wrap_svg{:style => "opacity: 1; width: 50%;"}
-						%svg.svg_star-fill
-							%use{'xlink:href' => '#star-fill'}
-					%svg.svg_star-stroke
-						%use{'xlink:href' => '#star-stroke'}
-				%li.star-5
-					.wrap_svg
-						%svg.svg_star-fill
-							%use{'xlink:href' => '#star-fill'}
-					%svg.svg_star-stroke
-						%use{'xlink:href' => '#star-stroke'}
+		.wrap_reviews
 
-			%a#reviews_close.button_close{:href => "#", :title => "Close Window"}
-				%svg.svg_remove
-					%use{"xlink:href" => "#remove"}
+			.title_row
 
-		%ul#reviews_list.reviews_list
+				%h5 Reviews
 
-			- (1..24).each do |i|
-				%li{:id => "review-#{i}"}
+				-# exactly the same as the ul.reviews_rating above
+				-# this example uses a partial rating of 3.5
+				%ol.reviews_rating.aggregated{"data-rating" => "3.5"}
+					%li.star-1
+						.wrap_svg
+							%svg.svg_star-fill
+								%use{'xlink:href' => '#star-fill'}
+						%svg.svg_star-stroke
+							%use{'xlink:href' => '#star-stroke'}
+					%li.star-2
+						.wrap_svg
+							%svg.svg_star-fill
+								%use{'xlink:href' => '#star-fill'}
+						%svg.svg_star-stroke
+							%use{'xlink:href' => '#star-stroke'}
+					%li.star-3
+						.wrap_svg
+							%svg.svg_star-fill
+								%use{'xlink:href' => '#star-fill'}
+						%svg.svg_star-stroke
+							%use{'xlink:href' => '#star-stroke'}
+					%li.star-4
+						.wrap_svg{:style => "opacity: 1; width: 50%;"}
+							%svg.svg_star-fill
+								%use{'xlink:href' => '#star-fill'}
+						%svg.svg_star-stroke
+							%use{'xlink:href' => '#star-stroke'}
+					%li.star-5
+						.wrap_svg
+							%svg.svg_star-fill
+								%use{'xlink:href' => '#star-fill'}
+						%svg.svg_star-stroke
+							%use{'xlink:href' => '#star-stroke'}
 
-					%h6.truncate Trevor of Alburquerque, NM &ndash; May, 06 2011:
-					%p Too big and bulky for the test weight, overwise fantastic. Joy overwhelms me.
+				%a#reviews_close.button_close.modal_close{:href => "#", :title => "Close Window"}
+					%svg.svg_remove
+						%use{"xlink:href" => "#remove"}
 
-					-# 'aggregated' class is replaced with 'individual'
-					%ol.reviews_rating.individual{"data-rating" => "2"}
-						%li.star-1
-							.wrap_svg
-								%svg.svg_star-fill
-									%use{'xlink:href' => '#star-fill'}
-							%svg.svg_star-stroke
-								%use{'xlink:href' => '#star-stroke'}
-						%li.star-2
-							.wrap_svg
-								%svg.svg_star-fill
-									%use{'xlink:href' => '#star-fill'}
-							%svg.svg_star-stroke
-								%use{'xlink:href' => '#star-stroke'}
-						%li.star-3
-							.wrap_svg
-								%svg.svg_star-fill
-									%use{'xlink:href' => '#star-fill'}
-							%svg.svg_star-stroke
-								%use{'xlink:href' => '#star-stroke'}
-						%li.star-4
-							.wrap_svg
-								%svg.svg_star-fill
-									%use{'xlink:href' => '#star-fill'}
-							%svg.svg_star-stroke
-								%use{'xlink:href' => '#star-stroke'}
-						%li.star-5
-							.wrap_svg
-								%svg.svg_star-fill
-									%use{'xlink:href' => '#star-fill'}
-							%svg.svg_star-stroke
-								%use{'xlink:href' => '#star-stroke'}
+			.wrap_scroll-list{"data-maxheight" => "898"}
+				%ul#reviews_list.reviews_list
+
+					- (1..24).each do |i|
+						%li{:id => "review-#{i}"}
+
+							%h6.truncate Trevor of Alburquerque, NM &ndash; May, 06 2011:
+							%p Too big and bulky for the test weight, overwise fantastic. Joy overwhelms me.
+
+							-# 'aggregated' class is replaced with 'individual'
+							%ol.reviews_rating.individual{"data-rating" => "2"}
+								%li.star-1
+									.wrap_svg
+										%svg.svg_star-fill
+											%use{'xlink:href' => '#star-fill'}
+									%svg.svg_star-stroke
+										%use{'xlink:href' => '#star-stroke'}
+								%li.star-2
+									.wrap_svg
+										%svg.svg_star-fill
+											%use{'xlink:href' => '#star-fill'}
+									%svg.svg_star-stroke
+										%use{'xlink:href' => '#star-stroke'}
+								%li.star-3
+									.wrap_svg
+										%svg.svg_star-fill
+											%use{'xlink:href' => '#star-fill'}
+									%svg.svg_star-stroke
+										%use{'xlink:href' => '#star-stroke'}
+								%li.star-4
+									.wrap_svg
+										%svg.svg_star-fill
+											%use{'xlink:href' => '#star-fill'}
+									%svg.svg_star-stroke
+										%use{'xlink:href' => '#star-stroke'}
+								%li.star-5
+									.wrap_svg
+										%svg.svg_star-fill
+											%use{'xlink:href' => '#star-fill'}
+									%svg.svg_star-stroke
+										%use{'xlink:href' => '#star-stroke'}

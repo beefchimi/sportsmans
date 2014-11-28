@@ -442,13 +442,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function applyScrollable() {
 
-		var arrDropdownWrap = document.getElementsByClassName('wrap_dropdown')
+		var arrScrollWrap = document.getElementsByClassName('wrap_scroll-list'),
+			numMaxHeight;
 
-		for (var i = 0; i < arrDropdownWrap.length; i++) {
+		for (var i = 0; i < arrScrollWrap.length; i++) {
 
-			// if the total height of this element exceeds 290px
-			if (arrDropdownWrap[i].offsetHeight > 290) {
-				arrDropdownWrap[i].classList.add('scrollable');
+			numMaxHeight = parseInt( arrScrollWrap[i].getAttribute('data-maxheight') );
+
+			// if the total height of this element exceeds the data-maxheight value
+			if (arrScrollWrap[i].offsetHeight > numMaxHeight) {
+				arrScrollWrap[i].classList.add('scrollable');
 			}
 
 		}
@@ -799,6 +802,42 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
+	// viewReviews: reveal / hide customer reviews
+	// ----------------------------------------------------------------------------
+	function viewReviews() {
+
+		var elReviewLink = document.getElementById('reviews_link');
+
+		// check if #reviews_link does not exist
+		if (elReviewLink == null) {
+			return;
+		}
+
+		// #reviews_link exists, so lets continue
+		var elReviewModal = document.getElementById('reviews_customer'),
+			elReviewClose = document.getElementById('reviews_close');
+
+		// click #reviews_link to reveal #reviews_customer
+		elReviewLink.addEventListener('click', function(e) {
+
+			elReviewModal.classList.add('visible');
+
+			e.preventDefault();
+
+		}, false);
+
+		// click #reviews_close to hide #reviews_customer
+		elReviewClose.addEventListener('click', function(e) {
+
+			elReviewModal.classList.remove('visible');
+
+			e.preventDefault();
+
+		}, false);
+
+	}
+
+
 	// Window Events: On - Scroll, Resize
 	// ----------------------------------------------------------------------------
 
@@ -836,6 +875,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		gallerySlider();
 		modalToggle();
 		popoutToggle();
+		applyScrollable();
+		// viewReviews();
 	}
 
 	if (isQuantityForm) {

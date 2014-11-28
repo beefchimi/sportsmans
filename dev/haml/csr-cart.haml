@@ -12,7 +12,7 @@
 		= Haml::Engine.new(File.read("dev/haml/partials/_header_csr.haml")).render
 
 		%main{:role => "main", "data-container" => "width-926"}
-			= Haml::Engine.new(File.read("dev/haml/partials/_cart_table.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/_cart_csr.haml")).render
 			= Haml::Engine.new(File.read("dev/haml/partials/_modal_cart-remove.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/_footer_cart-csr.haml")).render
