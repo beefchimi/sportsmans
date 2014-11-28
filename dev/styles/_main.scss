@@ -1183,6 +1183,7 @@ body.hide-fixed footer {
 }
 
 
+
 /*
 div.row-1,
 footer {
@@ -1190,6 +1191,7 @@ footer {
 	visibility: 0;
 }
 */
+
 
 
 
@@ -1754,7 +1756,7 @@ article.pdp_content ol li::before {
 	position: absolute;
 	top: -0.2rem;
 	left: 0;
-	font-family: 'ArcherProSemibold';
+	font-family: 'ArcherProBold';
 	color: hsla(0,0%,20%,1);
 }
 article.pdp_content ul > li::before {
@@ -1826,70 +1828,58 @@ section.pdp_information article:only-child {
 aside.reviews {
 	vertical-align: top;
 }
-aside.reviews p {
+aside.reviews p.no-reviews {
 	font-size: 1.6rem;
 	color: hsla(0,0%,60%,1);
 }
 // --- Review Ratings --- \\
-ul.reviews_rating {
-	display: inline-block;
-	position: relative;
-	z-index: 100;
-	margin-right: 3.2rem;
+ol.reviews_rating {
+	display: inline-flex;
 	width: 16.4rem;
 	height: 2.8rem;
+}
+aside.reviews > ol.reviews_rating {
+	margin-right: 3.2rem;
 	transform: translateY(1rem); // compensate for height of reviews link
 }
-ul.reviews_rating li {
-	position: absolute;
-	top: 0;
+ol.reviews_rating li {
+	flex: 0 1 auto;
+	position: relative;
+	margin-right: 0.6rem;
+}
+ol.reviews_rating li:last-child {
+	margin-right: 0;
+}
+ol.reviews_rating li div {
+	overflow-x: hidden;
+}
+ol.reviews_rating li,
+ol.reviews_rating li div svg,
+ol.reviews_rating li > svg {
 	width: 2.8rem;
 	height: 2.8rem;
 }
-ul.reviews_rating li.star-1 {
-	left: 0;
+ol.reviews_rating li div svg {
+	fill: hsla(28,82%,63%,1);
 }
-ul.reviews_rating li.star-2 {
-	left: 3.4rem;
-}
-ul.reviews_rating li.star-3 {
-	left: 6.8rem;
-}
-ul.reviews_rating li.star-4 {
-	left: 10.2rem;
-}
-ul.reviews_rating li.star-5 {
-	left: 13.6rem;
-}
-ul.reviews_rating li div.poly_star,
-ul.reviews_rating li svg.svg_star {
+ol.reviews_rating li > svg {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
-}
-ul.reviews_rating li div.poly_star {
-	z-index: 1;
-	background: hsla(28,82%,63%,1);
-	clip-path: polygon(28px 10.857px, 18.425px 9.317px, 14px 0.684px, 9.575px 9.314px, 0px 10.858px, 6.84px 17.734px, 5.347px 27.316px, 14px 22.935px, 22.653px 27.315px, 21.16px 17.733px); // star vector
-}
-ul.reviews_rating li svg.svg_star {
-	z-index: 2;
 	fill: hsla(0,0%,60%,1);
 }
 // + reveal logic + \\
-ul.reviews_rating[data-rating^="0"] li div.poly_star,
-ul.reviews_rating[data-rating^="1"] li:nth-child(n+2) div.poly_star,
-ul.reviews_rating[data-rating^="2"] li:nth-child(n+3) div.poly_star,
-ul.reviews_rating[data-rating^="3"] li:nth-child(n+4) div.poly_star,
-ul.reviews_rating[data-rating^="4"] li:nth-child(n+5) div.poly_star,
-ul.reviews_rating[data-rating^="1"] li:nth-child(-n+1) svg.svg_star,
-ul.reviews_rating[data-rating^="2"] li:nth-child(-n+2) svg.svg_star,
-ul.reviews_rating[data-rating^="3"] li:nth-child(-n+3) svg.svg_star,
-ul.reviews_rating[data-rating^="4"] li:nth-child(-n+4) svg.svg_star,
-ul.reviews_rating[data-rating^="5"] li:nth-child(-n+5) svg.svg_star {
-	display: none;
+ol.reviews_rating[data-rating^="0"] li div,
+ol.reviews_rating[data-rating^="1"] li:nth-child(n+2) div,
+ol.reviews_rating[data-rating^="2"] li:nth-child(n+3) div,
+ol.reviews_rating[data-rating^="3"] li:nth-child(n+4) div,
+ol.reviews_rating[data-rating^="4"] li:nth-child(n+5) div,
+ol.reviews_rating[data-rating^="1"] li:nth-child(-n+1) > svg,
+ol.reviews_rating[data-rating^="2"] li:nth-child(-n+2) > svg,
+ol.reviews_rating[data-rating^="3"] li:nth-child(-n+3) > svg,
+ol.reviews_rating[data-rating^="4"] li:nth-child(-n+4) > svg,
+ol.reviews_rating[data-rating^="5"] li:nth-child(-n+5) > svg {
+	opacity: 0;
 }
 // + view ratings button + \\
 a.reviews_link {
@@ -1908,17 +1898,11 @@ a.reviews_link:active {
 	color: hsla(141,100%,18%,1);
 	border-color: hsla(141,100%,18%,1);
 }
-
-
-
 // --- Reviews Customer --- \\
-
-
 div.reviews_customer {
-	display: none;
+	opacity: 0;
+	visibility: hidden;
 }
-
-
 div.reviews_customer {
 	position: fixed;
 	z-index: 200;
@@ -1935,8 +1919,6 @@ div.reviews_customer {
 	border-radius: 2rem;
 	overflow: hidden;
 }
-
-
 // --- Title Row --- \\
 div.reviews_customer div.title_row {
 	position: relative;
@@ -1949,64 +1931,65 @@ div.reviews_customer div.title_row h5 {
 	text-align: center;
 	text-transform: uppercase;
 }
-
-div.reviews_customer div.title_row ul.reviews_rating {
-	display: block;
+div.reviews_customer div.title_row ol.reviews_rating {
 	position: absolute;
-	top: 2.6rem;
-	left: 2rem;
+	top: 3.8rem;
+	left: 3.2rem;
 }
-
-
 div.reviews_customer div.title_row a.button_close {
 	position: absolute;
-	top: 0rem;
-	right: 2rem;
+	top: 0;
+	right: 3.2rem;
 }
-
-/*
-
-		.title_row
-
-			-# exactly the same as the ul.reviews_rating above
-			%ul.reviews_rating.aggregated{"data-rating" => "3"}
-				%li.star-1
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
-				%li.star-2
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
-				%li.star-3
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
-				%li.star-4
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
-				%li.star-5
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
-
-			%h5 Reviews
-
-			%a#reviews_close.button_close{:href => "#", :title => "Close Window"}
-				%svg.svg_remove
-					%use{"xlink:href" => "#remove"}
-
-*/
-
-
+// --- Reviews List --- \\
 ul.reviews_list {
 	max-height: 100%;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
 }
+ul.reviews_list > li {
+	position: relative;
+	padding: 2.6rem 3.2rem;
+	border-bottom: 0.4rem solid hsla(141,100%,18%,1);
+}
+ul.reviews_list > li:last-child {
+	border-bottom: none;
+}
+ul.reviews_list > li h6 {
+	margin-bottom: 1rem;
+	width: 71.4rem;
+	font-size: 2rem;
+}
+ul.reviews_list > li p {
+	font-family: 'ArcherProSemibold';
+	font-size: 2rem;
+	color: hsla(0,0%,40%,1);
+}
+ol.reviews_rating.individual {
+	position: absolute;
+	top: 2.6rem;
+	right: 3.2rem;
+	width: 11.6rem;
+	height: 2rem;
+}
+ol.reviews_rating.individual li {
+	margin-right: 0.4rem;
+}
+ol.reviews_rating.individual li,
+ol.reviews_rating.individual li div svg,
+ol.reviews_rating.individual li > svg {
+	width: 2rem;
+	height: 2rem;
+}
 
 
+
+/*
+
+	ALL OVERLAYS / MODALS MUST USE THE ANIMATION TECHNIQUE AS TO PREVENT BODY SCROLLING!
+	REVIEWS LISTS NEEDS A SCROLLBAR!
+
+*/
 
 
 

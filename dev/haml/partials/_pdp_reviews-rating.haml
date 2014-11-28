@@ -3,47 +3,56 @@
 	-# if no reviews, output this <p>
 	-# %p.no-reviews There are no reviews for this product
 
-	-# otherwise, output this:
+	-# otherwise, output everything that follows:
 
 	-# the sportsmans website seems to use partial ratings,
 	-# but visually, it only shows full or empty stars (ex. 4.7 = 5 full stars)
 	-# do we need to visually account for partial ratings? (1.2, 2.9, 4.6)
 
 	-# if not, the logic here is simple...
-	-# simply round the partial rating and use the integer for 'data-rating' (ex. 4.2 = 4 |or| 4.7 = 5)
+	-# round the partial rating and use the integer for 'data-rating' (ex. 4.2 = 4 |or| 4.7 = 5)...
+	-# although is does appear that the website rounds up, so a 4.1 rating is shown as 5 stars
 
 	-# otherwise, use the floating point value for 'data-value' (ex. 3.5)
 	-# in this example, since 3 is followed by a decimal, we go to the 4th <li> element,
-	-# and add the following attribute: [ style = "display: block; width: 50%;" ]
+	-# and add the attributes: [ style = "opacity: 1; width: 50%;" ] to the child div.wrap_svg,
 	-# changing "50%" to whatever the decimal may be (ex. .2 * 100 = 20)
 
-	%ul.reviews_rating.aggregated{"data-rating" => "3"}
+	%ol.reviews_rating.aggregated{"data-rating" => "3"}
 		%li.star-1
-			.poly_star
-			%svg.svg_star
-				%use{'xlink:href' => '#star'}
+			.wrap_svg
+				%svg.svg_star-fill
+					%use{'xlink:href' => '#star-fill'}
+			%svg.svg_star-stroke
+				%use{'xlink:href' => '#star-stroke'}
 		%li.star-2
-			.poly_star
-			%svg.svg_star
-				%use{'xlink:href' => '#star'}
+			.wrap_svg
+				%svg.svg_star-fill
+					%use{'xlink:href' => '#star-fill'}
+			%svg.svg_star-stroke
+				%use{'xlink:href' => '#star-stroke'}
 		%li.star-3
-			.poly_star
-			%svg.svg_star
-				%use{'xlink:href' => '#star'}
+			.wrap_svg
+				%svg.svg_star-fill
+					%use{'xlink:href' => '#star-fill'}
+			%svg.svg_star-stroke
+				%use{'xlink:href' => '#star-stroke'}
 		%li.star-4
-			.poly_star
-			%svg.svg_star
-				%use{'xlink:href' => '#star'}
+			.wrap_svg
+				%svg.svg_star-fill
+					%use{'xlink:href' => '#star-fill'}
+			%svg.svg_star-stroke
+				%use{'xlink:href' => '#star-stroke'}
 		%li.star-5
-			.poly_star
-			%svg.svg_star
-				%use{'xlink:href' => '#star'}
+			.wrap_svg
+				%svg.svg_star-fill
+					%use{'xlink:href' => '#star-fill'}
+			%svg.svg_star-stroke
+				%use{'xlink:href' => '#star-stroke'}
 
 	-# Would it be easier if I wrapped "15" in a tag?
 	-# "Review(s)" pluralized when greater than 1
 	%a#reviews_link.reviews_link{:href => "#", :title => "Read Reviews"} Read 15 Reviews
-
-
 
 	#reviews_customer.reviews_customer
 
@@ -52,27 +61,38 @@
 			%h5 Reviews
 
 			-# exactly the same as the ul.reviews_rating above
-			%ul.reviews_rating.aggregated{"data-rating" => "3"}
+			-# this example uses a partial rating of 3.5
+			%ol.reviews_rating.aggregated{"data-rating" => "3.5"}
 				%li.star-1
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
+					.wrap_svg
+						%svg.svg_star-fill
+							%use{'xlink:href' => '#star-fill'}
+					%svg.svg_star-stroke
+						%use{'xlink:href' => '#star-stroke'}
 				%li.star-2
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
+					.wrap_svg
+						%svg.svg_star-fill
+							%use{'xlink:href' => '#star-fill'}
+					%svg.svg_star-stroke
+						%use{'xlink:href' => '#star-stroke'}
 				%li.star-3
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
+					.wrap_svg
+						%svg.svg_star-fill
+							%use{'xlink:href' => '#star-fill'}
+					%svg.svg_star-stroke
+						%use{'xlink:href' => '#star-stroke'}
 				%li.star-4
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
+					.wrap_svg{:style => "opacity: 1; width: 50%;"}
+						%svg.svg_star-fill
+							%use{'xlink:href' => '#star-fill'}
+					%svg.svg_star-stroke
+						%use{'xlink:href' => '#star-stroke'}
 				%li.star-5
-					.poly_star
-					%svg.svg_star
-						%use{'xlink:href' => '#star'}
+					.wrap_svg
+						%svg.svg_star-fill
+							%use{'xlink:href' => '#star-fill'}
+					%svg.svg_star-stroke
+						%use{'xlink:href' => '#star-stroke'}
 
 			%a#reviews_close.button_close{:href => "#", :title => "Close Window"}
 				%svg.svg_remove
@@ -83,27 +103,38 @@
 			- (1..24).each do |i|
 				%li{:id => "review-#{i}"}
 
-					%h6 Trevor of Alburquerque, NM &ndash May, 06 2011:
+					%h6.truncate Trevor of Alburquerque, NM &ndash; May, 06 2011:
 					%p Too big and bulky for the test weight, overwise fantastic. Joy overwhelms me.
 
-					%ul.reviews_rating.individual{"data-rating" => "2"}
+					-# 'aggregated' class is replaced with 'individual'
+					%ol.reviews_rating.individual{"data-rating" => "2"}
 						%li.star-1
-							.poly_star
-							%svg.svg_star
-								%use{'xlink:href' => '#star'}
+							.wrap_svg
+								%svg.svg_star-fill
+									%use{'xlink:href' => '#star-fill'}
+							%svg.svg_star-stroke
+								%use{'xlink:href' => '#star-stroke'}
 						%li.star-2
-							.poly_star
-							%svg.svg_star
-								%use{'xlink:href' => '#star'}
+							.wrap_svg
+								%svg.svg_star-fill
+									%use{'xlink:href' => '#star-fill'}
+							%svg.svg_star-stroke
+								%use{'xlink:href' => '#star-stroke'}
 						%li.star-3
-							.poly_star
-							%svg.svg_star
-								%use{'xlink:href' => '#star'}
+							.wrap_svg
+								%svg.svg_star-fill
+									%use{'xlink:href' => '#star-fill'}
+							%svg.svg_star-stroke
+								%use{'xlink:href' => '#star-stroke'}
 						%li.star-4
-							.poly_star
-							%svg.svg_star
-								%use{'xlink:href' => '#star'}
+							.wrap_svg
+								%svg.svg_star-fill
+									%use{'xlink:href' => '#star-fill'}
+							%svg.svg_star-stroke
+								%use{'xlink:href' => '#star-stroke'}
 						%li.star-5
-							.poly_star
-							%svg.svg_star
-								%use{'xlink:href' => '#star'}
+							.wrap_svg
+								%svg.svg_star-fill
+									%use{'xlink:href' => '#star-fill'}
+							%svg.svg_star-stroke
+								%use{'xlink:href' => '#star-stroke'}
