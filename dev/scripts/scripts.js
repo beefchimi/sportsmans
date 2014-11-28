@@ -13,54 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		isQuantityForm = elBody.classList.contains('view_quantity-form');
 
 
-/*
-	// may move this to its own function...
-	var elCartForm = document.getElementById('cart_form');
-
-	// check if #cart_form exists
-	if ( typeof(elCartForm) != 'undefined' && elCartForm != null ) {
-		var numTaxPercent = parseFloat( elCartForm.getAttribute('data-tax') ) / 100;
-	}
-*/
-
-
-/*
-	// isInt: Helper function for determining if a value is an integer
-	// ----------------------------------------------------------------------------
-	function isInt(n) {
-		return Number(n)===n && n%1===0;
-	}
-*/
-
-
-/*
-	// fadeOutRemove: Helper function for fading an element to 0
-	// ----------------------------------------------------------------------------
-	function fadeOutRemove(element) {
-
-		var opacity  = 1;
-
-		function fade() {
-
-			opacity -= 0.05; // reduce by 5%
-
-			if (opacity <= 0){
-				element.style.opacity = 0;
-				element.innerHTML = '';
-				return true;
-			}
-
-			element.style.opacity = opacity;
-			requestAnimationFrame(fade);
-
-		}
-
-		fade();
-
-	}
-*/
-
-
 	// backToTop: When Product Grid reaches top of page
 	// ----------------------------------------------------------------------------
 	function backToTop() {
@@ -726,28 +678,43 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function gallerySlider() {
 
-		var elGallery        = document.getElementById('gallery_slider'),
-			arrSlides        = elGallery.getElementsByTagName('li'),
-			arrThumbs        = document.getElementsByClassName('link_slide'),
-			numCurrentSlide  = 1,
-			numSlideMin      = 1,
-			numSlideMax      = arrSlides.length,
-			elSlidePrev      = document.getElementById('gallery_prev'),
-			elSlideNext      = document.getElementById('gallery_next');
-
-/*
-		var numSlideWidth    = 270, // arrSlides[0].offsetWidth,
-			numGalleryWidth  = numSlideMax * numSlideWidth,
-			numGalleryMargin = 0;
-
-		// set gallery <ul> width to the sum of each <li> width
-		// elGallery.style.width = numGalleryWidth + 'px';
-*/
+		var elGallerySlider = document.getElementById('gallery_slider'),
+			elGalleryThumbs = document.getElementById('gallery_thumbs'),
+			arrSlides       = elGallerySlider.getElementsByTagName('li'),
+			arrThumbs       = elGalleryThumbs.getElementsByTagName('li'),
+			arrSlideLinks   = elGalleryThumbs.getElementsByTagName('a'),
+			numCurrentSlide = 1,
+			numSlideMin     = 1,
+			numSlideMax     = arrSlides.length,
+			elSlidePrev     = document.getElementById('gallery_prev'),
+			elSlideNext     = document.getElementById('gallery_next');
 
 		// assign click to each a.link_slide
-		for (var i = 0; i < arrThumbs.length; i++) {
-			galleryThumbs(arrThumbs[i]);
+		for (var i = 0; i < arrSlideLinks.length; i++) {
+			galleryThumbs(arrSlideLinks[i]);
 		}
+
+/*
+		for (var i = 0; i < arrThumbs.length; i++) {
+
+			console.log(arrThumbs[i]);
+			console.log(arrThumbs[i].offsetWidth);
+
+		}
+*/
+
+		var count   = arrThumbs.length,
+			widths  = count * 84,
+			margins = (count - 1) * 18,
+			total   = widths + margins;
+
+
+		console.log(total);
+
+
+		elGalleryThumbs.style.width = total + 'px';
+
+
 
 		// previous slide button
 		elSlidePrev.addEventListener('click', function(e) {
@@ -777,9 +744,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		}, false);
 
-		function galleryThumbs(thisThumb) {
+		function galleryThumbs(thisSlideLink) {
 
-			thisThumb.addEventListener('click', function(e) {
+			thisSlideLink.addEventListener('click', function(e) {
 
 				numCurrentSlide = this.getAttribute('data-thumb');
 
@@ -792,48 +759,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		function adjustSlider() {
 
-			// numGalleryMargin = numCurrentSlide * numSlideWidth - numSlideWidth;
-			// elGallery.style.marginLeft = '-' + numGalleryMargin + 'px';
-			elGallery.setAttribute('data-slide', numCurrentSlide);
+			elGallerySlider.setAttribute('data-slide', numCurrentSlide);
 
 		}
 
-
-	}
-
-
-	// viewReviews: reveal / hide customer reviews
-	// ----------------------------------------------------------------------------
-	function viewReviews() {
-
-		var elReviewLink = document.getElementById('reviews_link');
-
-		// check if #reviews_link does not exist
-		if (elReviewLink == null) {
-			return;
-		}
-
-		// #reviews_link exists, so lets continue
-		var elReviewModal = document.getElementById('reviews_customer'),
-			elReviewClose = document.getElementById('reviews_close');
-
-		// click #reviews_link to reveal #reviews_customer
-		elReviewLink.addEventListener('click', function(e) {
-
-			elReviewModal.classList.add('visible');
-
-			e.preventDefault();
-
-		}, false);
-
-		// click #reviews_close to hide #reviews_customer
-		elReviewClose.addEventListener('click', function(e) {
-
-			elReviewModal.classList.remove('visible');
-
-			e.preventDefault();
-
-		}, false);
 
 	}
 
@@ -876,7 +805,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		modalToggle();
 		popoutToggle();
 		applyScrollable();
-		// viewReviews();
 	}
 
 	if (isQuantityForm) {
