@@ -319,11 +319,9 @@ div.scrollable ul::-webkit-scrollbar {
 	background-color: hsla(0,0%,0%,1);
 }
 div.scrollable ul::-webkit-scrollbar-track {
-	// border-radius: 0.2rem;
 	background-color: hsla(0,0%,80%,1);
 }
 div.scrollable ul::-webkit-scrollbar-thumb {
-	// border-radius: 0.2rem;
 	background-color: hsla(141,29%,49%,1);
 }
 
@@ -412,7 +410,6 @@ a.btn_arw-left:active svg {
 	display: inline-block;
 	position: absolute;
 	padding: 0 2rem;
-	// width: ???;
 	height: 6.6rem;
 	font-size: 2.6rem;
 	line-height: 6rem; // height - border
@@ -661,14 +658,6 @@ div.adjust_quantity input[type="number"]:invalid ~ p.error_invalid {
 	top: -3.2rem;
 	right: -3.2rem;
 }
-
-
-// --- Modal: Phone --- \\
-
-// --- Modal: Timeout Cart --- \\
-
-// --- Modal: Timeout Empty --- \\
-
 // --- TEMP: Modal Links --- \\
 div.test_modal {
 	position: fixed;
@@ -856,20 +845,6 @@ header[data-cart="yes"] aside.widget_cart {
 	opacity: 1;
 	visibility: visible;
 }
-/*
-// --- Fade Overlay --- \\
-div.row-1::after {
-	content: "";
-	display: block;
-	position: absolute;
-	z-index: 310;
-	right: 0;
-	bottom: -4.2rem;
-	left: 0;
-	height: 4.2rem;
-	background-image: linear-gradient(to bottom, hsla(0,0%,100%,1), hsla(0,0%,100%,0));
-}
-*/
 // --- Back To Top --- \\
 a.back-to-top {
 	display: block;
@@ -918,7 +893,7 @@ header div.row-2 h1 {
 	color: hsla(141,100%,18%,1);
 }
 header div.row-2 a.button_circle {
-	bottom: 6.6rem; // computer height of search margin-bottom and label height
+	bottom: 6.6rem; // computed height of search margin-bottom and label height
 }
 // --- Idividual Buttons --- \\
 header div.row-2 a.view-all {
@@ -1155,19 +1130,12 @@ body.page_cart-checkout {
 body.page_prod-disp {
 	padding-bottom: 38.2rem; // 48px + 154px + 180px
 }
-
 // + helper class for hiding header & footer when testing + \\
 body.hide-fixed div.row-1,
 body.hide-fixed footer {
 	opacity: 0;
 	visibility: 0;
 }
-
-
-
-
-
-
 
 /*
 div.row-1,
@@ -1183,12 +1151,6 @@ iframe {
 	display: none;
 }
 */
-
-
-
-
-
-
 
 // Footer: Panel Options
 // ----------------------------------------------------------------------------
@@ -1279,8 +1241,6 @@ form.options_form > div.adjust_quantity button {
 	width: 6.4rem;
 	height: 6.4rem;
 }
-
-
 // --- Options Popout --- \\
 form.has-popout {
 	position: fixed;
@@ -1312,7 +1272,6 @@ form.has-popout a.button_close {
 	top: 9rem;
 	right: 4rem;
 }
-
 // + popout table + \\
 form.has-popout table tr {
 	border-bottom: 0.3rem solid hsla(0,0%,80%,1);
@@ -1587,25 +1546,6 @@ section.product_grid article a:hover {
 section.product_grid article a:active {
 	border-color: hsla(0,0%,80%,1);
 }
-/*
-	section.product_grid article a div.gradient {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background-image: linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));
-	}
-	section.product_grid article a div.wrap_image {
-		display: flex;
-		margin-top: 2rem;
-		height: 9rem;
-	}
-	section.product_grid article a div.wrap_image img {
-		margin: auto;
-		max-height: 100%;
-	}
-*/
 section.product_grid article div.wrap_text {
 	position: absolute;
 	right: 0;
@@ -2219,7 +2159,6 @@ div.cart_empty-message {
 	right: 0;
 	left: 0;
 	text-align: center;
-	// transform: translateY(-50%);
 	opacity: 0;
 	visibility: hidden;
 }
@@ -2412,7 +2351,7 @@ body.page_csr-cart form.cart_form tbody tr td.product_item h3:last-child {
 	margin-bottom: 0;
 }
 
-// View Specific: temporary styles
+// TEMP: View specific hide / show elements (actual implementation should not require these styles)
 // ----------------------------------------------------------------------------
 // --- Button: Back --- \\
 #back-parent {

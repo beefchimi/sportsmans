@@ -1,29 +1,3 @@
-/*
-// Avoid 'console' errors in browsers that lack a console.
-(function() {
-	var method;
-	var noop = function () {};
-	var methods = [
-		'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-		'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-		'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-		'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
-	];
-	var length = methods.length;
-	var console = (window.console = window.console || {});
-
-	while (length--) {
-		method = methods[length];
-
-		// Only stub undefined methods.
-		if (!console[method]) {
-			console[method] = noop;
-		}
-	}
-}());
-*/
-
-
 // smooth-scroll v5.1.4 | copyright Chris Ferdinandi | http://github.com/cferdinandi/smooth-scroll | Licensed under MIT: http://gomakethings.com/mit/
 (function (root, factory) {
 	if ( typeof define === 'function' && define.amd ) {
@@ -428,21 +402,21 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function backToTop() {
 
-		// instead of tracking the position of #product_grid:
-		// we can safely assume that if the user has scrolled 560px, toggle the back-to-top link
+		window.addEventListener('scroll', function() {
 
-		var numScrollPos = window.pageYOffset; // may need to be a global variable...
+			// instead of tracking the position of #product_grid:
+			// we can safely assume that if the user has scrolled 560px, toggle the back-to-top link
 
-		// if we have scrolled to or past 560px AND header data-scrolled is not 'yes'
-		if ( numScrollPos >= 560 && elHeader.getAttribute('data-scrolled') == 'no' ) {
+			var numScrollPos = window.pageYOffset;
 
-			elHeader.setAttribute('data-scrolled', 'yes');
+			// if we have scrolled to or past 560px AND header data-scrolled is not 'yes'
+			if (numScrollPos >= 560 && elHeader.getAttribute('data-scrolled') == 'no') {
+				elHeader.setAttribute('data-scrolled', 'yes'); // toggle button
+			} else if (numScrollPos < 560 && elHeader.getAttribute('data-scrolled') == 'yes') {
+				elHeader.setAttribute('data-scrolled', 'no'); // disable button
+			}
 
-		} else if ( numScrollPos < 560 && elHeader.getAttribute('data-scrolled') == 'yes' ) {
-
-			elHeader.setAttribute('data-scrolled', 'no');
-
-		}
+		}, false);
 
 	}
 
@@ -451,22 +425,23 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function searchOptions() {
 
-		var elSearchInput            = document.getElementById('search_text'),
-			elSearchCheckbox         = document.getElementById('search_checkbox'),
-			originalInputPlaceholder = elSearchInput.getAttribute('data-placeholder');
+		var elSearchInput = document.getElementById('search_text');
+
+		// check if input#search_text does not exist
+		if (elSearchInput == null) {
+			return;
+		}
+
+		// our input#search_text DOES exist...
+		var elSearchCheckbox     = document.getElementById('search_checkbox'),
+			dataInputPlaceholder = elSearchInput.getAttribute('data-placeholder');
 
 		elSearchCheckbox.addEventListener('change', function() {
 
 			if (elSearchCheckbox.checked) {
-
-				// if #search_checkbox is now :checked
-				elSearchInput.setAttribute('placeholder', 'Search All Departments');
-
+				elSearchInput.setAttribute('placeholder', 'Search All Departments'); // if #search_checkbox is now :checked
 			} else {
-
-				// otherwise, if #search_checkbox is no longer :checked
-				elSearchInput.setAttribute('placeholder', originalInputPlaceholder);
-
+				elSearchInput.setAttribute('placeholder', dataInputPlaceholder); // otherwise, if #search_checkbox is no longer :checked
 			}
 
 		}, false);
@@ -479,8 +454,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	function modalToggle() {
 
 		// modals should really be created and appended to the DOM when needed...
-		// preferably using createDocumentFragment()...
-		// if I have the time, I would love to revisit this
+		// preferably using createDocumentFragment()
+		// will defer to TW as to what they would prefer to do
 
 		var arrModalOpen  = document.querySelectorAll('.modal_open'),
 			arrModalClose = document.querySelectorAll('.modal_close'),
@@ -499,8 +474,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		// reveal a modal that is already on the page but hidden
 		function openModal(e) {
 
-			var hrefTargetModal = this.getAttribute('href').substring(1), // capture the href of the clicked element, remove the # prefix
-				elTargetModal   = document.getElementById(hrefTargetModal); // get the modal we need to open
+			var dataTargetModal = this.getAttribute('href').substring(1), // capture the href of the clicked element, remove the # prefix
+				elTargetModal   = document.getElementById(dataTargetModal); // get the modal we need to open
 
 			elTargetModal.classList.add('visible');
 
@@ -552,8 +527,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		// find the target TR and remove it
 		function removeCartRow(e) {
 
-			var hrefTargetRow = this.getAttribute('href').substring(1),
-				elTargetRow   = document.getElementById(hrefTargetRow);
+			var dataTargetRow = this.getAttribute('href').substring(1),
+				elTargetRow   = document.getElementById(dataTargetRow);
 
 			// get calculated height of table row
 			var numRowHeight = elTargetRow.offsetHeight;
@@ -635,7 +610,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			return;
 		}
 
-		// form.has-dropdown exists, so lets grab all of the dropdown articles
+		// form.has-dropdown DOES exist, so lets grab all of the dropdown articles
 		var arrDropdownArticle = elDropdownForm.getElementsByTagName('article');
 
 		// assign the click event to each .dropdown_label found in form.has-dropdown
@@ -833,7 +808,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			return;
 		}
 
-		// form.has-dropdown exists, so lets get the popout button / label
+		// form.has-dropdown DOES exist, so lets get the popout button / label
 		var elPopoutLabel     = document.getElementById('popout_label'),
 			elPopoutClose     = document.getElementById('popout_close'),
 			arrPopoutQuantity = elPopoutForm.getElementsByClassName('adjust_number');
@@ -1214,15 +1189,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// important we specific exactly where to call this...
 	// otherwise, I will need to separate standard and csr headers with a class or ID
-	if (isViewGrid) {
 
-		window.addEventListener('scroll', function(e) {
-
-			backToTop();
-
-		}, false);
-
-	}
 
 
 	// Initialize Primary Functions
@@ -1231,6 +1198,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	// TEMP: will be changed to a different page...
 	if ( elBody.classList.contains('page_prod-dept') ) {
 		modalToggle();
+	}
+
+	if (isViewGrid) {
+		backToTop();
 	}
 
 	if (isViewGrid || isProdDisp) {
