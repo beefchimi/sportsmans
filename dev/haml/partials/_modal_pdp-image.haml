@@ -1,4 +1,6 @@
 %aside#modal_image.modal_image{"data-modal" => "image"}
 	.wrap_content{"data-container" => "width-926"}
 		%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #1"}
-		%a#image_close.modal_close.arrow_left{:href => "#", :title => "Close Image"} Close Image
+		%a#image_close.button_close.modal_close{:href => "#", :title => "Close Window"}
+			%svg.svg_remove
+				%use{"xlink:href" => "#remove"}

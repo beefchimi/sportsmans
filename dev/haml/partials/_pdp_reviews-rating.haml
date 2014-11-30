@@ -55,7 +55,7 @@
 	%a#reviews_link.reviews_link.modal_open{:href => "#reviews_customer", :title => "Read Reviews"} Read 15 Reviews
 
 
-
+	-# if it makes more sense, you can append this markup to the DOM on #reviews_link click
 	#reviews_customer.reviews_customer{"data-modal" => "reviews_customer"}
 
 		.wrap_reviews
@@ -102,10 +102,11 @@
 					%svg.svg_remove
 						%use{"xlink:href" => "#remove"}
 
+			-# we are not paginating reviews. this list will scroll when needed.
 			.wrap_scroll-list{"data-maxheight" => "898"}
 				%ul#reviews_list.reviews_list
 
-					- (1..24).each do |i|
+					- (1..5).each do |i|
 						%li{:id => "review-#{i}"}
 
 							%h6.truncate Trevor of Alburquerque, NM &ndash; May, 06 2011:

@@ -1,28 +1,28 @@
 -# alternate product select for complex products, such as fishing rods
--# = Haml::Engine.new(File.read("dev/haml/partials/_pdp_options-table.haml")).render
+= Haml::Engine.new(File.read("dev/haml/partials/_pdp_options-table.haml")).render
 
 %footer
 
 	%section#panel_options.panel_options
 
 		-# standard select / quantity inputs for common products, such as clothing
-		= Haml::Engine.new(File.read("dev/haml/partials/_pdp_options-select.haml")).render
+		-# = Haml::Engine.new(File.read("dev/haml/partials/_pdp_options-select.haml")).render
 
 		-# button for alternate product select
 		-# remove if standard select / add if complex select
-		-# %article.wrap_popout-button{"data-container" => "width-926"}
-			-# %h6#popout_label.popout_label{"data-label" => "Select Type"} Select Type
+		%article.wrap_popout-button{"data-container" => "width-926"}
+			%h6#popout_label.popout_label{"data-label" => "Select Type"} Select Type
 
 	%section#panel_cart.panel_cart
 
 		%article{"data-container" => "width-926"}
 
 			-# additional classes: .product_sale / .product_range
-			%aside.wrap_price.product_sale.product_range
+			%aside.wrap_price.product_range
 
 				-# only added to page when this is a sale product
-				#sale_tag.sale_tag.button_circle
-					%span.wrap_text On Sale!
+				-# #sale_tag.sale_tag.button_circle
+					-# %span.wrap_text On Sale!
 
 				-# %h4.product_price $1299.99
 
@@ -33,12 +33,12 @@
 
 				-# range <h4>s require the "truncate" class
 
-				-# %h4.product_price.truncate $4499.99 &ndash; $6699.99
+				%h4.product_price.truncate $4499.99 &ndash; $6699.99
 
-				%h4.product_price.price_sale.truncate $499.99 &ndash; $699.99
-				%h5.product_price
-					%span.price_label Regular Price:
-					%span.price_reg $699.99 &ndash; $899.99
+				-# %h4.product_price.price_sale.truncate $499.99 &ndash; $699.99
+				-# %h5.product_price
+					-# %span.price_label Regular Price:
+					-# %span.price_reg $699.99 &ndash; $899.99
 
 			-# attributes for form <button>s will need to be populated: TW will need to fill in these values
 			-# https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button

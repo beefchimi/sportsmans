@@ -1089,8 +1089,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function gallerySlider() {
 
-		var elGallerySlider  = document.getElementById('gallery_slider'),
-			elGalleryThumbs  = document.getElementById('gallery_thumbs'),
+		var elGallerySlider  = document.getElementById('gallery_slider');
+
+		// check if ul.gallery_slider does not exist
+		if (elGallerySlider == null) {
+			return;
+		}
+
+		// ul.gallery does exist... so let's get our variables
+		var elGalleryThumbs  = document.getElementById('gallery_thumbs'),
 			arrSlides        = elGallerySlider.getElementsByTagName('li'),
 			arrThumbs        = elGalleryThumbs.getElementsByTagName('li'),
 			arrSlideLinks    = elGalleryThumbs.getElementsByTagName('a'),

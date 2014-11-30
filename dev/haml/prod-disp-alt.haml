@@ -1,0 +1,65 @@
+!!!
+%html#root{:lang => "en"}
+
+	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+
+	-# this view is for Product Display Page (alternate view using different options)
+
+	-# 'view_quantity-form' applied where number inputs are needed
+	%body#pdp.page_prod-disp.view_quantity-form
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		%header#header_common.header_common{"data-scrolled" => "no", "data-cart" => "yes"}
+			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-1.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-2.haml")).render
+
+		%main{:role => "main", "data-container" => "width-926"}
+
+			%section#pdp_main.pdp_main
+
+				%article#pdp_intro.pdp_intro
+
+					.product_headlines
+						%h2.product_id 194682
+						%h1.product_title St Croix Legend Xtreme Spinning Rod with Taper Enhancement Technology 2.0 Pro Angler Master Edition
+
+					-# there are no reviews for this product:
+					-# = Haml::Engine.new(File.read("dev/haml/partials/_pdp_reviews-rating.haml")).render
+					%aside#reviews.reviews
+						%p.no-reviews There are no reviews for this product
+
+			%section#pdp_description.pdp_description
+
+				%article.pdp_content
+
+					%p Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+					%p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+
+			%section#pdp_information.pdp_information
+
+				-# if either Details or Specs is not required, simply omit the <article>
+				%article#pdp_specs.pdp_specs.pdp_content
+
+					%h3 Product Specs
+
+					%ul.product_specs
+						%li
+							Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam.
+							%ul
+								%li Aenean lacinia bibendum nulla sed consectetur.
+								%li Donec id elit non mi porta gravida at eget metus.
+								%li Duis mollis, est non commodo luctus.
+						%li Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+						%li
+							Sed ut perspiciatis.
+							%ol
+								%li Aenean lacinia bibendum nulla sed consectetur.
+								%li Donec id elit non mi porta gravida at eget metus.
+								%li Duis mollis, est non commodo luctus.
+						%li Sit voluptatem accusantium doloremque laudantium, totam.
+
+		= Haml::Engine.new(File.read("dev/haml/partials/_footer_cart-pdp-alt.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/_html_scripts.haml")).render
