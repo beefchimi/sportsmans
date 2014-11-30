@@ -1,63 +1,64 @@
--# NEED TO PROVIDE SOLUTION FOR NO PRODUCT IMAGE
-
-%ul#gallery_slider.gallery_slider{"data-slide" => "1"}
-	%li#slide-1.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #1"}
+%ul#gallery_slider.gallery_slider{"data-index" => "1"}
+	%li.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #1", "data-slide" => "1"}
 			%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #1"}
-	%li#slide-2.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #2"}
+	%li.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #2", "data-slide" => "2"}
 			%img{:src => "assets/img/pdp_image-2.jpg", :alt => "Image #2"}
-	%li#slide-3.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #3"}
+	%li.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #3", "data-slide" => "3"}
 			%img{:src => "assets/img/pdp_image-3.jpg", :alt => "Image #3"}
-	%li#slide-4.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #4"}
+	%li.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #4", "data-slide" => "4"}
 			%img{:src => "assets/img/pdp_image-4.jpg", :alt => "Image #4"}
-	%li#slide-5.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #5"}
+	%li.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #5", "data-slide" => "5"}
 			%img{:src => "assets/img/pdp_image-5.jpg", :alt => "Image #5"}
-	%li#slide-6.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #6"}
+	%li.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #6", "data-slide" => "6"}
 			%img{:src => "assets/img/pdp_image-6.jpg", :alt => "Image #6"}
-	%li#slide-7.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #7"}
+	%li.gallery_slide
+		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #7", "data-slide" => "7"}
 			%img{:src => "assets/img/pdp_image-7.jpg", :alt => "Image #7"}
 
 
 -# video links are always added first in the #gallery_thumbs
-
--# a.link_slide(s) 'data-thumb' attribute needs to correspond with the desintation slide...
--# ex. there is 1 a.link_video, so the first a.link_slide (child of 2nd <li>) will have the 'data-thumb' of '1'
+-# code can accomodate up to 10 slides total. if more I needed, I can change things up to account for this.
 
 .wrap_gallery-thumbs
-	%ul#gallery_thumbs.gallery_thumbs
+	%ul#gallery_thumbs.gallery_thumbs{"data-position" => "start"}
 
 		-# on click: get 'data-video' value, build <iframe> src, build / append modal
 		-# video can be clicked to play / pause, close modal button should probably stop the video then destroy (might not actually matter)
-		%li.gallery_thumb.thumb_video
+		%li.gallery_thumb
+			%a.link_video.modal_open{:href => "#modal_video", :title => "Play Video", "data-video" => "nMrJhsNX0Ws"}
+				.play-icon
+		%li.gallery_thumb
 			%a.link_video.modal_open{:href => "#modal_video", :title => "Play Video", "data-video" => "nMrJhsNX0Ws"}
 				.play-icon
 
-		%li.gallery_thumb.thumb_image
-			%a.link_slide{:href => "#slide-1", :title => "View Slide", "data-thumb" => "1"}
+		-# a.link_slide(s) 'data-thumb' attribute needs to correspond with the desintation slide...
+		-# ex. there are 2 a.link_video elements, so the first a.link_slide (child of 3rd <li>) will have the 'data-thumb' of '1'
+		%li.gallery_thumb
+			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "1"}
 				%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #1"}
-		%li.gallery_thumb.thumb_image
-			%a.link_slide{:href => "#slide-2", :title => "View Slide", "data-thumb" => "2"}
+		%li.gallery_thumb
+			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "2"}
 				%img{:src => "assets/img/pdp_image-2.jpg", :alt => "Image #2"}
-		%li.gallery_thumb.thumb_image
-			%a.link_slide{:href => "#slide-3", :title => "View Slide", "data-thumb" => "3"}
+		%li.gallery_thumb
+			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "3"}
 				%img{:src => "assets/img/pdp_image-3.jpg", :alt => "Image #3"}
-		%li.gallery_thumb.thumb_image
-			%a.link_slide{:href => "#slide-4", :title => "View Slide", "data-thumb" => "4"}
+		%li.gallery_thumb
+			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "4"}
 				%img{:src => "assets/img/pdp_image-4.jpg", :alt => "Image #4"}
-		%li.gallery_thumb.thumb_image
-			%a.link_slide{:href => "#slide-5", :title => "View Slide", "data-thumb" => "5"}
+		%li.gallery_thumb
+			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "5"}
 				%img{:src => "assets/img/pdp_image-5.jpg", :alt => "Image #5"}
-		%li.gallery_thumb.thumb_image
-			%a.link_slide{:href => "#slide-6", :title => "View Slide", "data-thumb" => "6"}
+		%li.gallery_thumb
+			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "6"}
 				%img{:src => "assets/img/pdp_image-6.jpg", :alt => "Image #6"}
-		%li.gallery_thumb.thumb_image
-			%a.link_slide{:href => "#slide-7", :title => "View Slide", "data-thumb" => "7"}
+		%li.gallery_thumb
+			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "7"}
 				%img{:src => "assets/img/pdp_image-7.jpg", :alt => "Image #7"}
 
 

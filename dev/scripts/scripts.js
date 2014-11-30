@@ -678,43 +678,45 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function gallerySlider() {
 
-		var elGallerySlider = document.getElementById('gallery_slider'),
-			elGalleryThumbs = document.getElementById('gallery_thumbs'),
-			arrSlides       = elGallerySlider.getElementsByTagName('li'),
-			arrThumbs       = elGalleryThumbs.getElementsByTagName('li'),
-			arrSlideLinks   = elGalleryThumbs.getElementsByTagName('a'),
-			numCurrentSlide = 1,
-			numSlideMin     = 1,
-			numSlideMax     = arrSlides.length,
-			elSlidePrev     = document.getElementById('gallery_prev'),
-			elSlideNext     = document.getElementById('gallery_next');
+		var elGallerySlider  = document.getElementById('gallery_slider'),
+			elGalleryThumbs  = document.getElementById('gallery_thumbs'),
+			arrSlides        = elGallerySlider.getElementsByTagName('li'),
+			arrThumbs        = elGalleryThumbs.getElementsByTagName('li'),
+			arrSlideLinks    = elGalleryThumbs.getElementsByTagName('a'),
+			numCurrentSlide  = 1,
+			numSlideMin      = 1,
+			numSlideMax      = arrSlides.length,
+			numThumbs        = arrThumbs.length,
+			numVisibleThumbs = 5,
+			elSlidePrev      = document.getElementById('gallery_prev'),
+			elSlideNext      = document.getElementById('gallery_next');
 
-		// assign click to each a.link_slide
+		// iterate through each gallery_thumbs link
 		for (var i = 0; i < arrSlideLinks.length; i++) {
-			galleryThumbs(arrSlideLinks[i]);
-		}
 
-/*
-		for (var i = 0; i < arrThumbs.length; i++) {
-
-			console.log(arrThumbs[i]);
-			console.log(arrThumbs[i].offsetWidth);
+			// if this is a image thumb, assign click event
+			if ( arrSlideLinks[i].getAttribute('data-thumb') ) {
+				galleryThumbs(arrSlideLinks[i]);
+			}
 
 		}
-*/
 
-		var count   = arrThumbs.length,
-			widths  = count * 84,
-			margins = (count - 1) * 18,
-			total   = widths + margins;
+		// if the number of slide thumbs is greater than 5...
+		if (numThumbs > numVisibleThumbs) {
 
+			var numThumbWidth  = 84, // the width of each individual thumb
+				numThumbMargin = 18, // the margin-right of each thumb (last LI has no margin)
+				numComboWidth  = numThumbWidth + numThumbMargin, // add width and margin to get total width
+				numTotalWidth  = numComboWidth * numThumbs - numThumbMargin, // final slide has 0 margin, so subtract 18 from the total width
+				numCutOffInt   = numThumbs - numVisibleThumbs,
+				numCutOffWidth = numCutOffInt * numComboWidth,
+				numThreshold   = 2, // two is the magic number, was using: Math.ceil( numCutOffInt / 2 )
+				theMath;
 
-		console.log(total);
+			// set the calculated width on the ul.gallery_slider
+			elGalleryThumbs.style.width = numTotalWidth + 'px';
 
-
-		elGalleryThumbs.style.width = total + 'px';
-
-
+		}
 
 		// previous slide button
 		elSlidePrev.addEventListener('click', function(e) {
@@ -759,10 +761,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		function adjustSlider() {
 
-			elGallerySlider.setAttribute('data-slide', numCurrentSlide);
+			elGallerySlider.setAttribute('data-index', numCurrentSlide);
+
+			// if the number of slide thumbs is greater than 5...
+			if (numThumbs > numVisibleThumbs) {
+
+				// we don't want to end up with a negative number, so we check if the current slide is >= the threshold
+				if (numCurrentSlide >= numThreshold) {
+
+					theMath = (numCurrentSlide - numThreshold) * numComboWidth;
+
+					// then we make sure theMath doesn't exceed the allowed maximum -margin
+					if (theMath <= numCutOffWidth) {
+						elGalleryThumbs.style.marginLeft = '-' + theMath + 'px';
+					} else {
+						elGalleryThumbs.style.marginLeft = '-' + numCutOffWidth + 'px';
+					}
+
+				} else {
+
+					elGalleryThumbs.style.marginLeft = '0px';
+
+				}
+
+			}
 
 		}
-
 
 	}
 

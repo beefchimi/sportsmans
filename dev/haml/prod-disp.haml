@@ -19,7 +19,7 @@
 
 			%section#pdp_main.pdp_main
 
-				%article#pdp_intro.pdp_intro{"data-col" => "left"}
+				%article#pdp_intro.pdp_intro
 
 					.product_headlines
 						%h2.product_id 307901
@@ -27,7 +27,8 @@
 
 					= Haml::Engine.new(File.read("dev/haml/partials/_pdp_reviews-rating.haml")).render
 
-				%article#pdp_gallery.pdp_gallery{"data-col" => "right"}
+				-# only output #pdp_gallery if we have at least 1 product image
+				%article#pdp_gallery.pdp_gallery
 
 					= Haml::Engine.new(File.read("dev/haml/partials/_pdp_gallery.haml")).render
 
@@ -54,7 +55,7 @@
 			%section#pdp_information.pdp_information
 
 				-# if either Details or Specs is not required, simply omit the <article>
-				%article#pdp_details.pdp_details.pdp_content{"data-col" => "left"}
+				%article#pdp_details.pdp_details.pdp_content
 
 					%h3 Product Details
 
@@ -74,7 +75,7 @@
 								%li Dolores eos qui ratione.
 						%li Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
 
-				%article#pdp_specs.pdp_specs.pdp_content{"data-col" => "right"}
+				%article#pdp_specs.pdp_specs.pdp_content
 
 					%h3 Product Specs
 
