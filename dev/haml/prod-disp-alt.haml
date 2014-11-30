@@ -1,7 +1,7 @@
 !!!
 %html#root{:lang => "en"}
 
-	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
 
 	-# this view is for Product Display Page (alternate view using different options)
 
@@ -12,8 +12,8 @@
 			<!-- inject:svg --><!-- endinject -->
 
 		%header#header_common.header_common{"data-scrolled" => "no", "data-cart" => "yes"}
-			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-1.haml")).render
-			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-2.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/common/_header_row-1.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/common/_header_row-2.haml")).render
 
 		%main{:role => "main", "data-container" => "width-926"}
 
@@ -26,7 +26,7 @@
 						%h1.product_title St Croix Legend Xtreme Spinning Rod with Taper Enhancement Technology 2.0 Pro Angler Master Edition
 
 					-# there are no reviews for this product:
-					-# = Haml::Engine.new(File.read("dev/haml/partials/_pdp_reviews-rating.haml")).render
+					-# = Haml::Engine.new(File.read("dev/haml/partials/products/_pdp_reviews.haml")).render
 					%aside#reviews.reviews
 						%p.no-reviews There are no reviews for this product
 
@@ -61,5 +61,5 @@
 								%li Duis mollis, est non commodo luctus.
 						%li Sit voluptatem accusantium doloremque laudantium, totam.
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_footer_cart-pdp-alt.haml")).render
-		= Haml::Engine.new(File.read("dev/haml/partials/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/products/_footer_cart-pdp-alt.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

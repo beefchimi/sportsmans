@@ -1,7 +1,7 @@
 !!!
 %html#root{:lang => "en"}
 
-	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
 
 	-# this view is for Individual Product listing within a selected Category
 
@@ -13,12 +13,12 @@
 			<!-- inject:svg --><!-- endinject -->
 
 		%header#header_common.header_common{"data-scrolled" => "no", "data-cart" => "yes"}
-			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-1.haml")).render
-			= Haml::Engine.new(File.read("dev/haml/partials/_header_row-2.haml")).render
-			= Haml::Engine.new(File.read("dev/haml/partials/_header_filters.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/common/_header_row-1.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/common/_header_row-2.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/products/_header_filters.haml")).render
 
 		%main{:role => "main", "data-container" => "width-926"}
-			= Haml::Engine.new(File.read("dev/haml/partials/_main_grid-5.haml")).render
-			= Haml::Engine.new(File.read("dev/haml/partials/_main_loader.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/products/_grid_col-5.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/products/_grid_loader.haml")).render
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

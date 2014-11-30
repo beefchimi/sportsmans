@@ -1,14 +1,14 @@
 !!!
 %html#root{:lang => "en"}
 
-	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
 
 	%body#csr_phone.page_csr-phone
 
 		:plain
 			<!-- inject:svg --><!-- endinject -->
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_header_csr.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
 		-# using modal styes: applied via 'wrap_content' class
 		%main.wrap_content{:role => "main", "data-container" => "width-926"}
@@ -18,4 +18,4 @@
 				%input#csr-phone_tel.csr-phone_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "(xxx) xxx xxxx", :required => true}
 				%button.arrow_right Continue
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

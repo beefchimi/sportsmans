@@ -1,7 +1,7 @@
 !!!
 %html#root{:lang => "en"}
 
-	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
 
 	%body#home.page_home
 
@@ -21,4 +21,4 @@
 			%a.shop_departments.home_link{:href => "/prod-dept.html", :title => "Shop All Departments"}
 				%span.wrap_text Shop All Departments
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

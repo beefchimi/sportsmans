@@ -76,10 +76,10 @@
 -# should be built / appended on click rather than always present...
 -# get child <img> src from clicked a.gallery_full-link and use this for modal img src
 -# destroy modal on close
-= Haml::Engine.new(File.read("dev/haml/partials/_modal_pdp-image.haml")).render
+= Haml::Engine.new(File.read("dev/haml/partials/modals/_pdp_image.haml")).render
 
 
 -# should be built / appended on click rather than always present...
 -# idea is to get 'data-video' value from a.link_video to build the <iframe> src...
 -# before closing the modal and destorying it, you may need to use: player.stopVideo();
-= Haml::Engine.new(File.read("dev/haml/partials/_modal_pdp-video.haml")).render
+= Haml::Engine.new(File.read("dev/haml/partials/modals/_pdp_video.haml")).render

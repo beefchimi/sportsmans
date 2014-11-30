@@ -1,12 +1,12 @@
 -# alternate product select for complex products, such as fishing rods
--# = Haml::Engine.new(File.read("dev/haml/partials/_pdp_options-table.haml")).render
+-# = Haml::Engine.new(File.read("dev/haml/partials/products/_pdp_options-table.haml")).render
 
 %footer
 
 	%section#panel_options.panel_options
 
 		-# standard select / quantity inputs for common products, such as clothing
-		= Haml::Engine.new(File.read("dev/haml/partials/_pdp_options-select.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/products/_pdp_options-select.haml")).render
 
 		-# button for alternate product select
 		-# remove if standard select / add if complex select

@@ -1,7 +1,7 @@
 !!!
 %html#root{:lang => "en"}
 
-	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
 
 	-# 'view_quantity-form' applied where number inputs are needed
 	%body#csr_cart.page_csr-cart.view_quantity-form
@@ -9,11 +9,11 @@
 		:plain
 			<!-- inject:svg --><!-- endinject -->
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_header_csr.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
 		%main{:role => "main", "data-container" => "width-926"}
-			= Haml::Engine.new(File.read("dev/haml/partials/_cart_csr.haml")).render
-			= Haml::Engine.new(File.read("dev/haml/partials/_modal_cart-remove.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/csr/_table_csr.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/modals/_cart_remove.haml")).render
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_footer_cart-csr.haml")).render
-		= Haml::Engine.new(File.read("dev/haml/partials/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/csr/_footer_cart-csr.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

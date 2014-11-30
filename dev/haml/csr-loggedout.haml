@@ -1,18 +1,18 @@
 !!!
 %html#root{:lang => "en"}
 
-	= Haml::Engine.new(File.read("dev/haml/partials/_html_head.haml")).render
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
 
 	%body#csr_loggedout.page_csr-loggedout
 
 		:plain
 			<!-- inject:svg --><!-- endinject -->
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_header_csr.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
 		-# using modal styes: applied via 'wrap_content' class
 		%main.wrap_content{:role => "main", "data-container" => "width-926"}
 
 			%h1 Order complete. You are now logged out.
 
-		= Haml::Engine.new(File.read("dev/haml/partials/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
