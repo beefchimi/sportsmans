@@ -1689,17 +1689,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		var arrQuantityInput = document.querySelectorAll('.adjust_number');
 
-/*
-		var arrValuesOriginal = [],
-			arrValuesNew      = [];
-*/
+		// only define variables if this is a cart page
+		if (isCartCheckout || isCartCSR) {
+
+			var elButtonUpdate    = document.getElementById('button_update'),
+				elButtonFinalize  = document.getElementById('button_finalize'),
+				arrValuesOriginal = [],
+				arrValuesNew      = [];
+
+		}
 
 		// for each input[type="number"] found on the cart page
 		for (var i = 0; i < arrQuantityInput.length; i++) {
-			quantityIncrements(arrQuantityInput[i]);
+			quantityIncrements(arrQuantityInput[i], i);
 		}
 
-		function quantityIncrements(thisQuantityInput) {
+		function quantityIncrements(thisQuantityInput, thisIndex) {
 
 			var thisID             = thisQuantityInput.getAttribute('name'),
 				thisMin            = parseInt( thisQuantityInput.getAttribute('min') ),
@@ -1707,13 +1712,13 @@ document.addEventListener('DOMContentLoaded', function() {
 				thisValue          = parseInt( thisQuantityInput.value ),
 				elQuantityDecrease = thisQuantityInput.nextElementSibling,
 				elQuantityIncrease = elQuantityDecrease.nextElementSibling,
-				// elQuantityTracker  = thisQuantityInput.parentNode,
 				enteredValue;
 
-/*
-			arrValuesOriginal.push(thisValue);
-			arrValuesNew.push(thisValue);
-*/
+			// if cart page, push captured quantity values to our arrays
+			if (isCartCheckout || isCartCSR) {
+				arrValuesOriginal.push(thisValue);
+				arrValuesNew.push(thisValue);
+			}
 
 			// if clicking the 'minus' button
 			elQuantityDecrease.addEventListener('click', function(e) {
@@ -1728,6 +1733,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisValue--;
 					thisQuantityInput.value = thisValue;
 					thisQuantityInput.setAttribute('value', thisValue);
+
+					compareValues();
 
 				}
 
@@ -1744,6 +1751,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisValue++;
 					thisQuantityInput.value = thisValue;
 					thisQuantityInput.setAttribute('value', thisValue);
+
+					compareValues();
 
 				}
 
@@ -1764,29 +1773,51 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisQuantityInput.value = thisValue;
 					thisQuantityInput.setAttribute('value', thisValue);
 
+					compareValues();
+
 				} else {
 
 					thisValue = enteredValue;
 					thisQuantityInput.value = thisValue; // only to accomodate situations where a user has entered a floating point number
 					thisQuantityInput.setAttribute('value', thisValue);
 
+					compareValues();
+
 				}
 
 			});
 
+			// compare the updated values against the originals
+			function compareValues() {
+
+				// currently does not account for deleted rows...
+				// but this may not matter - TW might require the cart to be updated after a removal anyways... will require their input
+
+				if (isCartCheckout || isCartCSR) {
+
+					arrValuesNew[thisIndex] = thisValue;
+
+					var isSame = arrValuesOriginal.length == arrValuesNew.length && arrValuesOriginal.every(function(element, index) {
+						return element === arrValuesNew[index];
+					});
+
+					if (isSame) {
+
+						elButtonUpdate.classList.add('disabled');
+						elButtonFinalize.classList.remove('disabled');
+
+					} else {
+
+						elButtonUpdate.classList.remove('disabled');
+						elButtonFinalize.classList.add('disabled');
+
+					}
+
+				}
+
+			}
+
 		}
-
-/*
-		arrValuesOriginal.push(8);
-		arrValuesNew.push('test');
-
-		document.getElementById('row_order-total').addEventListener('click', function(e) {
-
-			console.log(arrValuesOriginal);
-			console.log(arrValuesNew);
-
-		}, false);
-*/
 
 	}
 
@@ -1849,35 +1880,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		}, false);
 
 	}
-
-
-/*
-	// disableButton: Disable the left or right arrow of the footer
-	// ----------------------------------------------------------------------------
-	function disableButton() {
-
-		var elFooter     = document.getElementsByTagName('footer')[0],
-			elArrowLeft  = elFooter.getElementsByClassName('arrow_left')[0],
-			elArrowRight = elFooter.getElementsByClassName('arrow_right')[0];
-
-		// need to get an array of all of the quantity values
-		// duplicate the array to track changes, update values upon change
-
-		// iterate through each array and compare values,
-		// if they do not match exactly, we need to update the cart
-
-		// if a row is deleted, we need to remove that index from both arrays
-
-		if (newQuantityValues ==  originalQuantityValues) {
-			elArrowLeft.classList.remove('disabled');
-			elArrowRight.classList.add('disabled');
-		} else {
-			elArrowLeft.classList.add('disabled');
-			elArrowRight.classList.remove('disabled');
-		}
-
-	}
-*/
 
 
 	// gallerySlider: PDP page gallery functions
