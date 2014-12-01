@@ -5,6 +5,6 @@
 /* TEAM */
 
 	Northern Army: Ryan Anderson, Rene Antunes, Sian Jones, Curtis Dulmage
-	Thinkwrap: Matthew Ladd (also others)
+	Thinkwrap: Matthew Ladd, Desiree Melcer
 	Site: http://www.sportsmanswarehouse.com/
 	Location: Ottawa, Ontario, Canada

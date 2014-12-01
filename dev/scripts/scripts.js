@@ -799,12 +799,24 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
-	// Window Events: On - Scroll, Resize
+	// maskPhoneInput: Use formatter.js to force valid input on 'tel' inputs
 	// ----------------------------------------------------------------------------
+	function maskPhoneInput() {
 
-	// important we specific exactly where to call this...
-	// otherwise, I will need to separate standard and csr headers with a class or ID
+		// makes the assumption that there can only be 1 'tel' input per page
+		var elPhoneInput = document.querySelectorAll('input[type="tel"]')[0];
 
+		// check if input[type="tel"] does not exist
+		if (elPhoneInput == null) {
+			return;
+		}
+
+		// our input[type="tel"] DOES exist..
+		var formatted = new Formatter(elPhoneInput, {
+			'pattern': '{{999}}-{{999}}-{{9999}}'
+		});
+
+	}
 
 
 	// Initialize Primary Functions
@@ -847,6 +859,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (isCartCSR) {
 		deleteOrder();
 	}
+
+	maskPhoneInput();
 
 	// initialize smoothScroll plugin
 	smoothScroll.init({

@@ -15,7 +15,7 @@
 
 			%form#csr-phone_form{:action => "", :method => "GET"}
 				%h1 Enter customer phone number:
-				%input#csr-phone_tel.csr-phone_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "(xxx) xxx xxxx", :required => true}
+				%input#csr-phone_tel.csr-phone_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "Enter Number", :required => true}
 				%button.arrow_right Continue
 
 		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

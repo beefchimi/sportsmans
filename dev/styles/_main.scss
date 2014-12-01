@@ -102,8 +102,12 @@ form input[type="email"],
 form input[type="password"] {
 	margin-bottom: 12rem;
 	width: 100%;
-	height: 21.6rem;
-	font-size: 9.8rem;
+
+	// height: 21.6rem;
+	// font-size: 9.8rem;
+
+	height: 20rem;
+	font-size: 9rem;
 	text-align: center;
 	color: hsla(141,100%,18%,1);
 	border: 0.6rem solid hsla(141,100%,18%,1);
@@ -590,7 +594,8 @@ div.adjust_quantity input[type="number"]:invalid ~ p.error_invalid {
 	transform: translateY(-50%);
 }
 .wrap_content h1 {
-	margin-bottom: 10rem;
+	// margin-bottom: 10rem;
+	margin-bottom: 2.8rem;
 	font-size: 6.7rem;
 	line-height: 1.2;
 	color: hsla(141,100%,18%,1);
@@ -708,7 +713,7 @@ header.header_csr {
 header.header_csr div.logo_sportsmans {
 	margin: 0 auto 6rem auto;
 	width: 18rem;
-	height: 8.5rem;
+	height: 7.9rem;
 }
 header.header_csr h1 {
 	font-size: 6rem;
@@ -758,11 +763,11 @@ div.row-1 div.logo_sportsmans {
 	position: absolute;
 	z-index: 320;
 	right: 0;
-	bottom: -4.2rem;
+	bottom: -3.9rem;
 	left: 0;
 	margin: 0 auto;
 	width: 18rem;
-	height: 8.5rem;
+	height: 7.9rem;
 }
 header[data-scrolled="yes"] div.row-1 div.logo_sportsmans {
 	opacity: 0;
@@ -1185,33 +1190,41 @@ form.options_form article div {
 	border-radius: 1.6rem 1.6rem 0 0;
 }
 form.options_form article div ul li a {
-	padding: 2.1rem 2rem;
+	padding: 1.4rem 2rem;
 	font-size: 1.8rem;
 }
 // + span wraps + \\
 form.options_form article div ul li a span[data-label]::before {
-	width: 5.6rem;
+	width: 100%;
 }
 form.options_form article div ul li a span:only-of-type {
 	width: 100%;
 }
+form.options_form article div ul li a span.variation_label {
+	margin-bottom: 0.4rem;
+	text-transform: none;
+}
+form.options_form article div ul li a span.variation_label,
+form.options_form article div ul li a span.variation_price {
+	width: 65%;
+}
+form.options_form article div ul li.disabled a span.variation_label,
+form.options_form article div ul li.disabled a span.variation_price {
+	width: 52%;
+}
 form.options_form article div ul li a span.variation_stock {
 	position: absolute;
-	top: 2.1rem;
-	left: 42%;
-	transform: translateX(-42%);
+	top: 50%;
+	right: 2rem;
+	transform: translateY(-50%);
+	text-align: right;
 	padding: 0.4rem 1.2rem;
 	font-size: 1.2rem;
 	color: hsla(0,0%,100%,1);
 	background-color: hsla(0,0%,64%,1);
 	border-radius: 1rem;
 }
-form.options_form article div ul li a span.variation_price {
-	position: absolute;
-	top: 2.1rem;
-	right: 2rem;
-	text-align: right;
-}
+
 // + individual options + \\
 form.options_form article:nth-child(2) {
 	left: 35.7rem;
@@ -1478,7 +1491,7 @@ body.page_home {
 body.page_home main div.logo_sportsmans {
 	margin: 0 auto 6rem auto;
 	width: 18rem;
-	height: 8.5rem;
+	height: 7.9rem;
 }
 body.page_home main h1 {
 	margin-bottom: 14rem;
@@ -1611,6 +1624,7 @@ section.grid_5 article a h2 {
 }
 section.grid_5 article.product_sale a h2 {
 	font-size: 1.6rem;
+	color: hsla(2,100%,50%,1); // red: to communicate saleness
 }
 section.grid_5 article.product_range a h2 {
 	font-size: 1.3rem;
@@ -2310,8 +2324,18 @@ form.cart_form button.arrow_right {
 body.page_csr-info main.wrap_content {
 	transform: translateY(-38%);
 }
+/*
 body.page_csr-info form h1 {
 	margin-bottom: 2.6rem;
+}
+*/
+body.page_csr-info form input[type="text"],
+body.page_csr-info form input[type="email"] {
+	margin-bottom: 10rem;
+}
+body.page_csr-info form hr {
+	margin-bottom: 8rem;
+	border: 0.3rem solid hsla(141,100%,18%,1);
 }
 // --- CSR Cart --- \\
 body.page_csr-cart {

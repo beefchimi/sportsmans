@@ -57,11 +57,6 @@ if (gutil.env.dev === true) {
 }
 */
 
-// disabling minification
-var isProduction = false,
-	sassStyle    = 'expanded',
-	sourceMap    = true;
-
 
 /* Gulp Tasks
 ---------------------------------------------------------------------------- */
@@ -91,13 +86,15 @@ gulp.task('styles', function() {
 
 	return gulp.src(paths.styles.src + 'styles.scss')
 		.pipe(plugins.rubySass({
-			style: sassStyle,
-			sourcemap: sourceMap,
+			style: 'expanded', // sassStyle,
+			sourcemap: false, // sourceMap, (true is causing an error)
 			precision: 2
 		}))
-		.pipe(isProduction ? gutil.noop() : plugins.concat('styles.css')) // concat with sourcemap if --dev
+		.pipe(plugins.concat('styles.css')) // concat with sourcemap if --dev
 		.pipe(plugins.autoprefixer('last 2 version'))
-		.pipe(isProduction ? plugins.minifyCss() : gutil.noop()) // don't minify if --dev
+		.pipe(gulp.dest(paths.styles.dest))
+		.pipe(plugins.minifyCss()) // don't minify if --dev
+		.pipe(plugins.rename('styles.min.css'))
 		.pipe(gulp.dest(paths.styles.dest));
 
 });
@@ -108,7 +105,9 @@ gulp.task('scripts', function() {
 
 	return gulp.src(paths.scripts.src)
 		.pipe(plugins.concat('scripts.js'))
-		.pipe(isProduction ? plugins.uglify() : gutil.noop()) // don't uglify if --dev
+		.pipe(gulp.dest(paths.scripts.dest))
+		.pipe(plugins.uglify()) // don't uglify if --dev
+		.pipe(plugins.rename('scripts.min.js'))
 		.pipe(gulp.dest(paths.scripts.dest));
 
 });
@@ -163,6 +162,8 @@ gulp.task('svg', function() {
 
 // Copy (if changed) all of our miscellaneous files to the build folder
 gulp.task('extras', function() {
+
+	// currently manually copying fonts folder into assets
 
 	return gulp.src([paths.extra.root + '*.*', paths.extra.root + '.htaccess'])
 		.pipe(plugins.changed(paths.extra.dest)) // not sure how to check if this is working or not
