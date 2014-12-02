@@ -2,7 +2,7 @@
 %section#product_grid.product_grid.grid_5
 
 	-# example of a sale price:
-	-# <article> has "product_sale" class / h2.product_price now has 2 <span> children for prices / prefix text is added via CSS (Sale:, Reg:)
+	-# <article> has "product_sale" class / h2.product_price now has 2 <span> children for prices
 	-# if it is easier for me to add the $ through CSS, I can do that as well
 	%article.product_item.product_sale{:id => "product-a"}
 
@@ -12,9 +12,6 @@
 		-# in order to apply a gradient background while masking the white backgrounds on all of the Sportsmans images,
 		-# we need to take advantage of background-blend-mode - which requires us to specify the product image as a background-image
 		%a.product_link{:href => "", :title => "Product A Title", :style => "background-image: url('assets/img/product_ammo-1_120x104.jpg'), linear-gradient(to bottom, hsla(0,0%,96%,0), hsla(0,0%,96%,1));"}
-
-			-# .wrap_image
-				-# %img.product_image{:src => "assets/img/product_ammo-1_120x104.jpg", :alt => "Product A Image"}
 
 			.wrap_text
 				%h1.product_title Example of a sale product
@@ -35,6 +32,7 @@
 					%span.price_sale.truncate $499.99-699.99
 					%span.price_reg.truncate $299.99-499.99
 
+	-# just a product range - no sale
 	%article.product_item.product_range{:id => "product-c"}
 
 		%img.visuallyhidden{:src => "/"}
@@ -44,6 +42,7 @@
 				%h1.product_title Just a regular ol' product range
 				%h2.product_price.truncate $299.99-499.99
 
+	-# standard no range / no sale products
 	- (1..31).each do |i|
 		%article.product_item{:id => "product-#{i}"}
 

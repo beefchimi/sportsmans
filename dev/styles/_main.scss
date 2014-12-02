@@ -1036,9 +1036,13 @@ form.filter_form article {
 	position: relative;
 	z-index: 20;
 	margin-right: 2.6rem;
+	width: 16rem;
 }
 form.filter_form article:last-child {
 	margin-right: 0;
+}
+form.filter_form article.wide {
+	width: 35.4rem;
 }
 form.filter_form article h6 {
 	position: relative;
@@ -1094,19 +1098,10 @@ form.filter_form article div.scrollable {
 form.filter_form article div ul li a {
 	padding: 1.6rem 2rem;
 	font-size: 1.5rem;
-	// text-transform: uppercase;
 }
 // + span wraps + \\
 form.filter_form article div ul li a span[data-label]::before {
 	width: 100%;
-}
-// --- Specific Filters --- \\
-form.filter_form article.wrap_filter-brand {
-	width: 35.4rem;
-}
-form.filter_form article.wrap_filter-caliber,
-form.filter_form article.wrap_filter-price {
-	width: 16rem;
 }
 // + toggled / selected + \\
 form.filter_form article.toggled h6 {
