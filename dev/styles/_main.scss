@@ -498,11 +498,13 @@ div.adjust_quantity {
 }
 div.adjust_quantity p.error_invalid {
 	position: absolute;
-	top: 5.6rem;
+	bottom: -2rem;
 	right: 0;
 	left: 0;
-	color: hsla(2,100%,50%,1);
+	font-size: 1.1rem;
+	text-align: center;
 	text-transform: uppercase;
+	color: hsla(2,100%,50%,1);
 	opacity: 0;
 	visibility: hidden;
 }
@@ -1296,6 +1298,16 @@ form.has-popout table tbody tr td {
 	font-size: 1.3rem;
 	white-space: nowrap;
 }
+// + sale price + \\
+form.has-popout table tbody tr td.product_price span {
+	display: block;
+}
+form.has-popout table tbody tr td.product_price span.price_reg {
+	text-decoration: line-through;
+}
+form.has-popout table tbody tr td.product_price span.price_sale {
+	color: hsla(2,100%,50%,1); // red: screams salebration
+}
 // + quantity input + \\
 form.has-popout table thead tr th.header_quantity {
 	color: hsla(141,100%,18%,0);
@@ -1318,6 +1330,20 @@ form.has-popout table tbody tr td.product_quantity div.adjust_quantity button {
 }
 form.has-popout table tbody tr td.product_quantity div.adjust_quantity button svg {
 	transform: translateY(-0.1rem);
+}
+// + out of stock + \\
+form.has-popout table tbody tr.variation_outofstock td,
+form.has-popout table tbody tr.variation_outofstock td.product_price span.price_sale,
+form.has-popout table tbody tr.variation_outofstock td.product_quantity div.adjust_quantity input[type="number"] {
+	color: hsla(0,0%,70%,1);
+}
+form.has-popout table tbody tr.variation_outofstock td.product_quantity div.adjust_quantity button,
+form.has-popout table tbody tr.variation_outofstock td.product_quantity div.adjust_quantity input[type="number"] {
+	pointer-events: none;
+	border-color: hsla(0,0%,70%,1);
+}
+form.has-popout table tbody tr.variation_outofstock td.product_quantity div.adjust_quantity button svg {
+	fill: hsla(0,0%,70%,1);
 }
 // + popout button + \\
 article.wrap_popout-button {
@@ -1624,7 +1650,7 @@ section.grid_5 article.product_sale a h2 {
 section.grid_5 article.product_range a h2 {
 	font-size: 1.3rem;
 }
-section.grid_5 article a h2 span.price_sale {
+section.grid_5 article a h2 span.price_reg {
 	margin-bottom: 0.4rem;
 	text-decoration: line-through;
 	color: hsla(0,0%,0%,1);
@@ -2290,8 +2316,6 @@ form.cart_form tbody tr td.product_total {
 form.cart_form tbody tr td.product_quantity div.adjust_quantity {
 	margin: 0 auto;
 	width: 15rem;
-}
-form.cart_form tbody tr td.product_quantity div.adjust_quantity p.error_invalid {
 }
 form.cart_form tbody tr td.product_quantity div.adjust_quantity input[type="number"] {
 	width: 5.8rem;

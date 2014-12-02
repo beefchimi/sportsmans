@@ -16,8 +16,8 @@
 			.wrap_text
 				%h1.product_title Example of a sale product
 				%h2.product_price
-					%span.price_sale.truncate $499.99
-					%span.price_reg.truncate $299.99
+					%span.price_reg.truncate $499.99
+					%span.price_sale.truncate $299.99
 
 	-# example of a reg and sale price with a range:
 	-# any product that requires a price range needs only the "product_range" class added to the <article>
@@ -29,8 +29,8 @@
 			.wrap_text
 				%h1.product_title Here we have a price range on a sale product
 				%h2.product_price
-					%span.price_sale.truncate $499.99-699.99
-					%span.price_reg.truncate $299.99-499.99
+					%span.price_reg.truncate $499.99-699.99
+					%span.price_sale.truncate $299.99-499.99
 
 	-# just a product range - no sale
 	%article.product_item.product_range{:id => "product-c"}

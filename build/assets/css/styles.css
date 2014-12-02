@@ -837,11 +837,13 @@ div.adjust_quantity {
 
 div.adjust_quantity p.error_invalid {
   position: absolute;
-  top: 5.6rem;
+  bottom: -2rem;
   right: 0;
   left: 0;
-  color: #ff0900;
+  font-size: 1.1rem;
+  text-align: center;
   text-transform: uppercase;
+  color: #ff0900;
   opacity: 0;
   visibility: hidden;
 }
@@ -1712,6 +1714,18 @@ form.has-popout table tbody tr td {
   white-space: nowrap;
 }
 
+form.has-popout table tbody tr td.product_price span {
+  display: block;
+}
+
+form.has-popout table tbody tr td.product_price span.price_reg {
+  text-decoration: line-through;
+}
+
+form.has-popout table tbody tr td.product_price span.price_sale {
+  color: #ff0900;
+}
+
 form.has-popout table thead tr th.header_quantity {
   color: rgba(0, 92, 32, 0);
 }
@@ -1740,6 +1754,22 @@ form.has-popout table tbody tr td.product_quantity div.adjust_quantity button sv
   -webkit-transform: translateY(-0.1rem);
       -ms-transform: translateY(-0.1rem);
           transform: translateY(-0.1rem);
+}
+
+form.has-popout table tbody tr.variation_outofstock td,
+form.has-popout table tbody tr.variation_outofstock td.product_price span.price_sale,
+form.has-popout table tbody tr.variation_outofstock td.product_quantity div.adjust_quantity input[type="number"] {
+  color: #b3b3b3;
+}
+
+form.has-popout table tbody tr.variation_outofstock td.product_quantity div.adjust_quantity button,
+form.has-popout table tbody tr.variation_outofstock td.product_quantity div.adjust_quantity input[type="number"] {
+  pointer-events: none;
+  border-color: #b3b3b3;
+}
+
+form.has-popout table tbody tr.variation_outofstock td.product_quantity div.adjust_quantity button svg {
+  fill: #b3b3b3;
 }
 
 article.wrap_popout-button {
@@ -2091,7 +2121,7 @@ section.grid_5 article.product_range a h2 {
   font-size: 1.3rem;
 }
 
-section.grid_5 article a h2 span.price_sale {
+section.grid_5 article a h2 span.price_reg {
   margin-bottom: 0.4rem;
   text-decoration: line-through;
   color: black;

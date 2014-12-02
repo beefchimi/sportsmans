@@ -25,6 +25,31 @@
 
 		%tbody
 
+			-# an example of both a sale product and out-of-stock
+			%tr.variation_outofstock.variation_sale{:id => "row_12345-0"}
+				%td.product_item 12345-0
+				%td.product_action Kinda Slow
+				%td.product_length 5ft 7in
+				%td.product_weight 4.2oz
+				%td.product_model UGH123BRB
+				%td.product_power Mega
+				%td.product_lure-wt 1/4 &ndash; 3/4oz
+				%td.product_handle 5
+				%td.product_brand St Croix
+				%td.product_piece 2
+				%td.product_price
+					%span.price_reg $420.00
+					%span.price_sale $399.99
+				%td.product_quantity
+					.adjust_quantity
+						%input.adjust_number{:type => "number", :min => "0", :max => "999", :step => "1", :value => "0", :name => "#12345-0"}
+						%button.adjust_decrease{:type => "button"}
+							%svg.svg_minus
+								%use{"xlink:href" => "#minus"}
+						%button.adjust_increase{:type => "button"}
+							%svg.svg_plus
+								%use{"xlink:href" => "#plus"}
+
 			-# row ID is suffixed with item ID
 			- (1..12).each do |i|
 				%tr{:id => "row_12345-#{i}"}
@@ -48,4 +73,3 @@
 							%button.adjust_increase{:type => "button"}
 								%svg.svg_plus
 									%use{"xlink:href" => "#plus"}
-							%p.error_invalid Invalid Input
