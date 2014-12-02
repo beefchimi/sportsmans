@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					} else {
 
-						thisDropdownArticle.classList.add('toggled');
+						thisDropdownArticle.classList.toggle('toggled');
 
 					}
 
