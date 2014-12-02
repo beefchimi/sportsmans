@@ -1793,6 +1793,9 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisQuantityInput.value = thisValue; // only to accomodate situations where a user has entered a floating point number
 					thisQuantityInput.setAttribute('value', thisValue);
 
+					elQuantityDecrease.classList.remove('disabled');
+					elQuantityIncrease.classList.remove('disabled');
+
 					compareValues();
 
 				}
