@@ -26,6 +26,8 @@
 		%tbody
 
 			-# an example of both a sale product and out-of-stock
+			-# 'variation_outofstock' and 'variation_sale' classed added to <tr>
+			-# if sale: td.product_price uses 2 <span>s - price_reg & price_sale
 			%tr.variation_outofstock.variation_sale{:id => "row_12345-0"}
 				%td.product_item 12345-0
 				%td.product_action Kinda Slow
