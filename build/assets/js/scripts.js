@@ -1734,7 +1734,13 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisQuantityInput.value = thisValue;
 					thisQuantityInput.setAttribute('value', thisValue);
 
+					elQuantityIncrease.classList.remove('disabled');
+
 					compareValues();
+
+				} else {
+
+					this.classList.add('disabled');
 
 				}
 
@@ -1752,7 +1758,13 @@ document.addEventListener('DOMContentLoaded', function() {
 					thisQuantityInput.value = thisValue;
 					thisQuantityInput.setAttribute('value', thisValue);
 
+					elQuantityDecrease.classList.remove('disabled');
+
 					compareValues();
+
+				} else {
+
+					this.classList.add('disabled');
 
 				}
 

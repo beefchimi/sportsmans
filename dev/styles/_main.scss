@@ -568,6 +568,22 @@ div.adjust_quantity input[type="number"]:invalid ~ p.error_invalid {
 	opacity: 1;
 	visibility: visible;
 }
+// + disabled + \\
+div.adjust_quantity button.disabled {
+	background-color: hsla(0,0%,96%,1);
+	border-top-color: hsla(0,0%,60%,1);
+	border-bottom-color: hsla(0,0%,60%,1);
+	opacity: 1;
+}
+div.adjust_quantity button.adjust_decrease.disabled {
+	border-left-color: hsla(0,0%,60%,1);
+}
+div.adjust_quantity button.adjust_increase.disabled {
+	border-right-color: hsla(0,0%,60%,1);
+}
+div.adjust_quantity button.disabled svg {
+	fill: hsla(0,0%,60%,1);
+}
 
 // Modals
 // ----------------------------------------------------------------------------

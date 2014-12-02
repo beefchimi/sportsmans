@@ -921,6 +921,25 @@ div.adjust_quantity input[type="number"]:invalid ~ p.error_invalid {
   visibility: visible;
 }
 
+div.adjust_quantity button.disabled {
+  background-color: whitesmoke;
+  border-top-color: #999999;
+  border-bottom-color: #999999;
+  opacity: 1;
+}
+
+div.adjust_quantity button.adjust_decrease.disabled {
+  border-left-color: #999999;
+}
+
+div.adjust_quantity button.adjust_increase.disabled {
+  border-right-color: #999999;
+}
+
+div.adjust_quantity button.disabled svg {
+  fill: #999999;
+}
+
 [data-modal] {
   position: fixed;
   z-index: 400;
