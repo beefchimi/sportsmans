@@ -1175,11 +1175,16 @@ aside.widget_cart a.arrow_right::after {
 div.row-1 a.arrow_left {
   left: 6.8rem;
   padding-right: 2.7rem;
+  max-width: 30rem;
 }
 
 div.row-1 a.arrow_left::before {
   border-right-width: 2.8rem;
   border-right-color: white;
+}
+
+div.row-1 a.arrow_left span {
+  display: block;
 }
 
 aside.widget_cart {

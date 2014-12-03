@@ -5,7 +5,8 @@
 
 	-# only in these views: Categories, Indv. Prods, PDP
 	-# "Ammunition" refers to the parent Department or Category... should this term be wrapped in its own tag?
-	%a#back-parent.arrow_left{:href => "/prod-cat.html", :title => "Back To Ammunition"} Back To Ammunition
+	%a#back-parent.arrow_left{:href => "/prod-cat.html", :title => "Back To Ammunition"}
+		%span.truncate Back To Ammunition
 
 	-# only in these views: Departments, Categories, Indv. Prods, PDP
 	-# "in-cart" class is added to #widget_cart as soon as an item has been added to the cart... removed when the cart is cleared
