@@ -1,4 +1,5 @@
-%form#filter_form.filter_form.has-dropdown{:action => "", :method => "POST", "data-container" => "width-926"}
+%form#filter_form.filter_form.has-dropdown{:action => "", :method => "POST", "data-container" => "width-978"}
+
 
 	%article.wrap_filter-brand.wide{"data-selected" => ""}
 
@@ -30,6 +31,7 @@
 		%i.filter_reset
 			%svg.svg_remove-thick
 				%use{"xlink:href" => "#remove-thick"}
+
 
 	%article.wrap_filter-caliber{"data-selected" => ""}
 
@@ -70,6 +72,7 @@
 			%svg.svg_remove-thick
 				%use{"xlink:href" => "#remove-thick"}
 
+
 	-# this is an example of a dropdown that has a selected value
 	%article.wrap_filter-price{"data-selected" => "c-1"}
 
@@ -93,6 +96,214 @@
 					%a.dropdown_link{:href => "#", "data-value" => "c-3"}
 						%span.filter_label Option Three
 
+		%i.filter_reset
+			%svg.svg_remove-thick
+				%use{"xlink:href" => "#remove-thick"}
+
+
+	%article.wrap_filter-extra1{"data-selected" => ""}
+
+		%select#filter_extra1.visuallyhidden{:name => "filter_extra1"}
+			%option{:value => "", :selected => true} Extra 1
+			%option{:value => "b-1"} Option One
+			%option{:value => "b-2"} Option Two
+			%option{:value => "b-3"} Option Three
+			%option{:value => "b-4"} Option Four
+			%option{:value => "b-5"} Option Five
+			%option{:value => "b-6"} Option Six
+			%option{:value => "b-7"} Option Seven
+			%option{:value => "b-8"} Option Eight
+			%option{:value => "b-9"} Option Nine
+
+		%h6.dropdown_label.truncate Extra 1
+
+		.wrap_scroll-list{"data-maxheight" => "290"}
+			%ul.dropdown_list
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-1"}
+						%span.filter_label Option One
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-2"}
+						%span.filter_label Option Twoooo Long of a Title
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-3"}
+						%span.filter_label Option Three
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-4"}
+						%span.filter_label Option Four
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-5"}
+						%span.filter_label Option Five
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-6"}
+						%span.filter_label Option Six
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-7"}
+						%span.filter_label Option Seven
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-8"}
+						%span.filter_label Option Eight
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-9"}
+						%span.filter_label Option Nine
+
+		-# visible when a value is selected
+		%i.filter_reset
+			%svg.svg_remove-thick
+				%use{"xlink:href" => "#remove-thick"}
+
+
+	%article.wrap_filter-extra2{"data-selected" => ""}
+
+		%select#filter_extra2.visuallyhidden{:name => "filter_extra2"}
+			%option{:value => "", :selected => true} Extra 2
+			%option{:value => "b-1"} Option One
+			%option{:value => "b-2"} Option Two
+			%option{:value => "b-3"} Option Three
+			%option{:value => "b-4"} Option Four
+			%option{:value => "b-5"} Option Five
+			%option{:value => "b-6"} Option Six
+			%option{:value => "b-7"} Option Seven
+			%option{:value => "b-8"} Option Eight
+			%option{:value => "b-9"} Option Nine
+
+		%h6.dropdown_label.truncate Extra 2
+
+		.wrap_scroll-list{"data-maxheight" => "290"}
+			%ul.dropdown_list
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-1"}
+						%span.filter_label Option One
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-2"}
+						%span.filter_label Option Twoooo Long of a Title
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-3"}
+						%span.filter_label Option Three
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-4"}
+						%span.filter_label Option Four
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-5"}
+						%span.filter_label Option Five
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-6"}
+						%span.filter_label Option Six
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-7"}
+						%span.filter_label Option Seven
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-8"}
+						%span.filter_label Option Eight
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-9"}
+						%span.filter_label Option Nine
+
+		-# visible when a value is selected
+		%i.filter_reset
+			%svg.svg_remove-thick
+				%use{"xlink:href" => "#remove-thick"}
+
+
+	%article.wrap_filter-extra3{"data-selected" => ""}
+
+		%select#filter_extra3.visuallyhidden{:name => "filter_extra3"}
+			%option{:value => "", :selected => true} Extra 3
+			%option{:value => "b-1"} Option One
+			%option{:value => "b-2"} Option Two
+			%option{:value => "b-3"} Option Three
+			%option{:value => "b-4"} Option Four
+			%option{:value => "b-5"} Option Five
+			%option{:value => "b-6"} Option Six
+			%option{:value => "b-7"} Option Seven
+			%option{:value => "b-8"} Option Eight
+			%option{:value => "b-9"} Option Nine
+
+		%h6.dropdown_label.truncate Extra 3
+
+		.wrap_scroll-list{"data-maxheight" => "290"}
+			%ul.dropdown_list
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-1"}
+						%span.filter_label Option One
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-2"}
+						%span.filter_label Option Twoooo Long of a Title
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-3"}
+						%span.filter_label Option Three
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-4"}
+						%span.filter_label Option Four
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-5"}
+						%span.filter_label Option Five
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-6"}
+						%span.filter_label Option Six
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-7"}
+						%span.filter_label Option Seven
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-8"}
+						%span.filter_label Option Eight
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-9"}
+						%span.filter_label Option Nine
+
+		-# visible when a value is selected
+		%i.filter_reset
+			%svg.svg_remove-thick
+				%use{"xlink:href" => "#remove-thick"}
+
+
+	%article.wrap_filter-extra4.wide{"data-selected" => ""}
+
+		%select#filter_extra4.visuallyhidden{:name => "filter_extra4"}
+			%option{:value => "", :selected => true} Extra 4
+			%option{:value => "b-1"} Option One
+			%option{:value => "b-2"} Option Two
+			%option{:value => "b-3"} Option Three
+			%option{:value => "b-4"} Option Four
+			%option{:value => "b-5"} Option Five
+			%option{:value => "b-6"} Option Six
+			%option{:value => "b-7"} Option Seven
+			%option{:value => "b-8"} Option Eight
+			%option{:value => "b-9"} Option Nine
+
+		%h6.dropdown_label.truncate Extra 4
+
+		.wrap_scroll-list{"data-maxheight" => "290"}
+			%ul.dropdown_list
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-1"}
+						%span.filter_label Option One
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-2"}
+						%span.filter_label Option Twoooo Long of a Title
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-3"}
+						%span.filter_label Option Three
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-4"}
+						%span.filter_label Option Four
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-5"}
+						%span.filter_label Option Five
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-6"}
+						%span.filter_label Option Six
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-7"}
+						%span.filter_label Option Seven
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-8"}
+						%span.filter_label Option Eight
+				%li.dropdown_option
+					%a.dropdown_link{:href => "#", "data-value" => "b-9"}
+						%span.filter_label Option Nine
+
+		-# visible when a value is selected
 		%i.filter_reset
 			%svg.svg_remove-thick
 				%use{"xlink:href" => "#remove-thick"}
