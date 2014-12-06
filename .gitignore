@@ -16,6 +16,7 @@ secrets.json
 
 # Ignore copyright webfonts
 dev/extra/fonts
+build/assets/fonts
 
 # Dependency directory
 # Deployed apps should consider commenting this line out:
