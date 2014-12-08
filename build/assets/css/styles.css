@@ -1118,26 +1118,23 @@ header.header_csr a.btn_arw-left {
   margin: 6rem auto 0 auto;
 }
 
-header.header_csr a.view-all {
+header.header_csr a.button_circle {
   top: 0;
+  font-size: 2rem;
+}
+
+header.header_csr a.button_circle span {
+  line-height: 1.2;
+}
+
+header.header_csr a.new-lookup {
   left: 0;
-  font-size: 1.3rem;
   background-color: #59a172;
 }
 
-header.header_csr a.view-all span {
-  line-height: 1.3;
-}
-
 header.header_csr a.log-out {
-  top: 0;
   right: -1.4rem;
-  font-size: 2rem;
   background-color: #005c20;
-}
-
-header.header_csr a.log-out span {
-  line-height: 1.2;
 }
 
 div.row-1 {
