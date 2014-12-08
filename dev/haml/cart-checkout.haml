@@ -15,7 +15,9 @@
 
 		%main{:role => "main", "data-container" => "width-926"}
 			= Haml::Engine.new(File.read("dev/haml/partials/cart/_table_cart.haml")).render
+
 			= Haml::Engine.new(File.read("dev/haml/partials/modals/_cart_remove.haml")).render
+			= Haml::Engine.new(File.read("dev/haml/partials/modals/_cart_age.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/cart/_footer_cart-checkout.haml")).render
 		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

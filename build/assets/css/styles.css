@@ -375,6 +375,11 @@ form.search_form input[type="checkbox"] + label {
           transition: color 0.2s ease-in-out;
 }
 
+div.wrap_age label {
+  -webkit-transition: border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+          transition: border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
 h6.dropdown_label::after,
 form.search_form input[type="checkbox"] + label::before {
   -webkit-transition: border-color 0.2s ease-in-out;
@@ -1110,9 +1115,18 @@ header.header_csr h2 {
 }
 
 header.header_csr a.btn_arw-left {
-  position: absolute;
-  top: 1.4rem;
-  left: -1.4rem;
+  margin: 6rem auto 0 auto;
+}
+
+header.header_csr a.view-all {
+  top: 0;
+  left: 0;
+  font-size: 1.3rem;
+  background-color: #59a172;
+}
+
+header.header_csr a.view-all span {
+  line-height: 1.3;
 }
 
 header.header_csr a.log-out {
@@ -2989,6 +3003,68 @@ form.cart_form button.arrow_right {
   float: right;
   clear: both;
   right: 5.2rem;
+}
+
+div.wrap_age {
+  position: relative;
+  padding-left: 42rem;
+}
+
+div.wrap_age label {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 34.8rem;
+  width: 4rem;
+  height: 4rem;
+  border: 0.4rem solid #b3b3b3;
+}
+
+div.wrap_age label svg {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.4rem;
+  width: 4rem;
+  height: 4rem;
+  fill: rgba(0, 92, 32, 0);
+}
+
+div.wrap_age p {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+div.wrap_age p a {
+  color: #005c20;
+}
+
+div.wrap_age input[type="checkbox"]:checked + label {
+  border-color: #59a172;
+}
+
+div.wrap_age input[type="checkbox"]:checked + label svg {
+  fill: #005c20;
+}
+
+div.wrap_age label:hover {
+  border-color: gray;
+}
+
+div.wrap_age p a:hover {
+  color: #008f32;
+}
+
+div.wrap_age label:active {
+  opacity: 0.8;
+}
+
+div.wrap_age p a:active {
+  color: #005c20;
+}
+
+aside.modal_age p {
+  font-size: 2.6rem;
 }
 
 body.page_csr-info main.wrap_content {

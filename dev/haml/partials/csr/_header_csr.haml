@@ -3,11 +3,9 @@
 	#logo_sportsmans.logo_sportsmans
 		%img{:src => "assets/img/logo_sportsmans.png", :alt => "Sportsman's Warehouse"}
 
-	-# only on: csr-cart
-	%a#shop-more.btn_arw-left{:href => "/prod-indv.html", :title => "Shop For More Items"}
-		%span Shop For More Items
-		%svg.svg_btn_arw-left
-			%use{"xlink:href" => "#btn_arw-left"}
+	-# link to: departments listing
+	%a#view-all.view-all.button_circle{:href => "/prod-dept.html", :title => "View All Departments"}
+		%span.wrap_text View All Departments
 
 	-# only on: csr-info, csr-phone, csr-cart
 	%a#log-out.log-out.button_circle{:href => "/index.html", :title => "Log Out"}
@@ -18,3 +16,9 @@
 	%h2#page_subtitle
 		Phone Number:
 		%span#phone_number 613-555-0123
+
+	-# only on: csr-cart
+	%a#shop-more.btn_arw-left{:href => "/prod-indv.html", :title => "Shop For More Items"}
+		%span Shop For More Items
+		%svg.svg_btn_arw-left
+			%use{"xlink:href" => "#btn_arw-left"}
