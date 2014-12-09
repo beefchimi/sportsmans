@@ -1,0 +1,22 @@
+!!!
+%html#root{:lang => "en"}
+
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
+
+	%body#csr_success.page_csr-success
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
+
+		-# using modal styes: applied via 'wrap_content' class
+		%main.wrap_content{:role => "main", "data-container" => "width-926"}
+
+			%h2
+				You have successfully completed a pick up for
+				%span#pickup_id Order X
+
+			%a#return_main.arrow_right{:href => "#", :title => ""} Return to Main
+
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

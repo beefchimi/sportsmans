@@ -1,0 +1,42 @@
+%form#csr-display_form.csr-order_form.cart_form{:action => "", :method => "GET"}
+
+	%table
+
+		%thead
+			%tr
+				%th.header_number Order #
+				%th.header_status Status
+				%th.header_total Total
+				%th.header_select Select
+
+		%tbody
+
+			-# row ID is suffixed with order number
+			%tr#row_12345
+				%td.order_number 12345
+				%td.order_status Shipped
+				%td.order_total $65.98
+				%td.order_select
+					-# since this item is already shipped, the <a> receives the "disabled" class (assumed functionality...)
+					%a.disabled{:href => "#", :title => "Select This Order"} Select
+
+			%tr#row_67890
+				%td.order_number 67890
+				%td.order_status Pending
+				%td.order_total $2042.67
+				%td.order_select
+					%a{:href => "#", :title => "Select This Order"} Select
+
+			%tr#row_54321
+				%td.order_number 54321
+				%td.order_status On Fire
+				%td.order_total $666.66
+				%td.order_select
+					%a{:href => "#", :title => "Select This Order"} Select
+
+			%tr#row_67890
+				%td.order_number 09876
+				%td.order_status Some terrible mystery
+				%td.order_total $0.01
+				%td.order_select
+					%a{:href => "#", :title => "Select This Order"} Select

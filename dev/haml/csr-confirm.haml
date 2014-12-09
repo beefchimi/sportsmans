@@ -1,0 +1,38 @@
+!!!
+%html#root{:lang => "en"}
+
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
+
+	%body#csr_confirm.page_csr-confirm
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
+
+		-# using modal styes: applied via 'wrap_content' class
+		%main.wrap_content{:role => "main", "data-container" => "width-926"}
+
+			%form#csr-confirm_form.csr-order_form.cart_form{:action => "", :method => "GET"}
+
+				%table
+
+					%thead
+						%tr
+							%th.header_number Order #
+							%th.header_status Status
+							%th.header_total Total
+
+					%tbody
+
+						-# row ID is suffixed with order number
+						%tr#row_12345
+							%td.order_number 12345
+							%td.order_status Shipped
+							%td.order_total $65.98
+
+				%input#id_text.id_text{:type => "text", :name => "id", :value => "", :autocomplete => "off", :placeholder => "Enter ID Number", :required => true}
+
+				%button.arrow_right Confirm Pickup
+
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

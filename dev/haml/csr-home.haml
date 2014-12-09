@@ -1,0 +1,24 @@
+!!!
+%html#root{:lang => "en"}
+
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
+
+	%body#csr_home.page_csr-home
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		%main{:role => "main", "data-container" => "width-686"}
+
+			#logo_sportsmans.logo_sportsmans
+				%img{:src => "assets/img/logo_sportsmans.png", :alt => "Sportsman's Warehouse"}
+
+			%h1 Welcome to America’s Premier Outfitter.&trade;
+
+			%a.shop_hunting.home_link{:href => "/prod-cat.html", :title => "In-Store Order"}
+				%span.wrap_text In-Store Order
+
+			%a.shop_departments.home_link{:href => "/prod-dept.html", :title => "Order Pickup"}
+				%span.wrap_text Order Pickup
+
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

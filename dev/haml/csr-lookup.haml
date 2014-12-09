@@ -1,0 +1,24 @@
+!!!
+%html#root{:lang => "en"}
+
+	= Haml::Engine.new(File.read("dev/haml/partials/common/_html_head.haml")).render
+
+	%body#csr_lookup.page_csr-lookup
+
+		:plain
+			<!-- inject:svg --><!-- endinject -->
+
+		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
+
+		-# using modal styes: applied via 'wrap_content' class
+		%main.wrap_content{:role => "main", "data-container" => "width-926"}
+
+			%form#csr-lookup_form{:action => "", :method => "GET"}
+				%h1 Enter customer phone number:
+				%input#csr-lookup_tel.csr-lookup_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "Enter Number", :required => true}
+				%button.arrow_right Search Orders
+
+			#not-found.not-found
+				%h3 No orders found under that phone number.
+
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

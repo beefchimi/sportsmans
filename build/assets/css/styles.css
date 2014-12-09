@@ -411,10 +411,11 @@ form input[type="tel"],
 form input[type="text"],
 form input[type="email"],
 form input[type="password"] {
-  margin-bottom: 12rem;
-  width: 100%;
-  height: 20rem;
-  font-size: 9rem;
+  display: block;
+  margin: 0 auto 12rem auto;
+  width: 86%;
+  height: 14rem;
+  font-size: 6.8rem;
   text-align: center;
   color: #005c20;
   border: 0.6rem solid #005c20;
@@ -1050,6 +1051,11 @@ div.adjust_quantity button.disabled svg {
   right: -3.2rem;
 }
 
+.wrap_content div.not-found {
+  margin-top: 10rem;
+  padding: 0 8rem;
+}
+
 div.test_modal {
   position: fixed;
   z-index: 310;
@@ -1112,6 +1118,10 @@ header.header_csr h2 {
   text-align: center;
   text-transform: uppercase;
   color: gray;
+}
+
+header.header_csr h2 span {
+  color: #a8a8a8;
 }
 
 header.header_csr a.btn_arw-left {
@@ -1982,7 +1992,6 @@ aside.wrap_price.product_range h4 {
 }
 
 body.page_home {
-  padding-top: 20rem;
   background-image: url("../img/bg_home.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -1990,13 +1999,20 @@ body.page_home {
   background-size: cover;
 }
 
-body.page_home main div.logo_sportsmans {
+body.page_home,
+body.page_csr-home {
+  padding-top: 20rem;
+}
+
+body.page_home main div.logo_sportsmans,
+body.page_csr-home main div.logo_sportsmans {
   margin: 0 auto 6rem auto;
   width: 18rem;
   height: 7.9rem;
 }
 
-body.page_home main h1 {
+body.page_home main h1,
+body.page_csr-home main h1 {
   margin-bottom: 14rem;
   font-family: 'ArcherProSemibold';
   font-size: 3.9rem;
@@ -2880,9 +2896,12 @@ form.cart_form tbody tr td:nth-child(n+2) {
   text-align: center;
 }
 
+form.cart_form thead tr th:first-child {
+  text-align: left;
+}
+
 form.cart_form thead tr th.header_item {
   width: 34%;
-  text-align: left;
 }
 
 form.cart_form thead tr th.header_quantity {
@@ -2939,7 +2958,7 @@ form.cart_form tbody {
   margin-bottom: 3.2rem;
 }
 
-form.cart_form tbody tr td.product_item {
+form.cart_form tbody tr td:first-child {
   padding: 2rem 2rem 2rem 0;
 }
 
@@ -2996,12 +3015,14 @@ form.cart_form a.button_close {
   margin: 2rem auto;
 }
 
+/*
+// + button: finalize + \
 form.cart_form button.arrow_right {
-  float: right;
-  clear: both;
-  right: 5.2rem;
+	float: right;
+	clear: both;
+	right: 5.2rem; // width of triangle
 }
-
+*/
 div.wrap_age {
   position: relative;
   padding-left: 42rem;
@@ -3125,6 +3146,54 @@ body.page_csr-cart form.cart_form tbody tr td.product_item h3:last-child {
   margin-bottom: 0;
 }
 
+/*
+form.csr-order_form {
+	margin-top: 12rem;
+}
+*/
+form.csr-order_form thead tr th.header_select {
+  color: transparent;
+}
+
+form.csr-order_form tbody tr td {
+  font-size: 2.4rem;
+}
+
+form.csr-order_form tbody tr td:nth-child(n+2) {
+  padding: 2rem;
+}
+
+form.csr-order_form tbody tr td:last-child {
+  border-right: none;
+}
+
+form.csr-order_form tbody tr td.order_select a {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: white;
+  background-color: #005c20;
+}
+
+form.csr-order_form tbody tr td.order_select a:hover {
+  background-color: #008f32;
+}
+
+form.csr-order_form tbody tr td.order_select a:active {
+  background-color: #007027;
+}
+
+body.page_csr-confirm form.csr-order_form table {
+  margin-bottom: 20rem;
+}
+
+body.page_csr-confirm form.csr-order_form thead tr th,
+body.page_csr-confirm form.csr-order_form tbody tr td {
+  width: 33.33333333333333%;
+}
+
 #back-parent {
   display: none;
 }
@@ -3177,7 +3246,9 @@ header.header_csr h2 {
   display: none;
 }
 
-body.page_csr-cart header.header_csr h2 {
+body.page_csr-cart header.header_csr h2,
+body.page_csr-display header.header_csr h2,
+body.page_csr-confirm header.header_csr h2 {
   display: block;
 }
 
@@ -3195,6 +3266,7 @@ header.header_csr a.log-out {
 
 body.page_csr-info header.header_csr a.log-out,
 body.page_csr-phone header.header_csr a.log-out,
-body.page_csr-cart header.header_csr a.log-out {
+body.page_csr-cart header.header_csr a.log-out,
+body.page_csr-display header.header_csr a.log-out {
   display: block;
 }
