@@ -3156,15 +3156,21 @@ form.csr-order_form thead tr th.header_select {
 }
 
 form.csr-order_form tbody tr td {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 form.csr-order_form tbody tr td:nth-child(n+2) {
-  padding: 2rem;
+  padding: 2rem 1.6rem;
+}
+
+form.csr-order_form tbody tr td:first-child {
+  padding-right: 0;
+  text-align: left;
 }
 
 form.csr-order_form tbody tr td:last-child {
   border-right: none;
+  border-left: 0.3rem solid #cccccc;
 }
 
 form.csr-order_form tbody tr td.order_select a {

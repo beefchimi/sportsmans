@@ -20,6 +20,8 @@
 					%thead
 						%tr
 							%th.header_number Order #
+							%th.header_customer Customer
+							%th.header_date Date
 							%th.header_status Status
 							%th.header_total Total
 
@@ -28,9 +30,12 @@
 						-# row ID is suffixed with order number
 						%tr#row_12345
 							%td.order_number 12345
+							%td.order_customer Haley Joel Osment
+							%td.order_date 12/08/2014
 							%td.order_status Shipped
 							%td.order_total $65.98
 
+				%h3 ID Number
 				%input#id_text.id_text{:type => "text", :name => "id", :value => "", :autocomplete => "off", :placeholder => "Enter ID Number", :required => true}
 
 				%button.arrow_right Confirm Pickup
