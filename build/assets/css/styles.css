@@ -1537,10 +1537,11 @@ form.filter_form article div {
   border-radius: 0 0 2.4rem 2.4rem;
 }
 
+/*
 form.filter_form article div.scrollable {
-  height: 29rem;
+	height: 29rem; // once attr() has wider support, we will use that
 }
-
+*/
 form.filter_form article div ul li a {
   padding: 1.6rem 2rem;
   font-size: 1.5rem;
@@ -2499,10 +2500,11 @@ div.reviews_customer div.title_row a.button_close {
   right: 3.2rem;
 }
 
+/*
 div.reviews_customer div.scrollable {
-  height: 89.8rem;
+	height: 89.8rem; // once attr() has wider support, we will use that
 }
-
+*/
 ul.reviews_list > li {
   position: relative;
   padding: 2.6rem 3.2rem;

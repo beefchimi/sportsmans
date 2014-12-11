@@ -405,6 +405,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			// if the total height of this element exceeds the data-maxheight value
 			if (arrScrollWrap[i].offsetHeight > numMaxHeight) {
 				arrScrollWrap[i].classList.add('scrollable');
+				arrScrollWrap[i].style.height = numMaxHeight + 'px';
 			}
 
 		}

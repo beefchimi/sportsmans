@@ -22,7 +22,7 @@
 
 		%h6.dropdown_label.truncate{"data-label" => "1. Select Color"} 1. Select Color
 
-		.wrap_dropdown
+		.wrap_scroll-list{"data-maxheight" => "320"}
 			%ul.dropdown_list
 				%li.dropdown_option
 					%a.dropdown_link{:href => "#", "data-value" => "color-white"}
@@ -64,7 +64,7 @@
 		%h6.dropdown_label.truncate{"data-label" => "2. Select Size"} 2. Select Size
 
 		-# if required, span.variation_label can use the 'data-label" attribute for alternate labels
-		.wrap_dropdown
+		.wrap_scroll-list{"data-maxheight" => "320"}
 			%ul.dropdown_list
 				%li.dropdown_option
 					%a.dropdown_link{:href => "#", "data-value" => "size-xs"}
