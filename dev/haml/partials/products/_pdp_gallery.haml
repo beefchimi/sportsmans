@@ -24,6 +24,7 @@
 
 -# video links are always added first in the #gallery_thumbs
 -# code can accomodate up to 10 slides total. if more is needed, I can change things up to account for this.
+-# if no image: do not output
 
 .wrap_gallery-thumbs
 	%ul#gallery_thumbs.gallery_thumbs{"data-position" => "start"}
@@ -63,6 +64,7 @@
 
 
 -# prev / next nav links for gallery slider
+-# if no image: add "disabled" class ot each <a>
 
 %a#gallery_prev.gallery_prev{:href => "", :title => "Previous Slide"}
 	%svg.svg_arrow
