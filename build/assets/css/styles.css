@@ -1140,14 +1140,16 @@ aside.error_alert .wrap_content h4 {
   color: #005c20;
 }
 
+/*
 aside.error_alert .wrap_content a.button_close {
-  background: #007a2b;
+	// right: 50%;
+	// transform: translateX(50%);
+	background: hsla(141,100%,24%,1);
 }
-
 aside.error_alert .wrap_content a.button_close svg {
-  fill: white;
+	fill: hsla(0,0%,100%,1);
 }
-
+*/
 header {
   margin-bottom: 4.8rem;
 }

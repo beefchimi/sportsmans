@@ -4,7 +4,7 @@
 	%h1#page_title Long Title is NotFormatted/Properly/Sad
 
 	-# only in these views: Departments, Categories, Indv. Prods, PDP
-	%form#search_form.search_form{:action => "", :method => "GET", :role => "search"}
+	%form#search_form.search_form{:action => "", :method => "GET", :role => "search", :novalidate => true}
 		-# placeholder text is generated based on current page view ("Search Hunting", "Search Ammunition", etc)
 		%input#search_text.search_text{:type => "text", :name => "search", :value => "", :autocomplete => "off", :placeholder => "Search Hunting", "data-placeholder" => "Search Hunting", :required => true}
 		%input#search_checkbox.search_checkbox.visuallyhidden{:type => "checkbox", :name => "search-all", :value => "search-all-departments"}

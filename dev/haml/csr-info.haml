@@ -13,7 +13,7 @@
 		-# using modal styes: applied via 'wrap_content' class
 		%main.wrap_content{:role => "main", "data-container" => "width-926"}
 
-			%form#csr-info_form{:action => "", :method => "GET"}
+			%form#csr-info_form{:action => "", :method => "GET", :novalidate => true}
 
 				%h1 Customer First and Last Name:
 				%input#csr-fullname_text.csr-fullname_text.error_invalid{:type => "text", :name => "fullname", :value => "", :autocomplete => "off", :placeholder => "Enter Name", :required => true}

@@ -13,7 +13,7 @@
 		-# using modal styes: applied via 'wrap_content' class
 		%main.wrap_content{:role => "main", "data-container" => "width-926"}
 
-			%form#csr-lookup_form{:action => "", :method => "GET"}
+			%form#csr-lookup_form{:action => "", :method => "GET", :novalidate => true}
 				%h1 Enter customer phone number:
 				%input#csr-lookup_tel.csr-lookup_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "Enter Number", :required => true}
 				%button.arrow_right Search Orders

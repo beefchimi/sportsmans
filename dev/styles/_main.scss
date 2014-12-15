@@ -759,12 +759,16 @@ aside.error_alert .wrap_content h4 {
 	line-height: 1.2;
 	color: hsla(141,100%,18%,1);
 }
+/*
 aside.error_alert .wrap_content a.button_close {
+	// right: 50%;
+	// transform: translateX(50%);
 	background: hsla(141,100%,24%,1);
 }
 aside.error_alert .wrap_content a.button_close svg {
 	fill: hsla(0,0%,100%,1);
 }
+*/
 
 
 // ==|== common sections ======================================================
@@ -986,7 +990,7 @@ header div.row-2 h1 {
 header div.row-2 a.button_circle {
 	bottom: 6.6rem; // computed height of search margin-bottom and label height
 }
-// --- Idividual Buttons --- \\
+// --- Individual Buttons --- \\
 header div.row-2 a.view-all {
 	left: 0;
 	font-size: 1.3rem;

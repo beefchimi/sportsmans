@@ -13,7 +13,7 @@
 		-# using modal styes: applied via 'wrap_content' class
 		%main.wrap_content{:role => "main", "data-container" => "width-926"}
 
-			%form#csr-access_form{:action => "", :method => "GET"}
+			%form#csr-access_form{:action => "", :method => "GET", :novalidate => true}
 				%h1 Enter your access code:
 				%input#csr-access_password.csr-access_password{:type => "password", :name => "access", :value => "", :maxlength => "4", :placeholder => "– – – –", :required => true}
 				%button.arrow_right Continue
