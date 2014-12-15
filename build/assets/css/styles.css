@@ -343,7 +343,8 @@ div.row-1 div.logo_sportsmans {
 [data-modal],
 form.has-popout,
 div.reviews_customer,
-ul.gallery_slider li {
+ul.gallery_slider li,
+aside.error_alert {
   -webkit-transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
           transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
 }
@@ -429,6 +430,19 @@ form input[type="password"]:focus {
   border-color: #007a2b;
 }
 
+form input.error_invalid,
+form input.error_invalid:focus {
+  border-color: #ff0900;
+}
+
+form input.error_invalid::-webkit-input-placeholder {
+  color: #ff0900;
+}
+
+form input.error_invalid:focus::-webkit-input-placeholder {
+  color: rgba(255, 9, 0, 0.5);
+}
+
 [data-container] {
   margin-left: auto;
   margin-right: auto;
@@ -508,14 +522,13 @@ div.loader div.circle-2 {
 }
 div.tooltip {
   position: absolute;
+  top: -6.6rem;
   left: 50%;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
   width: 20rem;
-  height: 7.2rem;
   text-align: center;
-  line-height: 6.4rem;
   background-color: #007a2b;
   border-radius: 1.6rem;
   opacity: 0;
@@ -539,12 +552,21 @@ div.tooltip::after {
 }
 
 div.tooltip span {
-  display: inline-block;
+  display: block;
+  padding: 1.2rem 1.6rem 1.4rem 1.6rem;
   font-size: 1.4rem;
   line-height: 1.2;
   vertical-align: middle;
   text-transform: none;
+  white-space: normal;
   color: white;
+}
+
+.error_message div.tooltip,
+section.panel_cart a.button_common-border:not([data-delete="null"]) div.tooltip {
+  top: -8rem;
+  opacity: 1;
+  visibility: visible;
 }
 
 form.has-dropdown article h6 {
@@ -814,6 +836,7 @@ a.button_close {
   height: 6.4rem;
   text-align: center;
   line-height: 5.7rem;
+  background: rgba(255, 255, 255, 0.9);
   border: 0.3rem solid #005c20;
   border-radius: 50%;
 }
@@ -1087,6 +1110,44 @@ div.test_modal a:active {
   opacity: 0.9;
 }
 
+aside.error_alert {
+  position: fixed;
+  z-index: 400;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+}
+
+aside.error_alert.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+aside.error_alert .wrap_content {
+  margin: auto;
+  width: 60rem;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+aside.error_alert .wrap_content h4 {
+  padding: 6.4rem 3.2rem;
+  font-size: 3.2rem;
+  line-height: 1.2;
+  color: #005c20;
+}
+
+aside.error_alert .wrap_content a.button_close {
+  background: #007a2b;
+}
+
+aside.error_alert .wrap_content a.button_close svg {
+  fill: white;
+}
+
 header {
   margin-bottom: 4.8rem;
 }
@@ -1357,7 +1418,7 @@ form.search_form input.search_text {
   text-align: center;
   text-transform: uppercase;
   color: #005c20;
-  border: 0.3rem solid #005c20;
+  border-width: 0.3rem;
   border-radius: 3.2rem;
 }
 
@@ -1378,6 +1439,10 @@ form.search_form button svg {
   width: 2.6rem;
   height: 2.6rem;
   fill: #005c20;
+}
+
+form.search_form input.error_invalid ~ button svg {
+  fill: #ff0900;
 }
 
 form.search_form input[type="checkbox"] + label {
@@ -1888,6 +1953,8 @@ section.panel_cart button.button_common-fill {
 section.panel_cart button.arrow_right {
   position: absolute;
   top: 5.7rem;
+  right: 0.9rem;
+  padding-left: 2.9rem;
   height: 6.6rem;
   font-size: 2.6rem;
   line-height: 6.6rem;
@@ -1895,17 +1962,9 @@ section.panel_cart button.arrow_right {
   background-color: white;
 }
 
-section.panel_cart button.arrow_right {
-  right: 0.9rem;
-  padding-left: 2.9rem;
-}
-
 section.panel_cart button.arrow_right::after {
   border-top-width: 3.3rem;
   border-bottom-width: 3.3rem;
-}
-
-section.panel_cart button.arrow_right::after {
   border-left-width: 3.6rem;
   border-left-color: white;
 }
@@ -1927,13 +1986,13 @@ section.panel_cart a.button_common-border {
 }
 
 section.panel_cart a.button_common-border div.tooltip {
-  top: -6.6rem;
+  height: 7.2rem;
+  line-height: 6.4rem;
 }
 
-section.panel_cart a.button_common-border:not([data-delete="null"]) div.tooltip {
-  top: -8rem;
-  opacity: 1;
-  visibility: visible;
+section.panel_cart a.button_common-border div.tooltip span {
+  display: inline-block;
+  padding: 0;
 }
 
 aside.wrap_price {

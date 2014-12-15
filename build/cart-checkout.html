@@ -148,6 +148,11 @@
                     </svg>
                   </button>
                   <p class='error_invalid'>Invalid Input</p>
+                  <div class='tooltip' id='delete_popup'>
+                    <span class='wrap_text'>
+                      There was an error while attempting to add the item to the order.
+                    </span>
+                  </div>
                 </div>
               </td>
               <td class='product_price'>$219.99</td>
@@ -261,12 +266,29 @@
           <a class='modal_close arrow_right' href='#' id='age_cancel' title='Close this window'>OK, Got It</a>
         </div>
       </aside>
+      <aside class='error_alert visible' id='error_alert'>
+        <div class='wrap_content'>
+          <h4>There was an error while attempting to add the item to the order.</h4>
+          <a class='button_close error_close' href='#' id='error_close' title='Close Window'>
+            <svg class='svg_remove'>
+              <use xlink:href='#remove'></use>
+            </svg>
+          </a>
+        </div>
+      </aside>
     </main>
     <footer>
       <section class='panel_cart' id='panel_cart'>
         <article data-container='width-926'>
           <button class='button_common-fill disabled' form='cart_form' formaction='' formenctype='' formmethod='' formtarget='' id='button_update' type='submit'>Update Cart</button>
-          <button class='arrow_right' form='cart_form' formaction='' formenctype='' formmethod='' formtarget='' id='button_finalize' type='submit'>Finalize My Order</button>
+          <button class='arrow_right' form='cart_form' formaction='' formenctype='' formmethod='' formtarget='' id='button_finalize' type='submit'>
+            Finalize My Order
+            <div class='tooltip' id='delete_popup'>
+              <span class='wrap_text'>
+                There was an error finalizing your order page. Please try again.
+              </span>
+            </div>
+          </button>
         </article>
       </section>
     </footer>

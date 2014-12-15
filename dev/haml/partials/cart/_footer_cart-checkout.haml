@@ -10,4 +10,10 @@
 			-# buttons will gain the class "disabled" when they cannot be used
 			%button#button_update.button_common-fill.disabled{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Update Cart
 
-			%button#button_finalize.arrow_right{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"} Finalize My Order
+			%button#button_finalize.arrow_right{:form => "cart_form", :formaction => "", :formenctype => "", :formmethod => "", :formtarget => "", :type => "submit"}
+				Finalize My Order
+
+				-# example of submission error: parent button receives "error_message" class
+				#delete_popup.tooltip
+					%span.wrap_text
+						There was an error finalizing your order page. Please try again.

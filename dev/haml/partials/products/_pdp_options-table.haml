@@ -68,10 +68,14 @@
 					%td.product_price $320.50
 					%td.product_quantity
 						.adjust_quantity
-							%input.adjust_number{:type => "number", :min => "0", :max => "999", :step => "1", :value => "0", :name => "#12345-{i}"}
+							%input.adjust_number{:type => "number", :min => "0", :max => "999", :step => "1", :value => "0", :name => "#12345-#{i}"}
 							%button.adjust_decrease{:type => "button"}
 								%svg.svg_minus
 									%use{"xlink:href" => "#minus"}
 							%button.adjust_increase{:type => "button"}
 								%svg.svg_plus
 									%use{"xlink:href" => "#plus"}
+							-# example of submission error: parent div receives "error_message" class
+							#delete_popup.tooltip
+								%span.wrap_text
+									There was an error while attempting to add the item to the order.

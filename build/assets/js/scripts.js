@@ -2042,6 +2042,30 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
+	// errorClose: Temporary scrips for closing the error alert
+	// ----------------------------------------------------------------------------
+	function errorClose() {
+
+		var elErrorClose = document.getElementById('error_close');
+
+		// check if input[type="tel"] does not exist
+		if (elErrorClose == null) {
+			return;
+		}
+
+		elErrorClose.addEventListener('click', function(e) {
+
+			// remove the 'visible' class from aside.error_alert
+			this.parentNode.parentNode.classList.remove('visible');
+
+			e.preventDefault();
+
+		});
+
+	}
+
+
+
 	// Initialize Primary Functions
 	// ----------------------------------------------------------------------------
 
@@ -2084,6 +2108,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	maskPhoneInput();
+	errorClose();
 
 	// initialize smoothScroll plugin
 	smoothScroll.init({

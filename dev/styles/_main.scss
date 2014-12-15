@@ -52,7 +52,8 @@ div.row-1 div.logo_sportsmans {
 [data-modal],
 form.has-popout,
 div.reviews_customer,
-ul.gallery_slider li {
+ul.gallery_slider li,
+aside.error_alert {
 	transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
 }
 div.tooltip {
@@ -120,6 +121,17 @@ form input[type="password"]:focus {
 	color: hsla(141,100%,24%,1);
 	border-color: hsla(141,100%,24%,1);
 }
+// + invalid + \\
+form input.error_invalid,
+form input.error_invalid:focus {
+	border-color: hsla(2,100%,50%,1);
+}
+form input.error_invalid::-webkit-input-placeholder {
+	color: hsla(2,100%,50%,1);
+}
+form input.error_invalid:focus::-webkit-input-placeholder {
+	color: hsla(2,100%,50%,0.5);
+}
 
 
 // ==|== common components ====================================================
@@ -184,12 +196,11 @@ div.loader div.circle-2 {;
 // ----------------------------------------------------------------------------
 div.tooltip {
 	position: absolute;
+	top: -6.6rem;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 20rem;
-	height: 7.2rem;
 	text-align: center;
-	line-height: 6.4rem; // vertical centre... minus a few pxs
 	background-color: hsla(141,100%,24%,1);
 	border-radius: 1.6rem;
 	opacity: 0;
@@ -209,12 +220,21 @@ div.tooltip::after {
 	border-top: 1.4rem solid hsla(141,100%,24%,1);
 }
 div.tooltip span {
-	display: inline-block;
+	display: block;
+	padding: 1.2rem 1.6rem 1.4rem 1.6rem;
 	font-size: 1.4rem;
 	line-height: 1.2;
 	vertical-align: middle;
 	text-transform: none;
+	white-space: normal;
 	color: hsla(0,0%,100%,1);
+}
+// + error state + \
+.error_message div.tooltip,
+section.panel_cart a.button_common-border:not([data-delete="null"]) div.tooltip {
+	top: -8rem;
+	opacity: 1;
+	visibility: visible;
 }
 
 // Dropdown Selects
@@ -470,6 +490,7 @@ a.button_close {
 	height: 6.4rem;
 	text-align: center;
 	line-height: 5.7rem; // vertical centre: height - border
+	background: hsla(0,0%,100%,0.9);
 	border: 0.3rem solid hsla(141,100%,18%,1);
 	border-radius: 50%;
 }
@@ -710,6 +731,39 @@ div.test_modal a:hover {
 }
 div.test_modal a:active {
 	opacity: 0.9;
+}
+// --- Error Alert --- \\
+aside.error_alert {
+	position: fixed;
+	z-index: 400;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: hsla(0,0%,0%,0.6);
+	opacity: 0;
+	visibility: hidden;
+}
+aside.error_alert.visible {
+	opacity: 1;
+	visibility: visible;
+}
+aside.error_alert .wrap_content {
+	margin: auto;
+	width: 60rem;
+	background: hsla(0,0%,100%,0.96);
+}
+aside.error_alert .wrap_content h4 {
+	padding: 6.4rem 3.2rem;
+	font-size: 3.2rem;
+	line-height: 1.2;
+	color: hsla(141,100%,18%,1);
+}
+aside.error_alert .wrap_content a.button_close {
+	background: hsla(141,100%,24%,1);
+}
+aside.error_alert .wrap_content a.button_close svg {
+	fill: hsla(0,0%,100%,1);
 }
 
 
@@ -967,7 +1021,7 @@ form.search_form input.search_text {
 	text-align: center;
 	text-transform: uppercase;
 	color: hsla(141,100%,18%,1);
-	border: 0.3rem solid hsla(141,100%,18%,1);
+	border-width: 0.3rem;
 	border-radius: 3.2rem; // computer height (66px) / 2
 }
 form.search_form button {
@@ -986,6 +1040,9 @@ form.search_form button svg {
 	width: 2.6rem;
 	height: 2.6rem;
 	fill: hsla(141,100%,18%,1);
+}
+form.search_form input.error_invalid ~ button svg {
+	fill: hsla(2,100%,50%,1);
 }
 // --- Toggle Search Options --- \\
 form.search_form input[type="checkbox"] + label {
@@ -1258,7 +1315,6 @@ form.options_form article div ul li a span.variation_stock {
 	background-color: hsla(0,0%,64%,1);
 	border-radius: 1rem;
 }
-
 // + individual options + \\
 form.options_form article:nth-child(2) {
 	left: 35.7rem;
@@ -1446,21 +1502,17 @@ section.panel_cart button.button_common-fill {
 section.panel_cart button.arrow_right {
 	position: absolute;
 	top: 5.7rem;
+	right: 0.9rem;
+	padding-left: 2.9rem; // 1/4 of arrow width + 20px
 	height: 6.6rem;
 	font-size: 2.6rem;
 	line-height: 6.6rem;
 	color: hsla(141,100%,18%,1);
 	background-color: hsla(0,0%,100%,1);
 }
-section.panel_cart button.arrow_right {
-	right: 0.9rem;
-	padding-left: 2.9rem; // 1/4 of arrow width + 20px
-}
 section.panel_cart button.arrow_right::after {
 	border-top-width: 3.3rem;
 	border-bottom-width: 3.3rem;
-}
-section.panel_cart button.arrow_right::after {
 	border-left-width: 3.6rem;
 	border-left-color: hsla(0,0%,100%,1);
 }
@@ -1478,12 +1530,12 @@ section.panel_cart a.button_common-border {
 	left: 32.6rem;
 }
 section.panel_cart a.button_common-border div.tooltip {
-	top: -6.6rem;
+	height: 7.2rem;
+	line-height: 6.4rem; // vertical centre... minus a few pxs
 }
-section.panel_cart a.button_common-border:not([data-delete="null"]) div.tooltip {
-	top: -8rem;
-	opacity: 1;
-	visibility: visible;
+section.panel_cart a.button_common-border div.tooltip span {
+	display: inline-block;
+	padding: 0;
 }
 // --- Price --- \\
 aside.wrap_price {
