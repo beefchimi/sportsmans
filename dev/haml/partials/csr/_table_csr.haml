@@ -41,7 +41,7 @@
 				%td.product_quantity
 					-# making the assumption that 'min' and 'max' could be different per product...
 					-# 'min', 'max', 'value' and 'name' should be passed in from the initial 'add to cart' step (previous page)
-					.adjust_quantity
+					.adjust_quantity.error_message
 						%input.adjust_number{:type => "number", :min => "1", :max => "999", :step => "1", :value => "2", :name => "307901"}
 						%button.adjust_decrease{:type => "button"}
 							%svg.svg_minus
@@ -50,6 +50,10 @@
 							%svg.svg_plus
 								%use{"xlink:href" => "#plus"}
 						%p.error_invalid Invalid Input
+						-# example of submission error: parent div receives "error_message" class
+						#delete_popup.tooltip
+							%span.wrap_text
+								There was an error while attempting to add the item to the order.
 
 				%td.product_price $32.99
 

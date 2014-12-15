@@ -1,0 +1,10 @@
+-# should be added to DOM only when needed,
+-# visibility toggled with "visible" class
+%aside#error_alert.error_alert.visible
+	.wrap_content
+
+		%h4 There was an error while attempting to add the item to the order.
+
+		%a#error_close.button_close.error_close{:href => "#", :title => "Close Window"}
+			%svg.svg_remove
+				%use{"xlink:href" => "#remove"}
