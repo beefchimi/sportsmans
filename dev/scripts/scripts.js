@@ -837,13 +837,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
-	// errorClose: Temporary scrips for closing the error alert
+	// errorClose: Temporary function for closing the error alert
 	// ----------------------------------------------------------------------------
 	function errorClose() {
 
 		var elErrorClose = document.getElementById('error_close');
 
-		// check if input[type="tel"] does not exist
+		// check if #error_close does not exist
 		if (elErrorClose == null) {
 			return;
 		}
@@ -854,6 +854,49 @@ document.addEventListener('DOMContentLoaded', function() {
 			this.parentNode.parentNode.classList.remove('visible');
 
 			e.preventDefault();
+
+		});
+
+	}
+
+
+	// ageConfirm: Temporary function for displaying age confirm errors
+	// ----------------------------------------------------------------------------
+	function ageConfirm() {
+
+		var elConfirmAge = document.getElementById('confirm_age');
+
+		// check if #confirm_age does not exist
+		if (elConfirmAge == null) {
+			return;
+		}
+
+		var elCartForm       = document.getElementById('cart_form'),
+			elAgeCheck       = document.getElementById('age_checkbox'),
+			elButtonFinalize = document.getElementById('button_finalize'),
+			scrollOptions    = {speed: 800, easing: 'easeInOutQuint', updateURL: false};
+
+		elButtonFinalize.addEventListener('click', function(e) {
+
+			if (elAgeCheck.checked) {
+				// allow submission to go through
+				console.log('life is good, let us continue');
+			} else {
+				// you have not checked the age confirm!
+				elCartForm.classList.add('error_age');
+				elButtonFinalize.classList.add('error_message');
+				smoothScroll.animateScroll(null, '#confirm_age', scrollOptions);
+			}
+
+			// should not be used in production
+			e.preventDefault();
+
+		});
+
+		elAgeCheck.addEventListener('click', function() {
+
+			elCartForm.classList.remove('error_age');
+			elButtonFinalize.classList.remove('error_message');
 
 		});
 
@@ -896,6 +939,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (isCartCheckout || isCartCSR) {
 		emptyCartMessage();
 		modalToggle();
+		ageConfirm();
 	}
 
 	if (isCartCSR) {

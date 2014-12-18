@@ -73,15 +73,16 @@ form.cart_form.empty-cart + div.cart_empty-message {
 form.search_form input[type="checkbox"] + label {
 	transition: color 0.2s ease-in-out;
 }
-div.wrap_age label {
-	transition: border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-}
 h6.dropdown_label::after,
 form.search_form input[type="checkbox"] + label::before {
 	transition: border-color 0.2s ease-in-out;
 }
+div.wrap_age,
 form.search_form input[type="checkbox"] + label::after {
 	transition: background-color 0.2s ease-in-out;
+}
+div.wrap_age label {
+	transition: border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 // General Styles
@@ -394,7 +395,7 @@ a.btn_arw-left {
 	position: relative;
 	width: 31.8rem;
 	height: 5rem;
-	line-height: 5.2rem; // vertical center text (added 2px extra for visual center)
+	line-height: 5.3rem; // vertical center text (added 2px extra for visual center... + 1px for windows)
 	font-size: 1.5rem;
 	text-align: center;
 	text-transform: uppercase;
@@ -433,7 +434,7 @@ a.btn_arw-left:active svg {
 	padding: 0 2rem;
 	height: 6.6rem;
 	font-size: 2.6rem;
-	line-height: 6rem; // height - border
+	line-height: 6.1rem; // height - border + 1px for windows
 	text-align: center;
 	text-transform: uppercase;
 	border: 0.3rem solid hsla(0,0%,100%,1);
@@ -461,7 +462,7 @@ a.btn_arw-left:active svg {
 	position: absolute;
 	width: 12.4rem;
 	height: 12.4rem;
-	line-height: 12rem; // vertical align center: slightly less than element height... appeared off-center
+	line-height: 12.1rem; // vertical align center: slightly less than element height... appeared off-center
 	text-align: center;
 	text-transform: uppercase;
 	color: hsla(0,0%,100%,1);
@@ -489,7 +490,7 @@ a.button_close {
 	width: 6.4rem;
 	height: 6.4rem;
 	text-align: center;
-	line-height: 5.7rem; // vertical centre: height - border
+	line-height: 5.8rem; // vertical centre: height - border + 1px for windows
 	background: hsla(0,0%,100%,0.9);
 	border: 0.3rem solid hsla(141,100%,18%,1);
 	border-radius: 50%;
@@ -666,7 +667,7 @@ div.adjust_quantity button.disabled svg {
 	width: 42.8rem; // 480px - 52px (width of triangle)
 	height: 9.8rem;
 	font-size: 3.3rem;
-	line-height: 9.8rem; // vertical center text
+	line-height: 9.9rem; // vertical center text + 1px for windows
 	color: hsla(0,0%,100%,1);
 }
 .wrap_content .arrow_left {
@@ -866,7 +867,7 @@ aside.widget_cart a.arrow_right {
 	top: 3.8rem;
 	height: 5rem;
 	font-size: 1.7rem;
-	line-height: 5.1rem; // vertical center text (added 1px extra... did not look visually centered)
+	line-height: 5.2rem; // vertical center text (added 1px extra... did not look visually centered) + 1px for windows
 	color: hsla(141,100%,18%,1);
 	background-color: hsla(0,0%,100%,1);
 }
@@ -1143,7 +1144,7 @@ form.filter_form article h6 {
 	position: relative;
 	padding: 0 4rem 0 2rem;
 	height: 4.8rem;
-	line-height: 4.4rem; // height - border
+	line-height: 4.5rem; // height - border + 1px for windows
 	font-size: 1.5rem;
 	text-transform: uppercase;
 	border-radius: 2.4rem; // computed height (48px) / 2
@@ -1271,7 +1272,7 @@ form.options_form article {
 form.options_form article h6 {
 	padding: 0 2rem;
 	height: 6.4rem;
-	line-height: 6.1rem; // height - border
+	line-height: 6.2rem; // height - border + 1px for windows
 	font-size: 1.8rem;
 	border-radius: 1.6rem;
 }
@@ -1452,7 +1453,7 @@ article.wrap_popout-button h6 {
 	padding: 0 2rem;
 	height: 6.4rem;
 	font-size: 1.8rem;
-	line-height: 6.1rem; // height - border
+	line-height: 6.2rem; // height - border + 1px for windows
 	text-align: center;
 	text-transform: uppercase;
 	color: hsla(141,100%,18%,1);
@@ -1510,7 +1511,7 @@ section.panel_cart button.arrow_right {
 	padding-left: 2.9rem; // 1/4 of arrow width + 20px
 	height: 6.6rem;
 	font-size: 2.6rem;
-	line-height: 6.6rem;
+	line-height: 6.7rem; // + 1px for windows
 	color: hsla(141,100%,18%,1);
 	background-color: hsla(0,0%,100%,1);
 }
@@ -2443,14 +2444,17 @@ form.cart_form button.arrow_right {
 // --- Age Confirmation --- \\
 div.wrap_age {
 	position: relative;
-	padding-left: 42rem;
+	margin-left: 33rem;
+	padding: 2rem;
+	width: 59.6rem;
+	background-color: hsla(0,0%,0%,0.0);
 }
 div.wrap_age label {
 	cursor: pointer;
 	display: block;
 	position: absolute;
-	top: 0;
-	left: 34.8rem;
+	top: 2.4rem;
+	left: 2rem; // 34.8rem;
 	width: 4rem;
 	height: 4rem;
 	border: 0.4rem solid hsla(0,0%,70%,1);
@@ -2464,6 +2468,7 @@ div.wrap_age label svg {
 	fill: hsla(141,100%,18%,0);
 }
 div.wrap_age p {
+	padding-left: 6.8rem;
 	font-size: 1.6rem;
 	line-height: 1.5;
 }
@@ -2489,6 +2494,9 @@ div.wrap_age label:active {
 div.wrap_age p a:active {
 	color: hsla(141,100%,18%,1);
 }
+form.error_age div.wrap_age {
+	background-color: hsla(0,0%,0%,0.04);
+}
 // + age modal + \\
 aside.modal_age p {
 	font-size: 2.6rem;
@@ -2500,19 +2508,36 @@ aside.modal_age p {
 body.page_csr-info main.wrap_content {
 	transform: translateY(-38%);
 }
-/*
-body.page_csr-info form h1 {
-	margin-bottom: 2.6rem;
+
+form.csr-info_form h1 {
+	font-size: 4.8rem;
 }
-*/
-body.page_csr-info form input[type="text"],
-body.page_csr-info form input[type="email"] {
-	margin-bottom: 10rem;
-}
-body.page_csr-info form hr {
+
+form.csr-info_form input[type="text"],
+form.csr-info_form input[type="email"] {
 	margin-bottom: 8rem;
-	border: 0.3rem solid hsla(141,100%,18%,1);
 }
+form.csr-info_form hr {
+	margin-bottom: 6rem;
+	border: 0.2rem solid hsla(0,0%,80%,1);
+}
+
+
+
+// --- Form Elements --- \\
+form.csr-info_form input[type="tel"],
+form.csr-info_form input[type="text"],
+form.csr-info_form input[type="email"],
+form.csr-info_form input[type="password"] {
+	width: 60rem;
+	height: 9rem;
+	font-size: 4rem;
+	// border: 0.6rem solid hsla(141,100%,18%,1);
+}
+
+
+
+
 // --- CSR Cart --- \\
 body.page_csr-cart {
 }

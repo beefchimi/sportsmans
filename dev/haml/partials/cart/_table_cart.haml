@@ -140,8 +140,8 @@
 						%svg.svg_remove
 							%use{"xlink:href" => "#remove"}
 
-	-# only out if an age restricted item is in the cart
-	.wrap_age
+	-# only output if an age restricted item is in the cart
+	#confirm_age.wrap_age
 
 		%input#age_checkbox.age_checkbox.visuallyhidden{:type => "checkbox", :name => "age", :value => "age-confirm"}
 		%label{:for => "age_checkbox"}

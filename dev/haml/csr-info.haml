@@ -11,12 +11,17 @@
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
 		-# using modal styes: applied via 'wrap_content' class
-		%main.wrap_content{:role => "main", "data-container" => "width-926"}
+		%main.wrap_content{:role => "main"}
 
-			%form#csr-info_form{:action => "", :method => "GET", :novalidate => true}
+			%form#csr-info_form.csr-info_form{:action => "", :method => "GET", :novalidate => true}
 
-				%h1 Customer First and Last Name:
-				%input#csr-fullname_text.csr-fullname_text.error_invalid{:type => "text", :name => "fullname", :value => "", :autocomplete => "off", :placeholder => "Enter Name", :required => true}
+				%h1 Customer First Name:
+				%input#csr-firstname_text.csr-firstname_text{:type => "text", :name => "firstname", :value => "", :autocomplete => "off", :placeholder => "Enter First Name", :required => true}
+
+				%hr
+
+				%h1 Customer Last Name:
+				%input#csr-lastname_text.csr-lastname_text{:type => "text", :name => "lastname", :value => "", :autocomplete => "off", :placeholder => "Enter Last Name", :required => true}
 
 				%hr
 
