@@ -2508,11 +2508,9 @@ aside.modal_age p {
 body.page_csr-info main.wrap_content {
 	transform: translateY(-38%);
 }
-
 form.csr-info_form h1 {
 	font-size: 4.8rem;
 }
-
 form.csr-info_form input[type="text"],
 form.csr-info_form input[type="email"] {
 	margin-bottom: 8rem;
@@ -2522,8 +2520,6 @@ form.csr-info_form hr {
 	border: 0.2rem solid hsla(0,0%,80%,1);
 }
 
-
-
 // --- Form Elements --- \\
 form.csr-info_form input[type="tel"],
 form.csr-info_form input[type="text"],
@@ -2532,12 +2528,7 @@ form.csr-info_form input[type="password"] {
 	width: 60rem;
 	height: 9rem;
 	font-size: 4rem;
-	// border: 0.6rem solid hsla(141,100%,18%,1);
 }
-
-
-
-
 // --- CSR Cart --- \\
 body.page_csr-cart {
 }
