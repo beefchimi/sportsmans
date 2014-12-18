@@ -12,6 +12,6 @@
 		%main.wrap_content{:role => "main", "data-container" => "width-926"}
 			%h1#page_title Error 404
 			%p There seems to have been an error. Please use the link below to return to the start page.
-			%a#error_home.arrow_right{:href => "/index.html", :title => "Return Home"} Return Home
+			%a#error_home.arrow_right{:href => "/index.html"} Return Home
 
 		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

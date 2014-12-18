@@ -52,7 +52,7 @@
 
 	-# Would it be easier if I wrapped "15" in a tag?
 	-# "Review(s)" pluralized when greater than 1
-	%a#reviews_link.reviews_link.modal_open{:href => "#reviews_customer", :title => "Read Reviews"} Read 15 Reviews
+	%a#reviews_link.reviews_link.modal_open{:href => "#reviews_customer"} Read 15 Reviews
 
 
 	-# if it makes more sense, you can append this markup to the DOM on #reviews_link click
@@ -98,7 +98,7 @@
 						%svg.svg_star-stroke
 							%use{'xlink:href' => '#star-stroke'}
 
-				%a#reviews_close.button_close.modal_close{:href => "#", :title => "Close Window"}
+				%a#reviews_close.button_close.modal_close{:href => "#"}
 					%svg.svg_remove
 						%use{"xlink:href" => "#remove"}
 

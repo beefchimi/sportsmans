@@ -15,10 +15,10 @@
 
 			%h1 Welcome to America’s Premier Outfitter.&trade;
 
-			%a.shop_hunting.home_link{:href => "/prod-cat.html", :title => "In-Store Order"}
+			%a.shop_hunting.home_link{:href => "/prod-cat.html"}
 				%span.wrap_text In-Store Order
 
-			%a.shop_departments.home_link{:href => "/prod-dept.html", :title => "Order Pickup"}
+			%a.shop_departments.home_link{:href => "/prod-dept.html"}
 				%span.wrap_text Order Pickup
 
 		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

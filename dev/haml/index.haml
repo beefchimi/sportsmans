@@ -15,10 +15,10 @@
 
 			%h1 Welcome to America’s Premier Outfitter.&trade;
 
-			%a.shop_hunting.home_link{:href => "/prod-cat.html", :title => "Shop Hunting"}
+			%a.shop_hunting.home_link{:href => "/prod-cat.html"}
 				%span.wrap_text Shop Hunting
 
-			%a.shop_departments.home_link{:href => "/prod-dept.html", :title => "Shop All Departments"}
+			%a.shop_departments.home_link{:href => "/prod-dept.html"}
 				%span.wrap_text Shop All Departments
 
 		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

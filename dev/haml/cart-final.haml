@@ -13,6 +13,6 @@
 			%h1 Order received, but there’s one last step!
 			%p To complete your transaction, please see one of our friendly customer service representatives at the front of the store to pay for your items and complete the order.
 			%p Once you've done that, your items will be in our store in 3 &ndash; 5 days, and you'll be notified by phone as soon as they arrive.
-			%a#order_finalize.arrow_right{:href => "/cart-checkout.html", :title => "Got It"} Got It!
+			%a#order_finalize.arrow_right{:href => "/cart-checkout.html"} Got It!
 
 		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render

@@ -2091,10 +2091,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				elCartForm.classList.add('error_age');
 				elButtonFinalize.classList.add('error_message');
 				smoothScroll.animateScroll(null, '#confirm_age', scrollOptions);
+				e.preventDefault();
 			}
-
-			// should not be used in production
-			e.preventDefault();
 
 		});
 
@@ -2106,7 +2104,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 
 	}
-
 
 
 	// Initialize Primary Functions

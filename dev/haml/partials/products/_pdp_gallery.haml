@@ -1,24 +1,24 @@
 %ul#gallery_slider.gallery_slider{"data-index" => "1"}
 	%li.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #1", "data-slide" => "1"}
+		%a.gallery_full-link.modal_open{:href => "#modal_image", "data-slide" => "1"}
 			%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #1"}
 	%li.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #2", "data-slide" => "2"}
+		%a.gallery_full-link.modal_open{:href => "#modal_image", "data-slide" => "2"}
 			%img{:src => "assets/img/pdp_image-2.jpg", :alt => "Image #2"}
 	%li.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #3", "data-slide" => "3"}
+		%a.gallery_full-link.modal_open{:href => "#modal_image", "data-slide" => "3"}
 			%img{:src => "assets/img/pdp_image-3.jpg", :alt => "Image #3"}
 	%li.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #4", "data-slide" => "4"}
+		%a.gallery_full-link.modal_open{:href => "#modal_image", "data-slide" => "4"}
 			%img{:src => "assets/img/pdp_image-4.jpg", :alt => "Image #4"}
 	%li.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #5", "data-slide" => "5"}
+		%a.gallery_full-link.modal_open{:href => "#modal_image", "data-slide" => "5"}
 			%img{:src => "assets/img/pdp_image-5.jpg", :alt => "Image #5"}
 	%li.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #6", "data-slide" => "6"}
+		%a.gallery_full-link.modal_open{:href => "#modal_image", "data-slide" => "6"}
 			%img{:src => "assets/img/pdp_image-6.jpg", :alt => "Image #6"}
 	%li.gallery_slide
-		%a.gallery_full-link.modal_open{:href => "#modal_image", :title => "Image #7", "data-slide" => "7"}
+		%a.gallery_full-link.modal_open{:href => "#modal_image", "data-slide" => "7"}
 			%img{:src => "assets/img/pdp_image-7.jpg", :alt => "Image #7"}
 
 
@@ -32,45 +32,45 @@
 		-# on click: get 'data-video' value, build <iframe> src, build / append modal
 		-# video can be clicked to play / pause, close modal button should probably stop the video then destroy (might not actually matter)
 		%li.gallery_thumb
-			%a.link_video.modal_open{:href => "#modal_video", :title => "Play Video", "data-video" => "nMrJhsNX0Ws"}
+			%a.link_video.modal_open{:href => "#modal_video", "data-video" => "nMrJhsNX0Ws"}
 				.play-icon
 		%li.gallery_thumb
-			%a.link_video.modal_open{:href => "#modal_video", :title => "Play Video", "data-video" => "nMrJhsNX0Ws"}
+			%a.link_video.modal_open{:href => "#modal_video", "data-video" => "nMrJhsNX0Ws"}
 				.play-icon
 
 		-# a.link_slide(s) 'data-thumb' attribute needs to correspond with the desintation slide...
 		-# ex. there are 2 a.link_video elements, so the first a.link_slide (child of 3rd <li>) will have the 'data-thumb' of '1'
 		%li.gallery_thumb
-			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "1"}
+			%a.link_slide{:href => "#", "data-thumb" => "1"}
 				%img{:src => "assets/img/pdp_image-1.jpg", :alt => "Image #1"}
 		%li.gallery_thumb
-			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "2"}
+			%a.link_slide{:href => "#", "data-thumb" => "2"}
 				%img{:src => "assets/img/pdp_image-2.jpg", :alt => "Image #2"}
 		%li.gallery_thumb
-			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "3"}
+			%a.link_slide{:href => "#", "data-thumb" => "3"}
 				%img{:src => "assets/img/pdp_image-3.jpg", :alt => "Image #3"}
 		%li.gallery_thumb
-			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "4"}
+			%a.link_slide{:href => "#", "data-thumb" => "4"}
 				%img{:src => "assets/img/pdp_image-4.jpg", :alt => "Image #4"}
 		%li.gallery_thumb
-			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "5"}
+			%a.link_slide{:href => "#", "data-thumb" => "5"}
 				%img{:src => "assets/img/pdp_image-5.jpg", :alt => "Image #5"}
 		%li.gallery_thumb
-			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "6"}
+			%a.link_slide{:href => "#", "data-thumb" => "6"}
 				%img{:src => "assets/img/pdp_image-6.jpg", :alt => "Image #6"}
 		%li.gallery_thumb
-			%a.link_slide{:href => "#", :title => "View Slide", "data-thumb" => "7"}
+			%a.link_slide{:href => "#", "data-thumb" => "7"}
 				%img{:src => "assets/img/pdp_image-7.jpg", :alt => "Image #7"}
 
 
 -# prev / next nav links for gallery slider
 -# if no image: add "disabled" class ot each <a>
 
-%a#gallery_prev.gallery_prev{:href => "", :title => "Previous Slide"}
+%a#gallery_prev.gallery_prev{:href => ""}
 	%svg.svg_arrow
 		%use{'xlink:href' => '#arrow'}
 
-%a#gallery_next.gallery_next{:href => "", :title => "Next Slide"}
+%a#gallery_next.gallery_next{:href => ""}
 	%svg.svg_arrow
 		%use{'xlink:href' => '#arrow'}
 
