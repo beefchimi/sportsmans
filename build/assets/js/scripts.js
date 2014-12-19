@@ -1473,14 +1473,19 @@ document.addEventListener('DOMContentLoaded', function() {
 						elSelectedLI.classList.remove('selected');
 						thisDropdownArticle.setAttribute('data-selected', '');
 						thisDropdownArticle.classList.remove('toggled');
+						elBody.classList.remove('active_overlay');
 
 					} else {
 
+						elBody.classList.add('active_overlay');
 						thisDropdownArticle.classList.toggle('toggled');
 
 					}
 
 				} else {
+
+					// add 'active_overlay' class on body to prevent scrolling
+					elBody.classList.add('active_overlay');
 
 					// allow for class toggling on the clicked dropdown
 					thisDropdownArticle.classList.toggle('toggled');
@@ -1506,6 +1511,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						return;
 					}
 
+					// remove active / toggled classes
+					elBody.classList.remove('active_overlay');
 					thisDropdownArticle.classList.remove('toggled');
 
 				}
@@ -1555,11 +1562,11 @@ document.addEventListener('DOMContentLoaded', function() {
 					// then add 'selected' class to parent <li> of newly chosen a[data-value]
 					elParentLI.classList.add('selected');
 
+					// remove active class form body to restore scrolling
+					elBody.classList.remove('active_overlay');
+
 					// remove 'toggled' class from parent article
 					elParentArticle.classList.remove('toggled');
-
-					// THIS SHOULD BE RECONSIDERED! THERES GOT TO BE A BETTER WAAY!
-					// Should probably leave the remainder of this function up to TW, as I do not know the specifics of the form submission
 
 					// if we are on the PDP page and we have 2 select options (1. Color / 2. Size)...
 					if (elParentArticle.classList.contains('wrap_option-color')) {
@@ -1571,15 +1578,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					// IMPORTANT: if Color value is changed after Size has been selected, we need to reset Size <select>:
 					// data-selected = "" | remove :selected from <option> | h6.dropdown_label = "2. Select Size" | li.dropdown_option remove class "selected"
-
-/*
-					// TEMP: log the selected data-value and matched <option> to inspect
-					console.log('selected data-value: "' + dataValue + '", followed by matched <option>:');
-					console.log(elMatchedOption);
-
-					// TEST: need to verify everything is working as expected
-					elDropdownForm.submit();
-*/
 
 					e.preventDefault();
 

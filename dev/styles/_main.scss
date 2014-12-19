@@ -18,16 +18,25 @@ input,
 textarea {
 	user-select: none; // prevent accidental text selection when interacting with buttons and form elements
 }
+html,
+body {
+	min-height: 100%;
+	height: 100%;
+}
 body {
 	position: relative;
 	padding: 24rem 0 4.8rem 0;
-	min-height: 192rem;
+	// min-height: 192rem;
 }
 input::-webkit-input-placeholder {
 	color: hsla(141,100%,18%,1);
 }
 input:focus::-webkit-input-placeholder {
 	color: hsla(141,100%,18%,0.5);
+}
+// + prevent srolling on body + \\
+body.active_overlay {
+	overflow-y: hidden;
 }
 
 // Transitions
