@@ -6,6 +6,7 @@ var gulp       = require('gulp'),
 	gutil      = require('gulp-util'),
 	livereload = require('gulp-livereload'),
 	del        = require('del'),
+	cheerio    = require('cheerio'),
 	pngcrush   = require('imagemin-pngcrush'),
 	// secrets    = require('./secrets.json'),
 	plugins    = require('gulp-load-plugins')({
@@ -84,18 +85,36 @@ gulp.task('haml', function() {
 // Compile and Output Styles
 gulp.task('styles', function() {
 
+	return plugins.rubySass(paths.styles.src + 'styles.scss', {
+			style: 'expanded',
+			sourcemap: false, // true
+			precision: 2
+		})
+		.pipe(plugins.concat('styles.css')) // concat with sourcemap if --dev
+		.pipe(plugins.autoprefixer({
+			browsers: ['last 2 version', 'ios 6', 'android 4']
+		}))
+		.pipe(gulp.dest(paths.styles.dest))
+		.pipe(plugins.minifyCss()) // don't minify if --dev
+		.pipe(plugins.rename('styles.min.css'))
+		.pipe(gulp.dest(paths.styles.dest));
+
+/*
 	return gulp.src(paths.styles.src + 'styles.scss')
 		.pipe(plugins.rubySass({
 			style: 'expanded', // sassStyle,
 			sourcemap: false, // sourceMap, (true is causing an error)
 			precision: 2
 		}))
-		.pipe(plugins.concat('styles.css')) // concat with sourcemap if --dev
-		.pipe(plugins.autoprefixer('last 2 version'))
+		// .pipe(plugins.concat('styles.css')) // concat with sourcemap if --dev
+		.pipe(plugins.autoprefixer({
+			browsers: ['last 2 version', 'ios 6', 'android 4']
+		}))
 		.pipe(gulp.dest(paths.styles.dest))
 		.pipe(plugins.minifyCss()) // don't minify if --dev
 		.pipe(plugins.rename('styles.min.css'))
 		.pipe(gulp.dest(paths.styles.dest));
+*/
 
 });
 
@@ -130,6 +149,34 @@ gulp.task('images', function() {
 // need to manually run each time haml file is updated until a sequence gets added to gulp
 gulp.task('svg', function() {
 
+/*
+	var svgOutput = gulp.src(paths.svg.src)
+						.pipe(plugins.imagemin({
+							svgoPlugins: [{
+								removeViewBox: false,
+								removeUselessStrokeAndFill: false
+							}]
+						}))
+						.pipe(plugins.svgstore({
+							// prefix: 'icon-',
+							inlineSvg: true
+						}))
+						.pipe(cheerio(function($) {
+							$('svg').attr({
+								'id': 'master-vector',
+								'style': 'display:none'
+							});
+						}));
+
+	function fileContents(filePath, file) {
+		return file.contents.toString('utf8');
+	}
+
+	return gulp.src(paths.haml.dest + '*.html')
+				.pipe(plugins.inject(svgOutput, { transform: fileContents }))
+				.pipe(gulp.dest(paths.haml.dest));
+*/
+
 	var svgOutput = gulp.src(paths.svg.src)
 						.pipe(plugins.imagemin({
 							svgoPlugins: [{
@@ -156,6 +203,7 @@ gulp.task('svg', function() {
 	return gulp.src(paths.haml.dest + '*.html')
 				.pipe(plugins.inject(svgOutput, { transform: fileContents }))
 				.pipe(gulp.dest(paths.haml.dest));
+
 
 });
 

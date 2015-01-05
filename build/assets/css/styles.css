@@ -303,15 +303,10 @@ textarea {
           user-select: none;
 }
 
-html,
-body {
-  min-height: 100%;
-  height: 100%;
-}
-
 body {
   position: relative;
   padding: 24rem 0 4.8rem 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 input::-webkit-input-placeholder {
@@ -322,10 +317,17 @@ input:focus::-webkit-input-placeholder {
   color: rgba(0, 92, 32, 0.5);
 }
 
-body.active_overlay {
-  overflow-y: hidden;
+/*
+// + prevent srolling on body + \
+html,
+html body {
+	min-height: 100%;
+	height: 100%;
 }
-
+body.active_overlay {
+	overflow-y: hidden;
+}
+*/
 svg {
   -webkit-transition: fill 0.2s ease-in-out;
           transition: fill 0.2s ease-in-out;
@@ -505,12 +507,11 @@ div.loader div.circle-2 {
 
 @-webkit-keyframes loadPulse {
   0%,
-  80%,
-  100% {
+	80%,
+	100% {
     -webkit-transform: scale(0);
             transform: scale(0);
   }
-
   40% {
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -519,12 +520,11 @@ div.loader div.circle-2 {
 
 @keyframes loadPulse {
   0%,
-  80%,
-  100% {
+	80%,
+	100% {
     -webkit-transform: scale(0);
             transform: scale(0);
   }
-
   40% {
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -535,7 +535,6 @@ div.tooltip {
   top: -6.6rem;
   left: 50%;
   -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
           transform: translateX(-50%);
   width: 20rem;
   text-align: center;
@@ -552,7 +551,6 @@ div.tooltip::after {
   bottom: -1.4rem;
   left: 50%;
   -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
           transform: translateX(-50%);
   width: 0;
   height: 0;
@@ -1001,7 +999,6 @@ div.adjust_quantity button.disabled svg {
   left: 0;
   text-align: center;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
 }
 
@@ -1332,7 +1329,6 @@ aside.widget_cart a.arrow_right svg {
   height: 2rem;
   fill: #005c20;
   -webkit-transform: translateY(-0.2rem);
-      -ms-transform: translateY(-0.2rem);
           transform: translateY(-0.2rem);
 }
 
@@ -1464,7 +1460,6 @@ form.search_form input[type="checkbox"] + label {
   bottom: 0;
   left: 50%;
   -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
           transform: translateX(-50%);
   padding: 1rem 1.6rem 1rem 5rem;
   font-size: 1.5rem;
@@ -1745,7 +1740,6 @@ form.options_form article div ul li a span.variation_stock {
   top: 50%;
   right: 2rem;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   text-align: right;
   padding: 0.4rem 1.2rem;
@@ -1878,7 +1872,6 @@ form.has-popout table tbody tr td.product_quantity div.adjust_quantity button {
 
 form.has-popout table tbody tr td.product_quantity div.adjust_quantity button svg {
   -webkit-transform: translateY(-0.1rem);
-      -ms-transform: translateY(-0.1rem);
           transform: translateY(-0.1rem);
 }
 
@@ -1988,7 +1981,6 @@ section.panel_cart button.arrow_right svg {
   height: 2.6rem;
   fill: #005c20;
   -webkit-transform: translate(-0.4rem, -0.3rem);
-      -ms-transform: translate(-0.4rem, -0.3rem);
           transform: translate(-0.4rem, -0.3rem);
 }
 
@@ -2449,7 +2441,6 @@ ol.reviews_rating {
 aside.reviews > ol.reviews_rating {
   margin-right: 3.2rem;
   -webkit-transform: translateY(1rem);
-      -ms-transform: translateY(1rem);
           transform: translateY(1rem);
 }
 
@@ -2530,7 +2521,6 @@ div.reviews_customer div.wrap_reviews {
   right: 0;
   left: 0;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   margin: auto;
   width: 93.4rem;
@@ -2559,7 +2549,6 @@ div.reviews_customer div.title_row a.button_close {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
 }
 
@@ -2808,7 +2797,6 @@ div.wrap_gallery-thumbs ul li a.link_video div.play-icon {
   border-bottom: 1.6rem solid transparent;
   border-left: 2.8rem solid white;
   -webkit-transform: translateX(0.3rem);
-      -ms-transform: translateX(0.3rem);
           transform: translateX(0.3rem);
 }
 
@@ -2885,7 +2873,6 @@ article.pdp_gallery a.gallery_next {
 
 article.pdp_gallery a.gallery_next svg {
   -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
 
@@ -3168,7 +3155,6 @@ aside.modal_age p {
 
 body.page_csr-info main.wrap_content {
   -webkit-transform: translateY(-38%);
-      -ms-transform: translateY(-38%);
           transform: translateY(-38%);
 }
 
