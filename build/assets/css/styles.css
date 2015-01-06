@@ -2376,6 +2376,25 @@ article.pdp_content img:last-child {
   margin-bottom: 0;
 }
 
+div.pdp_warning {
+  margin-top: 3.2rem;
+  padding: 2rem;
+  border: 0.3rem solid #cccccc;
+}
+
+div.pdp_warning h5 {
+  margin-bottom: 1.6rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: #333333;
+}
+
+/*
+div.pdp_warning p {
+	font-size: 1.8rem;
+	line-height: 1.3;
+}
+*/
 section.pdp_description {
   margin: 6rem 0;
   padding: 4rem 0;
