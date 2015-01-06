@@ -1893,7 +1893,16 @@ div.pdp_warning {
 	border: 0.3rem solid hsla(0,0%,80%,1);
 	// background-color: hsla(0,0%,94%,1);
 }
+div.pdp_warning svg.svg_alert {
+	display: inline-block;
+	margin-right: 1rem;
+	width: 2rem;
+	height: 2rem;
+	fill: hsla(0,0%,20%,1);
+	transform: translateY(-0.4rem);
+}
 div.pdp_warning h5 {
+	display: inline-block;
 	margin-bottom: 1.6rem;
 	font-size: 1.6rem;
 	text-transform: uppercase;
