@@ -5,8 +5,7 @@
 
 	%body#csr_confirm.page_csr-confirm
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
@@ -40,4 +39,4 @@
 
 				%button.arrow_right Confirm Pickup
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

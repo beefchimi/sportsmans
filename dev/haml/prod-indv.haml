@@ -9,8 +9,7 @@
 
 	%body#individual.page_prod-indv.view_grid
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		%header#header_common.header_common{"data-scrolled" => "no", "data-cart" => "yes"}
 			= Haml::Engine.new(File.read("dev/haml/partials/common/_header_row-1.haml")).render
@@ -21,4 +20,4 @@
 			= Haml::Engine.new(File.read("dev/haml/partials/products/_grid_col-5.haml")).render
 			= Haml::Engine.new(File.read("dev/haml/partials/products/_grid_loader.haml")).render
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

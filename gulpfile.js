@@ -3,11 +3,11 @@
 
 // gulp requires
 var gulp       = require('gulp'),
-	gutil      = require('gulp-util'),
-	livereload = require('gulp-livereload'),
-	del        = require('del'),
-	cheerio    = require('cheerio'),
+	// del        = require('del'),
+	// cheerio    = require('cheerio'), // used by gulp-svgstore for transforms
 	pngcrush   = require('imagemin-pngcrush'),
+	// gutil = require('gulp-util'), // does it make sense to define this outside of load-plugins?
+	// livereload = require('gulp-livereload'), // does it make sense to define this outside of load-plugins?
 	// secrets    = require('./secrets.json'),
 	plugins    = require('gulp-load-plugins')({
 		pattern: ['gulp-*', 'gulp.*'],
@@ -44,24 +44,11 @@ var paths = {
 
 };
 
-/*
-// --dev flag variables
-var isProduction = true,
-	sassStyle    = 'compressed',
-	sourceMap    = false;
-
-// run "gulp *task* --dev" for dev en output
-if (gutil.env.dev === true) {
-	isProduction = false;
-	sassStyle    = 'expanded';
-	sourceMap    = true;
-}
-*/
-
 
 /* Gulp Tasks
 ---------------------------------------------------------------------------- */
 
+/*
 // Delete all build files
 gulp.task('clean', function(cb) {
 
@@ -70,6 +57,7 @@ gulp.task('clean', function(cb) {
 	del(['build/assets/css/*.css', 'build/assets/img/*.*', 'build/assets/js/*.js', 'build/*.*', 'build/.htaccess'], cb);
 
 });
+*/
 
 
 // Compile only main HAML files (partials are included via the main files)
@@ -77,7 +65,8 @@ gulp.task('haml', function() {
 
 	return gulp.src(paths.haml.src + '*.haml') // does not work: , {read: false}
 		.pipe(plugins.rubyHaml()) // does not work: {doubleQuote: true}
-		.pipe(gulp.dest(paths.haml.dest));
+		.pipe(gulp.dest(paths.haml.dest))
+		.pipe(plugins.livereload());
 
 });
 
@@ -86,26 +75,9 @@ gulp.task('haml', function() {
 gulp.task('styles', function() {
 
 	return plugins.rubySass(paths.styles.src + 'styles.scss', {
-			style: 'expanded',
-			sourcemap: false, // true
-			precision: 2
+			sourcemap: false // true
 		})
-		.pipe(plugins.concat('styles.css')) // concat with sourcemap if --dev
-		.pipe(plugins.autoprefixer({
-			browsers: ['last 2 version', 'ios 6', 'android 4']
-		}))
-		.pipe(gulp.dest(paths.styles.dest))
-		.pipe(plugins.minifyCss()) // don't minify if --dev
-		.pipe(plugins.rename('styles.min.css'))
-		.pipe(gulp.dest(paths.styles.dest));
-
-/*
-	return gulp.src(paths.styles.src + 'styles.scss')
-		.pipe(plugins.rubySass({
-			style: 'expanded', // sassStyle,
-			sourcemap: false, // sourceMap, (true is causing an error)
-			precision: 2
-		}))
+		// .pipe(plugins.sourcemaps.write())
 		// .pipe(plugins.concat('styles.css')) // concat with sourcemap if --dev
 		.pipe(plugins.autoprefixer({
 			browsers: ['last 2 version', 'ios 6', 'android 4']
@@ -113,8 +85,8 @@ gulp.task('styles', function() {
 		.pipe(gulp.dest(paths.styles.dest))
 		.pipe(plugins.minifyCss()) // don't minify if --dev
 		.pipe(plugins.rename('styles.min.css'))
-		.pipe(gulp.dest(paths.styles.dest));
-*/
+		.pipe(gulp.dest(paths.styles.dest))
+		.pipe(plugins.livereload());
 
 });
 
@@ -127,7 +99,8 @@ gulp.task('scripts', function() {
 		.pipe(gulp.dest(paths.scripts.dest))
 		.pipe(plugins.uglify()) // don't uglify if --dev
 		.pipe(plugins.rename('scripts.min.js'))
-		.pipe(gulp.dest(paths.scripts.dest));
+		.pipe(gulp.dest(paths.scripts.dest))
+		.pipe(plugins.livereload());
 
 });
 
@@ -145,11 +118,23 @@ gulp.task('images', function() {
 });
 
 
-// Compress all svg files, combine them into a single file, inject contents into index.html
-// need to manually run each time haml file is updated until a sequence gets added to gulp
+// Compress all svg files and combine into a single file
 gulp.task('svg', function() {
 
-/*
+	return gulp.src(paths.svg.src)
+		.pipe(plugins.imagemin({
+			svgoPlugins: [{
+				removeViewBox: false,
+				removeUselessStrokeAndFill: false
+			}]
+		}))
+		.pipe(plugins.svgstore({
+			fileName: 'icons.svg'
+		}))
+		.pipe(gulp.dest(paths.images.dest));
+
+/* ONCE GULP HAS TASK SEQUENCING, REVISIT THIS AND USE GULP-INJECT
+
 	var svgOutput = gulp.src(paths.svg.src)
 						.pipe(plugins.imagemin({
 							svgoPlugins: [{
@@ -175,35 +160,8 @@ gulp.task('svg', function() {
 	return gulp.src(paths.haml.dest + '*.html')
 				.pipe(plugins.inject(svgOutput, { transform: fileContents }))
 				.pipe(gulp.dest(paths.haml.dest));
+
 */
-
-	var svgOutput = gulp.src(paths.svg.src)
-						.pipe(plugins.imagemin({
-							svgoPlugins: [{
-								removeViewBox: false,
-								removeUselessStrokeAndFill: false
-							}]
-						}))
-						.pipe(plugins.svgstore({
-							// prefix: 'icon-',
-							inlineSvg: true,
-							transformSvg: function($svg, done) {
-								$svg.attr({
-									id: 'master-vector',
-									style: 'display:none'
-								});
-								done(null, $svg);
-							}
-						}));
-
-	function fileContents(filePath, file) {
-		return file.contents.toString('utf8');
-	}
-
-	return gulp.src(paths.haml.dest + '*.html')
-				.pipe(plugins.inject(svgOutput, { transform: fileContents }))
-				.pipe(gulp.dest(paths.haml.dest));
-
 
 });
 
@@ -248,26 +206,18 @@ gulp.task('deploy', function() {
 
 // Watch over specified files and run corresponding tasks...
 // does not inject SVG... need better process for this
-gulp.task('watch', ['haml', 'styles', 'scripts', 'extras'], function() {
+gulp.task('watch', ['haml', 'styles', 'scripts'], function() {
 
-	gulp.start('svg'); // apparently not a good approach
+	plugins.livereload.listen(); // start livereload server
 
 	// watch dev files, rebuild when changed
 	gulp.watch(paths.haml.src + '**/*.haml', ['haml']);  // watch all HAML files, including partials (recursively)
 	gulp.watch(paths.styles.src + '*.scss', ['styles']); // watch all SCSS files,  including partials
 	gulp.watch(paths.scripts.src, ['scripts']); // watch all JS files
 
-	// start livereload server and refresh page whenever build files are updated
-	livereload.listen(); // errors with livereload?
-	gulp.watch('build/**').on('change', livereload.changed);
-
 });
 
 
 // Default gulp task - requires HAML to be compiled before injecting SVG
 // Should run gulp clean prior to running the default task
-gulp.task('default', ['haml'], function() {
-
-	gulp.start('styles', 'scripts', 'images', 'extras', 'svg'); // apparently not a good approach
-
-});
+gulp.task('default', ['haml', 'styles', 'scripts', 'images', 'extras', 'svg']);

@@ -5,8 +5,7 @@
 
 	%body#cart_final.page_cart-final
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		-# using modal styes: applied via 'wrap_content' class
 		%main.wrap_content{:role => "main", "data-container" => "width-926"}
@@ -15,4 +14,4 @@
 			%p Once you've done that, your items will be in our store in 3 &ndash; 5 days, and you'll be notified by phone as soon as they arrive.
 			%a#order_finalize.arrow_right{:href => "/cart-checkout.html"} Got It!
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

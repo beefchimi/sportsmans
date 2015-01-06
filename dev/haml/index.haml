@@ -5,8 +5,7 @@
 
 	%body#home.page_home
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		%main{:role => "main", "data-container" => "width-686"}
 
@@ -21,4 +20,4 @@
 			%a.shop_departments.home_link{:href => "/prod-dept.html"}
 				%span.wrap_text Shop All Departments
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

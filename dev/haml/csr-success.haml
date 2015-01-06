@@ -5,8 +5,7 @@
 
 	%body#csr_success.page_csr-success
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
@@ -19,4 +18,4 @@
 
 			%a#return_main.arrow_right{:href => "#"} Return to Main
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

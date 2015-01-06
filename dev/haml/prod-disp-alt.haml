@@ -8,8 +8,7 @@
 	-# 'view_quantity-form' applied where number inputs are needed
 	%body#pdp.page_prod-disp.view_quantity-form
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		%header#header_common.header_common{"data-scrolled" => "no", "data-cart" => "yes"}
 			= Haml::Engine.new(File.read("dev/haml/partials/common/_header_row-1.haml")).render
@@ -62,4 +61,4 @@
 						%li Sit voluptatem accusantium doloremque laudantium, totam.
 
 		= Haml::Engine.new(File.read("dev/haml/partials/products/_footer_cart-pdp-alt.haml")).render
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

@@ -5,8 +5,7 @@
 
 	%body#csr_access.page_csr-access
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
@@ -18,4 +17,4 @@
 				%input#csr-access_password.csr-access_password{:type => "password", :name => "access", :value => "", :maxlength => "4", :placeholder => "– – – –", :required => true}
 				%button.arrow_right Continue
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

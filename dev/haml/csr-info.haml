@@ -5,8 +5,7 @@
 
 	%body#csr_info.page_csr-info
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
@@ -35,4 +34,4 @@
 
 				%button.arrow_right Submit and Log Out
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

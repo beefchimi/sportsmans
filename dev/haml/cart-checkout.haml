@@ -6,8 +6,7 @@
 	-# 'view_quantity-form' applied where number inputs are needed
 	%body#cart_checkout.page_cart-checkout.view_quantity-form
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		%header#header_common.header_common{"data-scrolled" => "no", "data-cart" => "yes"}
 			= Haml::Engine.new(File.read("dev/haml/partials/common/_header_row-1.haml")).render
@@ -24,4 +23,4 @@
 
 
 		= Haml::Engine.new(File.read("dev/haml/partials/cart/_footer_cart-checkout.haml")).render
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

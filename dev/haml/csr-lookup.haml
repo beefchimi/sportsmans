@@ -5,8 +5,7 @@
 
 	%body#csr_lookup.page_csr-lookup
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
@@ -21,4 +20,4 @@
 			#not-found.not-found
 				%h3 No orders found under that phone number.
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

@@ -5,8 +5,7 @@
 
 	%body#csr_display.page_csr-display
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
@@ -14,4 +13,4 @@
 		%main.wrap_content{:role => "main", "data-container" => "width-926"}
 			= Haml::Engine.new(File.read("dev/haml/partials/csr/_table_display.haml")).render
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

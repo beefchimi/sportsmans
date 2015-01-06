@@ -6,8 +6,7 @@
 	-# 'view_quantity-form' applied where number inputs are needed
 	%body#csr_cart.page_csr-cart.view_quantity-form
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
@@ -16,4 +15,4 @@
 			= Haml::Engine.new(File.read("dev/haml/partials/modals/_cart_remove.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_footer_cart-csr.haml")).render
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render

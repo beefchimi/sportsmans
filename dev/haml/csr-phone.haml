@@ -5,8 +5,7 @@
 
 	%body#csr_phone.page_csr-phone
 
-		:plain
-			<!-- inject:svg --><!-- endinject -->
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_js_svg.haml")).render
 
 		= Haml::Engine.new(File.read("dev/haml/partials/csr/_header_csr.haml")).render
 
@@ -18,4 +17,4 @@
 				%input#csr-phone_tel.csr-phone_tel{:type => "tel", :name => "phone", :value => "", :autocomplete => "off", :placeholder => "Enter Number", :required => true}
 				%button.arrow_right Continue
 
-		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_scripts.haml")).render
+		= Haml::Engine.new(File.read("dev/haml/partials/common/_html_footer-scripts.haml")).render
